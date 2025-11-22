@@ -5,18 +5,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>Database design | 4. Semester Portfolio - Simon</title>
+<title>Database Design | 4. Semester Portfolio - Simon</title>
 <meta name="keywords" content="">
-<meta name="description" content="Arkitektur
-(Placeholder – senere diagram)
-Datamodeller
-(Placeholder)
-Integration med Blazor og EF Core
-(Placeholder)
-
-SQL Schema
-Se bilag: /database/bilag/sql-schema/
-">
+<meta name="description" content="Konkret arkitektur baseret på testresultater">
 <meta name="author" content="Simon">
 <link rel="canonical" href="http://localhost:1313/datamatiker-portfolio/database/design/">
 <link crossorigin="anonymous" href="/datamatiker-portfolio/assets/css/stylesheet.fd5566c526ae48aadabd950798a2dc3568536401560eae5caac3765a42a9e7b5.css" integrity="sha256-/VVmxSauSKravZUHmKLcNWhTZAFWDq5cqsN2WkKp57U=" rel="preload stylesheet" as="style">
@@ -149,8 +140,11 @@ Se bilag: /database/bilag/sql-schema/
   <header class="post-header">
     <div class="breadcrumbs"><a href="http://localhost:1313/datamatiker-portfolio/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/datamatiker-portfolio/database/">Database &amp; Storage</a></div>
     <h1 class="post-title entry-hint-parent">
-      Database design
+      Database Design
     </h1>
+    <div class="post-description">
+      Konkret arkitektur baseret på testresultater
+    </div>
     <div class="post-meta"><span>Simon</span>
 
 </div>
@@ -162,27 +156,721 @@ Se bilag: /database/bilag/sql-schema/
 
         <div class="inner"><ul>
                 <li>
-                    <a href="#arkitektur" aria-label="Arkitektur">Arkitektur</a></li>
+                    <a href="#fra-test-til-implementering" aria-label="Fra test til implementering">Fra test til implementering</a></li>
                 <li>
-                    <a href="#datamodeller" aria-label="Datamodeller">Datamodeller</a></li>
+                    <a href="#overordnet-arkitektur-beslutning" aria-label="Overordnet Arkitektur-Beslutning">Overordnet Arkitektur-Beslutning</a></li>
                 <li>
-                    <a href="#integration-med-blazor-og-ef-core" aria-label="Integration med Blazor og EF Core">Integration med Blazor og EF Core</a>
+                    <a href="#core-database-schema" aria-label="Core Database Schema">Core Database Schema</a><ul>
+                        
+                <li>
+                    <a href="#1-users-brugerprofiler-og-authentication" aria-label="1. Users: Brugerprofiler og authentication">1. Users: Brugerprofiler og authentication</a></li>
+                <li>
+                    <a href="#2-conversations-samtale-containers" aria-label="2. Conversations: Samtale-containers">2. Conversations: Samtale-containers</a></li>
+                <li>
+                    <a href="#3-messages-individuelle-chatbeskeder" aria-label="3. Messages: Individuelle chatbeskeder">3. Messages: Individuelle chatbeskeder</a></li>
+                <li>
+                    <a href="#4-analytics-events-metrics-for-owner-chatbot" aria-label="4. Analytics Events: Metrics for Owner Chatbot">4. Analytics Events: Metrics for Owner Chatbot</a></li></ul>
+                </li>
+                <li>
+                    <a href="#relationships-visualiseret" aria-label="Relationships Visualiseret">Relationships Visualiseret</a></li>
+                <li>
+                    <a href="#chatbot-specific-optimizations" aria-label="Chatbot-Specific Optimizations">Chatbot-Specific Optimizations</a><ul>
+                        
+                <li>
+                    <a href="#guest-chatbot-session-baseret-temporary-storage" aria-label="Guest Chatbot: Session-baseret temporary storage">Guest Chatbot: Session-baseret temporary storage</a></li>
+                <li>
+                    <a href="#authenticated-chatbot-full-text--semantic-search" aria-label="Authenticated Chatbot: Full-text &#43; semantic search">Authenticated Chatbot: Full-text + semantic search</a></li>
+                <li>
+                    <a href="#owner-chatbot-analytics--aggregations" aria-label="Owner Chatbot: Analytics &#43; aggregations">Owner Chatbot: Analytics + aggregations</a></li></ul>
+                </li>
+                <li>
+                    <a href="#integration-med-blazor-og-ef-core" aria-label="Integration med Blazor og EF Core">Integration med Blazor og EF Core</a><ul>
+                        
+                <li>
+                    <a href="#dbcontext-konfiguration" aria-label="DbContext Konfiguration">DbContext Konfiguration</a></li>
+                <li>
+                    <a href="#repository-pattern" aria-label="Repository Pattern">Repository Pattern</a></li>
+                <li>
+                    <a href="#transaction-boundaries" aria-label="Transaction Boundaries">Transaction Boundaries</a></li></ul>
+                </li>
+                <li>
+                    <a href="#designet-i-overblik" aria-label="Designet i Overblik">Designet i Overblik</a></li>
+                <li>
+                    <a href="#fra-arkitektur-til-refleksion" aria-label="Fra Arkitektur til Refleksion">Fra Arkitektur til Refleksion</a>
                 </li>
             </ul>
         </div>
     </details>
 </div>
 
-  <div class="post-content"><h2 id="arkitektur">Arkitektur<a hidden class="anchor" aria-hidden="true" href="#arkitektur">#</a></h2>
-<p><em>(Placeholder – senere diagram)</em></p>
-<h2 id="datamodeller">Datamodeller<a hidden class="anchor" aria-hidden="true" href="#datamodeller">#</a></h2>
-<p><em>(Placeholder)</em></p>
-<h2 id="integration-med-blazor-og-ef-core">Integration med Blazor og EF Core<a hidden class="anchor" aria-hidden="true" href="#integration-med-blazor-og-ef-core">#</a></h2>
-<p><em>(Placeholder)</em></p>
+  <div class="post-content"><h2 id="fra-test-til-implementering">Fra test til implementering<a hidden class="anchor" aria-hidden="true" href="#fra-test-til-implementering">#</a></h2>
+<p>Jeg har nu valideret at PostgreSQL outperformer MongoDB på alle metrics. Men en database-beslutning er ikke kun et teoretisk valg – den skal omsættes til konkret arkitektur der faktisk fungerer i Blazor-applikationen.</p>
+<p>Hvordan struktureres tabeller? Hvilke indexes? Hvordan håndterer jeg de tre forskellige chatbot-typers behov samtidig? Og hvordan sikrer jeg at designet ikke bare fungerer i teorien, men også i praksis med EF Core?</p>
+<p>Dette afsnit dokumenterer den konkrete database-arkitektur fra schema-design til index-strategi.</p>
+<hr>
+<h2 id="overordnet-arkitektur-beslutning">Overordnet Arkitektur-Beslutning<a hidden class="anchor" aria-hidden="true" href="#overordnet-arkitektur-beslutning">#</a></h2>
+<p><strong>Valgt løsning:</strong> PostgreSQL 16.1 med pgvector extension som unified platform.</p>
+<p><strong>Hvad dette betyder:</strong></p>
+<p>✅ <strong>Single database system</strong></p>
+<ul>
+<li>Alle data (users, conversations, messages, embeddings) i ét system</li>
+<li>Ingen separat vector database</li>
+<li>Ingen separat document store</li>
+</ul>
+<p>✅ <strong>Hybride capabilities</strong></p>
+<ul>
+<li>Relationelle strukturer: Foreign keys, ACID transactions</li>
+<li>JSON documents: JSONB kolonner for flexible data</li>
+<li>Vector embeddings: Native pgvector datatype</li>
+</ul>
+<p>✅ <strong>Eliminerer kompleksitet</strong></p>
+<ul>
+<li>❌ Ingen data duplication</li>
+<li>❌ Ingen cross-system synkronisering</li>
+<li>❌ Ingen eventual consistency issues</li>
+<li>❌ Ingen multiple database connections i kode</li>
+</ul>
+<p><strong>Trade-offs accepteret:</strong></p>
+<p>📊 <strong>PostgreSQL kræver mere initial setup</strong><br>
+MongoDB Atlas er &ldquo;click and deploy&rdquo;, PostgreSQL kræver extension installation og configuration. Men investering betales tilbage gennem lavere operational overhead.</p>
+<p>📊 <strong>pgvector ~20% langsommere end Pinecone ved pure vector search</strong><br>
+Men projektets use case kombinerer metadata-filtering med vector search. Her vinder unified platform på total latency (1 roundtrip vs 2+).</p>
+<p><strong>Designprincipper:</strong></p>
+<ol>
+<li><strong>Shared core schema</strong> – Users, Conversations, Messages deles på tværs af alle chatbot-typer</li>
+<li><strong>Chatbot-specific optimization</strong> – Indexes og views tilpasset hver chatbot&rsquo;s query patterns</li>
+<li><strong>EF Core first</strong> – Schema designet til at fungere problemfrit med Entity Framework</li>
+<li><strong>Performance by default</strong> – Indexes på alle foreign keys og frequent query paths</li>
+</ol>
+<hr>
+<h2 id="core-database-schema">Core Database Schema<a hidden class="anchor" aria-hidden="true" href="#core-database-schema">#</a></h2>
+<p>Fire primære tabeller danner fundamentet for alle tre chatbot-typer:</p>
+<hr>
+<h3 id="1-users-brugerprofiler-og-authentication">1. Users: Brugerprofiler og authentication<a hidden class="anchor" aria-hidden="true" href="#1-users-brugerprofiler-og-authentication">#</a></h3>
+<p><strong>Formål:</strong> Authentication, profil-data, owner identification</p>
+<p><strong>Key decisions:</strong></p>
+<ul>
+<li>UUID primary keys (globally unique identifiers)</li>
+<li><code>is_owner</code> flag for Owner Chatbot access control</li>
+<li>Email unique constraint + index for hurtig login</li>
+</ul>
 <details>
-<summary>SQL Schema</summary>
-Se bilag: /database/bilag/sql-schema/
+<summary><strong>📊 SQL schema og design rationale</strong></summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> users (
+</span></span><span style="display:flex;"><span>    id UUID <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> <span style="color:#66d9ef">DEFAULT</span> gen_random_uuid(),
+</span></span><span style="display:flex;"><span>    username VARCHAR(<span style="color:#ae81ff">100</span>) <span style="color:#66d9ef">UNIQUE</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>    email VARCHAR(<span style="color:#ae81ff">255</span>) <span style="color:#66d9ef">UNIQUE</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>    password_hash VARCHAR(<span style="color:#ae81ff">255</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>    created_at <span style="color:#66d9ef">TIMESTAMP</span> <span style="color:#66d9ef">DEFAULT</span> NOW(),
+</span></span><span style="display:flex;"><span>    is_owner BOOLEAN <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">FALSE</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> idx_users_email <span style="color:#66d9ef">ON</span> users(email);
+</span></span></code></pre></div><p><strong>Design rationale:</strong></p>
+<p><strong>UUID primary keys:</strong><br>
+Sikrer globally unique identifiers der fungerer på tværs af distributed scenarios og forenkler frontend state management.</p>
+<p><strong>is_owner flag:</strong><br>
+Identificerer administrator-brugere der har adgang til Owner Chatbot&rsquo;s analytics og system-wide data.</p>
+<p><strong>Email index:</strong><br>
+Understøtter hurtig login-lookup ved authentication flow.</p>
 </details>
+<hr>
+<h3 id="2-conversations-samtale-containers">2. Conversations: Samtale-containers<a hidden class="anchor" aria-hidden="true" href="#2-conversations-samtale-containers">#</a></h3>
+<p><strong>Formål:</strong> Grupperer beskeder, tracker metadata, understøtter både guest og authenticated sessions</p>
+<p><strong>Key decisions:</strong></p>
+<ul>
+<li>JSONB metadata for fleksibel chatbot-specific data</li>
+<li>Partial index kun på guest sessions (space optimization)</li>
+<li>ON DELETE CASCADE for GDPR compliance</li>
+</ul>
+<details>
+<summary><strong>📊 SQL schema og design rationale</strong></summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> conversations (
+</span></span><span style="display:flex;"><span>    id UUID <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> <span style="color:#66d9ef">DEFAULT</span> gen_random_uuid(),
+</span></span><span style="display:flex;"><span>    user_id UUID <span style="color:#66d9ef">REFERENCES</span> users(id) <span style="color:#66d9ef">ON</span> <span style="color:#66d9ef">DELETE</span> <span style="color:#66d9ef">CASCADE</span>,
+</span></span><span style="display:flex;"><span>    title VARCHAR(<span style="color:#ae81ff">255</span>),
+</span></span><span style="display:flex;"><span>    created_at <span style="color:#66d9ef">TIMESTAMP</span> <span style="color:#66d9ef">DEFAULT</span> NOW(),
+</span></span><span style="display:flex;"><span>    updated_at <span style="color:#66d9ef">TIMESTAMP</span> <span style="color:#66d9ef">DEFAULT</span> NOW(),
+</span></span><span style="display:flex;"><span>    is_guest_session BOOLEAN <span style="color:#66d9ef">DEFAULT</span> <span style="color:#66d9ef">FALSE</span>,
+</span></span><span style="display:flex;"><span>    session_id VARCHAR(<span style="color:#ae81ff">100</span>),
+</span></span><span style="display:flex;"><span>    metadata JSONB
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> idx_conversations_user_updated 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ON</span> conversations(user_id, updated_at <span style="color:#66d9ef">DESC</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> idx_conversations_session 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ON</span> conversations(session_id) 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> is_guest_session <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> idx_conversations_metadata 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ON</span> conversations <span style="color:#66d9ef">USING</span> GIN (metadata);
+</span></span></code></pre></div><p><strong>Design rationale:</strong></p>
+<p><strong>JSONB metadata kolonne:</strong><br>
+Tillader fleksibel storage uden schema changes:</p>
+<ul>
+<li>Guest Chatbot: Session preferences (language, theme)</li>
+<li>Authenticated Chatbot: User settings (notification preferences)</li>
+<li>Owner Chatbot: Cached computed metrics (avg response time)</li>
+</ul>
+<p><strong>Partial index på session_id:</strong><br>
+Kun guest sessions indexeres (WHERE clause). Reducerer index size ved at ekskludere authenticated conversations.</p>
+<p><strong>ON DELETE CASCADE:</strong><br>
+Automatic cleanup når users slettes – kritisk for GDPR &ldquo;right to deletion&rdquo;. Alle conversations + messages fjernes atomisk.</p>
+<p><strong>GIN index på JSONB:</strong><br>
+Hurtig søgning i metadata felter via queries som:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> metadata<span style="color:#f92672">-&gt;&gt;</span><span style="color:#e6db74">&#39;category&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;medical&#39;</span>
+</span></span></code></pre></div></details>
+<hr>
+<h3 id="3-messages-individuelle-chatbeskeder">3. Messages: Individuelle chatbeskeder<a hidden class="anchor" aria-hidden="true" href="#3-messages-individuelle-chatbeskeder">#</a></h3>
+<p><strong>Formål:</strong> Lagrer beskeder, embeddings for semantic search, token tracking</p>
+<p><strong>Key decisions:</strong></p>
+<ul>
+<li>Native vector(1536) datatype via pgvector</li>
+<li>HNSW index for similarity search (95-98% recall)</li>
+<li>Asynchronous embedding generation (decoupled fra message creation)</li>
+</ul>
+<details>
+<summary><strong>📊 SQL schema og design rationale</strong></summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> messages (
+</span></span><span style="display:flex;"><span>    id UUID <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> <span style="color:#66d9ef">DEFAULT</span> gen_random_uuid(),
+</span></span><span style="display:flex;"><span>    conversation_id UUID <span style="color:#66d9ef">REFERENCES</span> conversations(id) <span style="color:#66d9ef">ON</span> <span style="color:#66d9ef">DELETE</span> <span style="color:#66d9ef">CASCADE</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">role</span> VARCHAR(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">CHECK</span> (<span style="color:#66d9ef">role</span> <span style="color:#66d9ef">IN</span> (<span style="color:#e6db74">&#39;user&#39;</span>, <span style="color:#e6db74">&#39;assistant&#39;</span>, <span style="color:#e6db74">&#39;system&#39;</span>)),
+</span></span><span style="display:flex;"><span>    content TEXT <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">timestamp</span> <span style="color:#66d9ef">TIMESTAMP</span> <span style="color:#66d9ef">DEFAULT</span> NOW(),
+</span></span><span style="display:flex;"><span>    token_count INTEGER,
+</span></span><span style="display:flex;"><span>    embedding vector(<span style="color:#ae81ff">1536</span>)
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> idx_messages_conversation_time 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ON</span> messages(conversation_id, <span style="color:#66d9ef">timestamp</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> idx_messages_embedding 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ON</span> messages <span style="color:#66d9ef">USING</span> hnsw (embedding vector_cosine_ops)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WITH</span> (m <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>, ef_construction <span style="color:#f92672">=</span> <span style="color:#ae81ff">64</span>);
+</span></span></code></pre></div><p><strong>Design rationale:</strong></p>
+<p><strong>Vector embedding kolonne:</strong><br>
+pgvector&rsquo;s native VECTOR datatype (1536 dimensions matcher OpenAI&rsquo;s text-embedding-3-small). Embeddings genereres asynchronously via background job – ikke under message creation – så chatbot response time ikke påvirkes af OpenAI API latency (200-500ms).</p>
+<p><strong>HNSW index parameters:</strong></p>
+<ul>
+<li><code>m = 16</code>: Max connections per layer (balance recall vs speed)</li>
+<li><code>ef_construction = 64</code>: Build-time effort (højere = bedre recall)</li>
+<li>Leverer 95-98% recall ved 10-100× bedre performance end exhaustive search (valideret i H2)</li>
+</ul>
+<p><strong>CHECK constraint på role:</strong><br>
+Sikrer kun gyldige værdier (&lsquo;user&rsquo;, &lsquo;assistant&rsquo;, &lsquo;system&rsquo;). Database-level validation forhindrer data corruption fra application bugs.</p>
+<p><strong>Composite index (conversation_id, timestamp):</strong><br>
+Optimeret til hyppig query pattern: &ldquo;Hent alle beskeder for samtale X, sorteret efter tid&rdquo;</p>
+<p><strong>Asynchronous embedding workflow:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#75715e">// Step 1: Gem message (synchronous)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> message = <span style="color:#66d9ef">new</span> Message { Content = userInput };
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">await</span> _context.SaveChangesAsync();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Step 2: Queue embedding generation (asynchronous)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">await</span> _backgroundJobs.Enqueue&lt;GenerateEmbeddingJob&gt;(
+</span></span><span style="display:flex;"><span>    job =&gt; job.Execute(message.Id));
+</span></span></code></pre></div><p>Messages uden embeddings filtreres fra semantic search indtil embedding er klar.</p>
+</details>
+<hr>
+<h3 id="4-analytics-events-metrics-for-owner-chatbot">4. Analytics Events: Metrics for Owner Chatbot<a hidden class="anchor" aria-hidden="true" href="#4-analytics-events-metrics-for-owner-chatbot">#</a></h3>
+<p><strong>Formål:</strong> Log system events, track performance metrics, business intelligence data</p>
+<p><strong>Key decisions:</strong></p>
+<ul>
+<li>BIGSERIAL (ikke UUID) for space efficiency ved high volume</li>
+<li>JSONB event_data for flexible metric storage</li>
+<li>Events bevares ved user deletion (historical analytics)</li>
+</ul>
+<details>
+<summary><strong>📊 SQL schema og design rationale</strong></summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> analytics_events (
+</span></span><span style="display:flex;"><span>    id BIGSERIAL <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>,
+</span></span><span style="display:flex;"><span>    event_type VARCHAR(<span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>    user_id UUID <span style="color:#66d9ef">REFERENCES</span> users(id),
+</span></span><span style="display:flex;"><span>    conversation_id UUID <span style="color:#66d9ef">REFERENCES</span> conversations(id),
+</span></span><span style="display:flex;"><span>    event_data JSONB,
+</span></span><span style="display:flex;"><span>    created_at <span style="color:#66d9ef">TIMESTAMP</span> <span style="color:#66d9ef">DEFAULT</span> NOW()
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> idx_analytics_type_time 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ON</span> analytics_events(event_type, created_at <span style="color:#66d9ef">DESC</span>);
+</span></span></code></pre></div><p><strong>Design rationale:</strong></p>
+<p><strong>BIGSERIAL primary key:</strong><br>
+Auto-increment integer (ikke UUID) fordi analytics kan vokse til millioner af events. BIGSERIAL er mere space-efficient (~8 bytes vs ~16 bytes for UUID) og hurtigere ved sequential inserts.</p>
+<p><strong>JSONB event_data:</strong><br>
+Fleksibel storage af event-specific metrics uden schema changes:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;response_time_ms&#34;</span>: <span style="color:#ae81ff">342</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;token_usage&#34;</span>: <span style="color:#ae81ff">156</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;model&#34;</span>: <span style="color:#e6db74">&#34;gpt-4-turbo&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;error&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;user_satisfaction&#34;</span>: <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Compound index (type, time):</strong><br>
+Understøtter Owner Chatbot queries: &ldquo;Vis alle &lsquo;message_sent&rsquo; events fra sidste uge&rdquo;</p>
+<p><strong>No CASCADE on user deletion:</strong><br>
+Analytics events bevares for historical business intelligence, selv efter user deletion. Personal identifiers anonymiseres via GDPR-compliant data retention policy.</p>
+</details>
+<hr>
+<h2 id="relationships-visualiseret">Relationships Visualiseret<a hidden class="anchor" aria-hidden="true" href="#relationships-visualiseret">#</a></h2>
+<pre tabindex="0"><code>User (1) ──────&lt; (N) Conversation (1) ──────&lt; (N) Message
+  │                     │                           │
+  │                     │                    embedding (vector)
+  │                     │
+  └──&lt; (N) AnalyticsEvent
+</code></pre><p><strong>Cascade behavior:</strong></p>
+<ul>
+<li>✅ Delete User → Cascade deletes Conversations → Cascade deletes Messages</li>
+<li>✅ Delete Conversation → Cascade deletes Messages</li>
+<li>❌ AnalyticsEvents bevares (historical data)</li>
+</ul>
+<hr>
+<h2 id="chatbot-specific-optimizations">Chatbot-Specific Optimizations<a hidden class="anchor" aria-hidden="true" href="#chatbot-specific-optimizations">#</a></h2>
+<p>Hver chatbot-type har unikke query patterns der kræver tailored optimization:</p>
+<hr>
+<h3 id="guest-chatbot-session-baseret-temporary-storage">Guest Chatbot: Session-baseret temporary storage<a hidden class="anchor" aria-hidden="true" href="#guest-chatbot-session-baseret-temporary-storage">#</a></h3>
+<p><strong>Behov:</strong> Midlertidige samtaler med automatic cleanup efter 24 timer</p>
+<p><strong>Key optimizations:</strong></p>
+<ul>
+<li>Partial index kun på guest sessions (space reduction)</li>
+<li>Scheduled cleanup function (cron job hver time)</li>
+<li>Session-level queries uden user authentication overhead</li>
+</ul>
+<details>
+<summary><strong>🔧 SQL implementation og rationale</strong></summary>
+<p><strong>Session cleanup function:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">OR</span> <span style="color:#66d9ef">REPLACE</span> <span style="color:#66d9ef">FUNCTION</span> cleanup_guest_sessions()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">RETURNS</span> void <span style="color:#66d9ef">AS</span> <span style="color:#960050;background-color:#1e0010">$$</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">BEGIN</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">DELETE</span> <span style="color:#66d9ef">FROM</span> conversations
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">WHERE</span> is_guest_session <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">AND</span> updated_at <span style="color:#f92672">&lt;</span> NOW() <span style="color:#f92672">-</span> INTERVAL <span style="color:#e6db74">&#39;24 hours&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">END</span>;
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">$$</span> <span style="color:#66d9ef">LANGUAGE</span> plpgsql;
+</span></span></code></pre></div><p><strong>Partial index for efficient lookups:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> idx_conversations_session 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ON</span> conversations(session_id) 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> is_guest_session <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>;
+</span></span></code></pre></div><p><strong>Design rationale:</strong></p>
+<p><strong>24-timers retention:</strong><br>
+Balance mellem user experience (multi-page sessions) og storage costs. Guest data er temporary by design.</p>
+<p><strong>Partial index:</strong><br>
+Kun guest sessions indexeres. Reducerer index size betydeligt da authenticated conversations udgør majority over tid.</p>
+<p><strong>Cascade deletion:</strong><br>
+Når conversations slettes af cleanup function, fjernes messages automatisk via ON DELETE CASCADE. Ingen orphaned data.</p>
+<p><strong>Query pattern:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#75715e">// Hent guest session</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> conversation = <span style="color:#66d9ef">await</span> _context.Conversations
+</span></span><span style="display:flex;"><span>    .Where(c =&gt; c.SessionId == sessionId &amp;&amp; c.IsGuestSession)
+</span></span><span style="display:flex;"><span>    .Include(c =&gt; c.Messages)
+</span></span><span style="display:flex;"><span>    .FirstOrDefaultAsync();
+</span></span></code></pre></div><p>No user_id filter nødvendig, session_id er sufficient.</p>
+</details>
+<hr>
+<h3 id="authenticated-chatbot-full-text--semantic-search">Authenticated Chatbot: Full-text + semantic search<a hidden class="anchor" aria-hidden="true" href="#authenticated-chatbot-full-text--semantic-search">#</a></h3>
+<p><strong>Behov:</strong> Persistent storage, semantic search i historik, hurtig loading af seneste samtaler</p>
+<p><strong>Key optimizations:</strong></p>
+<ul>
+<li>GIN index på JSONB metadata (flexible queries)</li>
+<li>HNSW index på embeddings (semantic search)</li>
+<li>Materialized view for conversation summaries (pre-computed aggregations)</li>
+</ul>
+<details>
+<summary><strong>🔧 SQL implementation og rationale</strong></summary>
+<p><strong>GIN index for metadata queries:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> idx_conversations_metadata 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ON</span> conversations <span style="color:#66d9ef">USING</span> GIN (metadata);
+</span></span></code></pre></div><p>Understøtter queries:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> metadata<span style="color:#f92672">-&gt;&gt;</span><span style="color:#e6db74">&#39;category&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;medical&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">AND</span> metadata<span style="color:#f92672">-&gt;&gt;</span><span style="color:#e6db74">&#39;priority&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;high&#39;</span>
+</span></span></code></pre></div><p><strong>HNSW vector index:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> idx_messages_embedding 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ON</span> messages <span style="color:#66d9ef">USING</span> hnsw (embedding vector_cosine_ops)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WITH</span> (m <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>, ef_construction <span style="color:#f92672">=</span> <span style="color:#ae81ff">64</span>);
+</span></span></code></pre></div><p><strong>Materialized view for &ldquo;similar conversations&rdquo;:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> MATERIALIZED <span style="color:#66d9ef">VIEW</span> user_conversation_summaries <span style="color:#66d9ef">AS</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">c</span>.id,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">c</span>.user_id,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">c</span>.title,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">c</span>.updated_at,
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">SELECT</span> embedding <span style="color:#66d9ef">FROM</span> messages 
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">WHERE</span> conversation_id <span style="color:#f92672">=</span> <span style="color:#66d9ef">c</span>.id 
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> <span style="color:#66d9ef">timestamp</span> <span style="color:#66d9ef">DESC</span> 
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">as</span> latest_embedding,
+</span></span><span style="display:flex;"><span>    (<span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">FROM</span> messages 
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">WHERE</span> conversation_id <span style="color:#f92672">=</span> <span style="color:#66d9ef">c</span>.id) <span style="color:#66d9ef">as</span> message_count
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> conversations <span style="color:#66d9ef">c</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> is_guest_session <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">UNIQUE</span> <span style="color:#66d9ef">INDEX</span> <span style="color:#66d9ef">ON</span> user_conversation_summaries(id);
+</span></span></code></pre></div><p><strong>Refresh strategy:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- Incremental refresh hver 5. minut via cron
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>REFRESH MATERIALIZED <span style="color:#66d9ef">VIEW</span> CONCURRENTLY user_conversation_summaries;
+</span></span></code></pre></div><p><strong>Design rationale:</strong></p>
+<p><strong>Materialized view benefits:</strong><br>
+Pre-computed conversation summaries reducerer query complexity for &ldquo;find similar conversations&rdquo; feature. I stedet for at compute embeddings + counts on-the-fly, læses pre-computed data.</p>
+<p><strong>CONCURRENTLY refresh:</strong><br>
+Tillader queries under refresh – ingen downtime. Kræver UNIQUE index på view.</p>
+<p><strong>5-minutters refresh interval:</strong><br>
+Balance mellem data freshness og compute overhead. Conversations opdateres ikke hyppigere end dette i normal usage.</p>
+<p><strong>Combined metadata + vector query:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> user_conversation_summaries
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> user_id <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">AND</span> updated_at <span style="color:#f92672">&gt;</span> NOW() <span style="color:#f92672">-</span> INTERVAL <span style="color:#e6db74">&#39;30 days&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> latest_embedding <span style="color:#f92672">&lt;-&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">2</span>::vector
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">10</span>;
+</span></span></code></pre></div><p>Single query kombinerer metadata filtering med vector similarity – valideret i H2.</p>
+</details>
+<hr>
+<h3 id="owner-chatbot-analytics--aggregations">Owner Chatbot: Analytics + aggregations<a hidden class="anchor" aria-hidden="true" href="#owner-chatbot-analytics--aggregations">#</a></h3>
+<p><strong>Behov:</strong> Real-time dashboards, historical trend analysis, performance metrics på tværs af alle users</p>
+<p><strong>Key optimizations:</strong></p>
+<ul>
+<li>Materialized view for pre-aggregated metrics (sekunder → millisekunder)</li>
+<li>Table partitioning for analytics events (millions of rows)</li>
+<li>Compound indexes på event_type + timestamp</li>
+</ul>
+<details>
+<summary><strong>🔧 SQL implementation og rationale</strong></summary>
+<p><strong>Pre-aggregated analytics view:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> MATERIALIZED <span style="color:#66d9ef">VIEW</span> chatbot_analytics <span style="color:#66d9ef">AS</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> 
+</span></span><span style="display:flex;"><span>    DATE_TRUNC(<span style="color:#e6db74">&#39;day&#39;</span>, <span style="color:#66d9ef">c</span>.created_at) <span style="color:#66d9ef">as</span> date,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">c</span>.is_guest_session,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">COUNT</span>(<span style="color:#66d9ef">DISTINCT</span> <span style="color:#66d9ef">c</span>.id) <span style="color:#66d9ef">as</span> conversation_count,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">COUNT</span>(<span style="color:#66d9ef">DISTINCT</span> <span style="color:#66d9ef">c</span>.user_id) <span style="color:#66d9ef">as</span> unique_users,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">AVG</span>((<span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">FROM</span> messages <span style="color:#66d9ef">WHERE</span> conversation_id <span style="color:#f92672">=</span> <span style="color:#66d9ef">c</span>.id)) 
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">as</span> avg_messages_per_conversation,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">AVG</span>((<span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">SUM</span>(token_count) <span style="color:#66d9ef">FROM</span> messages <span style="color:#66d9ef">WHERE</span> conversation_id <span style="color:#f92672">=</span> <span style="color:#66d9ef">c</span>.id)) 
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">as</span> avg_tokens_per_conversation,
+</span></span><span style="display:flex;"><span>    PERCENTILE_CONT(<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">5</span>) WITHIN <span style="color:#66d9ef">GROUP</span> (<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> <span style="color:#66d9ef">c</span>.updated_at <span style="color:#f92672">-</span> <span style="color:#66d9ef">c</span>.created_at) 
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">as</span> median_conversation_duration
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> conversations <span style="color:#66d9ef">c</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> DATE_TRUNC(<span style="color:#e6db74">&#39;day&#39;</span>, <span style="color:#66d9ef">c</span>.created_at), <span style="color:#66d9ef">c</span>.is_guest_session;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> idx_analytics_date <span style="color:#66d9ef">ON</span> chatbot_analytics(date <span style="color:#66d9ef">DESC</span>);
+</span></span></code></pre></div><p><strong>Table partitioning for analytics_events:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> analytics_events_partitioned (
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">LIKE</span> analytics_events <span style="color:#66d9ef">INCLUDING</span> <span style="color:#66d9ef">ALL</span>
+</span></span><span style="display:flex;"><span>) PARTITION <span style="color:#66d9ef">BY</span> RANGE (created_at);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Monthly partitions (auto-created via maintenance script)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> analytics_events_2024_11 
+</span></span><span style="display:flex;"><span>PARTITION <span style="color:#66d9ef">OF</span> analytics_events_partitioned
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FOR</span> <span style="color:#66d9ef">VALUES</span> <span style="color:#66d9ef">FROM</span> (<span style="color:#e6db74">&#39;2024-11-01&#39;</span>) <span style="color:#66d9ef">TO</span> (<span style="color:#e6db74">&#39;2024-12-01&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> analytics_events_2024_12 
+</span></span><span style="display:flex;"><span>PARTITION <span style="color:#66d9ef">OF</span> analytics_events_partitioned
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FOR</span> <span style="color:#66d9ef">VALUES</span> <span style="color:#66d9ef">FROM</span> (<span style="color:#e6db74">&#39;2024-12-01&#39;</span>) <span style="color:#66d9ef">TO</span> (<span style="color:#e6db74">&#39;2025-01-01&#39;</span>);
+</span></span></code></pre></div><p><strong>Compound index for event queries:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> idx_analytics_events_type_time 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ON</span> analytics_events(event_type, created_at <span style="color:#66d9ef">DESC</span>);
+</span></span></code></pre></div><p><strong>Design rationale:</strong></p>
+<p><strong>Materialized view for dashboards:</strong><br>
+Aggregations på large datasets er compute-intensive. Owner dashboard ville tage 5-10 sekunder uden pre-computation. Med materialized view: ~50-100ms.</p>
+<p><strong>Table partitioning:</strong><br>
+Analytics events vokser til millioner. Partitioning sikrer:</p>
+<ul>
+<li>Queries kun scanner relevante partitions (partition pruning)</li>
+<li>Efficient purging af old data (DROP partition i stedet for DELETE)</li>
+<li>Vedligeholdelse af indexes er faster (per-partition)</li>
+</ul>
+<p><strong>Monthly partition strategy:</strong><br>
+Balance mellem antal partitions og partition size. Daily partitions ville give for mange, yearly for store.</p>
+<p><strong>Compound index (type, time):</strong><br>
+Understøtter Owner queries: &ldquo;Vis &lsquo;message_sent&rsquo; events fra sidste uge&rdquo;</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> event_type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;message_sent&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">AND</span> created_at <span style="color:#f92672">&gt;</span> NOW() <span style="color:#f92672">-</span> INTERVAL <span style="color:#e6db74">&#39;7 days&#39;</span>
+</span></span></code></pre></div><p><strong>Query pattern for dashboard:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> metrics = <span style="color:#66d9ef">await</span> _context.ChatbotAnalytics
+</span></span><span style="display:flex;"><span>    .Where(a =&gt; a.Date &gt;= startDate &amp;&amp; a.Date &lt;= endDate)
+</span></span><span style="display:flex;"><span>    .OrderByDescending(a =&gt; a.Date)
+</span></span><span style="display:flex;"><span>    .ToListAsync();
+</span></span></code></pre></div><p>Pre-computed data = instant dashboard load.</p>
+</details>
+<hr>
+<h2 id="integration-med-blazor-og-ef-core">Integration med Blazor og EF Core<a hidden class="anchor" aria-hidden="true" href="#integration-med-blazor-og-ef-core">#</a></h2>
+<p>Database-designet skal fungere problemfrit med .NET-økosystemet gennem Entity Framework Core.</p>
+<hr>
+<h3 id="dbcontext-konfiguration">DbContext Konfiguration<a hidden class="anchor" aria-hidden="true" href="#dbcontext-konfiguration">#</a></h3>
+<p><strong>Key setup:</strong></p>
+<ul>
+<li>Npgsql provider for PostgreSQL</li>
+<li>Custom type mappings for vector + JSONB</li>
+<li>Indexes defineret i OnModelCreating</li>
+<li>Connection pooling optimeret for concurrent users</li>
+</ul>
+<details>
+<summary><strong>💻 DbContext implementation</strong></summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ChatbotDbContext</span> : DbContext
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> DbSet&lt;User&gt; Users { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> DbSet&lt;Conversation&gt; Conversations { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> DbSet&lt;Message&gt; Messages { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> DbSet&lt;AnalyticsEvent&gt; AnalyticsEvents { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">void</span> OnModelCreating(ModelBuilder modelBuilder)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Vector type mapping</span>
+</span></span><span style="display:flex;"><span>        modelBuilder.Entity&lt;Message&gt;()
+</span></span><span style="display:flex;"><span>            .Property(m =&gt; m.Embedding)
+</span></span><span style="display:flex;"><span>            .HasColumnType(<span style="color:#e6db74">&#34;vector(1536)&#34;</span>);
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// JSONB mapping</span>
+</span></span><span style="display:flex;"><span>        modelBuilder.Entity&lt;Conversation&gt;()
+</span></span><span style="display:flex;"><span>            .Property(c =&gt; c.Metadata)
+</span></span><span style="display:flex;"><span>            .HasColumnType(<span style="color:#e6db74">&#34;jsonb&#34;</span>);
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        modelBuilder.Entity&lt;AnalyticsEvent&gt;()
+</span></span><span style="display:flex;"><span>            .Property(a =&gt; a.EventData)
+</span></span><span style="display:flex;"><span>            .HasColumnType(<span style="color:#e6db74">&#34;jsonb&#34;</span>);
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Indexes</span>
+</span></span><span style="display:flex;"><span>        modelBuilder.Entity&lt;Conversation&gt;()
+</span></span><span style="display:flex;"><span>            .HasIndex(c =&gt; <span style="color:#66d9ef">new</span> { c.UserId, c.UpdatedAt });
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        modelBuilder.Entity&lt;Conversation&gt;()
+</span></span><span style="display:flex;"><span>            .HasIndex(c =&gt; c.SessionId)
+</span></span><span style="display:flex;"><span>            .HasFilter(<span style="color:#e6db74">&#34;is_guest_session = true&#34;</span>);
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Relationships</span>
+</span></span><span style="display:flex;"><span>        modelBuilder.Entity&lt;Conversation&gt;()
+</span></span><span style="display:flex;"><span>            .HasOne&lt;User&gt;()
+</span></span><span style="display:flex;"><span>            .WithMany()
+</span></span><span style="display:flex;"><span>            .HasForeignKey(c =&gt; c.UserId)
+</span></span><span style="display:flex;"><span>            .OnDelete(DeleteBehavior.Cascade);
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        modelBuilder.Entity&lt;Message&gt;()
+</span></span><span style="display:flex;"><span>            .HasOne&lt;Conversation&gt;()
+</span></span><span style="display:flex;"><span>            .WithMany(c =&gt; c.Messages)
+</span></span><span style="display:flex;"><span>            .HasForeignKey(m =&gt; m.ConversationId)
+</span></span><span style="display:flex;"><span>            .OnDelete(DeleteBehavior.Cascade);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Configuration i Program.cs:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span>builder.Services.AddDbContext&lt;ChatbotDbContext&gt;(options =&gt;
+</span></span><span style="display:flex;"><span>    options.UseNpgsql(
+</span></span><span style="display:flex;"><span>        connectionString,
+</span></span><span style="display:flex;"><span>        npgsqlOptions =&gt; {
+</span></span><span style="display:flex;"><span>            npgsqlOptions.UseVector();  <span style="color:#75715e">// pgvector support</span>
+</span></span><span style="display:flex;"><span>            npgsqlOptions.CommandTimeout(<span style="color:#ae81ff">30</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ));
+</span></span></code></pre></div><p><strong>Connection pooling:</strong></p>
+<pre tabindex="0"><code>MinPoolSize=10
+MaxPoolSize=100
+</code></pre><p>Baseret på forventet concurrent user load (10-100 simultaneous connections).</p>
+</details>
+<hr>
+<h3 id="repository-pattern">Repository Pattern<a hidden class="anchor" aria-hidden="true" href="#repository-pattern">#</a></h3>
+<p><strong>Formål:</strong> Abstrahere database-detaljer fra Blazor components, centralisere queries, simplificere testing</p>
+<p><strong>Key interfaces:</strong></p>
+<ul>
+<li><code>IConversationRepository</code> – CRUD operations + semantic search</li>
+<li><code>IMessageRepository</code> – Message persistence + embedding queries</li>
+<li><code>IAnalyticsRepository</code> – Event logging + metrics aggregation</li>
+</ul>
+<details>
+<summary><strong>💻 Repository implementation eksempel</strong></summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IConversationRepository</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    Task&lt;Conversation&gt; CreateAsync(Guid userId, <span style="color:#66d9ef">bool</span> isGuest, <span style="color:#66d9ef">string?</span> sessionId = <span style="color:#66d9ef">null</span>);
+</span></span><span style="display:flex;"><span>    Task&lt;List&lt;Conversation&gt;&gt; GetRecentAsync(Guid userId, <span style="color:#66d9ef">int</span> count);
+</span></span><span style="display:flex;"><span>    Task&lt;List&lt;Conversation&gt;&gt; FindSimilarAsync(Guid userId, <span style="color:#66d9ef">float</span>[] embedding, <span style="color:#66d9ef">int</span> limit);
+</span></span><span style="display:flex;"><span>    Task&lt;Conversation?&gt; GetByIdAsync(Guid id, <span style="color:#66d9ef">bool</span> includeMessages = <span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>    Task UpdateAsync(Conversation conversation);
+</span></span><span style="display:flex;"><span>    Task DeleteAsync(Guid id);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ConversationRepository</span> : IConversationRepository
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> ChatbotDbContext _context;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> ConversationRepository(ChatbotDbContext context)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        _context = context;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> Task&lt;List&lt;Conversation&gt;&gt; GetRecentAsync(Guid userId, <span style="color:#66d9ef">int</span> count)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> _context.Conversations
+</span></span><span style="display:flex;"><span>            .Where(c =&gt; c.UserId == userId &amp;&amp; !c.IsGuestSession)
+</span></span><span style="display:flex;"><span>            .OrderByDescending(c =&gt; c.UpdatedAt)
+</span></span><span style="display:flex;"><span>            .Take(count)
+</span></span><span style="display:flex;"><span>            .Include(c =&gt; c.Messages)
+</span></span><span style="display:flex;"><span>            .ToListAsync();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> Task&lt;List&lt;Conversation&gt;&gt; FindSimilarAsync(
+</span></span><span style="display:flex;"><span>        Guid userId, 
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">float</span>[] embedding, 
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> limit)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// pgvector semantic search</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> _context.Conversations
+</span></span><span style="display:flex;"><span>            .FromSqlInterpolated(<span style="color:#e6db74">$@&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                SELECT * FROM conversations
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                WHERE user_id = {userId}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                  AND is_guest_session = false
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                  AND updated_at &gt; NOW() - INTERVAL &#39;30 days&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                ORDER BY embedding &lt;-&gt; {embedding}::vector
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                LIMIT {limit}&#34;</span>)
+</span></span><span style="display:flex;"><span>            .Include(c =&gt; c.Messages.OrderBy(m =&gt; m.Timestamp))
+</span></span><span style="display:flex;"><span>            .ToListAsync();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Benefits:</strong></p>
+<ul>
+<li>Blazor components kun afhænger af interfaces (testable)</li>
+<li>Database queries centraliserede (maintainable)</li>
+<li>Vector search logic abstracted (simplified for consumers)</li>
+</ul>
+</details>
+<hr>
+<h3 id="transaction-boundaries">Transaction Boundaries<a hidden class="anchor" aria-hidden="true" href="#transaction-boundaries">#</a></h3>
+<p><strong>Strategi:</strong> ACID transactions for critical operations, non-transactional for background jobs</p>
+<p><strong>Transactional operations:</strong></p>
+<ul>
+<li>✅ User message + bot response (atomic save)</li>
+<li>✅ Conversation creation + first message</li>
+<li>✅ User registration + welcome conversation</li>
+</ul>
+<p><strong>Non-transactional operations:</strong></p>
+<ul>
+<li>⚪ Embedding generation (background job)</li>
+<li>⚪ Analytics aggregation (eventual consistency acceptable)</li>
+<li>⚪ Materialized view refresh</li>
+</ul>
+<details>
+<summary><strong>💻 Transaction implementation patterns</strong></summary>
+<p><strong>Critical atomic operation:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> Task SaveConversationTurnAsync(
+</span></span><span style="display:flex;"><span>    Guid conversationId, 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">string</span> userMessage, 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">string</span> botResponse)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">using</span> var transaction = <span style="color:#66d9ef">await</span> _context.Database.BeginTransactionAsync();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// User message</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> userMsg = <span style="color:#66d9ef">new</span> Message 
+</span></span><span style="display:flex;"><span>        { 
+</span></span><span style="display:flex;"><span>            ConversationId = conversationId,
+</span></span><span style="display:flex;"><span>            Role = <span style="color:#e6db74">&#34;user&#34;</span>,
+</span></span><span style="display:flex;"><span>            Content = userMessage,
+</span></span><span style="display:flex;"><span>            Timestamp = DateTime.UtcNow
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>        _context.Messages.Add(userMsg);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">await</span> _context.SaveChangesAsync();
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Bot response</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> botMsg = <span style="color:#66d9ef">new</span> Message 
+</span></span><span style="display:flex;"><span>        { 
+</span></span><span style="display:flex;"><span>            ConversationId = conversationId,
+</span></span><span style="display:flex;"><span>            Role = <span style="color:#e6db74">&#34;assistant&#34;</span>,
+</span></span><span style="display:flex;"><span>            Content = botResponse,
+</span></span><span style="display:flex;"><span>            Timestamp = DateTime.UtcNow
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>        _context.Messages.Add(botMsg);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">await</span> _context.SaveChangesAsync();
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Update conversation timestamp</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> conversation = <span style="color:#66d9ef">await</span> _context.Conversations
+</span></span><span style="display:flex;"><span>            .FindAsync(conversationId);
+</span></span><span style="display:flex;"><span>        conversation.UpdatedAt = DateTime.UtcNow;
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">await</span> transaction.CommitAsync();
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// AFTER commit: Queue embedding generation</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">await</span> _backgroundJobs.Enqueue&lt;GenerateEmbeddingJob&gt;(
+</span></span><span style="display:flex;"><span>            job =&gt; job.Execute(userMsg.Id));
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">await</span> _backgroundJobs.Enqueue&lt;GenerateEmbeddingJob&gt;(
+</span></span><span style="display:flex;"><span>            job =&gt; job.Execute(botMsg.Id));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">catch</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">await</span> transaction.RollbackAsync();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throw</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Background job (no transaction):</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> Task GenerateEmbeddingAsync(Guid messageId)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> message = <span style="color:#66d9ef">await</span> _context.Messages.FindAsync(messageId);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Call OpenAI API</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> embedding = <span style="color:#66d9ef">await</span> _openAiClient.GetEmbeddingAsync(message.Content);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Update message (single operation, no transaction needed)</span>
+</span></span><span style="display:flex;"><span>    message.Embedding = embedding;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> _context.SaveChangesAsync();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Rationale:</strong></p>
+<p><strong>Transactions for user-facing operations:</strong><br>
+Valideret i H4 – atomic saves forhindrer partial data ved crashes. Critical for user trust.</p>
+<p><strong>No transactions for background jobs:</strong><br>
+Embedding generation kan tage 200-500ms (OpenAI API latency). Long-running transactions ville holde locks og reducere concurrency. Eventual consistency er acceptable – messages uden embeddings filtreres simpelthen fra semantic search indtil embedding er klar.</p>
+<p><strong>Connection pooling benefit:</strong><br>
+Non-transactional background jobs frigiver connections hurtigere, hvilket øger throughput for user-facing requests.</p>
+</details>
+<hr>
+<h2 id="designet-i-overblik">Designet i Overblik<a hidden class="anchor" aria-hidden="true" href="#designet-i-overblik">#</a></h2>
+<p>Database-arkitekturen implementerer findings fra research og test-faserne:</p>
+<p><strong>Core beslutninger:</strong></p>
+<ul>
+<li>✅ PostgreSQL 16.1 som unified platform</li>
+<li>✅ pgvector extension for vector embeddings</li>
+<li>✅ JSONB kolonner for flexible metadata</li>
+<li>✅ ACID transactions for critical operations</li>
+<li>✅ Shared schema med chatbot-specific optimizations</li>
+</ul>
+<p><strong>Løser alle fire kritiske krav fra problemstillingen:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Krav</th>
+          <th>Løsning</th>
+          <th>Valideret i</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>JSON lagring</strong></td>
+          <td>JSONB med GIN indexes</td>
+          <td>H1: 26× hurtigere</td>
+      </tr>
+      <tr>
+          <td><strong>Vector search</strong></td>
+          <td>pgvector HNSW native</td>
+          <td>H2: 1 roundtrip</td>
+      </tr>
+      <tr>
+          <td><strong>Mange users</strong></td>
+          <td>Connection pooling + indexes</td>
+          <td>Test setup</td>
+      </tr>
+      <tr>
+          <td><strong>Blazor integration</strong></td>
+          <td>EF Core 100% support</td>
+          <td>H3: 47% mindre kode</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Arkitektoniske fordele:</strong></p>
+<p>🎯 <strong>Single system complexity</strong><br>
+Ingen separate databases at synkronisere, monitere eller maintaine.</p>
+<p>🎯 <strong>ACID guarantees</strong><br>
+100% data integrity valideret i H4 (0% partial saves).</p>
+<p>🎯 <strong>Development velocity</strong><br>
+Standard EF Core patterns = hurtigere development, færre bugs.</p>
+<p>🎯 <strong>Cost efficiency</strong><br>
+4× mindre disk space end MongoDB = lavere hosting costs.</p>
+<hr>
+<h2 id="fra-arkitektur-til-refleksion">Fra Arkitektur til Refleksion<a hidden class="anchor" aria-hidden="true" href="#fra-arkitektur-til-refleksion">#</a></h2>
+<p>Jeg har nu gennemført hele rejsen: problemstilling → research → hypoteser → test → design. Database-valget er truffet og arkitekturen dokumenteret.</p>
+<p>Men hvad betyder dette større perspektiv? Hvordan kobler det til mine læringsmål? Og hvilke samfundsmæssige implikationer har de tekniske valg?</p>
+<p><em>Hvad lærte jeg af hele processen? Og hvordan påvirker databasevalg mere end bare teknisk performance?</em></p>
+<p><strong>Næste:</strong> <a href="/datamatiker-portfolio/database/konklusion/">Konklusion →</a></p>
 
 
   </div>

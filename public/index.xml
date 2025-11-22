@@ -6,18 +6,7 @@
     <description>Recent content on 4. Semester Portfolio - Simon</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>da-DK</language>
-    <lastBuildDate>Wed, 15 Jan 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/datamatiker-portfolio/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Problemstilling</title>
-      <link>http://localhost:1313/datamatiker-portfolio/database/problemstilling/</link>
-      <pubDate>Wed, 15 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/datamatiker-portfolio/database/problemstilling/</guid>
-      <description>&lt;h2 id=&#34;fra-tre-chatbots-til-én-kritisk-beslutning&#34;&gt;Fra tre chatbots til én kritisk beslutning&lt;/h2&gt;
-&lt;p&gt;Vi skulle bygge en Blazor-webapp med tre AI-chatbots: én for gæster, én for brugere og én for administratoren. Men jeg stod overfor et fundamentalt spørgsmål: &lt;strong&gt;Hvilken database?&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Min første tanke var simpel: &amp;ldquo;MongoDB til JSON, PostgreSQL til relationel data, Pinecone til vector search.&amp;rdquo; Tre systemer. Tre databaser. Tre synkroniseringsproblemer.&lt;/p&gt;
-&lt;p&gt;Men moderne LLM&amp;rsquo;er komplicerer billedet. GPT-4 er stateless – den husker intet mellem API-kald. Derfor skal &lt;strong&gt;vi&lt;/strong&gt; gemme al kontekst. Hver besked. Hver samtale. Hver vector embedding for semantisk søgning.&lt;/p&gt;</description>
-    </item>
     <item>
       <title>Problemstilling</title>
       <link>http://localhost:1313/datamatiker-portfolio/data-science/problemstilling/</link>
@@ -38,6 +27,16 @@
 &lt;li&gt;Datakvalitet&lt;/li&gt;
 &lt;li&gt;Privacy&lt;/li&gt;
 &lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Problemstilling</title>
+      <link>http://localhost:1313/datamatiker-portfolio/database/problemstilling/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/datamatiker-portfolio/database/problemstilling/</guid>
+      <description>&lt;h2 id=&#34;fra-tre-chatbots-til-én-kritisk-beslutning&#34;&gt;Fra tre chatbots til én kritisk beslutning&lt;/h2&gt;
+&lt;p&gt;Vi skulle bygge en Blazor-webapp med tre AI-chatbots: én for gæster, én for brugere og én for administratoren. Men jeg stod overfor et fundamentalt spørgsmål: &lt;strong&gt;Hvilken database?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Min første tanke var simpel: &amp;ldquo;MongoDB til JSON, PostgreSQL til relationel data, Pinecone til vector search.&amp;rdquo; Tre systemer. Tre databaser. Tre synkroniseringsproblemer.&lt;/p&gt;
+&lt;p&gt;Men moderne LLM&amp;rsquo;er komplicerer billedet. GPT-4 er stateless – den husker intet mellem API-kald. Derfor skal &lt;strong&gt;vi&lt;/strong&gt; gemme al kontekst. Hver besked. Hver samtale. Hver vector embedding for semantisk søgning.&lt;/p&gt;</description>
     </item>
     <item>
       <title>KPI framework</title>
@@ -209,20 +208,11 @@
       <description>Empirisk validering af hypoteserne</description>
     </item>
     <item>
-      <title>Database design</title>
+      <title>Database Design</title>
       <link>http://localhost:1313/datamatiker-portfolio/database/design/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/database/design/</guid>
-      <description>&lt;h2 id=&#34;arkitektur&#34;&gt;Arkitektur&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder – senere diagram)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;datamodeller&#34;&gt;Datamodeller&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;integration-med-blazor-og-ef-core&#34;&gt;Integration med Blazor og EF Core&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;details&gt;
-&lt;summary&gt;SQL Schema&lt;/summary&gt;
-Se bilag: /database/bilag/sql-schema/
-&lt;/details&gt;</description>
+      <description>Konkret arkitektur baseret på testresultater</description>
     </item>
     <item>
       <title>Implementation</title>
@@ -260,19 +250,7 @@ Se bilag: /database/bilag/sql-schema/
       <link>http://localhost:1313/datamatiker-portfolio/database/konklusion/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/database/konklusion/</guid>
-      <description>&lt;p&gt;Denne side samler læringen fra hele databaseforløbet.&lt;/p&gt;
-&lt;h2 id=&#34;teknisk-konklusion&#34;&gt;Teknisk konklusion&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;samfundsmæssige-aspekter&#34;&gt;Samfundsmæssige aspekter&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;GDPR&lt;/li&gt;
-&lt;li&gt;Bæredygtighed&lt;/li&gt;
-&lt;li&gt;Arbejdsmarked&lt;/li&gt;
-&lt;li&gt;Økonomi&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;mine-læringsmål&#34;&gt;Mine læringsmål&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder – vi udfylder 1–5 senere)&lt;/em&gt;&lt;/p&gt;
-&lt;hr&gt;</description>
+      <description>Læringer, læringsmål og samfundsperspektiver</description>
     </item>
   </channel>
 </rss>

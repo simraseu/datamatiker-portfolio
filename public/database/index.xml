@@ -39,39 +39,18 @@
       <description>Empirisk validering af hypoteserne</description>
     </item>
     <item>
-      <title>Database design</title>
+      <title>Database Design</title>
       <link>http://localhost:1313/datamatiker-portfolio/database/design/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/database/design/</guid>
-      <description>&lt;h2 id=&#34;arkitektur&#34;&gt;Arkitektur&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder – senere diagram)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;datamodeller&#34;&gt;Datamodeller&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;integration-med-blazor-og-ef-core&#34;&gt;Integration med Blazor og EF Core&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;details&gt;
-&lt;summary&gt;SQL Schema&lt;/summary&gt;
-Se bilag: /database/bilag/sql-schema/
-&lt;/details&gt;</description>
+      <description>Konkret arkitektur baseret på testresultater</description>
     </item>
     <item>
       <title>Konklusion</title>
       <link>http://localhost:1313/datamatiker-portfolio/database/konklusion/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/database/konklusion/</guid>
-      <description>&lt;p&gt;Denne side samler læringen fra hele databaseforløbet.&lt;/p&gt;
-&lt;h2 id=&#34;teknisk-konklusion&#34;&gt;Teknisk konklusion&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;samfundsmæssige-aspekter&#34;&gt;Samfundsmæssige aspekter&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;GDPR&lt;/li&gt;
-&lt;li&gt;Bæredygtighed&lt;/li&gt;
-&lt;li&gt;Arbejdsmarked&lt;/li&gt;
-&lt;li&gt;Økonomi&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;mine-læringsmål&#34;&gt;Mine læringsmål&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder – vi udfylder 1–5 senere)&lt;/em&gt;&lt;/p&gt;
-&lt;hr&gt;</description>
+      <description>Læringer, læringsmål og samfundsperspektiver</description>
     </item>
   </channel>
 </rss>
