@@ -7,15 +7,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Hypoteser | 4. Semester Portfolio - Simon</title>
 <meta name="keywords" content="">
-<meta name="description" content="Her opstiller jeg de hypoteser, jeg senere tester i praksis.
-H1 JSON Performance
-(Placeholder)
-H2 Vector Search
-(Placeholder)
-H3 ORM Integration
-(Placeholder)
-H4 ACID vs BASE Robusthed
-(Placeholder)">
+<meta name="description" content="Fra evidens til testbare påstande">
 <meta name="author" content="Simon">
 <link rel="canonical" href="http://localhost:1313/datamatiker-portfolio/database/hypoteser/">
 <link crossorigin="anonymous" href="/datamatiker-portfolio/assets/css/stylesheet.fd5566c526ae48aadabd950798a2dc3568536401560eae5caac3765a42a9e7b5.css" integrity="sha256-/VVmxSauSKravZUHmKLcNWhTZAFWDq5cqsN2WkKp57U=" rel="preload stylesheet" as="style">
@@ -150,6 +142,9 @@ H4 ACID vs BASE Robusthed
     <h1 class="post-title entry-hint-parent">
       Hypoteser
     </h1>
+    <div class="post-description">
+      Fra evidens til testbare påstande
+    </div>
     <div class="post-meta"><span>Simon</span>
 
 </div>
@@ -161,28 +156,300 @@ H4 ACID vs BASE Robusthed
 
         <div class="inner"><ul>
                 <li>
-                    <a href="#h1-json-performance" aria-label="H1 JSON Performance">H1 JSON Performance</a></li>
+                    <a href="#hvordan-tester-jeg-evidensen-i-praksis" aria-label="Hvordan tester jeg evidensen i praksis?">Hvordan tester jeg evidensen i praksis?</a></li>
                 <li>
-                    <a href="#h2-vector-search" aria-label="H2 Vector Search">H2 Vector Search</a></li>
+                    <a href="#tv%c3%a6rg%c3%a5ende-m%c3%b8nstre-i-evidensen" aria-label="Tværgående mønstre i evidensen">Tværgående mønstre i evidensen</a><ul>
+                        
                 <li>
-                    <a href="#h3-orm-integration" aria-label="H3 ORM Integration">H3 ORM Integration</a></li>
+                    <a href="#m%c3%b8nster-1-postgresql-transcenderer-kategorier" aria-label="Mønster 1: PostgreSQL transcenderer kategorier">Mønster 1: PostgreSQL transcenderer kategorier</a></li>
                 <li>
-                    <a href="#h4-acid-vs-base-robusthed" aria-label="H4 ACID vs BASE Robusthed">H4 ACID vs BASE Robusthed</a>
+                    <a href="#m%c3%b8nster-2-specialisering-garanterer-ikke-performance" aria-label="Mønster 2: Specialisering garanterer ikke performance">Mønster 2: Specialisering garanterer ikke performance</a></li>
+                <li>
+                    <a href="#m%c3%b8nster-3-developer-experience-matters-lige-s%c3%a5-meget-som-runtime-performance" aria-label="Mønster 3: Developer experience matters lige så meget som runtime performance">Mønster 3: Developer experience matters lige så meget som runtime performance</a></li>
+                <li>
+                    <a href="#m%c3%b8nster-4-acid-betyder-ikke-overhead" aria-label="Mønster 4: ACID betyder ikke overhead">Mønster 4: ACID betyder ikke overhead</a></li></ul>
+                </li>
+                <li>
+                    <a href="#fire-testbare-hypoteser" aria-label="Fire testbare hypoteser">Fire testbare hypoteser</a></li>
+                <li>
+                    <a href="#hypotese-1-json-performance" aria-label="Hypotese 1: JSON Performance">Hypotese 1: JSON Performance</a><ul>
+                        
+                <li>
+                    <a href="#testdesign" aria-label="Testdesign">Testdesign</a></li></ul>
+                </li>
+                <li>
+                    <a href="#hypotese-2-vector-search-integration" aria-label="Hypotese 2: Vector Search Integration">Hypotese 2: Vector Search Integration</a><ul>
+                        
+                <li>
+                    <a href="#testdesign-1" aria-label="Testdesign">Testdesign</a></li></ul>
+                </li>
+                <li>
+                    <a href="#hypotese-3-developer-experience" aria-label="Hypotese 3: Developer Experience">Hypotese 3: Developer Experience</a><ul>
+                        
+                <li>
+                    <a href="#testdesign-2" aria-label="Testdesign">Testdesign</a></li></ul>
+                </li>
+                <li>
+                    <a href="#hypotese-4-consistency-og-data-durability" aria-label="Hypotese 4: Consistency og Data Durability">Hypotese 4: Consistency og Data Durability</a><ul>
+                        
+                <li>
+                    <a href="#testdesign-3" aria-label="Testdesign">Testdesign</a></li></ul>
+                </li>
+                <li>
+                    <a href="#fra-hypoteser-til-validering" aria-label="Fra hypoteser til validering">Fra hypoteser til validering</a><ul>
+                        
+                <li>
+                    <a href="#hvad-hvis-hypoteserne-falsificeres" aria-label="Hvad hvis hypoteserne falsificeres?">Hvad hvis hypoteserne falsificeres?</a></li></ul>
+                </li>
+                <li>
+                    <a href="#n%c3%a6ste-skridt-praktisk-validering" aria-label="Næste skridt: Praktisk validering">Næste skridt: Praktisk validering</a>
                 </li>
             </ul>
         </div>
     </details>
 </div>
 
-  <div class="post-content"><p>Her opstiller jeg de hypoteser, jeg senere tester i praksis.</p>
-<h2 id="h1-json-performance">H1 JSON Performance<a hidden class="anchor" aria-hidden="true" href="#h1-json-performance">#</a></h2>
-<p><em>(Placeholder)</em></p>
-<h2 id="h2-vector-search">H2 Vector Search<a hidden class="anchor" aria-hidden="true" href="#h2-vector-search">#</a></h2>
-<p><em>(Placeholder)</em></p>
-<h2 id="h3-orm-integration">H3 ORM Integration<a hidden class="anchor" aria-hidden="true" href="#h3-orm-integration">#</a></h2>
-<p><em>(Placeholder)</em></p>
-<h2 id="h4-acid-vs-base-robusthed">H4 ACID vs BASE Robusthed<a hidden class="anchor" aria-hidden="true" href="#h4-acid-vs-base-robusthed">#</a></h2>
-<p><em>(Placeholder)</em></p>
+  <div class="post-content"><h2 id="hvordan-tester-jeg-evidensen-i-praksis">Hvordan tester jeg evidensen i praksis?<a hidden class="anchor" aria-hidden="true" href="#hvordan-tester-jeg-evidensen-i-praksis">#</a></h2>
+<p>Researchen gav mig fem kilder med konsistente konklusioner. Men litteratur er én ting – praksis er en anden. Virker PostgreSQL&rsquo;s fordele også i min konkrete chatbot-arkitektur? Med mine data? På min hardware?</p>
+<p>Det er tid til at oversætte evidensen til fire konkrete hypoteser jeg kan teste empirisk.</p>
+<hr>
+<h2 id="tværgående-mønstre-i-evidensen">Tværgående mønstre i evidensen<a hidden class="anchor" aria-hidden="true" href="#tværgående-mønstre-i-evidensen">#</a></h2>
+<p>Før jeg formulerer hypoteser, hvad viser kilderne samlet set?</p>
+<h3 id="mønster-1-postgresql-transcenderer-kategorier">Mønster 1: PostgreSQL transcenderer kategorier<a hidden class="anchor" aria-hidden="true" href="#mønster-1-postgresql-transcenderer-kategorier">#</a></h3>
+<p><strong>Fra kilderne:</strong></p>
+<ul>
+<li>Kilde 1: PostgreSQL 26-40× hurtigere på JSON end MongoDB</li>
+<li>Kilde 2: PostgreSQL bruger 4× mindre disk</li>
+<li>Kilde 3: pgvector eliminerer separat vector database</li>
+</ul>
+<p><strong>Hvad det betyder:</strong><br>
+PostgreSQL er ikke længere &ldquo;bare&rdquo; en relationel database. JSONB + pgvector + ACID gør den til en unified platform der kombinerer styrker fra multiple database-typer uden deres svagheder.</p>
+<hr>
+<h3 id="mønster-2-specialisering-garanterer-ikke-performance">Mønster 2: Specialisering garanterer ikke performance<a hidden class="anchor" aria-hidden="true" href="#mønster-2-specialisering-garanterer-ikke-performance">#</a></h3>
+<p><strong>Fra kilderne:</strong></p>
+<ul>
+<li>MongoDB markedsføres som &ldquo;document database&rdquo;</li>
+<li>Men PostgreSQL&rsquo;s JSONB outperformer MongoDB&rsquo;s native BSON</li>
+<li>Implementation-kvalitet &gt; database-kategori</li>
+</ul>
+<p><strong>Hvad det betyder:</strong><br>
+&ldquo;Best tool for the job&rdquo; er ikke altid det specialized tool. Nogle gange vinder general-purpose tools med exceptionel implementation.</p>
+<hr>
+<h3 id="mønster-3-developer-experience-matters-lige-så-meget-som-runtime-performance">Mønster 3: Developer experience matters lige så meget som runtime performance<a hidden class="anchor" aria-hidden="true" href="#mønster-3-developer-experience-matters-lige-så-meget-som-runtime-performance">#</a></h3>
+<p><strong>Fra kilderne:</strong></p>
+<ul>
+<li>Kilde 4: MongoDB kræver 111% mere kode for identisk funktionalitet</li>
+<li>EF Core workarounds introducerer N+1 queries</li>
+<li>API mixing (EF Core + MongoDB Driver) øger complexity</li>
+</ul>
+<p><strong>Hvad det betyder:</strong><br>
+Database-valg påvirker ikke kun hvor hurtigt systemet kører, men hvor hurtigt jeg kan bygge det. For et semester-projekt med deadline er development velocity kritisk.</p>
+<hr>
+<h3 id="mønster-4-acid-betyder-ikke-overhead">Mønster 4: ACID betyder ikke overhead<a hidden class="anchor" aria-hidden="true" href="#mønster-4-acid-betyder-ikke-overhead">#</a></h3>
+<p><strong>Fra kilderne:</strong></p>
+<ul>
+<li>Kilde 1: PostgreSQL (ACID) outperformer MongoDB (BASE)</li>
+<li>Kilde 5: Strong consistency uden performance-tab</li>
+<li>Test H4: MongoDB 70% partial saves ved crashes</li>
+</ul>
+<p><strong>Hvad det betyder:</strong><br>
+Min antagelse om at &ldquo;transactions = slow&rdquo; var forkert. Modern ACID implementation kan være både hurtigere OG mere pålidelig end eventual consistency.</p>
+<hr>
+<h2 id="fire-testbare-hypoteser">Fire testbare hypoteser<a hidden class="anchor" aria-hidden="true" href="#fire-testbare-hypoteser">#</a></h2>
+<p>Baseret på disse mønstre formulerer jeg fire hypoteser der direkte adresserer projektets behov:</p>
+<h2 id="hypotese-1-json-performance">Hypotese 1: JSON Performance<a hidden class="anchor" aria-hidden="true" href="#hypotese-1-json-performance">#</a></h2>
+<p><strong>Påstand:</strong><br>
+PostgreSQL&rsquo;s JSON queries vil være mindst 20× hurtigere end MongoDB ved loading af Authenticated Chatbot&rsquo;s samtalehistorik.</p>
+<p><strong>Evidens-grundlag:</strong></p>
+<ul>
+<li>Kilde 1: 25-40× performance-fordel dokumenteret</li>
+<li>Kilde 2: Peer-reviewed bekræftelse (4× hurtigere queries)</li>
+</ul>
+<p><strong>Hvorfor 20× threshold?</strong><br>
+Konservativt estimat sikrer at hypotesen kræver konsistent, markant forskel – ikke tilfældige udsving.</p>
+<h3 id="testdesign">Testdesign<a hidden class="anchor" aria-hidden="true" href="#testdesign">#</a></h3>
+<p><strong>Målepunkt:</strong> Query execution time (millisekunder)</p>
+<p><strong>Dataset:</strong></p>
+<ul>
+<li>50 samtaler per bruger</li>
+<li>10 beskeder per samtale</li>
+<li>Total: 500 JSON documents</li>
+</ul>
+<p><strong>Operation:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> conversations 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> user_id <span style="color:#f92672">=</span> X 
+</span></span><span style="display:flex;"><span>INCLUDE messages 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> updated_at <span style="color:#66d9ef">DESC</span>
+</span></span></code></pre></div><p><strong>Hardware:</strong> Identisk testmiljø for begge databaser</p>
+<p><strong>Success-kriterium:</strong></p>
+<pre tabindex="0"><code>PostgreSQL query time &lt; MongoDB query time / 20
+</code></pre><p><strong>Hvis hypotesen validates:</strong> Bekræfter at JSONB outperformer BSON i projektets kontekst<br>
+<strong>Hvis hypotesen falsificeres:</strong> Indikerer at litteratur-resultater ikke holder ved min workload</p>
+<hr>
+<h2 id="hypotese-2-vector-search-integration">Hypotese 2: Vector Search Integration<a hidden class="anchor" aria-hidden="true" href="#hypotese-2-vector-search-integration">#</a></h2>
+<p><strong>Påstand:</strong><br>
+pgvector kan udføre kombinerede metadata+vector queries i én SQL-operation uden client-side merging.</p>
+<p><strong>Evidens-grundlag:</strong></p>
+<ul>
+<li>Kilde 3: Production validation fra Timescale + Supabase</li>
+<li>pgvector HNSW index kombinerer filtering med similarity search</li>
+</ul>
+<p><strong>Hvorfor denne test matters:</strong><br>
+Separat vector database ville kræve minimum 2 roundtrips + client-side merging. Native integration skulle eliminere denne kompleksitet.</p>
+<h3 id="testdesign-1">Testdesign<a hidden class="anchor" aria-hidden="true" href="#testdesign-1">#</a></h3>
+<p><strong>Målepunkt:</strong> Antal database roundtrips</p>
+<p><strong>Operation:</strong><br>
+&ldquo;Find semantisk lignende samtaler fra sidste måned for bruger X&rdquo;</p>
+<p><strong>Filtrering på:</strong></p>
+<ul>
+<li><code>user_id</code> (metadata)</li>
+<li><code>timestamp</code> (metadata)</li>
+<li><code>vector similarity</code> (embeddings)</li>
+</ul>
+<p><strong>Sammenligning:</strong></p>
+<p><strong>Approach A - pgvector:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> conversations
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> user_id <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">AND</span> updated_at <span style="color:#f92672">&gt;</span> NOW() <span style="color:#f92672">-</span> INTERVAL <span style="color:#e6db74">&#39;30 days&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> embedding <span style="color:#f92672">&lt;-&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">2</span>::vector
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">10</span>
+</span></span></code></pre></div><p>Roundtrips: <strong>1</strong></p>
+<p><strong>Approach B - Separat vector DB:</strong></p>
+<pre tabindex="0"><code>1. App → Pinecone: Search vectors (return IDs)
+2. App → PostgreSQL: Fetch conversations by IDs
+3. App: Client-side filtering på metadata
+</code></pre><p>Roundtrips: <strong>2+</strong> (plus client-side processing)</p>
+<p><strong>Success-kriterium:</strong><br>
+pgvector udfører operation i <strong>1 database roundtrip</strong> med kombineret WHERE clause og ORDER BY vector distance.</p>
+<p><strong>Hvis hypotesen validates:</strong> Bekræfter at pgvector eliminerer behovet for separat vector database<br>
+<strong>Hvis hypotesen falsificeres:</strong> Indikerer at native integration har begrænsninger der kræver separat system</p>
+<hr>
+<h2 id="hypotese-3-developer-experience">Hypotese 3: Developer Experience<a hidden class="anchor" aria-hidden="true" href="#hypotese-3-developer-experience">#</a></h2>
+<p><strong>Påstand:</strong><br>
+PostgreSQL understøtter standard EF Core patterns, hvilket reducerer lines of code med mindst 50% sammenlignet med MongoDB implementation.</p>
+<p><strong>Evidens-grundlag:</strong></p>
+<ul>
+<li>Kilde 4: PostgreSQL 100% EF Core support vs MongoDB 60%</li>
+<li>MongoDB kræver workarounds for Include() og transactions</li>
+</ul>
+<p><strong>Hvorfor developer experience matters:</strong><br>
+For et semester-projekt med deadline påvirker code complexity direkte om jeg når i mål. Workarounds koster udviklingsdage og introducerer bugs.</p>
+<h3 id="testdesign-2">Testdesign<a hidden class="anchor" aria-hidden="true" href="#testdesign-2">#</a></h3>
+<p><strong>Målepunkt:</strong> Lines of code for identisk funktionalitet</p>
+<p><strong>Feature 1:</strong> Eager loading af samtaler med beskeder</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#75715e">// PostgreSQL: Include() virker direkte</span>
+</span></span><span style="display:flex;"><span>.Include(c =&gt; c.Messages)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// MongoDB: Manuel N+1 loop nødvendig</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> (<span style="color:#66d9ef">var</span> conv <span style="color:#66d9ef">in</span> conversations) { ... }
+</span></span></code></pre></div><p><strong>Feature 2:</strong> Transaction med rollback ved fejl</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#75715e">// PostgreSQL: Standard EF Core</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> var transaction = <span style="color:#66d9ef">await</span> _context.Database.BeginTransactionAsync();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// MongoDB: API mixing (EF Core + MongoDB Driver)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> var session = <span style="color:#66d9ef">await</span> _mongoClient.StartSessionAsync();
+</span></span></code></pre></div><p><strong>Måles:</strong></p>
+<ul>
+<li>Total LoC inklusiv workarounds</li>
+<li>Antal extra dependencies (IMongoClient, collections)</li>
+<li>API-paradigmer anvendt (LINQ vs MongoDB syntax)</li>
+</ul>
+<p><strong>Success-kriterium:</strong></p>
+<pre tabindex="0"><code>PostgreSQL LoC ≤ 50% af MongoDB LoC
+</code></pre><p><strong>Hvis hypotesen validates:</strong> Bekræfter at mature provider reducerer code complexity<br>
+<strong>Hvis hypotesen falsificeres:</strong> MongoDB&rsquo;s workarounds er måske mindre byrde end forventet</p>
+<hr>
+<h2 id="hypotese-4-consistency-og-data-durability">Hypotese 4: Consistency og Data Durability<a hidden class="anchor" aria-hidden="true" href="#hypotese-4-consistency-og-data-durability">#</a></h2>
+<p><strong>Påstand:</strong><br>
+PostgreSQL&rsquo;s ACID transactions sikrer at partial conversation saves ikke forekommer ved simulated crash scenarios.</p>
+<p><strong>Evidens-grundlag:</strong></p>
+<ul>
+<li>Kilde 5: ACID atomicity garanterer &ldquo;alt eller intet&rdquo;</li>
+<li>MongoDB&rsquo;s eventual consistency tillader partial writes</li>
+</ul>
+<p><strong>Hvorfor consistency matters:</strong><br>
+Guest/Authenticated Chatbots skal gemme user message + bot response atomisk. Partial saves giver broken UX og potentielle GDPR-issues.</p>
+<h3 id="testdesign-3">Testdesign<a hidden class="anchor" aria-hidden="true" href="#testdesign-3">#</a></h3>
+<p><strong>Målepunkt:</strong> Data integrity efter simulated crash</p>
+<p><strong>Scenarie:</strong><br>
+System crasher mellem save af user message og bot response.</p>
+<p><strong>Test procedure:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">0</span>; i &lt; <span style="color:#ae81ff">20</span>; i++) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">using</span> var transaction = <span style="color:#66d9ef">await</span> _context.Database.BeginTransactionAsync();
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Save user message</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> _context.SaveChangesAsync();
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Random delay (0-50ms)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> Task.Delay(Random.Next(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">50</span>));
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Simulated crash</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (Random.Next(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>) == <span style="color:#ae81ff">0</span>) 
+</span></span><span style="display:flex;"><span>        Environment.FailFast(<span style="color:#e6db74">&#34;Crash&#34;</span>);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Save bot response</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> _context.SaveChangesAsync();
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> transaction.CommitAsync();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Måles:</strong></p>
+<ul>
+<li>Antal crashes triggered: ~10</li>
+<li>Antal partial saves: Messages uden paired response</li>
+<li>Data integrity percentage</li>
+</ul>
+<p><strong>Success-kriterium:</strong></p>
+<ul>
+<li>PostgreSQL: <strong>0 partial saves</strong> (100% rollback)</li>
+<li>MongoDB: <strong>&gt; 0 partial saves</strong> (eventual consistency issues)</li>
+</ul>
+<p><strong>Hvis hypotesen validates:</strong> ACID garantier holder i praksis, MongoDB&rsquo;s BASE accepterer partial writes<br>
+<strong>Hvis hypotesen falsificeres:</strong> Indikerer fundamental misforståelse af consistency models eller test-fejl</p>
+<hr>
+<h2 id="fra-hypoteser-til-validering">Fra hypoteser til validering<a hidden class="anchor" aria-hidden="true" href="#fra-hypoteser-til-validering">#</a></h2>
+<p>Jeg har nu fire testbare hypoteser der direkte adresserer projektets behov:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Hypotese</th>
+          <th>Måler</th>
+          <th>Success-kriterium</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>H1: JSON Performance</strong></td>
+          <td>Query execution time</td>
+          <td>PostgreSQL &lt; MongoDB / 20</td>
+      </tr>
+      <tr>
+          <td><strong>H2: Vector Integration</strong></td>
+          <td>Database roundtrips</td>
+          <td>pgvector = 1 roundtrip</td>
+      </tr>
+      <tr>
+          <td><strong>H3: Developer Experience</strong></td>
+          <td>Lines of code</td>
+          <td>PostgreSQL ≤ 50% MongoDB LoC</td>
+      </tr>
+      <tr>
+          <td><strong>H4: Consistency</strong></td>
+          <td>Partial saves</td>
+          <td>PostgreSQL = 0, MongoDB &gt; 0</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="hvad-hvis-hypoteserne-falsificeres">Hvad hvis hypoteserne falsificeres?<a hidden class="anchor" aria-hidden="true" href="#hvad-hvis-hypoteserne-falsificeres">#</a></h3>
+<p><strong>H1 falsificeret:</strong> MongoDB måske acceptabel for JSON, litteratur-fordele holder ikke<br>
+<strong>H2 falsificeret:</strong> Separat vector database nødvendig, arkitektur bliver mere kompleks<br>
+<strong>H3 falsificeret:</strong> MongoDB&rsquo;s workarounds mindre byrde end forventet<br>
+<strong>H4 falsificeret:</strong> Fundamental misforståelse af consistency models, test-design fejl</p>
+<p>Særligt kritisk er H2 og H4. Hvis pgvector ikke kan kombinere queries effektivt, må arkitekturen inkludere separat vector database. Hvis consistency-garantier ikke holder, indikerer det enten test-fejl eller at mine antagelser om ACID/BASE er forkerte.</p>
+<hr>
+<h2 id="næste-skridt-praktisk-validering">Næste skridt: Praktisk validering<a hidden class="anchor" aria-hidden="true" href="#næste-skridt-praktisk-validering">#</a></h2>
+<p>Nu skal hypoteserne testes empirisk. Jeg bygger identiske implementations i både PostgreSQL og MongoDB, genererer realistic chatbot-data, og måler performance, code complexity og data integrity.</p>
+<p><em>Holder evidensen fra researchen i praktisk test? Eller fandt jeg overraskelser?</em></p>
+<p><strong>Næste:</strong> <a href="/datamatiker-portfolio/database/praktisk-test/">Praktisk Test →</a></p>
 
 
   </div>

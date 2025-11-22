@@ -30,15 +30,7 @@
       <link>http://localhost:1313/datamatiker-portfolio/database/hypoteser/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/database/hypoteser/</guid>
-      <description>&lt;p&gt;Her opstiller jeg de hypoteser, jeg senere tester i praksis.&lt;/p&gt;
-&lt;h2 id=&#34;h1-json-performance&#34;&gt;H1 JSON Performance&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;h2-vector-search&#34;&gt;H2 Vector Search&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;h3-orm-integration&#34;&gt;H3 ORM Integration&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;h4-acid-vs-base-robusthed&#34;&gt;H4 ACID vs BASE Robusthed&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;</description>
+      <description>Fra evidens til testbare påstande</description>
     </item>
     <item>
       <title>Praktisk test</title>
