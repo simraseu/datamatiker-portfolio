@@ -202,21 +202,11 @@
 &lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Praktisk test</title>
+      <title>Praktisk Test</title>
       <link>http://localhost:1313/datamatiker-portfolio/database/praktisk-test/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/database/praktisk-test/</guid>
-      <description>&lt;p&gt;Denne side dokumenterer de praktiske tests, jeg gennemførte for at validere mine hypoteser.&lt;/p&gt;
-&lt;h2 id=&#34;testdesign&#34;&gt;Testdesign&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;resultater&#34;&gt;Resultater&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder – senere en tabel)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;analyse&#34;&gt;Analyse&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;details&gt;
-&lt;summary&gt;Testprotokoller&lt;/summary&gt;
-Se /database/bilag/testprotokol/
-&lt;/details&gt;</description>
+      <description>Empirisk validering af hypoteserne</description>
     </item>
     <item>
       <title>Database design</title>

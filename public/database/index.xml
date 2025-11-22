@@ -6,12 +6,11 @@
     <description>Recent content in Database &amp; Storage on 4. Semester Portfolio - Simon</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>da-DK</language>
-    <lastBuildDate>Wed, 15 Jan 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/datamatiker-portfolio/database/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Problemstilling</title>
       <link>http://localhost:1313/datamatiker-portfolio/database/problemstilling/</link>
-      <pubDate>Wed, 15 Jan 2025 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/database/problemstilling/</guid>
       <description>&lt;h2 id=&#34;fra-tre-chatbots-til-én-kritisk-beslutning&#34;&gt;Fra tre chatbots til én kritisk beslutning&lt;/h2&gt;
 &lt;p&gt;Vi skulle bygge en Blazor-webapp med tre AI-chatbots: én for gæster, én for brugere og én for administratoren. Men jeg stod overfor et fundamentalt spørgsmål: &lt;strong&gt;Hvilken database?&lt;/strong&gt;&lt;/p&gt;
@@ -33,21 +32,11 @@
       <description>Fra evidens til testbare påstande</description>
     </item>
     <item>
-      <title>Praktisk test</title>
+      <title>Praktisk Test</title>
       <link>http://localhost:1313/datamatiker-portfolio/database/praktisk-test/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/database/praktisk-test/</guid>
-      <description>&lt;p&gt;Denne side dokumenterer de praktiske tests, jeg gennemførte for at validere mine hypoteser.&lt;/p&gt;
-&lt;h2 id=&#34;testdesign&#34;&gt;Testdesign&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;resultater&#34;&gt;Resultater&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder – senere en tabel)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;analyse&#34;&gt;Analyse&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;details&gt;
-&lt;summary&gt;Testprotokoller&lt;/summary&gt;
-Se /database/bilag/testprotokol/
-&lt;/details&gt;</description>
+      <description>Empirisk validering af hypoteserne</description>
     </item>
     <item>
       <title>Database design</title>
