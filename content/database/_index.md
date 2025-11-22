@@ -1,5 +1,9 @@
 ---
-title: "Database og Storage"
+title: "Database & Storage"
+weight: 2
+description: "PostgreSQL vs MongoDB evaluering"
 ---
 
-Vælg et emne i menuen til venstre.
+Systematisk analyse af databasevalg til AI-chatbot arkitektur med fokus på JSON performance, vector search og ACID-garantier.
+
+**Start her:** [Problemstilling](/database/problemstilling/)

@@ -13,16 +13,13 @@ theme = 'PaperMod'
   ShowShareButtons = false
   ShowToc = true
   TocOpen = false
+  # Disable auto-listing af sections på homepage
+  mainSections = []
   
-  [params.homeInfoParams]
-    Title = "4. Semester Specialisering"
-    Content = """
-    Portfolio dokumentation for projektbaseret læring.
-    
-    **Specialiseringsemner:**
-    - Database & Storage (PostgreSQL + pgvector)
-    - Data Science & Analytics (KPI frameworks + chatbot analytics)
-    """
+  # Disable recent posts
+  ShowRecentUpdates = false
+  
+ 
 
 [[menu.main]]
   name = "Forside"
