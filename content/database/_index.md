@@ -1,5 +1,5 @@
-+++
-date = '2025-11-22T13:08:39+01:00'
-draft = true
-title = 'Database'
-+++
+---
+title: "Database og Storage"
+---
+
+Vælg et emne i menuen til venstre.

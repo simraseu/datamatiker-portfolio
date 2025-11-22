@@ -1,54 +1,106 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Database on 4. Semester Portfolio - Simon</title>
+    <title>Database og Storage on 4. Semester Portfolio - Simon</title>
     <link>http://localhost:1313/datamatiker-portfolio/database/</link>
-    <description>Recent content in Database on 4. Semester Portfolio - Simon</description>
+    <description>Recent content in Database og Storage on 4. Semester Portfolio - Simon</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>da-DK</language>
-    <lastBuildDate>Sat, 22 Nov 2025 13:08:39 +0100</lastBuildDate>
     <atom:link href="http://localhost:1313/datamatiker-portfolio/database/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Database Design</title>
-      <link>http://localhost:1313/datamatiker-portfolio/database/database-design/</link>
-      <pubDate>Sat, 22 Nov 2025 13:08:39 +0100</pubDate>
-      <guid>http://localhost:1313/datamatiker-portfolio/database/database-design/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Hypoteser</title>
-      <link>http://localhost:1313/datamatiker-portfolio/database/hypoteser/</link>
-      <pubDate>Sat, 22 Nov 2025 13:08:39 +0100</pubDate>
-      <guid>http://localhost:1313/datamatiker-portfolio/database/hypoteser/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Konklusion</title>
-      <link>http://localhost:1313/datamatiker-portfolio/database/konklusion/</link>
-      <pubDate>Sat, 22 Nov 2025 13:08:39 +0100</pubDate>
-      <guid>http://localhost:1313/datamatiker-portfolio/database/konklusion/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Praktisk Test</title>
-      <link>http://localhost:1313/datamatiker-portfolio/database/praktisk-test/</link>
-      <pubDate>Sat, 22 Nov 2025 13:08:39 +0100</pubDate>
-      <guid>http://localhost:1313/datamatiker-portfolio/database/praktisk-test/</guid>
-      <description></description>
-    </item>
     <item>
       <title>Problemstilling</title>
       <link>http://localhost:1313/datamatiker-portfolio/database/problemstilling/</link>
-      <pubDate>Sat, 22 Nov 2025 13:08:39 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/database/problemstilling/</guid>
-      <description></description>
+      <description>&lt;p&gt;Denne side beskriver den centrale udfordring i mit databasearbejde, og hvorfor jeg skulle træffe et teknisk valg mellem PostgreSQL og MongoDB.&lt;/p&gt;
+&lt;h2 id=&#34;overblik&#34;&gt;Overblik&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder – udfyldes senere)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;krav-til-databasen&#34;&gt;Krav til databasen&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;JSON lagring&lt;/li&gt;
+&lt;li&gt;Vector search&lt;/li&gt;
+&lt;li&gt;ACID transaktioner&lt;/li&gt;
+&lt;li&gt;ORM integration&lt;/li&gt;
+&lt;li&gt;Ydeevne ved store AI-forespørgsler&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;hvorfor-dette-var-en-udfordring&#34;&gt;Hvorfor dette var en udfordring&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder – udfyldes senere)&lt;/em&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;</description>
     </item>
     <item>
       <title>Research</title>
       <link>http://localhost:1313/datamatiker-portfolio/database/research/</link>
-      <pubDate>Sat, 22 Nov 2025 13:08:39 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/database/research/</guid>
-      <description></description>
+      <description>&lt;p&gt;Denne side præsenterer min systematiske researchproces.&lt;/p&gt;
+&lt;h2 id=&#34;forskningsspørgsmål&#34;&gt;Forskningsspørgsmål&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;metodologi&#34;&gt;Metodologi&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;litteraturgennemgang&#34;&gt;Litteraturgennemgang&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder – her indsætter vi tabeller senere)&lt;/em&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;</description>
+    </item>
+    <item>
+      <title>Hypoteser</title>
+      <link>http://localhost:1313/datamatiker-portfolio/database/hypoteser/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/datamatiker-portfolio/database/hypoteser/</guid>
+      <description>&lt;p&gt;Her opstiller jeg de hypoteser, jeg senere tester i praksis.&lt;/p&gt;
+&lt;h2 id=&#34;h1-json-performance&#34;&gt;H1 JSON Performance&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;h2-vector-search&#34;&gt;H2 Vector Search&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;h3-orm-integration&#34;&gt;H3 ORM Integration&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;h4-acid-vs-base-robusthed&#34;&gt;H4 ACID vs BASE Robusthed&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Praktisk test</title>
+      <link>http://localhost:1313/datamatiker-portfolio/database/praktisk-test/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/datamatiker-portfolio/database/praktisk-test/</guid>
+      <description>&lt;p&gt;Denne side dokumenterer de praktiske tests, jeg gennemførte for at validere mine hypoteser.&lt;/p&gt;
+&lt;h2 id=&#34;testdesign&#34;&gt;Testdesign&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;resultater&#34;&gt;Resultater&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder – senere en tabel)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;analyse&#34;&gt;Analyse&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;</description>
+    </item>
+    <item>
+      <title>Database design</title>
+      <link>http://localhost:1313/datamatiker-portfolio/database/design/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/datamatiker-portfolio/database/design/</guid>
+      <description>&lt;h2 id=&#34;arkitektur&#34;&gt;Arkitektur&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder – senere diagram)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;datamodeller&#34;&gt;Datamodeller&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;integration-med-blazor-og-ef-core&#34;&gt;Integration med Blazor og EF Core&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;</description>
+    </item>
+    <item>
+      <title>Konklusion</title>
+      <link>http://localhost:1313/datamatiker-portfolio/database/konklusion/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/datamatiker-portfolio/database/konklusion/</guid>
+      <description>&lt;p&gt;Denne side samler læringen fra hele databaseforløbet.&lt;/p&gt;
+&lt;h2 id=&#34;teknisk-konklusion&#34;&gt;Teknisk konklusion&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;samfundsmæssige-aspekter&#34;&gt;Samfundsmæssige aspekter&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;GDPR&lt;/li&gt;
+&lt;li&gt;Bæredygtighed&lt;/li&gt;
+&lt;li&gt;Arbejdsmarked&lt;/li&gt;
+&lt;li&gt;Økonomi&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;mine-læringsmål&#34;&gt;Mine læringsmål&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder – vi udfylder 1–5 senere)&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;</description>
     </item>
   </channel>
 </rss>

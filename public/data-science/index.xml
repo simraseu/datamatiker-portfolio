@@ -1,12 +1,111 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Data Science on 4. Semester Portfolio - Simon</title>
+    <title>Data Science og Analytics on 4. Semester Portfolio - Simon</title>
     <link>http://localhost:1313/datamatiker-portfolio/data-science/</link>
-    <description>Recent content in Data Science on 4. Semester Portfolio - Simon</description>
+    <description>Recent content in Data Science og Analytics on 4. Semester Portfolio - Simon</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>da-DK</language>
-    <lastBuildDate></lastBuildDate>
     <atom:link href="http://localhost:1313/datamatiker-portfolio/data-science/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Problemstilling</title>
+      <link>http://localhost:1313/datamatiker-portfolio/data-science/problemstilling/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/datamatiker-portfolio/data-science/problemstilling/</guid>
+      <description>&lt;p&gt;Denne side introducerer udfordringerne ved at måle kvalitet og effektivitet i et chatbot-system med tre forskellige brugerprofiler.&lt;/p&gt;
+&lt;h2 id=&#34;overblik&#34;&gt;Overblik&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder – udfyldes senere)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;hvorfor-data-science-er-centralt&#34;&gt;Hvorfor Data Science er centralt&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Systemet skal træffe beslutninger baseret på data&lt;/li&gt;
+&lt;li&gt;Tre chatbot-typer med forskelligt brugerflow&lt;/li&gt;
+&lt;li&gt;Behov for robuste målinger og processer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;fokusområder&#34;&gt;Fokusområder&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;KPI-design&lt;/li&gt;
+&lt;li&gt;Datakvalitet&lt;/li&gt;
+&lt;li&gt;Privacy&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>KPI framework</title>
+      <link>http://localhost:1313/datamatiker-portfolio/data-science/kpi-framework/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/datamatiker-portfolio/data-science/kpi-framework/</guid>
+      <description>&lt;p&gt;Her udvikler jeg et målrettet KPI-system til at vurdere chatbot-performance.&lt;/p&gt;
+&lt;h2 id=&#34;principper-for-kpi-design&#34;&gt;Principper for KPI-design&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;kpi-kategorier&#34;&gt;KPI-kategorier&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;System performance&lt;/li&gt;
+&lt;li&gt;Brugeradfærd&lt;/li&gt;
+&lt;li&gt;Modelkvalitet&lt;/li&gt;
+&lt;li&gt;Retention&lt;/li&gt;
+&lt;li&gt;Robusthed&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- raw HTML omitted --&gt;</description>
+    </item>
+    <item>
+      <title>Data collection</title>
+      <link>http://localhost:1313/datamatiker-portfolio/data-science/data-collection/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/datamatiker-portfolio/data-science/data-collection/</guid>
+      <description>&lt;p&gt;Denne side beskriver, hvordan data indsamles, struktureres og kvalitetssikres i mit system.&lt;/p&gt;
+&lt;h2 id=&#34;overblik-over-datakilder&#34;&gt;Overblik over datakilder&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;pipeline&#34;&gt;Pipeline&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder – senere tegner vi diagram)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;privacy&#34;&gt;Privacy&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;GDPR alignment&lt;/li&gt;
+&lt;li&gt;Logging vs. anonymisering&lt;/li&gt;
+&lt;li&gt;Storage footprint&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Analytics framework</title>
+      <link>http://localhost:1313/datamatiker-portfolio/data-science/analytics-framework/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/datamatiker-portfolio/data-science/analytics-framework/</guid>
+      <description>&lt;p&gt;Her beskriver jeg metoderne til at analysere data og udlede indsigt.&lt;/p&gt;
+&lt;h2 id=&#34;analysemetoder&#34;&gt;Analysemetoder&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;visualisering-og-dashboards&#34;&gt;Visualisering og dashboards&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;statistical-models&#34;&gt;Statistical models&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Implementation</title>
+      <link>http://localhost:1313/datamatiker-portfolio/data-science/implementation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/datamatiker-portfolio/data-science/implementation/</guid>
+      <description>&lt;p&gt;Her dokumenterer jeg, hvordan KPI-framework og analytics implementeres i praksis.&lt;/p&gt;
+&lt;h2 id=&#34;arkitektur&#34;&gt;Arkitektur&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;integration-med-backend&#34;&gt;Integration med backend&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;fejlkilder-og-risici&#34;&gt;Fejlkilder og risici&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Konklusion</title>
+      <link>http://localhost:1313/datamatiker-portfolio/data-science/konklusion/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/datamatiker-portfolio/data-science/konklusion/</guid>
+      <description>&lt;p&gt;Denne side samler mine vigtigste læringspunkter fra Data Science og Analytics specialiseringen.&lt;/p&gt;
+&lt;h2 id=&#34;teknisk-konklusion&#34;&gt;Teknisk konklusion&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;samfundsmæssige-perspektiver&#34;&gt;Samfundsmæssige perspektiver&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;GDPR&lt;/li&gt;
+&lt;li&gt;Dataminimering&lt;/li&gt;
+&lt;li&gt;Bæredygtighed i datahåndtering&lt;/li&gt;
+&lt;li&gt;Økonomiske fordele ved automatiseret analyse&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;mine-læringsmål&#34;&gt;Mine læringsmål&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder – læringsmål 6–10)&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

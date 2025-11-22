@@ -3,36 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/datamatiker-portfolio/</loc>
-    <lastmod>2025-11-22T13:09:10+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/datamatiker-portfolio/om-projektet/</loc>
-    <lastmod>2025-11-22T13:09:10+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/datamatiker-portfolio/data-science/</loc>
-    <lastmod>2025-11-22T13:08:40+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/datamatiker-portfolio/database/</loc>
-    <lastmod>2025-11-22T13:08:39+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/datamatiker-portfolio/database/database-design/</loc>
-    <lastmod>2025-11-22T13:08:39+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/datamatiker-portfolio/database/hypoteser/</loc>
-    <lastmod>2025-11-22T13:08:39+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/datamatiker-portfolio/database/konklusion/</loc>
-    <lastmod>2025-11-22T13:08:39+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/datamatiker-portfolio/database/praktisk-test/</loc>
-    <lastmod>2025-11-22T13:08:39+01:00</lastmod>
+    <loc>http://localhost:1313/datamatiker-portfolio/data-science/problemstilling/</loc>
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/database/problemstilling/</loc>
-    <lastmod>2025-11-22T13:08:39+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/datamatiker-portfolio/data-science/kpi-framework/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamatiker-portfolio/laeringsmaal/</loc>
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/database/research/</loc>
-    <lastmod>2025-11-22T13:08:39+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/datamatiker-portfolio/blazor-projekt/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamatiker-portfolio/data-science/data-collection/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamatiker-portfolio/database/hypoteser/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamatiker-portfolio/data-science/analytics-framework/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamatiker-portfolio/database/praktisk-test/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamatiker-portfolio/database/design/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamatiker-portfolio/data-science/implementation/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamatiker-portfolio/data-science/konklusion/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamatiker-portfolio/database/konklusion/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamatiker-portfolio/blog/</loc>
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/categories/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamatiker-portfolio/data-science/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamatiker-portfolio/database/</loc>
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/tags/</loc>
   </url>

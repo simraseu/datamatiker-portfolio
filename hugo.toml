@@ -30,16 +30,26 @@ theme = 'PaperMod'
   weight = 1
 
 [[menu.main]]
-  name = "Database & Storage"
-  url = "/database/"
+  name = "Læringsmål"
+  url = "/laeringsmaal/"
   weight = 2
 
 [[menu.main]]
-  name = "Data Science"
-  url = "/data-science/"
+  name = "Blazor Projekt"
+  url = "/blazor-projekt/"
   weight = 3
 
 [[menu.main]]
-  name = "Om Projektet"
-  url = "/om-projektet/"
+  name = "Database & Storage"
+  url = "/database/"
   weight = 4
+
+[[menu.main]]
+  name = "Data Science & Analytics"
+  url = "/data-science/"
+  weight = 5
+
+[[menu.main]]
+  name = "Blog"
+  url = "/blog/"
+  weight = 6

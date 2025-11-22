@@ -1,5 +1,5 @@
-+++
-date = '2025-11-22T13:08:40+01:00'
-draft = true
-title = 'Data Science'
-+++
+---
+title: "Data Science og Analytics"
+---
+
+Vælg et emne i menuen til venstre.
