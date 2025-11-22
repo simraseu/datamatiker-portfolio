@@ -7,8 +7,6 @@ weight: 2
 
 **Problemet:** Et Blazor chatbot-system med tre chatbot-typer skulle have en database. Men hvilken? MongoDB til JSON? PostgreSQL til relations? Pinecone til vector search? Tre systemer?
 
-**Konklusionen:** PostgreSQL med pgvector. Én database. Bedre performance på alle metrics. Empirisk valideret gennem systematisk research og praktiske tests.
-
 Dette er historien om hvordan jeg gik fra antagelser til evidens-baseret beslutning.
 
 ---
