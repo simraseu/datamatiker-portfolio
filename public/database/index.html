@@ -152,12 +152,12 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>Denne side beskriver den centrale udfordring i mit databasearbejde, og hvorfor jeg skulle træffe et teknisk valg mellem PostgreSQL og MongoDB.
-Overblik (Placeholder – udfyldes senere)
-Krav til databasen JSON lagring Vector search ACID transaktioner ORM integration Ydeevne ved store AI-forespørgsler Hvorfor dette var en udfordring (Placeholder – udfyldes senere)
-</p>
+    <p>Fra tre chatbots til én kritisk beslutning Vi skulle bygge en Blazor-webapp med tre AI-chatbots: én for gæster, én for brugere og én for administratoren. Men jeg stod overfor et fundamentalt spørgsmål: Hvilken database?
+Min første tanke var simpel: “MongoDB til JSON, PostgreSQL til relationel data, Pinecone til vector search.” Tre systemer. Tre databaser. Tre synkroniseringsproblemer.
+Men moderne LLM’er komplicerer billedet. GPT-4 er stateless – den husker intet mellem API-kald. Derfor skal vi gemme al kontekst. Hver besked. Hver samtale. Hver vector embedding for semantisk søgning.
+...</p>
   </div>
-  <footer class="entry-footer"><span>Simon</span></footer>
+  <footer class="entry-footer"><span title='2025-01-15 00:00:00 +0000 UTC'>January 15, 2025</span>&nbsp;·&nbsp;<span>Simon</span></footer>
   <a class="entry-link" aria-label="post link to Problemstilling" href="http://localhost:1313/datamatiker-portfolio/database/problemstilling/"></a>
 </article>
 

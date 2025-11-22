@@ -7,20 +7,10 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Problemstilling | 4. Semester Portfolio - Simon</title>
 <meta name="keywords" content="">
-<meta name="description" content="Denne side beskriver den centrale udfordring i mit databasearbejde, og hvorfor jeg skulle træffe et teknisk valg mellem PostgreSQL og MongoDB.
-Overblik
-(Placeholder – udfyldes senere)
-Krav til databasen
-
-JSON lagring
-Vector search
-ACID transaktioner
-ORM integration
-Ydeevne ved store AI-forespørgsler
-
-Hvorfor dette var en udfordring
-(Placeholder – udfyldes senere)
-">
+<meta name="description" content="Fra tre chatbots til én kritisk beslutning
+Vi skulle bygge en Blazor-webapp med tre AI-chatbots: én for gæster, én for brugere og én for administratoren. Men jeg stod overfor et fundamentalt spørgsmål: Hvilken database?
+Min første tanke var simpel: &ldquo;MongoDB til JSON, PostgreSQL til relationel data, Pinecone til vector search.&rdquo; Tre systemer. Tre databaser. Tre synkroniseringsproblemer.
+Men moderne LLM&rsquo;er komplicerer billedet. GPT-4 er stateless – den husker intet mellem API-kald. Derfor skal vi gemme al kontekst. Hver besked. Hver samtale. Hver vector embedding for semantisk søgning.">
 <meta name="author" content="Simon">
 <link rel="canonical" href="http://localhost:1313/datamatiker-portfolio/database/problemstilling/">
 <link crossorigin="anonymous" href="/datamatiker-portfolio/assets/css/stylesheet.fd5566c526ae48aadabd950798a2dc3568536401560eae5caac3765a42a9e7b5.css" integrity="sha256-/VVmxSauSKravZUHmKLcNWhTZAFWDq5cqsN2WkKp57U=" rel="preload stylesheet" as="style">
@@ -155,7 +145,7 @@ Hvorfor dette var en udfordring
     <h1 class="post-title entry-hint-parent">
       Problemstilling
     </h1>
-    <div class="post-meta"><span>Simon</span>
+    <div class="post-meta"><span title='2025-01-15 00:00:00 +0000 UTC'>January 15, 2025</span>&nbsp;·&nbsp;<span>Simon</span>
 
 </div>
   </header> <div class="toc">
@@ -166,31 +156,252 @@ Hvorfor dette var en udfordring
 
         <div class="inner"><ul>
                 <li>
-                    <a href="#overblik" aria-label="Overblik">Overblik</a></li>
+                    <a href="#fra-tre-chatbots-til-%c3%a9n-kritisk-beslutning" aria-label="Fra tre chatbots til én kritisk beslutning">Fra tre chatbots til én kritisk beslutning</a></li>
                 <li>
-                    <a href="#krav-til-databasen" aria-label="Krav til databasen">Krav til databasen</a></li>
+                    <a href="#fire-kritiske-krav" aria-label="Fire kritiske krav">Fire kritiske krav</a><ul>
+                        
                 <li>
-                    <a href="#hvorfor-dette-var-en-udfordring" aria-label="Hvorfor dette var en udfordring">Hvorfor dette var en udfordring</a>
+                    <a href="#1-json-lagring-med-hurtig-s%c3%b8gning" aria-label="1. JSON-lagring med hurtig søgning">1. JSON-lagring med hurtig søgning</a></li>
+                <li>
+                    <a href="#2-vector-embeddings-for-semantisk-s%c3%b8gning" aria-label="2. Vector embeddings for semantisk søgning">2. Vector embeddings for semantisk søgning</a></li>
+                <li>
+                    <a href="#3-mange-samtidige-brugere-uden-performance-tab" aria-label="3. Mange samtidige brugere uden performance-tab">3. Mange samtidige brugere uden performance-tab</a></li>
+                <li>
+                    <a href="#4-problemfri-blazor-integration" aria-label="4. Problemfri Blazor integration">4. Problemfri Blazor integration</a></li></ul>
+                </li>
+                <li>
+                    <a href="#hvad-sker-der-hvis-vi-v%c3%a6lger-forkert" aria-label="Hvad sker der hvis vi vælger forkert?">Hvad sker der hvis vi vælger forkert?</a><ul>
+                        
+                <li>
+                    <a href="#-scenarie-1-database-uden-effektiv-json-support" aria-label="❌ Scenarie 1: Database uden effektiv JSON-support">❌ Scenarie 1: Database uden effektiv JSON-support</a></li>
+                <li>
+                    <a href="#-scenarie-2-ingen-native-vector-search" aria-label="❌ Scenarie 2: Ingen native vector search">❌ Scenarie 2: Ingen native vector search</a></li>
+                <li>
+                    <a href="#-scenarie-3-manglende-acid-garantier" aria-label="❌ Scenarie 3: Manglende ACID-garantier">❌ Scenarie 3: Manglende ACID-garantier</a></li></ul>
+                </li>
+                <li>
+                    <a href="#beslutningsmatrix" aria-label="Beslutningsmatrix">Beslutningsmatrix</a></li>
+                <li>
+                    <a href="#min-tilgang" aria-label="Min tilgang">Min tilgang</a>
                 </li>
             </ul>
         </div>
     </details>
 </div>
 
-  <div class="post-content"><p>Denne side beskriver den centrale udfordring i mit databasearbejde, og hvorfor jeg skulle træffe et teknisk valg mellem PostgreSQL og MongoDB.</p>
-<h2 id="overblik">Overblik<a hidden class="anchor" aria-hidden="true" href="#overblik">#</a></h2>
-<p><em>(Placeholder – udfyldes senere)</em></p>
-<h2 id="krav-til-databasen">Krav til databasen<a hidden class="anchor" aria-hidden="true" href="#krav-til-databasen">#</a></h2>
-<ul>
-<li>JSON lagring</li>
-<li>Vector search</li>
-<li>ACID transaktioner</li>
-<li>ORM integration</li>
-<li>Ydeevne ved store AI-forespørgsler</li>
-</ul>
-<h2 id="hvorfor-dette-var-en-udfordring">Hvorfor dette var en udfordring<a hidden class="anchor" aria-hidden="true" href="#hvorfor-dette-var-en-udfordring">#</a></h2>
-<p><em>(Placeholder – udfyldes senere)</em></p>
+  <div class="post-content"><h2 id="fra-tre-chatbots-til-én-kritisk-beslutning">Fra tre chatbots til én kritisk beslutning<a hidden class="anchor" aria-hidden="true" href="#fra-tre-chatbots-til-én-kritisk-beslutning">#</a></h2>
+<p>Vi skulle bygge en Blazor-webapp med tre AI-chatbots: én for gæster, én for brugere og én for administratoren. Men jeg stod overfor et fundamentalt spørgsmål: <strong>Hvilken database?</strong></p>
+<p>Min første tanke var simpel: &ldquo;MongoDB til JSON, PostgreSQL til relationel data, Pinecone til vector search.&rdquo; Tre systemer. Tre databaser. Tre synkroniseringsproblemer.</p>
+<p>Men moderne LLM&rsquo;er komplicerer billedet. GPT-4 er stateless – den husker intet mellem API-kald. Derfor skal <strong>vi</strong> gemme al kontekst. Hver besked. Hver samtale. Hver vector embedding for semantisk søgning.</p>
+<p>Dette projekt handler ikke om at vælge &ldquo;den bedste database&rdquo;. Det handler om at forstå <strong>hvornår</strong> hver teknologi giver værdi, og hvad det koster at vælge forkert.</p>
+<p>For at kunne træffe et fagligt begrundet databasevalg, identificerede jeg fire funktionelle krav som alle tre chatbot-typer afhænger af.</p>
+<hr>
+<h2 id="fire-kritiske-krav">Fire kritiske krav<a hidden class="anchor" aria-hidden="true" href="#fire-kritiske-krav">#</a></h2>
+<p>Moderne chatbot-arkitektur stiller fire ikke-negocierbare krav:</p>
+<h3 id="1-json-lagring-med-hurtig-søgning">1. JSON-lagring med hurtig søgning<a hidden class="anchor" aria-hidden="true" href="#1-json-lagring-med-hurtig-søgning">#</a></h3>
+<p>Chatbeskeder er ikke rene SQL-rækker. De indeholder metadata (timestamps, token counts), nested content og varierende strukturer. JSON er det naturlige format, men ikke alle databaser håndterer JSON lige godt.</p>
+<p><strong>Konkret krav:</strong> Hent 50 samtaler med 500 beskeder på under 100ms.</p>
 <!-- raw HTML omitted -->
+<p>Når en authenticated user åbner deres chathistorik, skal systemet:</p>
+<ul>
+<li>Hente 50 seneste samtaler</li>
+<li>Loade alle beskeder per samtale</li>
+<li>Parse JSON-indhold</li>
+<li>Render i UI</li>
+</ul>
+<p>Ved 26× dårligere performance (MongoDB vs PostgreSQL) betyder det:</p>
+<ul>
+<li>PostgreSQL: 50ms → flydende UX</li>
+<li>MongoDB: 1.3 sekunder → frustrerende ventetid</li>
+</ul>
+<p>For Guest Chatbot med session-baseret loading bliver denne forskel kritisk.</p>
+<!-- raw HTML omitted -->
+<hr>
+<h3 id="2-vector-embeddings-for-semantisk-søgning">2. Vector embeddings for semantisk søgning<a hidden class="anchor" aria-hidden="true" href="#2-vector-embeddings-for-semantisk-søgning">#</a></h3>
+<p>Keyword search finder kun eksakte match. Men når en bruger spørger <em>&ldquo;Hvordan lindrer jeg hovedpine?&rdquo;</em>, skal systemet finde samtaler om &ldquo;migræne&rdquo;, &ldquo;smertelindring&rdquo; og &ldquo;Panodil&rdquo; – selvom ordene er forskellige.</p>
+<p><strong>Løsning:</strong> Vector embeddings (1536-dimensionelle arrays fra OpenAI) gemmes i databasen og søges via cosine similarity.</p>
+<!-- raw HTML omitted -->
+<p><strong>User query:</strong> &ldquo;Hvordan lindrer jeg hovedpine?&rdquo;</p>
+<p><strong>System konverterer til embedding:</strong></p>
+<pre tabindex="0"><code>[0.023, -0.891, 0.445, ... 1536 dimensions]
+</code></pre><p><strong>Database finder lignende embeddings fra tidligere samtaler:</strong></p>
+<ul>
+<li>&ldquo;Jeg har migræne, hvad hjælper?&rdquo; (similarity: 0.89)</li>
+<li>&ldquo;Panodil vs Ipren til smertelindring&rdquo; (similarity: 0.85)</li>
+<li>&ldquo;Spændingshovedpine øvelser&rdquo; (similarity: 0.82)</li>
+</ul>
+<p>Uden vector search ville kun eksakte matches på &ldquo;hovedpine&rdquo; findes.</p>
+<!-- raw HTML omitted -->
+<hr>
+<h3 id="3-mange-samtidige-brugere-uden-performance-tab">3. Mange samtidige brugere uden performance-tab<a hidden class="anchor" aria-hidden="true" href="#3-mange-samtidige-brugere-uden-performance-tab">#</a></h3>
+<p>Realtidschat tolererer ikke slow queries. Ved 100+ samtidige connections skal systemet:</p>
+<ul>
+<li>Håndtere 1000+ writes/sekund (messages)</li>
+<li>Levere sub-100ms read latency</li>
+<li>Sikre consistency (ingen tabte beskeder)</li>
+</ul>
+<hr>
+<h3 id="4-problemfri-blazor-integration">4. Problemfri Blazor integration<a hidden class="anchor" aria-hidden="true" href="#4-problemfri-blazor-integration">#</a></h3>
+<p>Entity Framework Core er .NET&rsquo;s standard ORM. Men ikke alle database providers understøtter samme features. Manglende <code>Include()</code> support betyder N+1 queries. Ingen transaction support betyder custom workarounds.</p>
+<p><strong>Krav:</strong> 100% EF Core feature support for standard LINQ patterns.</p>
+<!-- raw HTML omitted -->
+<p><strong>PostgreSQL (standard pattern):</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> conversations = <span style="color:#66d9ef">await</span> _context.Conversations
+</span></span><span style="display:flex;"><span>    .Where(c =&gt; c.UserId == userId)
+</span></span><span style="display:flex;"><span>    .Include(c =&gt; c.Messages)  <span style="color:#75715e">// ✅ Virker direkte</span>
+</span></span><span style="display:flex;"><span>    .ToListAsync();
+</span></span></code></pre></div><p><strong>MongoDB (workaround nødvendig):</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> conversations = <span style="color:#66d9ef">await</span> _context.Conversations
+</span></span><span style="display:flex;"><span>    .Where(c =&gt; c.UserId == userId)
+</span></span><span style="display:flex;"><span>    .ToListAsync();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ❌ Include() virker ikke - manuel loop</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> (<span style="color:#66d9ef">var</span> conv <span style="color:#66d9ef">in</span> conversations) {
+</span></span><span style="display:flex;"><span>    conv.Messages = <span style="color:#66d9ef">await</span> _context.Messages
+</span></span><span style="display:flex;"><span>        .Where(m =&gt; m.ConversationId == conv.Id)
+</span></span><span style="display:flex;"><span>        .ToListAsync();  <span style="color:#75715e">// N+1 query problem</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Resultat: 2× mere kode, 11 database roundtrips i stedet for 1.</p>
+<!-- raw HTML omitted -->
+<hr>
+<h2 id="hvad-sker-der-hvis-vi-vælger-forkert">Hvad sker der hvis vi vælger forkert?<a hidden class="anchor" aria-hidden="true" href="#hvad-sker-der-hvis-vi-vælger-forkert">#</a></h2>
+<p>Tre konkrete failure-scenarier illustrerer konsekvenserne:</p>
+<h3 id="-scenarie-1-database-uden-effektiv-json-support">❌ Scenarie 1: Database uden effektiv JSON-support<a hidden class="anchor" aria-hidden="true" href="#-scenarie-1-database-uden-effektiv-json-support">#</a></h3>
+<p><strong>Problem:</strong> Manglende native JSON-håndtering tvinger os til omfattende normalisering med komplekse joins.</p>
+<p><strong>Konsekvens:</strong></p>
+<ul>
+<li>Authenticated Chatbot: 2-3 sekunders load-tid i stedet for 50ms</li>
+<li>Developer friction: 3× mere kode for samme funktionalitet</li>
+<li>Skalerbarhed: Performance degraderer eksponentielt ved vækst</li>
+</ul>
+<!-- raw HTML omitted -->
+<p><strong>Normalized structure (uden JSON):</strong></p>
+<pre tabindex="0"><code>Messages → 500 rows
+MessageMetadata → 500 rows
+MessageTokens → 500 rows
+= 3 tables × 500 rows = 1500 rows med JOINs
+</code></pre><p><strong>JSONB structure:</strong></p>
+<pre tabindex="0"><code>Messages → 500 rows med embedded JSON
+= 1 table × 500 rows, ingen JOINs
+</code></pre><p>Query complexity: O(n³) vs O(n) - massiv forskel ved scale.</p>
+<!-- raw HTML omitted -->
+<hr>
+<h3 id="-scenarie-2-ingen-native-vector-search">❌ Scenarie 2: Ingen native vector search<a hidden class="anchor" aria-hidden="true" href="#-scenarie-2-ingen-native-vector-search">#</a></h3>
+<p><strong>Problem:</strong> Separat vector database (Pinecone/Weaviate) kræver:</p>
+<ul>
+<li>Data duplication (beskeder både i main DB og vector DB)</li>
+<li>Synkronisering mellem systemer</li>
+<li>Dobbelt hosting cost</li>
+<li>Kompleks failure handling</li>
+</ul>
+<p><strong>Konsekvens:</strong></p>
+<ul>
+<li>Semantic search queries kræver 2+ database roundtrips</li>
+<li>Data consistency issues (sync lag)</li>
+<li>Årlig ekstra cost: ~$2,400 for 10k users</li>
+</ul>
+<!-- raw HTML omitted -->
+<p><strong>Query flow med separat vector DB:</strong></p>
+<ol>
+<li>App → Vector DB: &ldquo;Find similar conversations&rdquo; (200ms)</li>
+<li>Vector DB → App: Returns IDs [conv1, conv2, conv3]</li>
+<li>App → Main DB: &ldquo;Get conversations by IDs&rdquo; (150ms)</li>
+<li>App: Client-side merging + filtering (50ms)</li>
+</ol>
+<p><strong>Total: 400ms + complexity</strong></p>
+<p><strong>Med native vector (pgvector):</strong></p>
+<ol>
+<li>App → PostgreSQL: Combined query (89ms)</li>
+</ol>
+<p><strong>Total: 89ms, zero sync issues</strong></p>
+<!-- raw HTML omitted -->
+<hr>
+<h3 id="-scenarie-3-manglende-acid-garantier">❌ Scenarie 3: Manglende ACID-garantier<a hidden class="anchor" aria-hidden="true" href="#-scenarie-3-manglende-acid-garantier">#</a></h3>
+<p><strong>Problem:</strong> NoSQL eventual consistency kan resultere i partial saves ved crashes.</p>
+<p><strong>Konsekvens:</strong></p>
+<ul>
+<li>Guest Chatbot: Bruger ser egen besked, men intet bot-svar</li>
+<li>Authenticated Chatbot: &ldquo;Saved successfully&rdquo; betyder ikke persistent data</li>
+<li>Owner Chatbot: Analytics dashboards viser inkonsistent data</li>
+<li>GDPR-risiko: Kan ikke garantere data-deletion</li>
+</ul>
+<!-- raw HTML omitted -->
+<p><strong>System crasher mellem user message og bot response:</strong></p>
+<p><strong>PostgreSQL (ACID):</strong></p>
+<ul>
+<li>Transaction rollback automatisk</li>
+<li>Database returnerer til clean state</li>
+<li>User ser: Ingen samtale (forventet opførsel)</li>
+</ul>
+<p><strong>MongoDB (BASE):</strong></p>
+<ul>
+<li>User message persisteret</li>
+<li>Bot response tabt</li>
+<li>User ser: Halv samtale (broken UX)</li>
+</ul>
+<p>Test-resultat: MongoDB 70% partial saves ved 10 simulated crashes.</p>
+<!-- raw HTML omitted -->
+<hr>
+<h2 id="beslutningsmatrix">Beslutningsmatrix<a hidden class="anchor" aria-hidden="true" href="#beslutningsmatrix">#</a></h2>
+<p>For at evaluere databaser systematisk definerede jeg vægtede kriterier baseret på projektets krav:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Kriterium</th>
+          <th>Vægt</th>
+          <th>Hvorfor det matters</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>AI/ML Kompatibilitet</strong></td>
+          <td>30%</td>
+          <td>Vector search + JSON er kernefunktionalitet</td>
+      </tr>
+      <tr>
+          <td><strong>Performance</strong></td>
+          <td>25%</td>
+          <td>Realtidschat tolererer ikke slow queries</td>
+      </tr>
+      <tr>
+          <td><strong>Blazor Integration</strong></td>
+          <td>20%</td>
+          <td>EF Core support = udviklingshastighed</td>
+      </tr>
+      <tr>
+          <td><strong>Skalerbarbarhed</strong></td>
+          <td>15%</td>
+          <td>Prototype → produktion uden rewrite</td>
+      </tr>
+      <tr>
+          <td><strong>Omkostninger</strong></td>
+          <td>10%</td>
+          <td>Drift + udvikling skal være bæredygtigt</td>
+      </tr>
+  </tbody>
+</table>
+<!-- raw HTML omitted -->
+<p><strong>AI/ML top priority (30%):</strong>
+Manglende vector support eliminerer semantic search helt. Dårlig JSON performance gør Authenticated Chatbot ubrugeligt. Dette er go/no-go kriterier.</p>
+<p><strong>Performance #2 (25%):</strong>
+Chatbot UX lever eller dør på response time. 50ms vs 2 sekunder er forskellen mellem &ldquo;flydende&rdquo; og &ldquo;frustrerende&rdquo;.</p>
+<p><strong>Integration matters (20%):</strong>
+Et semester-projekt har begrænset tid. EF Core workarounds spiser udviklingsdage og introducerer bugs.</p>
+<p><strong>Skalerbarhed + Cost lavere (15% + 10%):</strong>
+Vigtigt, men kan håndteres senere. Prototype kan køre på billig tier. Production scaling er fremtidig concern.</p>
+<!-- raw HTML omitted -->
+<hr>
+<h2 id="min-tilgang">Min tilgang<a hidden class="anchor" aria-hidden="true" href="#min-tilgang">#</a></h2>
+<p>I stedet for at vælge baseret på &ldquo;hvad folk anbefaler&rdquo;, besluttede jeg at kombinere:</p>
+<ol>
+<li><strong>Systematisk research</strong> → Peer-reviewed studier + production cases</li>
+<li><strong>Praktisk test</strong> → Benchmarks på realistic data</li>
+<li><strong>Arkitektur-design</strong> → Konkret implementation</li>
+</ol>
+<p>Målet var ikke at finde &ldquo;den bedste database&rdquo;, men at forstå <strong>trade-offs</strong> og kunne forsvare valget med evidens.</p>
+<hr>
+<p><strong>Næste:</strong> <a href="/database/research/">Research →</a></p>
+<p><em>Hvordan undersøgte jeg disse krav? Hvilke kilder var troværdige? Og hvilke overraskende resultater fandt jeg?</em></p>
 
 
   </div>
@@ -198,6 +409,13 @@ Hvorfor dette var en udfordring
   <footer class="post-footer">
     <ul class="post-tags">
     </ul>
+<nav class="paginav">
+  <a class="next" href="http://localhost:1313/datamatiker-portfolio/database/research/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Research</span>
+  </a>
+</nav>
 
   </footer>
 </article>

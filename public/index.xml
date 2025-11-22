@@ -6,7 +6,18 @@
     <description>Recent content in Forside on 4. Semester Portfolio - Simon</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>da-DK</language>
+    <lastBuildDate>Wed, 15 Jan 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/datamatiker-portfolio/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Problemstilling</title>
+      <link>http://localhost:1313/datamatiker-portfolio/database/problemstilling/</link>
+      <pubDate>Wed, 15 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/datamatiker-portfolio/database/problemstilling/</guid>
+      <description>&lt;h2 id=&#34;fra-tre-chatbots-til-én-kritisk-beslutning&#34;&gt;Fra tre chatbots til én kritisk beslutning&lt;/h2&gt;
+&lt;p&gt;Vi skulle bygge en Blazor-webapp med tre AI-chatbots: én for gæster, én for brugere og én for administratoren. Men jeg stod overfor et fundamentalt spørgsmål: &lt;strong&gt;Hvilken database?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Min første tanke var simpel: &amp;ldquo;MongoDB til JSON, PostgreSQL til relationel data, Pinecone til vector search.&amp;rdquo; Tre systemer. Tre databaser. Tre synkroniseringsproblemer.&lt;/p&gt;
+&lt;p&gt;Men moderne LLM&amp;rsquo;er komplicerer billedet. GPT-4 er stateless – den husker intet mellem API-kald. Derfor skal &lt;strong&gt;vi&lt;/strong&gt; gemme al kontekst. Hver besked. Hver samtale. Hver vector embedding for semantisk søgning.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Problemstilling</title>
       <link>http://localhost:1313/datamatiker-portfolio/data-science/problemstilling/</link>
@@ -27,26 +38,6 @@
 &lt;li&gt;Datakvalitet&lt;/li&gt;
 &lt;li&gt;Privacy&lt;/li&gt;
 &lt;/ul&gt;</description>
-    </item>
-    <item>
-      <title>Problemstilling</title>
-      <link>http://localhost:1313/datamatiker-portfolio/database/problemstilling/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/datamatiker-portfolio/database/problemstilling/</guid>
-      <description>&lt;p&gt;Denne side beskriver den centrale udfordring i mit databasearbejde, og hvorfor jeg skulle træffe et teknisk valg mellem PostgreSQL og MongoDB.&lt;/p&gt;
-&lt;h2 id=&#34;overblik&#34;&gt;Overblik&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder – udfyldes senere)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;krav-til-databasen&#34;&gt;Krav til databasen&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;JSON lagring&lt;/li&gt;
-&lt;li&gt;Vector search&lt;/li&gt;
-&lt;li&gt;ACID transaktioner&lt;/li&gt;
-&lt;li&gt;ORM integration&lt;/li&gt;
-&lt;li&gt;Ydeevne ved store AI-forespørgsler&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;hvorfor-dette-var-en-udfordring&#34;&gt;Hvorfor dette var en udfordring&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder – udfyldes senere)&lt;/em&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;</description>
     </item>
     <item>
       <title>KPI framework</title>

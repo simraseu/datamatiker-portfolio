@@ -186,73 +186,77 @@ Siden dokumenterer mit arbejde inden for to specialiseringsområder:</p>
     </h2>
   </header>
   <div class="entry-content">
-    <p>Denne side introducerer udfordringerne ved at måle kvalitet og effektivitet i et chatbot-system med tre forskellige brugerprofiler.
-Overblik (Placeholder – udfyldes senere)
-Hvorfor Data Science er centralt Systemet skal træffe beslutninger baseret på data Tre chatbot-typer med forskelligt brugerflow Behov for robuste målinger og processer Fokusområder KPI-design Datakvalitet Privacy </p>
+    <p>Fra tre chatbots til én kritisk beslutning Vi skulle bygge en Blazor-webapp med tre AI-chatbots: én for gæster, én for brugere og én for administratoren. Men jeg stod overfor et fundamentalt spørgsmål: Hvilken database?
+Min første tanke var simpel: “MongoDB til JSON, PostgreSQL til relationel data, Pinecone til vector search.” Tre systemer. Tre databaser. Tre synkroniseringsproblemer.
+Men moderne LLM’er komplicerer billedet. GPT-4 er stateless – den husker intet mellem API-kald. Derfor skal vi gemme al kontekst. Hver besked. Hver samtale. Hver vector embedding for semantisk søgning.
+...</p>
   </div>
-  <footer class="entry-footer"><span>Simon</span></footer>
-  <a class="entry-link" aria-label="post link to Problemstilling" href="http://localhost:1313/datamatiker-portfolio/data-science/problemstilling/"></a>
+  <footer class="entry-footer"><span title='2025-01-15 00:00:00 +0000 UTC'>January 15, 2025</span>&nbsp;·&nbsp;<span>Simon</span></footer>
+  <a class="entry-link" aria-label="post link to Problemstilling" href="http://localhost:1313/datamatiker-portfolio/database/problemstilling/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">KPI framework
+    <h2 class="entry-hint-parent">Research
     </h2>
   </header>
   <div class="entry-content">
-    <p>Her udvikler jeg et målrettet KPI-system til at vurdere chatbot-performance.
-Principper for KPI-design (Placeholder)
-KPI-kategorier System performance Brugeradfærd Modelkvalitet Retention Robusthed </p>
-  </div>
-  <footer class="entry-footer"><span>Simon</span></footer>
-  <a class="entry-link" aria-label="post link to KPI framework" href="http://localhost:1313/datamatiker-portfolio/data-science/kpi-framework/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Data collection
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Denne side beskriver, hvordan data indsamles, struktureres og kvalitetssikres i mit system.
-Overblik over datakilder (Placeholder)
-Pipeline (Placeholder – senere tegner vi diagram)
-Privacy GDPR alignment Logging vs. anonymisering Storage footprint </p>
-  </div>
-  <footer class="entry-footer"><span>Simon</span></footer>
-  <a class="entry-link" aria-label="post link to Data collection" href="http://localhost:1313/datamatiker-portfolio/data-science/data-collection/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Analytics framework
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Her beskriver jeg metoderne til at analysere data og udlede indsigt.
-Analysemetoder (Placeholder)
-Visualisering og dashboards (Placeholder)
-Statistical models (Placeholder)
+    <p>Denne side præsenterer min systematiske researchproces.
+Forskningsspørgsmål (Placeholder)
+Metodologi (Placeholder)
+Litteraturgennemgang (Placeholder – her indsætter vi tabeller senere)
 </p>
   </div>
   <footer class="entry-footer"><span>Simon</span></footer>
-  <a class="entry-link" aria-label="post link to Analytics framework" href="http://localhost:1313/datamatiker-portfolio/data-science/analytics-framework/"></a>
+  <a class="entry-link" aria-label="post link to Research" href="http://localhost:1313/datamatiker-portfolio/database/research/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Implementation
+    <h2 class="entry-hint-parent">Hypoteser
     </h2>
   </header>
   <div class="entry-content">
-    <p>Her dokumenterer jeg, hvordan KPI-framework og analytics implementeres i praksis.
-Arkitektur (Placeholder)
-Integration med backend (Placeholder)
-Fejlkilder og risici (Placeholder)
+    <p>Her opstiller jeg de hypoteser, jeg senere tester i praksis.
+H1 JSON Performance (Placeholder)
+H2 Vector Search (Placeholder)
+H3 ORM Integration (Placeholder)
+H4 ACID vs BASE Robusthed (Placeholder)
 </p>
   </div>
   <footer class="entry-footer"><span>Simon</span></footer>
-  <a class="entry-link" aria-label="post link to Implementation" href="http://localhost:1313/datamatiker-portfolio/data-science/implementation/"></a>
+  <a class="entry-link" aria-label="post link to Hypoteser" href="http://localhost:1313/datamatiker-portfolio/database/hypoteser/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Praktisk test
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Denne side dokumenterer de praktiske tests, jeg gennemførte for at validere mine hypoteser.
+Testdesign (Placeholder)
+Resultater (Placeholder – senere en tabel)
+Analyse (Placeholder)
+</p>
+  </div>
+  <footer class="entry-footer"><span>Simon</span></footer>
+  <a class="entry-link" aria-label="post link to Praktisk test" href="http://localhost:1313/datamatiker-portfolio/database/praktisk-test/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Database design
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Arkitektur (Placeholder – senere diagram)
+Datamodeller (Placeholder)
+Integration med Blazor og EF Core (Placeholder)
+</p>
+  </div>
+  <footer class="entry-footer"><span>Simon</span></footer>
+  <a class="entry-link" aria-label="post link to Database design" href="http://localhost:1313/datamatiker-portfolio/database/design/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -261,13 +265,13 @@ Fejlkilder og risici (Placeholder)
     </h2>
   </header>
   <div class="entry-content">
-    <p>Denne side samler mine vigtigste læringspunkter fra Data Science og Analytics specialiseringen.
+    <p>Denne side samler læringen fra hele databaseforløbet.
 Teknisk konklusion (Placeholder)
-Samfundsmæssige perspektiver GDPR Dataminimering Bæredygtighed i datahåndtering Økonomiske fordele ved automatiseret analyse Mine læringsmål (Placeholder – læringsmål 6–10)
+Samfundsmæssige aspekter GDPR Bæredygtighed Arbejdsmarked Økonomi Mine læringsmål (Placeholder – vi udfylder 1–5 senere)
 </p>
   </div>
   <footer class="entry-footer"><span>Simon</span></footer>
-  <a class="entry-link" aria-label="post link to Konklusion" href="http://localhost:1313/datamatiker-portfolio/data-science/konklusion/"></a>
+  <a class="entry-link" aria-label="post link to Konklusion" href="http://localhost:1313/datamatiker-portfolio/database/konklusion/"></a>
 </article>
     </main>
     
