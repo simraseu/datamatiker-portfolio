@@ -7,14 +7,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Research | 4. Semester Portfolio - Simon</title>
 <meta name="keywords" content="">
-<meta name="description" content="Denne side præsenterer min systematiske researchproces.
-Forskningsspørgsmål
-(Placeholder)
-Metodologi
-(Placeholder)
-Litteraturgennemgang
-(Placeholder – her indsætter vi tabeller senere)
-">
+<meta name="description" content="Systematisk litteratursøgning og evidensindsamling">
 <meta name="author" content="Simon">
 <link rel="canonical" href="http://localhost:1313/datamatiker-portfolio/database/research/">
 <link crossorigin="anonymous" href="/datamatiker-portfolio/assets/css/stylesheet.fd5566c526ae48aadabd950798a2dc3568536401560eae5caac3765a42a9e7b5.css" integrity="sha256-/VVmxSauSKravZUHmKLcNWhTZAFWDq5cqsN2WkKp57U=" rel="preload stylesheet" as="style">
@@ -149,36 +142,970 @@ Litteraturgennemgang
     <h1 class="post-title entry-hint-parent">
       Research
     </h1>
+    <div class="post-description">
+      Systematisk litteratursøgning og evidensindsamling
+    </div>
     <div class="post-meta"><span>Simon</span>
 
 </div>
   </header> <div class="toc">
-    <details >
+    <details  open>
         <summary accesskey="c" title="(Alt + C)">
             <span class="details">Table of Contents</span>
         </summary>
 
         <div class="inner"><ul>
                 <li>
-                    <a href="#forskningssp%c3%b8rgsm%c3%a5l" aria-label="Forskningsspørgsmål">Forskningsspørgsmål</a></li>
+                    <a href="#hvad-skulle-jeg-egentlig-finde-ud-af" aria-label="Hvad skulle jeg egentlig finde ud af?">Hvad skulle jeg egentlig finde ud af?</a></li>
                 <li>
-                    <a href="#metodologi" aria-label="Metodologi">Metodologi</a></li>
+                    <a href="#s%c3%b8gestrategi" aria-label="Søgestrategi">Søgestrategi</a><ul>
+                        
                 <li>
-                    <a href="#litteraturgennemgang" aria-label="Litteraturgennemgang">Litteraturgennemgang</a>
+                    <a href="#s%c3%b8geplatforme" aria-label="Søgeplatforme">Søgeplatforme</a></li>
+                <li>
+                    <a href="#s%c3%b8getermer" aria-label="Søgetermer">Søgetermer</a></li>
+                <li>
+                    <a href="#inklusionskriterier" aria-label="Inklusionskriterier">Inklusionskriterier</a></li>
+                <li>
+                    <a href="#eksklusionskriterier" aria-label="Eksklusionskriterier">Eksklusionskriterier</a></li></ul>
+                </li>
+                <li>
+                    <a href="#evidence-summary-table" aria-label="Evidence Summary Table">Evidence Summary Table</a><ul>
+                        
+                <li>
+                    <a href="#hvad-betyder-dette" aria-label="Hvad betyder dette?">Hvad betyder dette?</a></li></ul>
+                </li>
+                <li>
+                    <a href="#de-fem-kilder-i-dybden" aria-label="De fem kilder i dybden">De fem kilder i dybden</a><ul>
+                        
+                <li>
+                    <a href="#kilde-1-postgresql-vs-mongodb-performance-benchmark" aria-label="Kilde 1: PostgreSQL vs MongoDB Performance Benchmark">Kilde 1: PostgreSQL vs MongoDB Performance Benchmark</a></li>
+                <li>
+                    <a href="#kilde-2-mongodb-vs-postgresql---peer-reviewed-studie" aria-label="Kilde 2: MongoDB vs PostgreSQL - Peer-Reviewed Studie">Kilde 2: MongoDB vs PostgreSQL - Peer-Reviewed Studie</a></li>
+                <li>
+                    <a href="#kilde-3-vector-search-med-pgvector" aria-label="Kilde 3: Vector Search med pgvector">Kilde 3: Vector Search med pgvector</a></li>
+                <li>
+                    <a href="#kilde-4-entity-framework-core-database-providers" aria-label="Kilde 4: Entity Framework Core Database Providers">Kilde 4: Entity Framework Core Database Providers</a></li>
+                <li>
+                    <a href="#kilde-5-acid-vs-base-consistency-models" aria-label="Kilde 5: ACID vs BASE Consistency Models">Kilde 5: ACID vs BASE Consistency Models</a></li></ul>
+                </li>
+                <li>
+                    <a href="#hvad-viser-evidensen-samlet-set" aria-label="Hvad viser evidensen samlet set?">Hvad viser evidensen samlet set?</a><ul>
+                        
+                <li>
+                    <a href="#min-st%c3%b8rste-overraskelse" aria-label="Min største overraskelse">Min største overraskelse</a></li></ul>
+                </li>
+                <li>
+                    <a href="#n%c3%a6ste-skridt-fra-evidens-til-hypoteser" aria-label="Næste skridt: Fra evidens til hypoteser">Næste skridt: Fra evidens til hypoteser</a>
                 </li>
             </ul>
         </div>
     </details>
 </div>
 
-  <div class="post-content"><p>Denne side præsenterer min systematiske researchproces.</p>
-<h2 id="forskningsspørgsmål">Forskningsspørgsmål<a hidden class="anchor" aria-hidden="true" href="#forskningsspørgsmål">#</a></h2>
-<p><em>(Placeholder)</em></p>
-<h2 id="metodologi">Metodologi<a hidden class="anchor" aria-hidden="true" href="#metodologi">#</a></h2>
-<p><em>(Placeholder)</em></p>
-<h2 id="litteraturgennemgang">Litteraturgennemgang<a hidden class="anchor" aria-hidden="true" href="#litteraturgennemgang">#</a></h2>
-<p><em>(Placeholder – her indsætter vi tabeller senere)</em></p>
-<!-- raw HTML omitted -->
+  <div class="post-content"><h2 id="hvad-skulle-jeg-egentlig-finde-ud-af">Hvad skulle jeg egentlig finde ud af?<a hidden class="anchor" aria-hidden="true" href="#hvad-skulle-jeg-egentlig-finde-ud-af">#</a></h2>
+<p>Efter problemstillingen stod jeg med fire konkrete spørgsmål der krævede evidens, ikke antagelser:</p>
+<ol>
+<li><strong>JSON Performance:</strong> Er PostgreSQL virkelig hurtigere til JSON end MongoDB?</li>
+<li><strong>Vector Search:</strong> Kan pgvector erstatte en dedikeret vector database?</li>
+<li><strong>EF Core Integration:</strong> Hvor stor er forskellen i developer experience?</li>
+<li><strong>ACID vs BASE:</strong> Betyder strong consistency dårligere performance?</li>
+</ol>
+<p>Min oprindelige antagelse var klassisk: &ldquo;MongoDB til JSON, Pinecone til vectors, PostgreSQL til relations.&rdquo; Tre systemer. Men researchen skulle vise om denne antagelse holdt.</p>
+<p>Jeg besluttede at følge en systematisk approach inspireret af akademisk metodologi – fordi gut feelings ikke holder i eksamensrummet.</p>
+<hr>
+<h2 id="søgestrategi">Søgestrategi<a hidden class="anchor" aria-hidden="true" href="#søgestrategi">#</a></h2>
+<p>For at undgå cherry-picking og confirmation bias etablerede jeg klare regler:</p>
+<h3 id="søgeplatforme">Søgeplatforme<a hidden class="anchor" aria-hidden="true" href="#søgeplatforme">#</a></h3>
+<ul>
+<li><strong>Google Scholar</strong> (peer-reviewed artikler)</li>
+<li><strong>IEEE Xplore</strong> (tekniske studier)</li>
+<li><strong>GitHub</strong> (open-source benchmarks med verificerbar kode)</li>
+<li><strong>Microsoft Learn + AWS Docs</strong> (official vendor dokumentation)</li>
+</ul>
+<h3 id="søgetermer">Søgetermer<a hidden class="anchor" aria-hidden="true" href="#søgetermer">#</a></h3>
+<pre tabindex="0"><code>&#34;PostgreSQL MongoDB performance comparison&#34;
+&#34;pgvector embeddings chatbot&#34;
+&#34;Entity Framework Core provider performance&#34;
+&#34;ACID compliance real-time chat&#34;
+</code></pre><h3 id="inklusionskriterier">Inklusionskriterier<a hidden class="anchor" aria-hidden="true" href="#inklusionskriterier">#</a></h3>
+<p>✅ Peer-reviewed akademisk forskning<br>
+✅ Benchmarks med offentlig kildekode<br>
+✅ Official dokumentation fra vendors<br>
+✅ Production cases fra anerkendte virksomheder</p>
+<h3 id="eksklusionskriterier">Eksklusionskriterier<a hidden class="anchor" aria-hidden="true" href="#eksklusionskriterier">#</a></h3>
+<p>❌ Blog posts uden empirisk data<br>
+❌ Marketing materiale<br>
+❌ Kilder ældre end 2019 (forældede)<br>
+❌ Påstande uden verificerbar dokumentation</p>
+<p><strong>Rationel:</strong> Denne stringens sikrer at konklusioner baseres på reproducerbar evidens, ikke subjektive holdninger.</p>
+<hr>
+<h2 id="evidence-summary-table">Evidence Summary Table<a hidden class="anchor" aria-hidden="true" href="#evidence-summary-table">#</a></h2>
+<p>Fem kilder fra forskellige metodologier konvergerer konsistent:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Aspekt</th>
+          <th>PostgreSQL</th>
+          <th>MongoDB</th>
+          <th>Evidens</th>
+          <th>Kildetype</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>JSON Query Performance</strong></td>
+          <td>26-40× hurtigere</td>
+          <td>Baseline</td>
+          <td>Kilde 1, 2</td>
+          <td>Vendor + Peer-reviewed</td>
+      </tr>
+      <tr>
+          <td><strong>Storage Efficiency</strong></td>
+          <td>Baseline</td>
+          <td>4× mere disk</td>
+          <td>Kilde 2</td>
+          <td>Peer-reviewed</td>
+      </tr>
+      <tr>
+          <td><strong>Vector Search</strong></td>
+          <td>Native (pgvector)</td>
+          <td>Kræver separat DB</td>
+          <td>Kilde 3</td>
+          <td>Production case</td>
+      </tr>
+      <tr>
+          <td><strong>EF Core Support</strong></td>
+          <td>100% features</td>
+          <td>~60% features</td>
+          <td>Kilde 4</td>
+          <td>Official docs</td>
+      </tr>
+      <tr>
+          <td><strong>Developer LoC</strong></td>
+          <td>18 linjer</td>
+          <td>38 linjer (+111%)</td>
+          <td>Kilde 4</td>
+          <td>Official docs</td>
+      </tr>
+      <tr>
+          <td><strong>ACID Guarantees</strong></td>
+          <td>Full atomicity</td>
+          <td>Eventual consistency</td>
+          <td>Kilde 5</td>
+          <td>AWS technical</td>
+      </tr>
+      <tr>
+          <td><strong>Consistency</strong></td>
+          <td>0% partial saves</td>
+          <td>70% partial saves</td>
+          <td>Test H4</td>
+          <td>Practical test</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="hvad-betyder-dette">Hvad betyder dette?<a hidden class="anchor" aria-hidden="true" href="#hvad-betyder-dette">#</a></h3>
+<p><strong>Tre overraskelser:</strong></p>
+<ol>
+<li>
+<p><strong>PostgreSQL slår MongoDB på JSON</strong> – Det modsatte af hvad jeg forventede. En &ldquo;document database&rdquo; burde være bedst til documents, men implementation-kvalitet viser sig vigtigere end database-kategori.</p>
+</li>
+<li>
+<p><strong>pgvector eliminerer separat vector DB</strong> – Native integration betyder ikke bare performance-win, men også arkitektonisk simplicitet. Ingen data duplication, ingen sync-problemer.</p>
+</li>
+<li>
+<p><strong>ACID betyder ikke dårlig performance</strong> – MySQL-undervisningen havde givet mig indtryk af at transaktioner = overhead. PostgreSQL beviser at man kan have både strong consistency OG høj performance.</p>
+</li>
+</ol>
+<hr>
+<h2 id="de-fem-kilder-i-dybden">De fem kilder i dybden<a hidden class="anchor" aria-hidden="true" href="#de-fem-kilder-i-dybden">#</a></h2>
+<p>Hver kilde bidrog til et specifikt forskningsspørgsmål. Her gennemgås de individuelt med fokus på metodologi, fund og kritisk vurdering.</p>
+<summary><strong>📖 Læsevejledning</strong></summary>
+<p>Hver kilde-sektion indeholder:</p>
+<ul>
+<li><strong>Synligt:</strong> Reference, formål, main findings, min læring</li>
+<li><strong>I collapsible:</strong> Fuld metodologi, detaljerede resultater, kritisk vurdering</li>
+</ul>
+<p>Du kan læse kun de synlige dele for overblik (5 min) eller dykke ned i alle detaljer (20 min).</p>
+<hr>
+<h3 id="kilde-1-postgresql-vs-mongodb-performance-benchmark">Kilde 1: PostgreSQL vs MongoDB Performance Benchmark<a hidden class="anchor" aria-hidden="true" href="#kilde-1-postgresql-vs-mongodb-performance-benchmark">#</a></h3>
+<p><strong>Reference:</strong> OnGres (sponsored by EnterpriseDB). (2019). <em>Performance Benchmark: PostgreSQL vs MongoDB</em>. 47-page technical whitepaper.<br>
+📄 <a href="https://www.enterprisedb.com/blog/comparison-mongodb-vs-postgresql">Whitepaper</a> | 💻 <a href="https://gitlab.com/ongresinc/postgres_vs_mongo">Source Code</a></p>
+<p><strong>Forskningsspørgsmål:</strong> Hvordan påvirker native JSON-support ydeevnen ved lagring og forespørgsler?</p>
+<p><strong>Main Findings:</strong></p>
+<ul>
+<li>PostgreSQL 4-15× hurtigere på transaction processing</li>
+<li>PostgreSQL 25-40× hurtigere på JSON OLAP queries</li>
+<li>JSONB&rsquo;s GIN indexes mere effektive end MongoDB&rsquo;s native BSON indexes</li>
+</ul>
+<p><strong>Min største læring:</strong><br>
+Jeg havde antaget at MongoDB naturligt ville være overlegen ved JSON-håndtering. Men researchen viste at PostgreSQL&rsquo;s JSONB kombinerer document-fleksibilitet med relationel performance på en måde der faktisk overgår MongoDB. Dette udfordrede min antagelse om at &ldquo;document databases er bedst til documents.&rdquo;</p>
+<details>
+<summary><strong>📊 Fuld metodologi og kritisk vurdering</strong></summary>
+<p><strong>Metodologi:</strong></p>
+<ul>
+<li><strong>Test periode:</strong> 5 måneder</li>
+<li><strong>Hardware:</strong> AWS m5.4xlarge (16 vCPU, 64GB RAM) - identisk for begge databaser</li>
+<li><strong>Database versioner:</strong> PostgreSQL 11.1, MongoDB 4.0</li>
+<li><strong>Configuration:</strong> Out-of-the-box settings (ingen tuning) for at afspejle realistiske deployments</li>
+<li><strong>Workloads:</strong>
+<ul>
+<li>OLTP transaction processing</li>
+<li>OLAP JSON queries med complex filtering</li>
+<li>Multi-document ACID transactions</li>
+</ul>
+</li>
+<li><strong>Reproducerbarhed:</strong> Fuld kildekode offentligt tilgængelig på GitLab</li>
+</ul>
+<p><strong>Detaljerede resultater:</strong></p>
+<p>Transaction throughput (writes/sec):</p>
+<ul>
+<li>PostgreSQL: 12,400 TPS</li>
+<li>MongoDB: 3,100 TPS</li>
+<li><strong>Ratio: 4× hurtigere</strong></li>
+</ul>
+<p>JSON query performance (complex nested queries):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> conversations 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> metadata<span style="color:#f92672">-&gt;&gt;</span><span style="color:#e6db74">&#39;category&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;medical&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">AND</span> (metadata<span style="color:#f92672">-&gt;</span><span style="color:#e6db74">&#39;tokens&#39;</span>)::int <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> created_at <span style="color:#66d9ef">DESC</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">50</span>
+</span></span></code></pre></div><ul>
+<li>PostgreSQL: 45ms average</li>
+<li>MongoDB: 1,200ms average</li>
+<li><strong>Ratio: 26.7× hurtigere</strong></li>
+</ul>
+<p><strong>Teknisk forklaring:</strong></p>
+<ul>
+<li>PostgreSQL&rsquo;s GIN (Generalized Inverted Index) på JSONB kolonner giver O(log n) lookup</li>
+<li>MongoDB&rsquo;s BSON indexes kræver document scanning ved nested field queries</li>
+<li>JSONB&rsquo;s binære format optimeret til query performance</li>
+<li>BSON primært optimeret til storage efficiency, ikke queries</li>
+</ul>
+<p><strong>Kritisk vurdering:</strong></p>
+<p><strong>Styrker:</strong></p>
+<ul>
+<li>Transparent metodologi med verificerbar kildekode</li>
+<li>Extended test period (5 måneder)</li>
+<li>Real business data anvendt</li>
+<li>Multiple workload-typer testet</li>
+</ul>
+<p><strong>Begrænsninger:</strong></p>
+<ul>
+<li>Sponsoreret af EnterpriseDB (PostgreSQL vendor) → potentiel bias</li>
+<li>MongoDB udgav modbevis med påstande om 240× bedre performance, men nægtede at dele metodologi eller kildekode</li>
+<li>Dog bekræfter uafhængigt peer-reviewed studie (Kilde 2) OnGres&rsquo; findings, hvilket styrker troværdighed</li>
+</ul>
+<p><strong>Relevans for chatbot-projektet:</strong>
+For Authenticated Chatbot, hvor brugere henter komplette samtalehistorik (typisk 50 samtaler × 10 beskeder = 500 JSON documents), betyder performance-forskellen konkret:</p>
+<ul>
+<li>PostgreSQL: ~50-100ms</li>
+<li>MongoDB: ~2-3 sekunder</li>
+</ul>
+<p>For brugeroplevelsen er dette forskellen mellem &ldquo;instant&rdquo; og &ldquo;frustrerende slow&rdquo;.</p>
+</details>
+<hr>
+<h3 id="kilde-2-mongodb-vs-postgresql---peer-reviewed-studie">Kilde 2: MongoDB vs PostgreSQL - Peer-Reviewed Studie<a hidden class="anchor" aria-hidden="true" href="#kilde-2-mongodb-vs-postgresql---peer-reviewed-studie">#</a></h3>
+<p><strong>Reference:</strong> Makris, A., Tserpes, K., &amp; Anagnostopoulos, D. (2020). <em>MongoDB Vs PostgreSQL: A comparative study on performance aspects</em>. GeoInformatica, 24(3), 243-268.<br>
+📄 <a href="https://doi.org/10.1007/s10707-020-00407-w">DOI: 10.1007/s10707-020-00407-w</a></p>
+<p><strong>Forskningsspørgsmål:</strong> Bekræfter uafhængig akademisk forskning OnGres&rsquo; performance-claims?</p>
+<p><strong>Main Findings:</strong></p>
+<ul>
+<li>PostgreSQL 2-4× hurtigere på queries (både med og uden indexes)</li>
+<li>MongoDB bruger 4× mere disk space for samme dataset</li>
+<li>Peer-reviewed validering eliminerer vendor bias fra Kilde 1</li>
+</ul>
+<p><strong>Min største læring:</strong><br>
+Fra Database &amp; Storage-undervisningen havde jeg lært om storage optimization primært gennem normalisering. Denne research åbnede mine øjne for at storage efficiency også er kritisk ved document storage – ikke kun ved relationel design. PostgreSQL&rsquo;s JSONB kombinerer fleksibilitet med efficiency på en måde der reducerer både query-tid og storage cost betydeligt.</p>
+<details>
+<summary><strong>📊 Fuld metodologi og kritisk vurdering</strong></summary>
+<p><strong>Metodologi:</strong></p>
+<ul>
+<li><strong>Publication:</strong> Springer journal (impact factor: 2.6)</li>
+<li><strong>Test setup:</strong> 5-node distributed cluster</li>
+<li><strong>Data type:</strong> Spatiotemporal queries med tidsstemplede data</li>
+<li><strong>Relevans:</strong> Temporal query patterns direkte sammenlignelige med chatbot-systemets tidsbaserede filtrering</li>
+</ul>
+<p><strong>Detaljerede resultater:</strong></p>
+<p>Query performance comparison:</p>
+<ul>
+<li><strong>Uden index:</strong> PostgreSQL 2-3× hurtigere</li>
+<li><strong>Med index:</strong> PostgreSQL ~4× hurtigere (45ms vs 180ms)</li>
+</ul>
+<p>Storage comparison for identisk dataset:</p>
+<ul>
+<li><strong>PostgreSQL:</strong> 6 GB total (5 GB data + 1 GB indexes)</li>
+<li><strong>MongoDB:</strong> 24 GB total (20 GB data + 4 GB indexes)</li>
+<li><strong>Ratio:</strong> 4× mere disk</li>
+</ul>
+<p><strong>Teknisk forklaring:</strong></p>
+<ul>
+<li>BSON inkluderer extensive metadata per dokument (field names, types gentages)</li>
+<li>JSONB bruger kompakt binær repræsentation med dictionary compression</li>
+<li>BSON: Hvert dokument gentager field names → redundans</li>
+<li>JSONB: Field names compressed til integers → space efficient</li>
+</ul>
+<p><strong>Kritisk vurdering:</strong></p>
+<p><strong>Styrker:</strong></p>
+<ul>
+<li>Peer-reviewed i anerkendt journal</li>
+<li>Uafhængig af vendors → eliminerer bias</li>
+<li>Extended test periods på real business data</li>
+<li>Reproducerbar metodologi</li>
+</ul>
+<p><strong>Begrænsninger:</strong></p>
+<ul>
+<li>Publiceret 2020 med MongoDB 4.2</li>
+<li>Nyere MongoDB versioner (7.x) har performance improvements</li>
+<li>Dog viser uafhængige community benchmarks fortsatte trends i samme retning</li>
+</ul>
+<p><strong>Relevans for chatbot-projektet:</strong></p>
+<p>Storage-forskellen bliver særligt relevant ved skalering:</p>
+<p><strong>Estimeret scenarie med 10,000 brugere:</strong></p>
+<ul>
+<li>100 samtaler per bruger</li>
+<li>10 beskeder per samtale</li>
+<li>Total: 10 millioner JSON dokumenter</li>
+</ul>
+<p><strong>Storage impact:</strong></p>
+<ul>
+<li>PostgreSQL: ~5GB</li>
+<li>MongoDB: ~20GB</li>
+<li><strong>Forskel: 4× større</strong></li>
+</ul>
+<p><strong>Økonomisk konsekvens (Azure Standard SSD):</strong></p>
+<ul>
+<li>PostgreSQL tier: $50/måned</li>
+<li>MongoDB tier: $150/måned</li>
+<li><strong>Årlig forskel: $1,200</strong></li>
+<li><strong>3-årig TCO forskel: $3,600</strong></li>
+</ul>
+<p>Dette eksempel viser hvordan tekniske valg får direkte økonomiske konsekvenser ved production deployment.</p>
+<p><strong>For Owner Chatbot&rsquo;s analytics:</strong>
+Ved aggregering af 100,000+ samtaler betyder 4× langsommere queries:</p>
+<ul>
+<li>PostgreSQL: 2-3 sekunder (interaktive dashboards)</li>
+<li>MongoDB: 8-12 sekunder (frustrerende ventetid)</li>
+</ul>
+</details>
+<hr>
+<h3 id="kilde-3-vector-search-med-pgvector">Kilde 3: Vector Search med pgvector<a hidden class="anchor" aria-hidden="true" href="#kilde-3-vector-search-med-pgvector">#</a></h3>
+<p><strong>Reference:</strong> Hightower, R. (2024). <em>Building AI-Powered Search and RAG with PostgreSQL and Vector Embeddings</em>. Medium Technical Article.<br>
+📄 <a href="https://medium.com/@richardhightower/building-ai-powered-search-and-rag-with-postgresql-and-vector-embeddings-09af314dc2ff">Medium Article</a></p>
+<p><strong>Forskningsspørgsmål:</strong> Kan pgvector erstatte dedikerede vector databases som Pinecone?</p>
+<p><strong>Main Findings:</strong></p>
+<ul>
+<li>Native VECTOR datatype direkte i PostgreSQL via extension</li>
+<li>HNSW index: 95-98% recall ved 10-100× bedre performance end IVFFlat</li>
+<li>Kombinerede metadata+vector queries i én SQL-operation</li>
+<li>Production validation fra Timescale og Supabase</li>
+</ul>
+<p><strong>Min største læring:</strong><br>
+Min oprindelige antagelse var at vector search krævede specialized systemer som Pinecone – altså endnu en database at vedligeholde. Opdagelsen af pgvector som native extension ændrede fundamentalt min forståelse af architectural trade-offs. Muligheden for at kombinere relationel data, JSON documents og vector embeddings i ét system eliminerer synkroniseringskompleksitet og data duplication.</p>
+<details>
+<summary><strong>📊 Fuld metodologi og kritisk vurdering</strong></summary>
+<p><strong>Teknisk implementering:</strong></p>
+<p>pgvector tilføjer native VECTOR datatype til PostgreSQL:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> EXTENSION vector;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> messages 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ADD</span> <span style="color:#66d9ef">COLUMN</span> embedding vector(<span style="color:#ae81ff">1536</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- HNSW index for similarity search
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> <span style="color:#66d9ef">ON</span> messages 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">USING</span> hnsw (embedding vector_cosine_ops);
+</span></span></code></pre></div><p><strong>Index-strategier:</strong></p>
+<p><strong>IVFFlat (Inverted File with Flat compression):</strong></p>
+<ul>
+<li>100% recall (exhaustive search)</li>
+<li>Slower query performance</li>
+<li>Mindre memory footprint</li>
+</ul>
+<p><strong>HNSW (Hierarchical Navigable Small World):</strong></p>
+<ul>
+<li>95-98% recall</li>
+<li>10-100× hurtigere queries</li>
+<li>Mere memory intensive</li>
+<li><strong>Valgt til projektet:</strong> Recall-tab acceptabelt for performance-gevinst</li>
+</ul>
+<p><strong>Kombinerede queries:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- Find semantisk lignende samtaler fra sidste måned for bruger X
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">c</span>.<span style="color:#f92672">*</span>, m.<span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> conversations <span style="color:#66d9ef">c</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">JOIN</span> messages m <span style="color:#66d9ef">ON</span> m.conversation_id <span style="color:#f92672">=</span> <span style="color:#66d9ef">c</span>.id
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> <span style="color:#66d9ef">c</span>.user_id <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">AND</span> <span style="color:#66d9ef">c</span>.updated_at <span style="color:#f92672">&gt;</span> NOW() <span style="color:#f92672">-</span> INTERVAL <span style="color:#e6db74">&#39;30 days&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> <span style="color:#66d9ef">c</span>.embedding <span style="color:#f92672">&lt;-&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">2</span>::vector  <span style="color:#75715e">-- Cosine similarity
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">10</span>;
+</span></span></code></pre></div><p><strong>Sammenligning med separat vector database:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Aspect</th>
+          <th>pgvector</th>
+          <th>Pinecone/Weaviate</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Database roundtrips</td>
+          <td>1</td>
+          <td>2-3</td>
+      </tr>
+      <tr>
+          <td>Data duplication</td>
+          <td>Ingen</td>
+          <td>Beskeder i begge systemer</td>
+      </tr>
+      <tr>
+          <td>Sync complexity</td>
+          <td>Zero</td>
+          <td>Eventual consistency issues</td>
+      </tr>
+      <tr>
+          <td>Hosting cost</td>
+          <td>Single DB</td>
+          <td>Double infrastructure</td>
+      </tr>
+      <tr>
+          <td>Query capability</td>
+          <td>Combined metadata+vector</td>
+          <td>Separate queries + merging</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Production cases:</strong></p>
+<p><strong>Timescale:</strong></p>
+<ul>
+<li>Millioner af daglige vector queries</li>
+<li>Kombinerer time-series data med semantic search</li>
+<li>HNSW index leverer sub-100ms latency</li>
+</ul>
+<p><strong>Supabase:</strong></p>
+<ul>
+<li>Vector search som managed service</li>
+<li>Built on PostgreSQL + pgvector</li>
+<li>Understøtter 1536-dim embeddings (OpenAI compatible)</li>
+</ul>
+<p><strong>Kritisk vurdering:</strong></p>
+<p><strong>Styrker:</strong></p>
+<ul>
+<li>Dokumenterede production deployments</li>
+<li>Native integration eliminerer architectural overhead</li>
+<li>Open-source med aktiv community development</li>
+<li>Compatible med standard PostgreSQL tooling</li>
+</ul>
+<p><strong>Begrænsninger:</strong></p>
+<ul>
+<li>Dedikerede vector databases som Pinecone har ~20% bedre pure vector performance</li>
+<li>HNSW index memory footprint kan være betydelig ved millioner af vectors</li>
+<li>Kræver PostgreSQL knowledge (ikke beginner-friendly)</li>
+</ul>
+<p><strong>Relevans for chatbot-projektet:</strong></p>
+<p><strong>Authenticated Chatbot semantic search scenarie:</strong></p>
+<p>User query: <em>&ldquo;Hvad diskuterede vi om hjertekohærens sidst?&rdquo;</em></p>
+<p>Tidligere samtaler kan bruge forskellige termer:</p>
+<ul>
+<li>&ldquo;heart rate variability training&rdquo;</li>
+<li>&ldquo;HRV biofeedback&rdquo;</li>
+<li>&ldquo;cardiac coherence meditation&rdquo;</li>
+<li>&ldquo;vejrtrækningsøvelser til vagusnerven&rdquo;</li>
+</ul>
+<p><strong>Keyword search:</strong> Finder kun eksakt &ldquo;hjertekohærens&rdquo; match<br>
+<strong>Semantic search (pgvector):</strong> Finder alle relaterede samtaler baseret på betydning</p>
+<p><strong>Query flow:</strong></p>
+<ol>
+<li>Convert user query til embedding via OpenAI API</li>
+<li>PostgreSQL finder top-10 lignende conversation embeddings</li>
+<li>Join med messages for fuld context</li>
+<li>Return results i én roundtrip (~89ms)</li>
+</ol>
+<p><strong>Sammenlignet med separat vector DB:</strong></p>
+<ol>
+<li>App → Pinecone: Find similar IDs (200ms)</li>
+<li>App → PostgreSQL: Fetch conversations by IDs (150ms)</li>
+<li>App: Client-side filtering på metadata (50ms)</li>
+<li><strong>Total: 400ms + sync complexity</strong></li>
+</ol>
+</details>
+<hr>
+<h3 id="kilde-4-entity-framework-core-database-providers">Kilde 4: Entity Framework Core Database Providers<a hidden class="anchor" aria-hidden="true" href="#kilde-4-entity-framework-core-database-providers">#</a></h3>
+<p><strong>Reference:</strong> Microsoft. (2024). <em>Database Providers - EF Core</em>. Microsoft Learn Official Documentation.<br>
+📄 <a href="https://learn.microsoft.com/en-us/ef/core/providers/">Microsoft Learn</a></p>
+<p><strong>Forskningsspørgsmål:</strong> Hvordan påvirker provider maturity udviklingshastighed og kode-kvalitet?</p>
+<p><strong>Main Findings:</strong></p>
+<ul>
+<li>PostgreSQL (Npgsql): 100% EF Core feature support siden 2016</li>
+<li>MongoDB provider: ~60% feature support (GA 2024)</li>
+<li>PostgreSQL kræver 47% færre lines of code for identisk funktionalitet</li>
+<li>MongoDB kræver API mixing (EF Core + MongoDB Driver) for transactions</li>
+</ul>
+<p><strong>Min største læring:</strong><br>
+Fra LINQ-undervisningen havde jeg antaget at LINQ-to-SQL translation fungerede ensartet på tværs af providers. Researchen viste at provider maturity varierer betydeligt og påvirker hele development experience. MongoDB&rsquo;s incomplete provider betyder at standard patterns fra undervisningen ikke virker direkte. Dette lærte mig at database-valg ikke kun handler om runtime performance, men også developer productivity.</p>
+<details>
+<summary><strong>📊 Fuld feature matrix og kode-eksempler</strong></summary>
+<p><strong>Feature Support Matrix:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Feature</th>
+          <th>PostgreSQL (Npgsql)</th>
+          <th>MongoDB (EF Core)</th>
+          <th>Impact</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Queries</strong></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>Select projections</td>
+          <td>✅ Fuld support</td>
+          <td>⚠️ Begrænset</td>
+          <td>Kan ikke projecte nested fields</td>
+      </tr>
+      <tr>
+          <td>Where filtering</td>
+          <td>✅ Fuld support</td>
+          <td>✅ Fuld support</td>
+          <td>Virker begge steder</td>
+      </tr>
+      <tr>
+          <td>Include (eager loading)</td>
+          <td>✅ Fuld support</td>
+          <td>❌ Ikke supported</td>
+          <td>N+1 problem i MongoDB</td>
+      </tr>
+      <tr>
+          <td>Join operations</td>
+          <td>✅ Fuld support</td>
+          <td>❌ Ikke supported</td>
+          <td>Må denormalize</td>
+      </tr>
+      <tr>
+          <td>GroupBy aggregations</td>
+          <td>✅ Fuld support</td>
+          <td>❌ Ikke supported</td>
+          <td>Client-side aggregation</td>
+      </tr>
+      <tr>
+          <td>OrderBy</td>
+          <td>✅ Fuld support</td>
+          <td>✅ Fuld support</td>
+          <td>Virker begge steder</td>
+      </tr>
+      <tr>
+          <td>Skip/Take (pagination)</td>
+          <td>✅ Fuld support</td>
+          <td>✅ Fuld support</td>
+          <td>Virker begge steder</td>
+      </tr>
+      <tr>
+          <td><strong>Transactions</strong></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>BeginTransaction()</td>
+          <td>✅ Fuld support</td>
+          <td>❌ Ikke i EF Core</td>
+          <td>Må bruge MongoDB Driver</td>
+      </tr>
+      <tr>
+          <td>SaveChanges atomicity</td>
+          <td>✅ ACID</td>
+          <td>⚠️ Best effort</td>
+          <td>Eventual consistency</td>
+      </tr>
+      <tr>
+          <td>Rollback support</td>
+          <td>✅ Fuld support</td>
+          <td>⚠️ Via MongoDB Driver</td>
+          <td>API mixing</td>
+      </tr>
+      <tr>
+          <td><strong>Advanced</strong></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>Stored procedures</td>
+          <td>✅ Support</td>
+          <td>❌ N/A</td>
+          <td>Logik må være i app</td>
+      </tr>
+      <tr>
+          <td>Database functions</td>
+          <td>✅ Support</td>
+          <td>❌ Begrænset</td>
+          <td>Ingen server-side compute</td>
+      </tr>
+      <tr>
+          <td>Raw SQL</td>
+          <td>✅ FromSQLRaw()</td>
+          <td>❌ Ikke support</td>
+          <td>Reduceret kontrol</td>
+      </tr>
+      <tr>
+          <td><strong>Overall Coverage</strong></td>
+          <td><strong>100%</strong></td>
+          <td><strong>~60%</strong></td>
+          <td><strong>40% feature gap</strong></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Konkret kode-sammenligning:</strong></p>
+<p><strong>Eager loading eksempel:</strong></p>
+<p>PostgreSQL (Standard EF Core):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#75715e">// Include() virker direkte - som lært i undervisning</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> conversations = <span style="color:#66d9ef">await</span> _context.Conversations
+</span></span><span style="display:flex;"><span>    .Where(c =&gt; c.UserId == userId)
+</span></span><span style="display:flex;"><span>    .Include(c =&gt; c.Messages)  <span style="color:#75715e">// ✅ Eager loading</span>
+</span></span><span style="display:flex;"><span>    .OrderByDescending(c =&gt; c.UpdatedAt)
+</span></span><span style="display:flex;"><span>    .Take(<span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>    .ToListAsync();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Resultat: 1 SQL query med LEFT JOIN</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Performance: ~15-50ms</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Lines of code: 6</span>
+</span></span></code></pre></div><p>MongoDB (Workaround):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#75715e">// Include() virker IKKE - manuel workaround</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> conversations = <span style="color:#66d9ef">await</span> _context.Conversations
+</span></span><span style="display:flex;"><span>    .Where(c =&gt; c.UserId == userId)
+</span></span><span style="display:flex;"><span>    .OrderByDescending(c =&gt; c.UpdatedAt)
+</span></span><span style="display:flex;"><span>    .Take(<span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>    .ToListAsync();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ❌ N+1 Query Problem</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> (<span style="color:#66d9ef">var</span> conv <span style="color:#66d9ef">in</span> conversations)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    conv.Messages = <span style="color:#66d9ef">await</span> _context.Messages
+</span></span><span style="display:flex;"><span>        .Where(m =&gt; m.ConversationId == conv.Id)
+</span></span><span style="display:flex;"><span>        .ToListAsync();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Resultat: 1 + N queries (11 queries for 10 conversations)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Performance: ~200-500ms</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Lines of code: 12</span>
+</span></span></code></pre></div><p><strong>Transaction eksempel:</strong></p>
+<p>PostgreSQL (Standard EF Core):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">using</span> var transaction = <span style="color:#66d9ef">await</span> _context.Database.BeginTransactionAsync();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> conversation = <span style="color:#66d9ef">new</span> Conversation { UserId = userId };
+</span></span><span style="display:flex;"><span>    _context.Conversations.Add(conversation);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> _context.SaveChangesAsync();
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> message = <span style="color:#66d9ef">new</span> Message { ConversationId = conversation.Id };
+</span></span><span style="display:flex;"><span>    _context.Messages.Add(message);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> _context.SaveChangesAsync();
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> transaction.CommitAsync();  <span style="color:#75715e">// ✅ ACID guarantees</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">catch</span> 
+</span></span><span style="display:flex;"><span>{ 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> transaction.RollbackAsync(); 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">throw</span>; 
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Lines of code: 12</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Dependencies: DbContext only</span>
+</span></span></code></pre></div><p>MongoDB (API Mixing):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#75715e">// ❌ BeginTransactionAsync() IKKE i EF Core provider</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// MÅ bruge MongoDB C# Driver</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> IMongoClient _mongoClient;  <span style="color:#75715e">// Extra dependency</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> var session = <span style="color:#66d9ef">await</span> _mongoClient.StartSessionAsync();
+</span></span><span style="display:flex;"><span>session.StartTransaction();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ❌ Kan IKKE bruge _context - må bruge MongoDB API</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> _conversations.InsertOneAsync(session, conversation);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> _messages.InsertOneAsync(session, message);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> session.CommitTransactionAsync();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">catch</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> session.AbortTransactionAsync();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">throw</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Lines of code: 24</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Dependencies: DbContext + IMongoClient + Collections</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Problem: Mixing af to forskellige API paradigmer</span>
+</span></span></code></pre></div><p><strong>Development velocity impact:</strong></p>
+<p>Estimeret for 10 standard CRUD operations:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Factor</th>
+          <th>PostgreSQL</th>
+          <th>MongoDB</th>
+          <th>Difference</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Implementation time</td>
+          <td>2-3 dage</td>
+          <td>4-5 dage</td>
+          <td>+67-83%</td>
+      </tr>
+      <tr>
+          <td>Workarounds needed</td>
+          <td>0</td>
+          <td>4-5</td>
+          <td>Significant</td>
+      </tr>
+      <tr>
+          <td>Custom code</td>
+          <td>Minimal</td>
+          <td>Substantial</td>
+          <td>More maintenance</td>
+      </tr>
+      <tr>
+          <td>Test complexity</td>
+          <td>Standard</td>
+          <td>High (mixed APIs)</td>
+          <td>Increased risk</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Kritisk vurdering:</strong></p>
+<p><strong>Styrker:</strong></p>
+<ul>
+<li>Official Microsoft documentation (authoritative)</li>
+<li>Feature matrix verified gennem egen testing</li>
+<li>Direkte anvendelig for .NET projekter</li>
+</ul>
+<p><strong>Begrænsninger:</strong></p>
+<ul>
+<li>MongoDB provider under aktiv udvikling (features tilføjes løbende)</li>
+<li>For projektets tidshorisont (4. semester) er current state relevant</li>
+<li>Kan ikke vente på fremtidige provider-forbedringer</li>
+</ul>
+<p><strong>Relevans for chatbot-projektet:</strong></p>
+<p>For et semester-projekt med begrænset tidsramme bliver development friction en reel omkostning:</p>
+<ul>
+<li>Mere kode at skrive og maintaine</li>
+<li>Højre risiko for bugs ved workarounds</li>
+<li>Team onboarding complexity ved API mixing</li>
+<li>Mixing af forskellige paradigmer (LINQ vs MongoDB syntax)</li>
+</ul>
+</details>
+<hr>
+<h3 id="kilde-5-acid-vs-base-consistency-models">Kilde 5: ACID vs BASE Consistency Models<a hidden class="anchor" aria-hidden="true" href="#kilde-5-acid-vs-base-consistency-models">#</a></h3>
+<p><strong>Reference:</strong> Amazon Web Services. (2024). <em>ACID vs BASE Databases - Difference Between Databases</em>. AWS Technical Documentation.<br>
+📄 <a href="https://aws.amazon.com/compare/the-difference-between-acid-and-base-database/">AWS Documentation</a></p>
+<p><strong>Forskningsspørgsmål:</strong> Betyder ACID-garantier dårligere performance?</p>
+<p><strong>Main Findings:</strong></p>
+<ul>
+<li>ACID: Atomicity, Consistency, Isolation, Durability (strong consistency)</li>
+<li>BASE: Basically Available, Soft state, Eventual consistency</li>
+<li>PostgreSQL&rsquo;s ACID implementation outperformer MongoDB&rsquo;s BASE ved relevante workloads</li>
+<li>Eventual consistency kan resultere i partial saves og GDPR-issues</li>
+</ul>
+<p><strong>Min største læring:</strong><br>
+Fra Transactions-undervisningen havde jeg teoretisk forståelse af ACID properties. Denne research tvang mig til at evaluere consistency requirements konkret gennem failure-scenarier frem for abstrakt teori. Min antagelse om at &ldquo;eventual consistency er acceptabelt for en chatbot&rdquo; blev udfordret – selv for et semester-projekt er consistency-krav højere end antaget, fordi partial data skaber dårlig user experience og potentielle compliance issues.</p>
+<details>
+<summary><strong>📊 ACID vs BASE deep dive</strong></summary>
+<p><strong>ACID Properties Explained:</strong></p>
+<p><strong>Atomicity:</strong></p>
+<ul>
+<li>Transaction er indivisible unit (alt eller intet)</li>
+<li>Ved fejl: Automatic rollback til pre-transaction state</li>
+</ul>
+<p><strong>Consistency:</strong></p>
+<ul>
+<li>Database altid i valid state</li>
+<li>Constraints (foreign keys, checks) enforced</li>
+</ul>
+<p><strong>Isolation:</strong></p>
+<ul>
+<li>Concurrent transactions interfererer ikke</li>
+<li>Serializable isolation eliminerer race conditions</li>
+</ul>
+<p><strong>Durability:</strong></p>
+<ul>
+<li>Committed data persistent ved system failure</li>
+<li>Write-Ahead Log (WAL) sikrer recoverability</li>
+</ul>
+<p><strong>BASE Characteristics:</strong></p>
+<p><strong>Basically Available:</strong></p>
+<ul>
+<li>System responderer altid (muligvis med stale data)</li>
+<li>Prioriterer availability over consistency</li>
+</ul>
+<p><strong>Soft State:</strong></p>
+<ul>
+<li>State kan ændre sig uden input via eventual consistency</li>
+<li>Background replication og sync</li>
+</ul>
+<p><strong>Eventual Consistency:</strong></p>
+<ul>
+<li>Consistency opnås over tid (ikke immediately)</li>
+<li>CAP theorem trade-off: Availability &gt; Consistency</li>
+</ul>
+<p><strong>Performance Trade-offs:</strong></p>
+<p><strong>ACID overhead sources:</strong></p>
+<ul>
+<li>Lock management for isolation</li>
+<li>Transaction log writes for durability</li>
+<li>Constraint checking for consistency</li>
+</ul>
+<p><strong>BASE advantages:</strong></p>
+<ul>
+<li>No locking → higher write throughput</li>
+<li>Async replication → lower write latency</li>
+<li>Flexible consistency → partition tolerance</li>
+</ul>
+<p><strong>Interessant observation fra Kilde 1:</strong>
+PostgreSQL&rsquo;s ACID implementation faktisk outperformer MongoDB&rsquo;s BASE approach ved relevante workloads. Dette indikerer at ACID overhead ikke nødvendigvis medfører dårligere performance – implementation-kvalitet er afgørende.</p>
+<p><strong>Concrete Failure Scenarios:</strong></p>
+<p><strong>Scenarie 1: Guest Chatbot crash under save</strong></p>
+<p>PostgreSQL (ACID):</p>
+<ol>
+<li>BeginTransaction()</li>
+<li>Save user message</li>
+<li><strong>[CRASH]</strong></li>
+<li>Automatic rollback via WAL</li>
+<li><strong>Result:</strong> Ingen data (clean state)</li>
+</ol>
+<p>MongoDB (BASE):</p>
+<ol>
+<li>Write user message (acknowledged)</li>
+<li><strong>[CRASH before replication]</strong></li>
+<li>Primary fails, secondary promoted</li>
+<li><strong>Result:</strong> User message exists, bot response lost (partial save)</li>
+</ol>
+<p><strong>Test resultat (H4):</strong> MongoDB 70% partial saves ved 10 crashes</p>
+<p><strong>Scenarie 2: Authenticated Chatbot data durability</strong></p>
+<p>PostgreSQL (ACID):</p>
+<ol>
+<li>SaveChangesAsync() returns SUCCESS</li>
+<li>Data written to WAL + fsync&rsquo;ed</li>
+<li><strong>Guarantee:</strong> Data survives immediate crash</li>
+</ol>
+<p>MongoDB (BASE default):</p>
+<ol>
+<li>insertOne() returns SUCCESS</li>
+<li>Write acknowledged (may be in memory)</li>
+<li><strong>No guarantee:</strong> Data may be lost if crash before replication</li>
+</ol>
+<p><strong>Workaround:</strong> MongoDB writeConcern: {w: &ldquo;majority&rdquo;, j: true}
+<strong>Cost:</strong> 3-5× langsommere writes</p>
+<p><strong>GDPR Implications:</strong></p>
+<p><strong>Right to deletion (Article 17):</strong></p>
+<p>PostgreSQL:</p>
+<ul>
+<li>CASCADE DELETE garanterer complete deletion</li>
+<li>ACID ensures no orphaned data</li>
+<li>Audit log verifiable</li>
+</ul>
+<p>MongoDB:</p>
+<ul>
+<li>Eventual consistency risk orphaned data in replicas</li>
+<li>Async replication may leave copies</li>
+<li>Harder to verify complete deletion</li>
+</ul>
+<p><strong>Consistency Requirements Matrix:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Chatbot Type</th>
+          <th>Data Lifespan</th>
+          <th>User Expectation</th>
+          <th>Failure Impact</th>
+          <th>Required Model</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Guest</td>
+          <td>Temporary</td>
+          <td>Low</td>
+          <td>Medium</td>
+          <td>ACID anbefalet</td>
+      </tr>
+      <tr>
+          <td>Authenticated</td>
+          <td>Permanent</td>
+          <td>High</td>
+          <td>High</td>
+          <td>ACID påkrævet</td>
+      </tr>
+      <tr>
+          <td>Owner (business)</td>
+          <td>Permanent</td>
+          <td>Critical</td>
+          <td>Critical</td>
+          <td>ACID essentiel</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Kritisk vurdering:</strong></p>
+<p><strong>Styrker:</strong></p>
+<ul>
+<li>Industry-standard AWS documentation</li>
+<li>Anvendt i enterprise decision-making</li>
+<li>Juridisk reviewed for compliance statements</li>
+</ul>
+<p><strong>Begrænsninger:</strong></p>
+<ul>
+<li>Fokuserer primært på AWS managed services</li>
+<li>Teoretiske principper er dog platform-agnostic</li>
+</ul>
+<p><strong>Relevans for chatbot-projektet:</strong></p>
+<p>Consistency-evaluering kræver konkret scenarie-analyse:</p>
+<p><strong>Guest Chatbot:</strong> Partial saves giver forvirrende UX (bruger ser egen besked, intet svar)</p>
+<p><strong>Authenticated Chatbot:</strong> &ldquo;Saved successfully&rdquo; skal betyder persistent data (GDPR compliance)</p>
+<p><strong>Owner Chatbot:</strong> Business analytics kræver konsistent data (ingen corrupted aggregations)</p>
+<p>For alle tre chatbot-typer viser researchen at ACID ikke kun er en teknisk præference, men en funktionel nødvendighed.</p>
+</details>
+<hr>
+<h2 id="hvad-viser-evidensen-samlet-set">Hvad viser evidensen samlet set?<a hidden class="anchor" aria-hidden="true" href="#hvad-viser-evidensen-samlet-set">#</a></h2>
+<p>De fem kilder fra forskellige metodologier (vendor benchmark, peer-reviewed akademisk, production cases, official docs) konvergerer konsistent:</p>
+<p><strong>PostgreSQL kombinerer styrker:</strong></p>
+<ul>
+<li>Relationelle strukturer (foreign keys, ACID)</li>
+<li>Document storage (JSONB hurtigere end MongoDB)</li>
+<li>Vector search (pgvector eliminerer separat database)</li>
+<li>Mature tooling (100% EF Core support)</li>
+</ul>
+<p><strong>MongoDB&rsquo;s specialisering backfirer:</strong></p>
+<ul>
+<li>Dårligere JSON performance end &ldquo;general purpose&rdquo; PostgreSQL</li>
+<li>Manglende vector support kræver arkitektonisk kompleksitet</li>
+<li>Incomplete EF Core provider reducerer developer velocity</li>
+<li>Eventual consistency introducerer GDPR-risici</li>
+</ul>
+<h3 id="min-største-overraskelse">Min største overraskelse<a hidden class="anchor" aria-hidden="true" href="#min-største-overraskelse">#</a></h3>
+<p>Fra undervisningen havde jeg antaget:</p>
+<ul>
+<li>MongoDB = bedst til JSON (document database specialisering)</li>
+<li>ACID = performance overhead (transaction costs)</li>
+<li>Vector search = separat system (specialized databases)</li>
+</ul>
+<p><strong>Researchen beviste det modsatte:</strong></p>
+<ul>
+<li>Implementation-kvalitet &gt; database-kategori</li>
+<li>ACID uden performance-tab (PostgreSQL outperformer MongoDB)</li>
+<li>Native extensions (pgvector) eliminerer separate systemer</li>
+</ul>
+<p>Dette udfordrede min antagelse om at &ldquo;best tool for the job&rdquo; betyder multiple specialized systems. Unified platforms kan være både simplere OG bedre.</p>
+<hr>
+<h2 id="næste-skridt-fra-evidens-til-hypoteser">Næste skridt: Fra evidens til hypoteser<a hidden class="anchor" aria-hidden="true" href="#næste-skridt-fra-evidens-til-hypoteser">#</a></h2>
+<p>Researchen etablerer hvad litteraturen siger. Men holder disse påstande i praksis? Kan jeg reproducere resultaterne i projektets kontekst?</p>
+<p>Næste fase oversætter evidensen til fire testbare hypoteser der valideres gennem praktiske benchmarks.</p>
+<p><em>Hvilke konkrete tests kan bevise eller modbevise evidensen?</em></p>
+<p><strong>Næste:</strong> <a href="/datamatiker-portfolio/database/hypoteser/">Hypoteser →</a></p>
 
 
   </div>

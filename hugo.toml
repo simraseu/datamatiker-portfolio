@@ -3,6 +3,11 @@ languageCode = 'da-DK'
 title = '4. Semester Portfolio - Simon'
 theme = 'PaperMod'
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 [params]
   description = "Database & Storage + Data Science & Analytics"
   author = "Simon"
@@ -12,7 +17,7 @@ theme = 'PaperMod'
   ShowReadingTime = false
   ShowShareButtons = false
   ShowToc = true
-  TocOpen = false
+  TocOpen = true
   # Disable auto-listing af sections på homepage
   mainSections = []
   

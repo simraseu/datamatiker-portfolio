@@ -149,7 +149,7 @@ Men moderne LLM&rsquo;er komplicerer billedet. GPT-4 er stateless – den husker
 
 </div>
   </header> <div class="toc">
-    <details >
+    <details  open>
         <summary accesskey="c" title="(Alt + C)">
             <span class="details">Table of Contents</span>
         </summary>
@@ -182,7 +182,9 @@ Men moderne LLM&rsquo;er komplicerer billedet. GPT-4 er stateless – den husker
                 <li>
                     <a href="#beslutningsmatrix" aria-label="Beslutningsmatrix">Beslutningsmatrix</a></li>
                 <li>
-                    <a href="#min-tilgang" aria-label="Min tilgang">Min tilgang</a>
+                    <a href="#min-tilgang" aria-label="Min tilgang">Min tilgang</a></li>
+                <li>
+                    <a href="#n%c3%a6ste-skridt-indsamle-evidens" aria-label="Næste skridt: Indsamle evidens">Næste skridt: Indsamle evidens</a>
                 </li>
             </ul>
         </div>
@@ -201,7 +203,8 @@ Men moderne LLM&rsquo;er komplicerer billedet. GPT-4 er stateless – den husker
 <h3 id="1-json-lagring-med-hurtig-søgning">1. JSON-lagring med hurtig søgning<a hidden class="anchor" aria-hidden="true" href="#1-json-lagring-med-hurtig-søgning">#</a></h3>
 <p>Chatbeskeder er ikke rene SQL-rækker. De indeholder metadata (timestamps, token counts), nested content og varierende strukturer. JSON er det naturlige format, men ikke alle databaser håndterer JSON lige godt.</p>
 <p><strong>Konkret krav:</strong> Hent 50 samtaler med 500 beskeder på under 100ms.</p>
-<!-- raw HTML omitted -->
+<details>
+<summary><strong>📊 Hvorfor JSON performance matters</strong></summary>
 <p>Når en authenticated user åbner deres chathistorik, skal systemet:</p>
 <ul>
 <li>Hente 50 seneste samtaler</li>
@@ -215,12 +218,13 @@ Men moderne LLM&rsquo;er komplicerer billedet. GPT-4 er stateless – den husker
 <li>MongoDB: 1.3 sekunder → frustrerende ventetid</li>
 </ul>
 <p>For Guest Chatbot med session-baseret loading bliver denne forskel kritisk.</p>
-<!-- raw HTML omitted -->
+</details>
 <hr>
 <h3 id="2-vector-embeddings-for-semantisk-søgning">2. Vector embeddings for semantisk søgning<a hidden class="anchor" aria-hidden="true" href="#2-vector-embeddings-for-semantisk-søgning">#</a></h3>
 <p>Keyword search finder kun eksakte match. Men når en bruger spørger <em>&ldquo;Hvordan lindrer jeg hovedpine?&rdquo;</em>, skal systemet finde samtaler om &ldquo;migræne&rdquo;, &ldquo;smertelindring&rdquo; og &ldquo;Panodil&rdquo; – selvom ordene er forskellige.</p>
 <p><strong>Løsning:</strong> Vector embeddings (1536-dimensionelle arrays fra OpenAI) gemmes i databasen og søges via cosine similarity.</p>
-<!-- raw HTML omitted -->
+<details>
+<summary><strong>🔍 Semantic search eksempel</strong></summary>
 <p><strong>User query:</strong> &ldquo;Hvordan lindrer jeg hovedpine?&rdquo;</p>
 <p><strong>System konverterer til embedding:</strong></p>
 <pre tabindex="0"><code>[0.023, -0.891, 0.445, ... 1536 dimensions]
@@ -231,7 +235,7 @@ Men moderne LLM&rsquo;er komplicerer billedet. GPT-4 er stateless – den husker
 <li>&ldquo;Spændingshovedpine øvelser&rdquo; (similarity: 0.82)</li>
 </ul>
 <p>Uden vector search ville kun eksakte matches på &ldquo;hovedpine&rdquo; findes.</p>
-<!-- raw HTML omitted -->
+</details>
 <hr>
 <h3 id="3-mange-samtidige-brugere-uden-performance-tab">3. Mange samtidige brugere uden performance-tab<a hidden class="anchor" aria-hidden="true" href="#3-mange-samtidige-brugere-uden-performance-tab">#</a></h3>
 <p>Realtidschat tolererer ikke slow queries. Ved 100+ samtidige connections skal systemet:</p>
@@ -244,7 +248,8 @@ Men moderne LLM&rsquo;er komplicerer billedet. GPT-4 er stateless – den husker
 <h3 id="4-problemfri-blazor-integration">4. Problemfri Blazor integration<a hidden class="anchor" aria-hidden="true" href="#4-problemfri-blazor-integration">#</a></h3>
 <p>Entity Framework Core er .NET&rsquo;s standard ORM. Men ikke alle database providers understøtter samme features. Manglende <code>Include()</code> support betyder N+1 queries. Ingen transaction support betyder custom workarounds.</p>
 <p><strong>Krav:</strong> 100% EF Core feature support for standard LINQ patterns.</p>
-<!-- raw HTML omitted -->
+<details>
+<summary><strong>💻 Hvad betyder manglende EF Core support?</strong></summary>
 <p><strong>PostgreSQL (standard pattern):</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> conversations = <span style="color:#66d9ef">await</span> _context.Conversations
 </span></span><span style="display:flex;"><span>    .Where(c =&gt; c.UserId == userId)
@@ -262,7 +267,7 @@ Men moderne LLM&rsquo;er komplicerer billedet. GPT-4 er stateless – den husker
 </span></span><span style="display:flex;"><span>        .ToListAsync();  <span style="color:#75715e">// N+1 query problem</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Resultat: 2× mere kode, 11 database roundtrips i stedet for 1.</p>
-<!-- raw HTML omitted -->
+</details>
 <hr>
 <h2 id="hvad-sker-der-hvis-vi-vælger-forkert">Hvad sker der hvis vi vælger forkert?<a hidden class="anchor" aria-hidden="true" href="#hvad-sker-der-hvis-vi-vælger-forkert">#</a></h2>
 <p>Tre konkrete failure-scenarier illustrerer konsekvenserne:</p>
@@ -274,7 +279,8 @@ Men moderne LLM&rsquo;er komplicerer billedet. GPT-4 er stateless – den husker
 <li>Developer friction: 3× mere kode for samme funktionalitet</li>
 <li>Skalerbarhed: Performance degraderer eksponentielt ved vækst</li>
 </ul>
-<!-- raw HTML omitted -->
+<details>
+<summary><strong>📉 Performance breakdown</strong></summary>
 <p><strong>Normalized structure (uden JSON):</strong></p>
 <pre tabindex="0"><code>Messages → 500 rows
 MessageMetadata → 500 rows
@@ -284,7 +290,7 @@ MessageTokens → 500 rows
 <pre tabindex="0"><code>Messages → 500 rows med embedded JSON
 = 1 table × 500 rows, ingen JOINs
 </code></pre><p>Query complexity: O(n³) vs O(n) - massiv forskel ved scale.</p>
-<!-- raw HTML omitted -->
+</details>
 <hr>
 <h3 id="-scenarie-2-ingen-native-vector-search">❌ Scenarie 2: Ingen native vector search<a hidden class="anchor" aria-hidden="true" href="#-scenarie-2-ingen-native-vector-search">#</a></h3>
 <p><strong>Problem:</strong> Separat vector database (Pinecone/Weaviate) kræver:</p>
@@ -300,7 +306,8 @@ MessageTokens → 500 rows
 <li>Data consistency issues (sync lag)</li>
 <li>Årlig ekstra cost: ~$2,400 for 10k users</li>
 </ul>
-<!-- raw HTML omitted -->
+<details>
+<summary><strong>🔗 Separate database complexity</strong></summary>
 <p><strong>Query flow med separat vector DB:</strong></p>
 <ol>
 <li>App → Vector DB: &ldquo;Find similar conversations&rdquo; (200ms)</li>
@@ -314,7 +321,7 @@ MessageTokens → 500 rows
 <li>App → PostgreSQL: Combined query (89ms)</li>
 </ol>
 <p><strong>Total: 89ms, zero sync issues</strong></p>
-<!-- raw HTML omitted -->
+</details>
 <hr>
 <h3 id="-scenarie-3-manglende-acid-garantier">❌ Scenarie 3: Manglende ACID-garantier<a hidden class="anchor" aria-hidden="true" href="#-scenarie-3-manglende-acid-garantier">#</a></h3>
 <p><strong>Problem:</strong> NoSQL eventual consistency kan resultere i partial saves ved crashes.</p>
@@ -325,7 +332,8 @@ MessageTokens → 500 rows
 <li>Owner Chatbot: Analytics dashboards viser inkonsistent data</li>
 <li>GDPR-risiko: Kan ikke garantere data-deletion</li>
 </ul>
-<!-- raw HTML omitted -->
+<details>
+<summary><strong>⚠️ Konkret crash-scenarie</strong></summary>
 <p><strong>System crasher mellem user message og bot response:</strong></p>
 <p><strong>PostgreSQL (ACID):</strong></p>
 <ul>
@@ -340,7 +348,7 @@ MessageTokens → 500 rows
 <li>User ser: Halv samtale (broken UX)</li>
 </ul>
 <p>Test-resultat: MongoDB 70% partial saves ved 10 simulated crashes.</p>
-<!-- raw HTML omitted -->
+</details>
 <hr>
 <h2 id="beslutningsmatrix">Beslutningsmatrix<a hidden class="anchor" aria-hidden="true" href="#beslutningsmatrix">#</a></h2>
 <p>For at evaluere databaser systematisk definerede jeg vægtede kriterier baseret på projektets krav:</p>
@@ -380,7 +388,8 @@ MessageTokens → 500 rows
       </tr>
   </tbody>
 </table>
-<!-- raw HTML omitted -->
+<details>
+<summary><strong>🎯 Hvorfor denne vægtning?</strong></summary>
 <p><strong>AI/ML top priority (30%):</strong>
 Manglende vector support eliminerer semantic search helt. Dårlig JSON performance gør Authenticated Chatbot ubrugeligt. Dette er go/no-go kriterier.</p>
 <p><strong>Performance #2 (25%):</strong>
@@ -389,7 +398,7 @@ Chatbot UX lever eller dør på response time. 50ms vs 2 sekunder er forskellen 
 Et semester-projekt har begrænset tid. EF Core workarounds spiser udviklingsdage og introducerer bugs.</p>
 <p><strong>Skalerbarhed + Cost lavere (15% + 10%):</strong>
 Vigtigt, men kan håndteres senere. Prototype kan køre på billig tier. Production scaling er fremtidig concern.</p>
-<!-- raw HTML omitted -->
+</details>
 <hr>
 <h2 id="min-tilgang">Min tilgang<a hidden class="anchor" aria-hidden="true" href="#min-tilgang">#</a></h2>
 <p>I stedet for at vælge baseret på &ldquo;hvad folk anbefaler&rdquo;, besluttede jeg at kombinere:</p>
@@ -400,8 +409,10 @@ Vigtigt, men kan håndteres senere. Prototype kan køre på billig tier. Product
 </ol>
 <p>Målet var ikke at finde &ldquo;den bedste database&rdquo;, men at forstå <strong>trade-offs</strong> og kunne forsvare valget med evidens.</p>
 <hr>
-<p><strong>Næste:</strong> <a href="/database/research/">Research →</a></p>
-<p><em>Hvordan undersøgte jeg disse krav? Hvilke kilder var troværdige? Og hvilke overraskende resultater fandt jeg?</em></p>
+<h2 id="næste-skridt-indsamle-evidens">Næste skridt: Indsamle evidens<a hidden class="anchor" aria-hidden="true" href="#næste-skridt-indsamle-evidens">#</a></h2>
+<p>Nu skulle jeg finde pålidelige kilder der kunne besvare mine fire forskningsspørgsmål. Men hvilke kilder var troværdige? Og hvordan undgik jeg confirmation bias?</p>
+<p><em>Hvordan undersøgte jeg disse krav systematisk? Hvilke overraskende resultater fandt jeg?</em></p>
+<p><strong>Næste:</strong> <a href="/datamatiker-portfolio/database/research/">Research →</a></p>
 
 
   </div>

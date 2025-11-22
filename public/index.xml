@@ -55,7 +55,10 @@
 &lt;li&gt;Retention&lt;/li&gt;
 &lt;li&gt;Robusthed&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- raw HTML omitted --&gt;</description>
+&lt;details&gt;
+&lt;summary&gt;Eksempler&lt;/summary&gt;
+*(Placeholder – vi tilføjer konkrete KPI’er senere)*
+&lt;/details&gt;</description>
     </item>
     <item>
       <title>Læringsmål</title>
@@ -159,14 +162,7 @@
       <link>http://localhost:1313/datamatiker-portfolio/database/research/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/database/research/</guid>
-      <description>&lt;p&gt;Denne side præsenterer min systematiske researchproces.&lt;/p&gt;
-&lt;h2 id=&#34;forskningsspørgsmål&#34;&gt;Forskningsspørgsmål&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;metodologi&#34;&gt;Metodologi&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;litteraturgennemgang&#34;&gt;Litteraturgennemgang&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder – her indsætter vi tabeller senere)&lt;/em&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;</description>
+      <description>Systematisk litteratursøgning og evidensindsamling</description>
     </item>
     <item>
       <title>Data collection</title>
@@ -225,7 +221,10 @@
 &lt;p&gt;&lt;em&gt;(Placeholder – senere en tabel)&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id=&#34;analyse&#34;&gt;Analyse&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;</description>
+&lt;details&gt;
+&lt;summary&gt;Testprotokoller&lt;/summary&gt;
+Se /database/bilag/testprotokol/
+&lt;/details&gt;</description>
     </item>
     <item>
       <title>Database design</title>
@@ -238,7 +237,10 @@
 &lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id=&#34;integration-med-blazor-og-ef-core&#34;&gt;Integration med Blazor og EF Core&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;</description>
+&lt;details&gt;
+&lt;summary&gt;SQL Schema&lt;/summary&gt;
+Se bilag: /database/bilag/sql-schema/
+&lt;/details&gt;</description>
     </item>
     <item>
       <title>Implementation</title>

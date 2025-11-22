@@ -257,6 +257,10 @@ Målet var ikke at finde "den bedste database", men at forstå **trade-offs** og
 
 ---
 
-**Næste:** [Research →](/database/research/)
+## Næste skridt: Indsamle evidens
 
-*Hvordan undersøgte jeg disse krav? Hvilke kilder var troværdige? Og hvilke overraskende resultater fandt jeg?*
+Nu skulle jeg finde pålidelige kilder der kunne besvare mine fire forskningsspørgsmål. Men hvilke kilder var troværdige? Og hvordan undgik jeg confirmation bias?
+
+*Hvordan undersøgte jeg disse krav systematisk? Hvilke overraskende resultater fandt jeg?*
+
+**Næste:** [Research →]({{< relref "database/research.md" >}})
