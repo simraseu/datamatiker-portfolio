@@ -1,0 +1,45 @@
+baseURL = 'https://simraseu.github.io/datamatiker-portfolio/'
+languageCode = 'da-DK'
+title = '4. Semester Portfolio - Simon'
+theme = 'PaperMod'
+
+[params]
+  description = "Database & Storage + Data Science & Analytics"
+  author = "Simon"
+  ShowBreadCrumbs = true
+  ShowPostNavLinks = true
+  ShowCodeCopyButtons = true
+  ShowReadingTime = false
+  ShowShareButtons = false
+  ShowToc = true
+  TocOpen = false
+  
+  [params.homeInfoParams]
+    Title = "4. Semester Specialisering"
+    Content = """
+    Portfolio dokumentation for projektbaseret læring.
+    
+    **Specialiseringsemner:**
+    - Database & Storage (PostgreSQL + pgvector)
+    - Data Science & Analytics (KPI frameworks + chatbot analytics)
+    """
+
+[[menu.main]]
+  name = "Forside"
+  url = "/"
+  weight = 1
+
+[[menu.main]]
+  name = "Database & Storage"
+  url = "/database/"
+  weight = 2
+
+[[menu.main]]
+  name = "Data Science"
+  url = "/data-science/"
+  weight = 3
+
+[[menu.main]]
+  name = "Om Projektet"
+  url = "/om-projektet/"
+  weight = 4
