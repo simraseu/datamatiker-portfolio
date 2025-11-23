@@ -12,21 +12,7 @@
       <link>http://localhost:1313/datamatiker-portfolio/data-science/problemstilling/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/data-science/problemstilling/</guid>
-      <description>&lt;p&gt;Denne side introducerer udfordringerne ved at måle kvalitet og effektivitet i et chatbot-system med tre forskellige brugerprofiler.&lt;/p&gt;
-&lt;h2 id=&#34;overblik&#34;&gt;Overblik&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder – udfyldes senere)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;hvorfor-data-science-er-centralt&#34;&gt;Hvorfor Data Science er centralt&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Systemet skal træffe beslutninger baseret på data&lt;/li&gt;
-&lt;li&gt;Tre chatbot-typer med forskelligt brugerflow&lt;/li&gt;
-&lt;li&gt;Behov for robuste målinger og processer&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;fokusområder&#34;&gt;Fokusområder&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;KPI-design&lt;/li&gt;
-&lt;li&gt;Datakvalitet&lt;/li&gt;
-&lt;li&gt;Privacy&lt;/li&gt;
-&lt;/ul&gt;</description>
+      <description>Fra &amp;#39;log alt&amp;#39; til privacy-first analytics: Dilemmaet mellem indsigt og etik</description>
     </item>
     <item>
       <title>Problemstilling</title>
@@ -37,27 +23,6 @@
 &lt;p&gt;Vi skulle bygge en Blazor-webapp med tre AI-chatbots: én for gæster, én for brugere og én for administratoren. Men jeg stod overfor et fundamentalt spørgsmål: &lt;strong&gt;Hvilken database?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Min første tanke var simpel: &amp;ldquo;MongoDB til JSON, PostgreSQL til relationel data, Pinecone til vector search.&amp;rdquo; Tre systemer. Tre databaser. Tre synkroniseringsproblemer.&lt;/p&gt;
 &lt;p&gt;Men moderne LLM&amp;rsquo;er komplicerer billedet. GPT-4 er stateless – den husker intet mellem API-kald. Derfor skal &lt;strong&gt;vi&lt;/strong&gt; gemme al kontekst. Hver besked. Hver samtale. Hver vector embedding for semantisk søgning.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>KPI framework</title>
-      <link>http://localhost:1313/datamatiker-portfolio/data-science/kpi-framework/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/datamatiker-portfolio/data-science/kpi-framework/</guid>
-      <description>&lt;p&gt;Her udvikler jeg et målrettet KPI-system til at vurdere chatbot-performance.&lt;/p&gt;
-&lt;h2 id=&#34;principper-for-kpi-design&#34;&gt;Principper for KPI-design&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;kpi-kategorier&#34;&gt;KPI-kategorier&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;System performance&lt;/li&gt;
-&lt;li&gt;Brugeradfærd&lt;/li&gt;
-&lt;li&gt;Modelkvalitet&lt;/li&gt;
-&lt;li&gt;Retention&lt;/li&gt;
-&lt;li&gt;Robusthed&lt;/li&gt;
-&lt;/ul&gt;
-&lt;details&gt;
-&lt;summary&gt;Eksempler&lt;/summary&gt;
-*(Placeholder – vi tilføjer konkrete KPI’er senere)*
-&lt;/details&gt;</description>
     </item>
     <item>
       <title>Læringsmål</title>
@@ -158,16 +123,29 @@
     </item>
     <item>
       <title>Research</title>
+      <link>http://localhost:1313/datamatiker-portfolio/data-science/research/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/datamatiker-portfolio/data-science/research/</guid>
+      <description>&lt;p&gt;Her beskriver jeg metoderne til at analysere data og udlede indsigt.&lt;/p&gt;
+&lt;h2 id=&#34;analysemetoder&#34;&gt;Analysemetoder&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;visualisering-og-dashboards&#34;&gt;Visualisering og dashboards&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;statistical-models&#34;&gt;Statistical models&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Research</title>
       <link>http://localhost:1313/datamatiker-portfolio/database/research/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/database/research/</guid>
       <description>Systematisk litteratursøgning og evidensindsamling</description>
     </item>
     <item>
-      <title>Data collection</title>
-      <link>http://localhost:1313/datamatiker-portfolio/data-science/data-collection/</link>
+      <title>Design Patterns</title>
+      <link>http://localhost:1313/datamatiker-portfolio/data-science/design-patterns/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/datamatiker-portfolio/data-science/data-collection/</guid>
+      <guid>http://localhost:1313/datamatiker-portfolio/data-science/design-patterns/</guid>
       <description>&lt;p&gt;Denne side beskriver, hvordan data indsamles, struktureres og kvalitetssikres i mit system.&lt;/p&gt;
 &lt;h2 id=&#34;overblik-over-datakilder&#34;&gt;Overblik over datakilder&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
@@ -188,16 +166,16 @@
       <description>Fra evidens til testbare påstande</description>
     </item>
     <item>
-      <title>Analytics framework</title>
-      <link>http://localhost:1313/datamatiker-portfolio/data-science/analytics-framework/</link>
+      <title>Implementation</title>
+      <link>http://localhost:1313/datamatiker-portfolio/data-science/implementation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/datamatiker-portfolio/data-science/analytics-framework/</guid>
-      <description>&lt;p&gt;Her beskriver jeg metoderne til at analysere data og udlede indsigt.&lt;/p&gt;
-&lt;h2 id=&#34;analysemetoder&#34;&gt;Analysemetoder&lt;/h2&gt;
+      <guid>http://localhost:1313/datamatiker-portfolio/data-science/implementation/</guid>
+      <description>&lt;p&gt;Her dokumenterer jeg, hvordan KPI-framework og analytics implementeres i praksis.&lt;/p&gt;
+&lt;h2 id=&#34;arkitektur&#34;&gt;Arkitektur&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;visualisering-og-dashboards&#34;&gt;Visualisering og dashboards&lt;/h2&gt;
+&lt;h2 id=&#34;integration-med-backend&#34;&gt;Integration med backend&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;statistical-models&#34;&gt;Statistical models&lt;/h2&gt;
+&lt;h2 id=&#34;fejlkilder-og-risici&#34;&gt;Fejlkilder og risici&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
@@ -213,19 +191,6 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/database/design/</guid>
       <description>Konkret arkitektur baseret på testresultater</description>
-    </item>
-    <item>
-      <title>Implementation</title>
-      <link>http://localhost:1313/datamatiker-portfolio/data-science/implementation/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/datamatiker-portfolio/data-science/implementation/</guid>
-      <description>&lt;p&gt;Her dokumenterer jeg, hvordan KPI-framework og analytics implementeres i praksis.&lt;/p&gt;
-&lt;h2 id=&#34;arkitektur&#34;&gt;Arkitektur&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;integration-med-backend&#34;&gt;Integration med backend&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;fejlkilder-og-risici&#34;&gt;Fejlkilder og risici&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Konklusion</title>

@@ -7,21 +7,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Problemstilling | 4. Semester Portfolio - Simon</title>
 <meta name="keywords" content="">
-<meta name="description" content="Denne side introducerer udfordringerne ved at måle kvalitet og effektivitet i et chatbot-system med tre forskellige brugerprofiler.
-Overblik
-(Placeholder – udfyldes senere)
-Hvorfor Data Science er centralt
-
-Systemet skal træffe beslutninger baseret på data
-Tre chatbot-typer med forskelligt brugerflow
-Behov for robuste målinger og processer
-
-Fokusområder
-
-KPI-design
-Datakvalitet
-Privacy
-">
+<meta name="description" content="Fra &#39;log alt&#39; til privacy-first analytics: Dilemmaet mellem indsigt og etik">
 <meta name="author" content="Simon">
 <link rel="canonical" href="http://localhost:1313/datamatiker-portfolio/data-science/problemstilling/">
 <link crossorigin="anonymous" href="/datamatiker-portfolio/assets/css/stylesheet.fd5566c526ae48aadabd950798a2dc3568536401560eae5caac3765a42a9e7b5.css" integrity="sha256-/VVmxSauSKravZUHmKLcNWhTZAFWDq5cqsN2WkKp57U=" rel="preload stylesheet" as="style">
@@ -161,6 +147,9 @@ Privacy
     <h1 class="post-title entry-hint-parent">
       Problemstilling
     </h1>
+    <div class="post-description">
+      Fra &#39;log alt&#39; til privacy-first analytics: Dilemmaet mellem indsigt og etik
+    </div>
     <div class="post-meta"><span>Simon</span>
 
 </div>
@@ -172,32 +161,156 @@ Privacy
 
         <div class="inner"><ul>
                 <li>
-                    <a href="#overblik" aria-label="Overblik">Overblik</a></li>
+                    <a href="#dataguld-eller-radioaktivt-affald" aria-label="Dataguld eller radioaktivt affald?">Dataguld eller radioaktivt affald?</a></li>
                 <li>
-                    <a href="#hvorfor-data-science-er-centralt" aria-label="Hvorfor Data Science er centralt">Hvorfor Data Science er centralt</a></li>
+                    <a href="#dilemma-1-vanity-metrics-vs-virkelige-indsigter" aria-label="Dilemma 1: Vanity metrics vs. virkelige indsigter">Dilemma 1: Vanity metrics vs. virkelige indsigter</a><ul>
+                        
                 <li>
-                    <a href="#fokusomr%c3%a5der" aria-label="Fokusområder">Fokusområder</a>
+                    <a href="#goodharts-law-i-praksis" aria-label="Goodhart&rsquo;s Law i praksis">Goodhart&rsquo;s Law i praksis</a></li></ul>
+                </li>
+                <li>
+                    <a href="#dilemma-2-privacy-paradokset-gdpr-art-25" aria-label="Dilemma 2: Privacy-paradokset (GDPR Art. 25)">Dilemma 2: Privacy-paradokset (GDPR Art. 25)</a></li>
+                <li>
+                    <a href="#dilemma-3-real-time-alarmer-vs-historiske-trends" aria-label="Dilemma 3: Real-time alarmer vs. historiske trends">Dilemma 3: Real-time alarmer vs. historiske trends</a></li>
+                <li>
+                    <a href="#tre-chatbots-tre-succeskriterier" aria-label="Tre chatbots, tre succeskriterier">Tre chatbots, tre succeskriterier</a></li>
+                <li>
+                    <a href="#min-metodiske-tilgang" aria-label="Min metodiske tilgang">Min metodiske tilgang</a></li>
+                <li>
+                    <a href="#n%c3%a6ste-skridt-fra-dilemma-til-teori" aria-label="Næste skridt: Fra dilemma til teori">Næste skridt: Fra dilemma til teori</a>
                 </li>
             </ul>
         </div>
     </details>
 </div>
 
-  <div class="post-content"><p>Denne side introducerer udfordringerne ved at måle kvalitet og effektivitet i et chatbot-system med tre forskellige brugerprofiler.</p>
-<h2 id="overblik">Overblik<a hidden class="anchor" aria-hidden="true" href="#overblik">#</a></h2>
-<p><em>(Placeholder – udfyldes senere)</em></p>
-<h2 id="hvorfor-data-science-er-centralt">Hvorfor Data Science er centralt<a hidden class="anchor" aria-hidden="true" href="#hvorfor-data-science-er-centralt">#</a></h2>
+  <div class="post-content"><h2 id="dataguld-eller-radioaktivt-affald">Dataguld eller radioaktivt affald?<a hidden class="anchor" aria-hidden="true" href="#dataguld-eller-radioaktivt-affald">#</a></h2>
+<p>Jeg startede Data Science-delen af projektet med en klassisk antagelse: <strong>&ldquo;Data er guld – vi logger alt.&rdquo;</strong></p>
+<p>Min plan var simpel: Gem alle beskeder, byg dashboards med fancy grafer, kald det analytics. Færdig.</p>
+<p>Men i et system, der håndterer sundhedsrelaterede spørgsmål, indså jeg hurtigt, at rå data er mindre som guld og mere som <strong>radioaktivt affald: værdifuldt, men farligt.</strong></p>
+<p>Raw message text fra <em>&ldquo;Jeg har ondt i hovedet&rdquo;</em> er &ldquo;særlige kategorier af personoplysninger&rdquo; (helbredsoplysninger) under GDPR Artikel 9<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. Det kræver eksplicit samtykke. Uden samtykke er det ulovligt. Med en samtykke-prompt risikerer jeg op mod 70% user drop-off.</p>
+<p>Jeg stod med et fundamentalt spørgsmål:
+<strong>Hvordan bygger jeg analytics der skaber værdi for produktet – uden at overvåge brugerne eller overtræde loven?</strong></p>
+<p>For at finde svaret måtte jeg gennem tre dybe dilemmaer.</p>
+<hr>
+<h2 id="dilemma-1-vanity-metrics-vs-virkelige-indsigter">Dilemma 1: Vanity metrics vs. virkelige indsigter<a hidden class="anchor" aria-hidden="true" href="#dilemma-1-vanity-metrics-vs-virkelige-indsigter">#</a></h2>
+<p>Et simpelt dashboard kan vise <strong>&ldquo;20 beskeder per session&rdquo;</strong>. Men det tal fortæller mig intet om kvaliteten. Overvej to scenarier med identiske tal:</p>
+<p><strong>Scenarie A – Succes:</strong></p>
 <ul>
-<li>Systemet skal træffe beslutninger baseret på data</li>
-<li>Tre chatbot-typer med forskelligt brugerflow</li>
-<li>Behov for robuste målinger og processer</li>
+<li><strong>User:</strong> &ldquo;Hvad er coherence-terapi?&rdquo;</li>
+<li><strong>Bot:</strong> <em>[Giver detaljeret, korrekt svar]</em></li>
+<li><strong>User:</strong> <em>[Stiller 19 opfølgende spørgsmål fordi emnet er interessant]</em></li>
+<li><strong>Resultat:</strong> 20 beskeder = dyb læring, høj værdi.</li>
 </ul>
-<h2 id="fokusområder">Fokusområder<a hidden class="anchor" aria-hidden="true" href="#fokusområder">#</a></h2>
+<p><strong>Scenarie B – Fiasko:</strong></p>
 <ul>
-<li>KPI-design</li>
-<li>Datakvalitet</li>
-<li>Privacy</li>
+<li><strong>User:</strong> &ldquo;Hvad er coherence-terapi?&rdquo;</li>
+<li><strong>Bot:</strong> <em>[Misforstår, giver irrelevant svar]</em></li>
+<li><strong>User:</strong> <em>[Omformulerer 19 gange i desperation]</em></li>
+<li><strong>Resultat:</strong> 20 beskeder = total frustration, nul værdi.</li>
 </ul>
+<p>To identiske metrics. To modsatte oplevelser.</p>
+<h3 id="goodharts-law-i-praksis">Goodhart&rsquo;s Law i praksis<a hidden class="anchor" aria-hidden="true" href="#goodharts-law-i-praksis">#</a></h3>
+<p>Her ramte jeg <strong>Goodhart&rsquo;s Law</strong><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>: <em>&ldquo;Når en metric bliver et mål, ophører den med at være en god metric.&rdquo;</em></p>
+<p>Hvis jeg optimerer Guest Chatbot mod &ldquo;højt engagement&rdquo; (flere beskeder), risikerer jeg at belønne en bot, der <strong>misforstår</strong> brugerne. Jo mere forvirret brugeren er, jo flere beskeder skriver de, og jo &ldquo;bedre&rdquo; ser mine tal ud.</p>
+<p>Jeg havde brug for KPI&rsquo;er der måler <strong>værdi</strong>, ikke bare <strong>aktivitet</strong>.</p>
+<hr>
+<h2 id="dilemma-2-privacy-paradokset-gdpr-art-25">Dilemma 2: Privacy-paradokset (GDPR Art. 25)<a hidden class="anchor" aria-hidden="true" href="#dilemma-2-privacy-paradokset-gdpr-art-25">#</a></h2>
+<p>Product Owneren har et legitimt behov: <em>&ldquo;Hvad spørger folk om? Hvor fejler modellen?&rdquo;</em> For at forbedre systemet, er vi nødt til at forstå indholdet.</p>
+<p>Men loven siger:</p>
+<ul>
+<li>Beskeder om helbred er <strong>følsomme data</strong>.</li>
+<li><strong>GDPR Artikel 25</strong> kræver &ldquo;Databekyttelse gennem design&rdquo;<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>.</li>
+</ul>
+<p>Jeg stod i et paradoks: <strong>Vi har brug for indsigt – men må ikke læse beskederne.</strong></p>
+<p>Det tvang mig til at designe analytics med et klart princip: <strong>Systemet skal forstå problemet, men glemme personen.</strong></p>
+<p>Løsningen blev et <em>Privacy-First</em> mønster: <code>Intent Category + SessionHash</code> i stedet for <code>Raw Text + UserID</code>. Vi logger <em>&ldquo;Bruger spurgte om Stress&rdquo;</em>, men vi logger aldrig <em>&ldquo;Jeg er så stresset over min chef&rdquo;</em>.</p>
+<hr>
+<h2 id="dilemma-3-real-time-alarmer-vs-historiske-trends">Dilemma 3: Real-time alarmer vs. historiske trends<a hidden class="anchor" aria-hidden="true" href="#dilemma-3-real-time-alarmer-vs-historiske-trends">#</a></h2>
+<p>Systemet har to modstridende behov til arkitekturen:</p>
+<ol>
+<li><strong>Drift (Hot Path):</strong> Hvis modellen fejler nu, skal Owner se det inden for sekunder.</li>
+<li><strong>Forretning (Cold Path):</strong> Fastholdelse (retention) og langsigtede mønstre kræver tunge batch-beregninger over uger af data.</li>
+</ol>
+<p>En ren real-time løsning mister historik. En ren batch-løsning reagerer for langsomt.</p>
+<p>Jeg indså, at en &ldquo;one-size-fits-all&rdquo; pipeline ville bryde sammen. Vi havde brug for en <strong>Lambda Architecture</strong> tilgang<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>, der kan håndtere både alarmklokker og langsigtede trends uden at kvæle databasen.</p>
+<hr>
+<h2 id="tre-chatbots-tre-succeskriterier">Tre chatbots, tre succeskriterier<a hidden class="anchor" aria-hidden="true" href="#tre-chatbots-tre-succeskriterier">#</a></h2>
+<p>Fordi systemet har tre forskellige brugertyper, gav det ingen mening at blande tallene sammen. Jeg definerede specifikke succeskriterier for hver kontekst:</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Chatbot Type</th>
+          <th style="text-align: left">Primært Mål</th>
+          <th style="text-align: left">Korrekt KPI (Actionable)</th>
+          <th style="text-align: left">Vanity KPI (Undgå)</th>
+          <th style="text-align: left">Konsekvens af fejl</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>Guest</strong></td>
+          <td style="text-align: left">Hurtig afklaring</td>
+          <td style="text-align: left">Avg time-to-answer</td>
+          <td style="text-align: left">Total messages</td>
+          <td style="text-align: left">Bot belønnes for misforståelser</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Authenticated</strong></td>
+          <td style="text-align: left">Task completion</td>
+          <td style="text-align: left">Semantic search success</td>
+          <td style="text-align: left">Session duration</td>
+          <td style="text-align: left">Kan ikke skelne læring fra frustration</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Owner</strong></td>
+          <td style="text-align: left">System stabilitet</td>
+          <td style="text-align: left">Error rate trends</td>
+          <td style="text-align: left">Total users</td>
+          <td style="text-align: left">Problemer opdages for sent</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<hr>
+<h2 id="min-metodiske-tilgang">Min metodiske tilgang<a hidden class="anchor" aria-hidden="true" href="#min-metodiske-tilgang">#</a></h2>
+<p>Uden tusindvis af rigtige brugere kan jeg ikke eksperimentere mig frem med A/B tests eller real-world målinger. Jeg er nødt til at designe analytics-kernen korrekt fra start.</p>
+<p>For at gøre det valgte jeg en deduktiv, evidensbaseret tilgang:</p>
+<ol>
+<li><strong>Systematisk Research</strong> → Hvordan måler industrien brugeroplevelse, privacy og systemstabilitet?</li>
+<li><strong>Design Patterns</strong> → Fire arkitektoniske regler der erstatter hypoteser i et miljø uden live data.</li>
+<li><strong>Simuleret Validering</strong> → Mock-data, GDPR-audit og arkitektur-tests for at bevise at mønstrene faktisk kan fungere.</li>
+</ol>
+<p>Målet er ikke at lave dashboards, men at designe et målesystem der skaber <strong>forretningsindsigt uden at kompromittere etik</strong>.</p>
+<hr>
+<h2 id="næste-skridt-fra-dilemma-til-teori">Næste skridt: Fra dilemma til teori<a hidden class="anchor" aria-hidden="true" href="#næste-skridt-fra-dilemma-til-teori">#</a></h2>
+<p>Jeg ved nu <em>hvilke</em> problemer analytics skal løse.<br>
+Nu skal jeg forstå <em>hvordan</em> andre systemer i industrien løser dem.</p>
+<ul>
+<li>Hvordan måler Google store brugerflows?</li>
+<li>Hvordan implementerer man privacy-by-design i praksis?</li>
+<li>Hvordan kombinerer man real-time fejlalarmer med tunge historiske beregninger?</li>
+<li>Hvordan undgår man vanity metrics og Goodhart’s Law-fælder?</li>
+</ul>
+<p>Det teoretiske fundament skal nu lægges.</p>
+<p><strong>Næste: Research →</strong></p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>EU General Data Protection Regulation (GDPR), Article 9: Processing of special categories of personal data.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Strathern, M. (1997). &ldquo;Improving ratings: audit in the British University system&rdquo;. European Review.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>EU General Data Protection Regulation (GDPR), Article 25: Data protection by design and by default.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>Kleppmann, M. (2017). &ldquo;Designing Data-Intensive Applications&rdquo;. O&rsquo;Reilly Media. Chapter 11.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
 
 
   </div>

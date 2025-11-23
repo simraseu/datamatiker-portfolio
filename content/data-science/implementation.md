@@ -1,6 +1,6 @@
 ---
 title: "Implementation"
-weight: 5
+weight: 4
 ---
 
 Her dokumenterer jeg, hvordan KPI-framework og analytics implementeres i praksis.

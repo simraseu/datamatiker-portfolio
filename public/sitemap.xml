@@ -2,41 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/datamatiker-portfolio/</loc>
-  </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/data-science/problemstilling/</loc>
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/database/problemstilling/</loc>
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/database/</loc>
   </url><url>
-    <loc>http://localhost:1313/datamatiker-portfolio/data-science/kpi-framework/</loc>
-  </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/laeringsmaal/</loc>
-  </url><url>
-    <loc>http://localhost:1313/datamatiker-portfolio/database/research/</loc>
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/om-projektet/</loc>
   </url><url>
-    <loc>http://localhost:1313/datamatiker-portfolio/data-science/data-collection/</loc>
+    <loc>http://localhost:1313/datamatiker-portfolio/data-science/research/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamatiker-portfolio/database/research/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamatiker-portfolio/data-science/design-patterns/</loc>
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/database/hypoteser/</loc>
   </url><url>
-    <loc>http://localhost:1313/datamatiker-portfolio/data-science/analytics-framework/</loc>
+    <loc>http://localhost:1313/datamatiker-portfolio/data-science/implementation/</loc>
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/database/praktisk-test/</loc>
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/database/design/</loc>
   </url><url>
-    <loc>http://localhost:1313/datamatiker-portfolio/data-science/implementation/</loc>
+    <loc>http://localhost:1313/datamatiker-portfolio/data-science/konklusion/</loc>
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/vidensrejse/</loc>
-  </url><url>
-    <loc>http://localhost:1313/datamatiker-portfolio/data-science/konklusion/</loc>
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/database/konklusion/</loc>
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/refleksion/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamatiker-portfolio/</loc>
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/categories/</loc>
   </url><url>

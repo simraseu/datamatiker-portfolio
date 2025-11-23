@@ -1,5 +1,5 @@
 ---
-title: "Data collection"
+title: "Design Patterns"
 weight: 3
 ---
 

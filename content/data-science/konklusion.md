@@ -1,6 +1,6 @@
 ---
 title: "Konklusion"
-weight: 6
+weight: 5
 ---
 
 Denne side samler mine vigtigste læringspunkter fra Data Science og Analytics specialiseringen.
