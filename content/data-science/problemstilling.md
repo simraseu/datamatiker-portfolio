@@ -90,7 +90,6 @@ Fordi systemet har tre forskellige brugertyper, gav det ingen mening at blande t
 
 ---
 
----
 ## Min metodiske tilgang
 
 Uden tusindvis af rigtige brugere kan jeg ikke eksperimentere mig frem med A/B tests eller real-world målinger. Jeg er nødt til at designe analytics-kernen korrekt fra start.
@@ -117,7 +116,7 @@ Nu skal jeg forstå *hvordan* andre systemer i industrien løser dem.
 
 Det teoretiske fundament skal nu lægges.
 
-**Næste: Research →**  
+**Næste:** [Research →]({{< relref "data-science/research.md" >}})
 
 [^1]: EU General Data Protection Regulation (GDPR), Article 9: Processing of special categories of personal data.
 [^2]: Strathern, M. (1997). "Improving ratings: audit in the British University system". European Review.
