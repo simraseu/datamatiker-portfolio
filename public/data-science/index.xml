@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Data Science og Analytics on 4. Semester Portfolio - Simon</title>
+    <title>Data Science &amp; Analytics on 4. Semester Portfolio - Simon</title>
     <link>http://localhost:1313/datamatiker-portfolio/data-science/</link>
-    <description>Recent content in Data Science og Analytics on 4. Semester Portfolio - Simon</description>
+    <description>Recent content in Data Science &amp; Analytics on 4. Semester Portfolio - Simon</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>da-DK</language>
     <atom:link href="http://localhost:1313/datamatiker-portfolio/data-science/index.xml" rel="self" type="application/rss+xml" />
@@ -33,25 +33,14 @@
       <link>http://localhost:1313/datamatiker-portfolio/data-science/implementation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/data-science/implementation/</guid>
-      <description>Konkret implementering af fire design patterns med systematisk validering</description>
+      <description>Fra arkitektur til kode: Privacy, Lambda og konceptuel validering</description>
     </item>
     <item>
       <title>Konklusion</title>
       <link>http://localhost:1313/datamatiker-portfolio/data-science/konklusion/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/data-science/konklusion/</guid>
-      <description>&lt;p&gt;Denne side samler mine vigtigste læringspunkter fra Data Science og Analytics specialiseringen.&lt;/p&gt;
-&lt;h2 id=&#34;teknisk-konklusion&#34;&gt;Teknisk konklusion&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;samfundsmæssige-perspektiver&#34;&gt;Samfundsmæssige perspektiver&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;GDPR&lt;/li&gt;
-&lt;li&gt;Dataminimering&lt;/li&gt;
-&lt;li&gt;Bæredygtighed i datahåndtering&lt;/li&gt;
-&lt;li&gt;Økonomiske fordele ved automatiseret analyse&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;mine-læringsmål&#34;&gt;Mine læringsmål&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder – læringsmål 6–10)&lt;/em&gt;&lt;/p&gt;</description>
+      <description>Refleksion, læringsmål og samfundsperspektiver</description>
     </item>
   </channel>
 </rss>
