@@ -204,18 +204,19 @@ Business Layer (Owner): Systemisk sundhed og ROI (Cost/conversation, Growth) Use
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Implementation
+    <h2 class="entry-hint-parent">Implementation &amp; Validation
     </h2>
   </header>
   <div class="entry-content">
-    <p>Her dokumenterer jeg, hvordan KPI-framework og analytics implementeres i praksis.
-Arkitektur (Placeholder)
-Integration med backend (Placeholder)
-Fejlkilder og risici (Placeholder)
-</p>
+    <p>Fra Arkitektur til Kode Design Patterns definerede fire normative regler. Implementation operationaliserer dem gennem konkret C#-kode, PostgreSQL-schema og systematisk validering.
+Denne sektion dokumenterer tre implementeringsområder:
+Privacy-First Logging Pipeline (DP2): Anonymization-at-source i C# Analytics Database Schema (DP1&#43;DP3): Layered metrics med Lambda architecture Validation Framework (DP1-DP4): Mock data testing og compliance verification Privacy-First Logging Pipeline Pattern implementeret: DP2 (Privacy-First Logging)
+Arkitektur-flow:
+User Message → Intent Detection → Anonymization → Database Write↓Raw Text (kasseres) Designprincip: Data transformeres irreversibelt før persistens. Ingen PII når disk.
+...</p>
   </div>
   <footer class="entry-footer"><span>Simon</span></footer>
-  <a class="entry-link" aria-label="post link to Implementation" href="http://localhost:1313/datamatiker-portfolio/data-science/implementation/"></a>
+  <a class="entry-link" aria-label="post link to Implementation & Validation" href="http://localhost:1313/datamatiker-portfolio/data-science/implementation/"></a>
 </article>
 
 <article class="post-entry"> 

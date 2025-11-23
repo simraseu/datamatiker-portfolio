@@ -29,17 +29,11 @@
       <description>Fire arkitektoniske regler for etisk og effektiv analytics</description>
     </item>
     <item>
-      <title>Implementation</title>
+      <title>Implementation &amp; Validation</title>
       <link>http://localhost:1313/datamatiker-portfolio/data-science/implementation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/data-science/implementation/</guid>
-      <description>&lt;p&gt;Her dokumenterer jeg, hvordan KPI-framework og analytics implementeres i praksis.&lt;/p&gt;
-&lt;h2 id=&#34;arkitektur&#34;&gt;Arkitektur&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;integration-med-backend&#34;&gt;Integration med backend&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;fejlkilder-og-risici&#34;&gt;Fejlkilder og risici&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;</description>
+      <description>Konkret implementering af fire design patterns med systematisk validering</description>
     </item>
     <item>
       <title>Konklusion</title>
