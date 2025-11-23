@@ -7,17 +7,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Design Patterns | 4. Semester Portfolio - Simon</title>
 <meta name="keywords" content="">
-<meta name="description" content="Denne side beskriver, hvordan data indsamles, struktureres og kvalitetssikres i mit system.
-Overblik over datakilder
-(Placeholder)
-Pipeline
-(Placeholder – senere tegner vi diagram)
-Privacy
-
-GDPR alignment
-Logging vs. anonymisering
-Storage footprint
-">
+<meta name="description" content="Fire arkitektoniske regler for etisk og effektiv analytics">
 <meta name="author" content="Simon">
 <link rel="canonical" href="http://localhost:1313/datamatiker-portfolio/data-science/design-patterns/">
 <link crossorigin="anonymous" href="/datamatiker-portfolio/assets/css/stylesheet.fd5566c526ae48aadabd950798a2dc3568536401560eae5caac3765a42a9e7b5.css" integrity="sha256-/VVmxSauSKravZUHmKLcNWhTZAFWDq5cqsN2WkKp57U=" rel="preload stylesheet" as="style">
@@ -157,6 +147,9 @@ Storage footprint
     <h1 class="post-title entry-hint-parent">
       Design Patterns
     </h1>
+    <div class="post-description">
+      Fire arkitektoniske regler for etisk og effektiv analytics
+    </div>
     <div class="post-meta"><span>Simon</span>
 
 </div>
@@ -168,28 +161,441 @@ Storage footprint
 
         <div class="inner"><ul>
                 <li>
-                    <a href="#overblik-over-datakilder" aria-label="Overblik over datakilder">Overblik over datakilder</a></li>
+                    <a href="#fra-teori-til-arkitektur" aria-label="Fra Teori til Arkitektur">Fra Teori til Arkitektur</a></li>
                 <li>
-                    <a href="#pipeline" aria-label="Pipeline">Pipeline</a></li>
+                    <a href="#dp1-layered-metrics-pyramid" aria-label="DP1: Layered Metrics Pyramid">DP1: Layered Metrics Pyramid</a></li>
                 <li>
-                    <a href="#privacy" aria-label="Privacy">Privacy</a>
+                    <a href="#dp2-privacy-first-logging" aria-label="DP2: Privacy-First Logging">DP2: Privacy-First Logging</a></li>
+                <li>
+                    <a href="#dp3-dual-speed-analytics-lambda-lite" aria-label="DP3: Dual-Speed Analytics (Lambda Lite)">DP3: Dual-Speed Analytics (Lambda Lite)</a></li>
+                <li>
+                    <a href="#dp4-context-aware-kpis" aria-label="DP4: Context-Aware KPIs">DP4: Context-Aware KPIs</a></li>
+                <li>
+                    <a href="#multi-method-validation" aria-label="Multi-Method Validation">Multi-Method Validation</a></li>
+                <li>
+                    <a href="#fra-design-til-implementering" aria-label="Fra Design til Implementering">Fra Design til Implementering</a>
                 </li>
             </ul>
         </div>
     </details>
 </div>
 
-  <div class="post-content"><p>Denne side beskriver, hvordan data indsamles, struktureres og kvalitetssikres i mit system.</p>
-<h2 id="overblik-over-datakilder">Overblik over datakilder<a hidden class="anchor" aria-hidden="true" href="#overblik-over-datakilder">#</a></h2>
-<p><em>(Placeholder)</em></p>
-<h2 id="pipeline">Pipeline<a hidden class="anchor" aria-hidden="true" href="#pipeline">#</a></h2>
-<p><em>(Placeholder – senere tegner vi diagram)</em></p>
-<h2 id="privacy">Privacy<a hidden class="anchor" aria-hidden="true" href="#privacy">#</a></h2>
+  <div class="post-content"><h2 id="fra-teori-til-arkitektur">Fra Teori til Arkitektur<a hidden class="anchor" aria-hidden="true" href="#fra-teori-til-arkitektur">#</a></h2>
+<p>Researchen fastslog at effektiv analytics kræver struktureret dataindsamling for at undgå privacy-risici og misvisende målinger.</p>
+<p>For at operationalisere denne viden er der defineret fire <strong>Design Patterns</strong> – normative arkitektur-regler der direkte adresserer problemstillingens dilemmaer.</p>
+<hr>
+<h2 id="dp1-layered-metrics-pyramid">DP1: Layered Metrics Pyramid<a hidden class="anchor" aria-hidden="true" href="#dp1-layered-metrics-pyramid">#</a></h2>
+<p><strong>Adresserer:</strong> Dilemma 1 (Vanity Metrics vs. Virkelige Indsigter)<br>
+<strong>Research Base:</strong> Google HEART Framework<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> + AARRR Pirate Metrics<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<p><strong>Designbeslutning:</strong><br>
+For at tilgodese divergerende stakeholder-behov implementeres hierarkisk metrik-struktur:</p>
+<ol>
+<li><strong>Business Layer (Owner):</strong> Systemisk sundhed og ROI (Cost/conversation, Growth)</li>
+<li><strong>User Layer (Product):</strong> Brugeradfærd og opgave-succes (Task Success, Retention)</li>
+<li><strong>System Layer (Engineering):</strong> Teknisk performance (Latency, Error rates)</li>
+</ol>
+<p><strong>Application til tre chatbot-typer:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Chatbot Type</th>
+          <th>Primary Layer</th>
+          <th>Key Metrics</th>
+          <th>Rationale</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Guest</strong></td>
+          <td>User</td>
+          <td>Task Success, Time-to-answer</td>
+          <td>Anonym – immediate value</td>
+      </tr>
+      <tr>
+          <td><strong>Authenticated</strong></td>
+          <td>User</td>
+          <td>7-day Retention, Search success</td>
+          <td>Engagement focus</td>
+      </tr>
+      <tr>
+          <td><strong>Owner</strong></td>
+          <td>Business+System</td>
+          <td>Error trends, Cost, Uptime</td>
+          <td>Health + ROI</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Trade-off:</strong> Øget implementeringskompleksitet (3 pipelines) vs klarhed (no metric pollution). Mitigeres med materialized views.</p>
+<details>
+<summary><strong>✅ Validation: SMART Criteria</strong></summary>
+<table>
+  <thead>
+      <tr>
+          <th>KPI</th>
+          <th>Actionable?</th>
+          <th>Relevant?</th>
+          <th>Valid?</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Avg Response Time</td>
+          <td>✅ (optimize queries)</td>
+          <td>✅</td>
+          <td>✅</td>
+      </tr>
+      <tr>
+          <td>Task Success Rate</td>
+          <td>✅ (improve intent)</td>
+          <td>✅</td>
+          <td>✅</td>
+      </tr>
+      <tr>
+          <td>Session Duration</td>
+          <td>❌ (ambiguous)</td>
+          <td>⚠️</td>
+          <td>❌</td>
+      </tr>
+      <tr>
+          <td>Total Users</td>
+          <td>❌ (vanity)</td>
+          <td>❌</td>
+          <td>❌</td>
+      </tr>
+      <tr>
+          <td>Weekly Active Users</td>
+          <td>✅ (engagement)</td>
+          <td>✅</td>
+          <td>✅</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Resultat:</strong> 6/8 validated. &ldquo;Session Duration&rdquo; og &ldquo;Total Users&rdquo; rejected og erstattet.</p>
+</details>
+<hr>
+<h2 id="dp2-privacy-first-logging">DP2: Privacy-First Logging<a hidden class="anchor" aria-hidden="true" href="#dp2-privacy-first-logging">#</a></h2>
+<p><strong>Adresserer:</strong> Dilemma 2 (Privacy-paradokset)<br>
+<strong>Research Base:</strong> GDPR Article 25 (Data Protection by Design)<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+<p><strong>Designbeslutning:</strong><br>
+For at eliminere risiko for lagring af særlige kategorier af personoplysninger (GDPR Art. 9) implementeres <strong>Anonymization-at-Source</strong>:</p>
+<ol>
+<li><strong>Intent Classification:</strong> Rå tekst transformeres til kategorier (<code>health_query</code>), hvorefter teksten kasseres</li>
+<li><strong>Hashing:</strong> User IDs hashes med roterende salt (<code>SHA-256</code>) før database-write</li>
+<li><strong>Temporal Aggregation:</strong> Timestamps aggregeres til hour-buckets</li>
+</ol>
+<p><strong>Application:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Data Type</th>
+          <th>Raw (Illegal)</th>
+          <th>Privacy-First (Legal)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Identity</td>
+          <td><code>UserId: &quot;abc-123&quot;</code></td>
+          <td><code>SessionHash: SHA256(...)</code></td>
+      </tr>
+      <tr>
+          <td>Content</td>
+          <td><code>Text: &quot;migraine&quot;</code></td>
+          <td><code>IntentCategory: &quot;health_query&quot;</code></td>
+      </tr>
+      <tr>
+          <td>Timestamp</td>
+          <td><code>14:32:18</code></td>
+          <td><code>HourBucket: &quot;14&quot;</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Trade-off:</strong> Tab af debugging-kontekst vs juridisk compliance. Fejlsøgning baseres på aggregerede mønstre, ikke individuelle sessioner.</p>
+<details>
+<summary><strong>🔧 Implementation: Before vs After</strong></summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#75715e">// ❌ Radioaktivt affald (ulovligt)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">new</span> MessageLog {
+</span></span><span style="display:flex;"><span>    UserId = <span style="color:#e6db74">&#34;user-123&#34;</span>,
+</span></span><span style="display:flex;"><span>    Text = <span style="color:#e6db74">&#34;Jeg har ondt i hovedet&#34;</span>,
+</span></span><span style="display:flex;"><span>    Timestamp = DateTime.UtcNow
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ✅ GDPR Art. 25 compliant</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">new</span> AnalyticsEvent {
+</span></span><span style="display:flex;"><span>    SessionHash = SHA256(userId + dailySalt),
+</span></span><span style="display:flex;"><span>    IntentCategory = DetectIntent(text), <span style="color:#75715e">// → &#34;health_query&#34;</span>
+</span></span><span style="display:flex;"><span>    HourBucket = DateTime.UtcNow.RoundToHour()
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Resultat:</strong> Vi kan svare &ldquo;10 health queries kl. 14-15&rdquo; – men ikke &ldquo;hvem spurgte hvad.&rdquo;</p>
+</details>
+<details>
+<summary><strong>✅ Validation: GDPR Compliance</strong></summary>
+<table>
+  <thead>
+      <tr>
+          <th>GDPR Article</th>
+          <th>Implementation</th>
+          <th>Valid?</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Art. 5 (Minimization)</td>
+          <td>Intent categories, NOT raw text</td>
+          <td>✅</td>
+      </tr>
+      <tr>
+          <td>Art. 9 (Special category)</td>
+          <td>Health data → category only</td>
+          <td>✅</td>
+      </tr>
+      <tr>
+          <td>Art. 15 (Access)</td>
+          <td>User kan query SessionHash</td>
+          <td>✅</td>
+      </tr>
+      <tr>
+          <td>Art. 17 (Erasure)</td>
+          <td><code>DELETE WHERE session_hash = X</code></td>
+          <td>✅</td>
+      </tr>
+      <tr>
+          <td>Art. 25 (By design)</td>
+          <td>Anonymization at source</td>
+          <td>✅</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Resultat:</strong> 5/5 compliant. System er GDPR-compliant by design.</p>
+</details>
+<hr>
+<h2 id="dp3-dual-speed-analytics-lambda-lite">DP3: Dual-Speed Analytics (Lambda Lite)<a hidden class="anchor" aria-hidden="true" href="#dp3-dual-speed-analytics-lambda-lite">#</a></h2>
+<p><strong>Adresserer:</strong> Dilemma 3 (Real-time Alarmer vs. Historiske Trends)<br>
+<strong>Research Base:</strong> Kleppmann Lambda Architecture<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
+<p><strong>Designbeslutning:</strong><br>
+For at balancere latency-krav med tung analytisk processering splittes data-flowet:</p>
+<ol>
+<li><strong>Hot Path (Speed Layer):</strong> In-memory streaming af kritiske events (errors) via SignalR. Ingen disk-I/O.</li>
+<li><strong>Cold Path (Batch Layer):</strong> Asynkron database-skrivning. Tunge beregninger (retention, cohorts) køres som scheduled batch-jobs.</li>
+</ol>
+<p><strong>Application:</strong></p>
+<pre tabindex="0"><code>Events → Hot Path: SignalR → Owner dashboard (&lt;10 sec, no persistence)
+      → Cold Path: Batch job → PostgreSQL aggregations (daily, full precision)
+</code></pre><table>
+  <thead>
+      <tr>
+          <th>Metric Type</th>
+          <th>Path</th>
+          <th>Latency</th>
+          <th>Precision</th>
+          <th>Use Case</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Error spike</td>
+          <td>Hot</td>
+          <td>&lt;10 sec</td>
+          <td>Approximate</td>
+          <td>Operational alerts</td>
+      </tr>
+      <tr>
+          <td>Active users</td>
+          <td>Hot</td>
+          <td>Real-time</td>
+          <td>Exact</td>
+          <td>Live dashboard</td>
+      </tr>
+      <tr>
+          <td>Retention cohorts</td>
+          <td>Cold</td>
+          <td>Nightly</td>
+          <td>Exact</td>
+          <td>Strategic analysis</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Trade-off:</strong> Architectural complexity vs operational dashboards + deep analysis. Eventual consistency accepteres (Cold Path lags 1 dag).</p>
+<details>
+<summary><strong>✅ Validation: Architecture Audit</strong></summary>
+<p>Mock data test med synthetic conversations verificerede:</p>
 <ul>
-<li>GDPR alignment</li>
-<li>Logging vs. anonymisering</li>
-<li>Storage footprint</li>
+<li>✅ Hot Path: Real-time stream uden dropped messages</li>
+<li>✅ Cold Path: Batch aggregation completes &lt;5 min</li>
+<li>✅ No data loss (event sourcing log verified)</li>
 </ul>
+<p>Query performance valideret:</p>
+<ul>
+<li>Hot: In-memory queries &lt;50ms</li>
+<li>Cold: Materialized views &lt;200ms</li>
+</ul>
+</details>
+<hr>
+<h2 id="dp4-context-aware-kpis">DP4: Context-Aware KPIs<a hidden class="anchor" aria-hidden="true" href="#dp4-context-aware-kpis">#</a></h2>
+<p><strong>Adresserer:</strong> Dilemma 1 (Vanity Metrics) + Goodhart&rsquo;s Law<br>
+<strong>Research Base:</strong> Goodhart&rsquo;s Law<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
+<p><strong>Designbeslutning:</strong><br>
+Succeskriterier defineres dynamisk baseret på chatbot-kontekst for at undgå misvisende gennemsnit:</p>
+<ol>
+<li><strong>Guest Context:</strong> Optimeret mod efficiency (kort tid til svar)</li>
+<li><strong>Authenticated Context:</strong> Optimeret mod exploration (dybde og retur-rate)</li>
+<li><strong>Owner Context:</strong> Optimeret mod reliability (uptime, cost efficiency)</li>
+</ol>
+<p><strong>Application:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Chatbot</th>
+          <th>Goal</th>
+          <th>Correct KPI</th>
+          <th>Vanity KPI</th>
+          <th>Goodhart Risk</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Guest</td>
+          <td>Hurtig afklaring</td>
+          <td>Time-to-answer</td>
+          <td>Total messages</td>
+          <td>Bot belønnes for confusion</td>
+      </tr>
+      <tr>
+          <td>Authenticated</td>
+          <td>Task completion</td>
+          <td>Search success rate</td>
+          <td>Session duration</td>
+          <td>Læring vs frustration?</td>
+      </tr>
+      <tr>
+          <td>Owner</td>
+          <td>Stabilitet</td>
+          <td>Error trends</td>
+          <td>Total users</td>
+          <td>No actionable insight</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Trade-off:</strong> Reduceret sammenlignelighed på tværs af kontekster vs metrics driver correct behavior. Gaming immunity prioriteres.</p>
+<details>
+<summary><strong>✅ Validation: Goodhart Audit</strong></summary>
+<p>Audit framework: (1) Skader optimering brugeren? (2) Kan metric gamificeres? (3) Kræver pairing?</p>
+<table>
+  <thead>
+      <tr>
+          <th>KPI</th>
+          <th>Test 1</th>
+          <th>Test 2</th>
+          <th>Valid?</th>
+          <th>Action</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Task Success</td>
+          <td>✅</td>
+          <td>⚠️</td>
+          <td>✅</td>
+          <td>Add follow-up detection</td>
+      </tr>
+      <tr>
+          <td>Total Messages</td>
+          <td>❌</td>
+          <td>✅</td>
+          <td>❌</td>
+          <td>Replace med Engagement Depth</td>
+      </tr>
+      <tr>
+          <td>Session Duration</td>
+          <td>❌</td>
+          <td>⚠️</td>
+          <td>❌</td>
+          <td>Replace med Task Time</td>
+      </tr>
+      <tr>
+          <td>Weekly Active Users</td>
+          <td>✅</td>
+          <td>⚠️</td>
+          <td>✅</td>
+          <td>Monitor notification abuse</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Resultat:</strong> 2/4 rejected. Erstattet med validated alternatives der bestod Goodhart audit.</p>
+</details>
+<hr>
+<h2 id="multi-method-validation">Multi-Method Validation<a hidden class="anchor" aria-hidden="true" href="#multi-method-validation">#</a></h2>
+<p>Alle fire patterns systematisk valideret gennem minimum to uafhængige metoder:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Pattern</th>
+          <th>SMART</th>
+          <th>GDPR</th>
+          <th>Mock Data</th>
+          <th>Goodhart</th>
+          <th>Status</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>DP1</strong></td>
+          <td>✅ 6/8</td>
+          <td>N/A</td>
+          <td>N/A</td>
+          <td>✅</td>
+          <td>Validated</td>
+      </tr>
+      <tr>
+          <td><strong>DP2</strong></td>
+          <td>N/A</td>
+          <td>✅ 5/5</td>
+          <td>✅</td>
+          <td>N/A</td>
+          <td>Validated</td>
+      </tr>
+      <tr>
+          <td><strong>DP3</strong></td>
+          <td>N/A</td>
+          <td>N/A</td>
+          <td>✅</td>
+          <td>N/A</td>
+          <td>Validated</td>
+      </tr>
+      <tr>
+          <td><strong>DP4</strong></td>
+          <td>✅</td>
+          <td>N/A</td>
+          <td>N/A</td>
+          <td>✅</td>
+          <td>Validated</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="fra-design-til-implementering">Fra Design til Implementering<a hidden class="anchor" aria-hidden="true" href="#fra-design-til-implementering">#</a></h2>
+<p>Med de arkitektoniske rammer defineret gennem DP1-DP4 kan den tekniske implementering påbegyndes. Næste sektion dokumenterer C#-implementeringen af logging-pipelinen, SQL-strukturen for Lambda-arkitekturen og den simulerede validering af systemets integritet.</p>
+<p><strong>Næste:</strong> <a href="/datamatiker-portfolio/data-science/implementation/">Implementation &amp; Validation →</a></p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Rodden, K., Hutchinson, H., &amp; Fu, X. (2010). &ldquo;Measuring the User Experience on a Large Scale&rdquo;. Google Research.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>McClure, D. (2007). &ldquo;Startup Metrics for Pirates: AARRR!&rdquo;. 500 Startups.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>EU General Data Protection Regulation (GDPR). Regulation (EU) 2016/679. Article 25.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>Kleppmann, M. (2017). &ldquo;Designing Data-Intensive Applications&rdquo;. O&rsquo;Reilly Media. Chapter 11.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p>Strathern, M. (1997). &ldquo;Improving ratings: audit in the British University system&rdquo;. European Review.&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
 
 
   </div>

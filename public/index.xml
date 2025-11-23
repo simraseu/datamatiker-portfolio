@@ -140,17 +140,7 @@
       <link>http://localhost:1313/datamatiker-portfolio/data-science/design-patterns/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/data-science/design-patterns/</guid>
-      <description>&lt;p&gt;Denne side beskriver, hvordan data indsamles, struktureres og kvalitetssikres i mit system.&lt;/p&gt;
-&lt;h2 id=&#34;overblik-over-datakilder&#34;&gt;Overblik over datakilder&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;pipeline&#34;&gt;Pipeline&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder – senere tegner vi diagram)&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;privacy&#34;&gt;Privacy&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;GDPR alignment&lt;/li&gt;
-&lt;li&gt;Logging vs. anonymisering&lt;/li&gt;
-&lt;li&gt;Storage footprint&lt;/li&gt;
-&lt;/ul&gt;</description>
+      <description>Fire arkitektoniske regler for etisk og effektiv analytics</description>
     </item>
     <item>
       <title>Hypoteser</title>

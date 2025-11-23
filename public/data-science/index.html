@@ -189,10 +189,14 @@ KPI Design: Hvordan måler store virksomheder succes uden vanity metrics? Privac
     </h2>
   </header>
   <div class="entry-content">
-    <p>Denne side beskriver, hvordan data indsamles, struktureres og kvalitetssikres i mit system.
-Overblik over datakilder (Placeholder)
-Pipeline (Placeholder – senere tegner vi diagram)
-Privacy GDPR alignment Logging vs. anonymisering Storage footprint </p>
+    <p>Fra Teori til Arkitektur Researchen fastslog at effektiv analytics kræver struktureret dataindsamling for at undgå privacy-risici og misvisende målinger.
+For at operationalisere denne viden er der defineret fire Design Patterns – normative arkitektur-regler der direkte adresserer problemstillingens dilemmaer.
+DP1: Layered Metrics Pyramid Adresserer: Dilemma 1 (Vanity Metrics vs. Virkelige Indsigter)
+Research Base: Google HEART Framework1 &#43; AARRR Pirate Metrics2
+Designbeslutning:
+For at tilgodese divergerende stakeholder-behov implementeres hierarkisk metrik-struktur:
+Business Layer (Owner): Systemisk sundhed og ROI (Cost/conversation, Growth) User Layer (Product): Brugeradfærd og opgave-succes (Task Success, Retention) System Layer (Engineering): Teknisk performance (Latency, Error rates) Application til tre chatbot-typer:
+...</p>
   </div>
   <footer class="entry-footer"><span>Simon</span></footer>
   <a class="entry-link" aria-label="post link to Design Patterns" href="http://localhost:1313/datamatiker-portfolio/data-science/design-patterns/"></a>
