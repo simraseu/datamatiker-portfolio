@@ -32,13 +32,13 @@ theme = 'PaperMod'
   weight = 1
 
 [[menu.main]]
-  name = "Læringsmål"
-  url = "/laeringsmaal/"
+  name = "Om Projektet"
+  url = "/om-projektet/"
   weight = 2
 
 [[menu.main]]
-  name = "Blazor Projekt"
-  url = "/blazor-projekt/"
+  name = "Læringsmål"
+  url = "/laeringsmaal/"
   weight = 3
 
 [[menu.main]]
@@ -52,6 +52,11 @@ theme = 'PaperMod'
   weight = 5
 
 [[menu.main]]
-  name = "Blog"
-  url = "/blog/"
+  name = "Vidensrejse"
+  url = "/vidensrejse/"
   weight = 6
+
+[[menu.main]]
+  name = "Samlet Refleksion"
+  url = "/refleksion/"
+  weight = 7
