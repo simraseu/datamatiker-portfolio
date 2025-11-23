@@ -3,21 +3,21 @@ title: "Database & Storage"
 weight: 2
 ---
 
-# Fra Problem til PostgreSQL
+### Fra Problem til PostgreSQL
 
 **Problemet:** Et Blazor chatbot-system med tre chatbot-typer skulle have en database. Men hvilken? MongoDB til JSON? PostgreSQL til relations? Pinecone til vector search? Tre systemer?
 
-Dette er historien om hvordan jeg gik fra antagelser til evidens-baseret beslutning.
+**Dette er historien om hvordan jeg gik fra antagelser til evidens-baseret beslutning.**
 
 ---
 
-## Vælg Din Tilgang
+### Vælg Din Tilgang
 
 Du har to muligheder for at udforske Database & Storage delen:
 
-### 📚 Læs Hele Rejsen (6 Faser)
+#### 📚 Læs Hele Rejsen (6 Faser)
 
-Følg den komplette proces fra problemidentifikation til implementering:
+Følg den komplette proces fra problemidentifikation til implementering: 
 
 1. **[Problemstilling]({{< relref "database/problemstilling.md" >}})** - Fire kritiske krav og failure-scenarier
 2. **[Research]({{< relref "database/research.md" >}})** - 5 kilder fra systematisk litteratursøgning  

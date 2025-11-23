@@ -16,7 +16,7 @@
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/database/research/</loc>
   </url><url>
-    <loc>http://localhost:1313/datamatiker-portfolio/blazor-projekt/</loc>
+    <loc>http://localhost:1313/datamatiker-portfolio/om-projektet/</loc>
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/data-science/data-collection/</loc>
   </url><url>
@@ -30,11 +30,13 @@
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/data-science/implementation/</loc>
   </url><url>
+    <loc>http://localhost:1313/datamatiker-portfolio/vidensrejse/</loc>
+  </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/data-science/konklusion/</loc>
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/database/konklusion/</loc>
   </url><url>
-    <loc>http://localhost:1313/datamatiker-portfolio/blog/</loc>
+    <loc>http://localhost:1313/datamatiker-portfolio/refleksion/</loc>
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/categories/</loc>
   </url><url>
