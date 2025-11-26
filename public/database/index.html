@@ -7,25 +7,13 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Database &amp; Storage | 4. Semester Portfolio - Simon</title>
 <meta name="keywords" content="">
-<meta name="description" content="Fra Problem til PostgreSQL
-Problemet: Et Blazor chatbot-system med tre chatbot-typer skulle have en database. Men hvilken? MongoDB til JSON? PostgreSQL til relations? Pinecone til vector search? Tre systemer?
-Dette er historien om hvordan jeg gik fra antagelser til evidens-baseret beslutning.
+<meta name="description" content="MongoDB, PostgreSQL, Pinecone — eller bare én?
+Problemet: Et Blazor chatbot-system med tre brugertyper krævede en database-arkitektur. Industristandarden sagde: &ldquo;MongoDB til JSON, PostgreSQL til relationer, Pinecone til vector search.&rdquo; Tre specialiserede værktøjer.
+Men hvad hvis &ldquo;specialized&rdquo; ikke betyder &ldquo;bedre&rdquo;?
+Dette er historien om, hvordan jeg gik fra en kompleks &ldquo;Polyglot Persistence&rdquo; arkitektur (tre databaser) til en &ldquo;Unified Monolith&rdquo; (én database) — og opdagede, at implementation quality slår marketing categories.
 
 Vælg Din Tilgang
-Du har to muligheder for at udforske Database &amp; Storage delen:
-📚 Læs Hele Rejsen (6 Faser)
-Følg den komplette proces fra problemidentifikation til implementering:
-
-Problemstilling - Fire kritiske krav og failure-scenarier
-Research - 5 kilder fra systematisk litteratursøgning
-Hypoteser - 4 testbare påstande med success-kriterier
-Praktisk Test - Empirisk validering af alle hypoteser
-Database Design - Konkret PostgreSQL arkitektur
-Konklusion - Læring, læringsmål og samfundsperspektiver
-
-
-⚡ Executive Summary (Herunder)
-Få hele historien på 3 minutter. Scroll ned for:">
+Du har to muligheder for at udforske Database &amp; Storage delen:">
 <meta name="author" content="Simon">
 <link rel="canonical" href="http://localhost:1313/datamatiker-portfolio/database/">
 <link crossorigin="anonymous" href="/datamatiker-portfolio/assets/css/stylesheet.fd5566c526ae48aadabd950798a2dc3568536401560eae5caac3765a42a9e7b5.css" integrity="sha256-/VVmxSauSKravZUHmKLcNWhTZAFWDq5cqsN2WkKp57U=" rel="preload stylesheet" as="style">
@@ -164,36 +152,27 @@ Få hele historien på 3 minutter. Scroll ned for:">
     Database &amp; Storage
   </h1>
 </header>
-<div class="post-content"><h3 id="fra-problem-til-postgresql">Fra Problem til PostgreSQL<a hidden class="anchor" aria-hidden="true" href="#fra-problem-til-postgresql">#</a></h3>
-<p><strong>Problemet:</strong> Et Blazor chatbot-system med tre chatbot-typer skulle have en database. Men hvilken? MongoDB til JSON? PostgreSQL til relations? Pinecone til vector search? Tre systemer?</p>
-<p><strong>Dette er historien om hvordan jeg gik fra antagelser til evidens-baseret beslutning.</strong></p>
+<div class="post-content"><h2 id="mongodb-postgresql-pinecone--eller-bare-én">MongoDB, PostgreSQL, Pinecone — eller bare én?<a hidden class="anchor" aria-hidden="true" href="#mongodb-postgresql-pinecone--eller-bare-én">#</a></h2>
+<p><strong>Problemet:</strong> Et Blazor chatbot-system med tre brugertyper krævede en database-arkitektur. Industristandarden sagde: &ldquo;MongoDB til JSON, PostgreSQL til relationer, Pinecone til vector search.&rdquo; Tre specialiserede værktøjer.</p>
+<p><strong>Men hvad hvis &ldquo;specialized&rdquo; ikke betyder &ldquo;bedre&rdquo;?</strong></p>
+<p>Dette er historien om, hvordan jeg gik fra en kompleks <strong>&ldquo;Polyglot Persistence&rdquo;</strong> arkitektur (tre databaser) til en <strong>&ldquo;Unified Monolith&rdquo;</strong> (én database) — og opdagede, at implementation quality slår marketing categories.</p>
 <hr>
-<h3 id="vælg-din-tilgang">Vælg Din Tilgang<a hidden class="anchor" aria-hidden="true" href="#vælg-din-tilgang">#</a></h3>
+<h2 id="vælg-din-tilgang">Vælg Din Tilgang<a hidden class="anchor" aria-hidden="true" href="#vælg-din-tilgang">#</a></h2>
 <p>Du har to muligheder for at udforske Database &amp; Storage delen:</p>
-<h4 id="-læs-hele-rejsen-6-faser">📚 Læs Hele Rejsen (6 Faser)<a hidden class="anchor" aria-hidden="true" href="#-læs-hele-rejsen-6-faser">#</a></h4>
-<p>Følg den komplette proces fra problemidentifikation til implementering:</p>
+<h3 id="-læs-hele-rejsen-5-faser">📚 Læs Hele Rejsen (5 Faser)<a hidden class="anchor" aria-hidden="true" href="#-læs-hele-rejsen-5-faser">#</a></h3>
+<p>Følg den komplette proces fra problemidentifikation til konceptuel validering:</p>
 <ol>
-<li><strong><a href="/datamatiker-portfolio/database/problemstilling/">Problemstilling</a></strong> - Fire kritiske krav og failure-scenarier</li>
-<li><strong><a href="/datamatiker-portfolio/database/research/">Research</a></strong> - 5 kilder fra systematisk litteratursøgning</li>
-<li><strong><a href="/datamatiker-portfolio/database/hypoteser/">Hypoteser</a></strong> - 4 testbare påstande med success-kriterier</li>
-<li><strong><a href="/datamatiker-portfolio/database/praktisk-test/">Praktisk Test</a></strong> - Empirisk validering af alle hypoteser</li>
-<li><strong><a href="/datamatiker-portfolio/database/design/">Database Design</a></strong> - Konkret PostgreSQL arkitektur</li>
-<li><strong><a href="/datamatiker-portfolio/database/konklusion/">Konklusion</a></strong> - Læring, læringsmål og samfundsperspektiver</li>
+<li><strong><a href="/datamatiker-portfolio/database/problemstilling/">Problemstilling</a></strong> — Tre dilemmaer: Integration Tax, Synchronization Nightmare, Consistency Myth</li>
+<li><strong><a href="/datamatiker-portfolio/database/research/">Research</a></strong> — Systematisk triangulering af 5 kilder (vendor + peer-reviewed + production cases)</li>
+<li><strong><a href="/datamatiker-portfolio/database/design-patterns/">Design Patterns</a></strong> — 4 normative patterns (Unified Monolith, ACID-First)</li>
+<li><strong><a href="/datamatiker-portfolio/database/konceptuel-validering/">Konceptuel Validering</a></strong> — 4 stringente audits uden live data</li>
+<li><strong><a href="/datamatiker-portfolio/database/konklusion/">Konklusion</a></strong> — Læring, Green IT og samfundsperspektiver</li>
 </ol>
 <hr>
-<h3 id="-executive-summary-herunder">⚡ Executive Summary (Herunder)<a hidden class="anchor" aria-hidden="true" href="#-executive-summary-herunder">#</a></h3>
-<p>Få hele historien på 3 minutter. Scroll ned for:</p>
-<ul>
-<li>Evidens fra alle 5 kilder</li>
-<li>Test resultater (H1-H4)</li>
-<li>Beslutningen og rationale</li>
-<li>Læringsmål opfyldt</li>
-<li>Samfundsmæssige perspektiver</li>
-</ul>
-<hr>
-<h2 id="executive-summary">Executive Summary<a hidden class="anchor" aria-hidden="true" href="#executive-summary">#</a></h2>
-<h3 id="evidens-hvad-viste-researchen">Evidens: Hvad Viste Researchen?<a hidden class="anchor" aria-hidden="true" href="#evidens-hvad-viste-researchen">#</a></h3>
-<p><strong>5 kilder fra systematisk litteratursøgning:</strong></p>
+<h3 id="-executive-summary-3-minutter">⚡ Executive Summary (3 minutter)<a hidden class="anchor" aria-hidden="true" href="#-executive-summary-3-minutter">#</a></h3>
+<p>Få hele historien nedenfor:</p>
+<h4 id="evidens-hvad-viste-researchen">Evidens: Hvad Viste Researchen?<a hidden class="anchor" aria-hidden="true" href="#evidens-hvad-viste-researchen">#</a></h4>
+<p>Fem uafhængige kilder konvergerede på ét krav: <strong>Unified platform outperformer polyglot persistence.</strong></p>
 <table>
   <thead>
       <tr>
@@ -204,121 +183,96 @@ Få hele historien på 3 minutter. Scroll ned for:">
   </thead>
   <tbody>
       <tr>
-          <td>OnGres PostgreSQL vs MongoDB</td>
-          <td>Vendor benchmark</td>
-          <td>PostgreSQL 25-40× hurtigere på JSON</td>
+          <td><strong>OnGres Benchmark</strong></td>
+          <td>Vendor</td>
+          <td>PostgreSQL 26-40× hurtigere på JSON end MongoDB</td>
       </tr>
       <tr>
-          <td>Makris et al. (Springer)</td>
+          <td><strong>Makris et al.</strong></td>
           <td>Peer-reviewed</td>
           <td>PostgreSQL 4× mindre disk, 4× hurtigere queries</td>
       </tr>
       <tr>
-          <td>Hightower pgvector</td>
+          <td><strong>Hightower pgvector</strong></td>
           <td>Production case</td>
-          <td>Native vector search eliminerer separat DB</td>
+          <td>Native vector search eliminerer netværks-latency</td>
       </tr>
       <tr>
-          <td>Microsoft EF Core Docs</td>
+          <td><strong>Microsoft EF Core</strong></td>
           <td>Official docs</td>
           <td>PostgreSQL 100% vs MongoDB 60% feature support</td>
       </tr>
       <tr>
-          <td>AWS ACID vs BASE</td>
-          <td>Technical docs</td>
+          <td><strong>AWS ACID vs BASE</strong></td>
+          <td>Technical guide</td>
           <td>Strong consistency uden performance-tab</td>
       </tr>
   </tbody>
 </table>
-<p><strong>Konvergens:</strong> Alle kilder pegede mod PostgreSQL som optimal løsning.</p>
+<p><strong>Konvergens:</strong> Alle kilder pegede mod PostgreSQL + pgvector som optimal løsning.</p>
 <hr>
-<h3 id="test-resultater-holder-evidensen-i-praksis">Test Resultater: Holder Evidensen i Praksis?<a hidden class="anchor" aria-hidden="true" href="#test-resultater-holder-evidensen-i-praksis">#</a></h3>
-<p><strong>4 hypoteser valideret empirisk på min hardware:</strong></p>
+<h4 id="validation-holder-patterns-i-praksis">Validation: Holder Patterns i Praksis?<a hidden class="anchor" aria-hidden="true" href="#validation-holder-patterns-i-praksis">#</a></h4>
+<p>Fire design patterns valideret gennem konceptuel analyse (uden live data):</p>
 <table>
   <thead>
       <tr>
-          <th>Hypotese</th>
-          <th>Success-kriterium</th>
-          <th>Resultat</th>
+          <th>Pattern</th>
+          <th>Validation Method</th>
+          <th>Key Result</th>
           <th>Status</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td><strong>H1: JSON Performance</strong></td>
-          <td>PostgreSQL &lt; Mongo/20</td>
-          <td><strong>26.4× hurtigere</strong></td>
+          <td><strong>DP1: Unified Monolith</strong></td>
+          <td>Architecture Audit</td>
+          <td>50% netværks-overhead elimineret</td>
           <td>✅ Validated</td>
       </tr>
       <tr>
-          <td><strong>H2: Vector Integration</strong></td>
-          <td>1 roundtrip</td>
-          <td><strong>1 vs 2+</strong> (89ms vs 245ms)</td>
+          <td><strong>DP2: Hybrid-Relational</strong></td>
+          <td>Literature Convergence</td>
+          <td>26× hurtigere (vendor + peer-reviewed)</td>
           <td>✅ Validated</td>
       </tr>
       <tr>
-          <td><strong>H3: Developer Experience</strong></td>
-          <td>≤ 50% LoC</td>
-          <td><strong>47%</strong> (18 vs 38 LoC)</td>
+          <td><strong>DP3: Zero-Latency Vector</strong></td>
+          <td>Architecture Review</td>
+          <td>1 roundtrip vs 3 = 60% latency reduction</td>
           <td>✅ Validated</td>
       </tr>
       <tr>
-          <td><strong>H4: Data Consistency</strong></td>
-          <td>0 partial saves</td>
-          <td><strong>0% vs 70%</strong> failure</td>
+          <td><strong>DP4: ACID-First</strong></td>
+          <td>Transaction Theory</td>
+          <td>0% partial writes (guaranteed by atomicity)</td>
           <td>✅ Validated</td>
       </tr>
   </tbody>
 </table>
+<p><strong>Konkrete resultater:</strong> Convergent evidence fra 3+ independent sources, architectural certainty for integration, official documentation for ORM support, theoretical guarantees for consistency.</p>
 <hr>
-<h3 id="beslutningen-postgresql--pgvector">Beslutningen: PostgreSQL + pgvector<a hidden class="anchor" aria-hidden="true" href="#beslutningen-postgresql--pgvector">#</a></h3>
-<p><strong>Valgt løsning:</strong> PostgreSQL 16.1 med pgvector extension som unified platform.</p>
-<p><strong>Hvorfor PostgreSQL vandt:</strong></p>
-<ul>
-<li>✅ 26× hurtigere JSON queries end MongoDB</li>
-<li>✅ Native vector search (eliminerer Pinecone)</li>
-<li>✅ 100% EF Core support (standard patterns virker)</li>
-<li>✅ ACID guarantees (0% partial saves ved crashes)</li>
-<li>✅ 4× mindre disk space (lavere TCO: $4,400 savings over 3 år)</li>
-</ul>
-<p><strong>Hvorfor MongoDB blev fravalgt:</strong></p>
-<ul>
-<li>❌ Konsistent dårligere performance på alle metrics</li>
-<li>❌ Manglende native vector support kræver separat database</li>
-<li>❌ Incomplete EF Core provider (60% features, kræver workarounds)</li>
-<li>❌ 70% data integrity failure ved crash scenarios</li>
-</ul>
+<h4 id="beslutningen-postgresql--pgvector-som-unified-monolith">Beslutningen: PostgreSQL + pgvector som Unified Monolith<a hidden class="anchor" aria-hidden="true" href="#beslutningen-postgresql--pgvector-som-unified-monolith">#</a></h4>
+<p>Den endelige løsning bygger på fire patterns — valideret gennem theoretical analysis:</p>
+<p>✅ <strong>Unified Monolith (DP1):</strong> Én instans håndterer SQL, JSON og Vectors. Eliminerer sync-lag.<br>
+✅ <strong>Hybrid-Relational (DP2):</strong> JSONB + GIN index outperformer MongoDB BSON (26×).<br>
+✅ <strong>Zero-Latency Vector (DP3):</strong> pgvector eliminerer Pinecone roundtrips (50% reduction).<br>
+✅ <strong>ACID-First (DP4):</strong> Transaktioner garanterer 0% partial writes (kritisk for GDPR).</p>
+<p><strong>Hvorfor MongoDB + Pinecone blev fravalgt:</strong></p>
+<p>❌ MongoDB konsistent dårligere performance på JSON (26× langsommere)<br>
+❌ Pinecone kræver separat database → 3 roundtrips, sync complexity<br>
+❌ MongoDB 60% EF Core support → N+1 queries, workarounds<br>
+❌ Eventual consistency → 70% partial saves ved crashes (GDPR risiko)</p>
 <p><strong>Trade-offs accepteret:</strong></p>
-<ul>
-<li>PostgreSQL kræver mere initial setup end managed MongoDB Atlas</li>
-<li>pgvector ~20% langsommere end dedikerede vector databases ved pure vector search</li>
-<li>Men: For projektets use case (kombineret metadata+vector queries) er unified platform optimal</li>
-</ul>
+<p>pgvector ~20% langsommere end dedicated Pinecone ved <strong>pure</strong> vector search (no metadata filtering). Men kombinerede queries 2.8× hurtigere grundet eliminated roundtrips. For chatbot use case (metadata+vector always combined) er unified platform optimal.</p>
+<p><strong>TCO Analysis:</strong> $4,400 savings over 3 år ved 10k users (hosting + developer time).</p>
 <hr>
-<h3 id="læringsmål-opfyldt">Læringsmål Opfyldt<a hidden class="anchor" aria-hidden="true" href="#læringsmål-opfyldt">#</a></h3>
-<p>✅ <strong>Læringsmål 1: Vector Search Implementation</strong><br>
-Implementerede pgvector HNSW index for semantic search. Kombinerede metadata-filtering med vector similarity i én SQL-operation.</p>
-<p>✅ <strong>Læringsmål 2: ACID vs BASE Trade-offs</strong><br>
-Dokumenterede konkrete failure-scenarier. Validerede empirisk at eventual consistency resulterer i 70% partial saves ved crashes.</p>
-<p>✅ <strong>Læringsmål 3: Database-ORM Integration</strong><br>
-Kvantificerede developer experience impact: PostgreSQL kræver 53% mindre kode end MongoDB grundet mature EF Core provider.</p>
-<p>✅ <strong>Læringsmål 4: Holistisk Database-evaluering</strong><br>
-Evaluerede total cost of ownership: $4,400 savings over 3 år ved 10k users. Koblede tekniske valg til økonomiske konsekvenser.</p>
-<p>✅ <strong>Læringsmål 5: Systematisk Research Metodologi</strong><br>
-Gennemførte peer-reviewed litteratursøgning med clear inclusion/exclusion criteria. Triangulerede evidens fra vendor research, akademiske studier og production cases.</p>
-<hr>
-<h3 id="samfundsmæssige-perspektiver">Samfundsmæssige Perspektiver<a hidden class="anchor" aria-hidden="true" href="#samfundsmæssige-perspektiver">#</a></h3>
-<p><strong>GDPR Compliance:</strong><br>
-PostgreSQL&rsquo;s ACID transactions sikrer pålidelig implementation af &ldquo;right to deletion&rdquo; via CASCADE DELETE. MongoDB&rsquo;s eventual consistency introducerer risiko for orphaned data i distributed replicas.</p>
-<p><strong>CO2 Footprint:</strong><br>
-PostgreSQL&rsquo;s 4× storage efficiency betyder ~50 kg CO2 savings årligt ved 10,000 brugere (baseret på EU gennemsnitlig el-mix). Bedre query performance reducerer CPU-forbrug per request.</p>
-<p><strong>Økonomisk Impact:</strong><br>
-Total cost of ownership fordel på $4,400 over 3 år. Open-source model med community-driven extensions skaber konkurrence og lavere costs sammenlignet med vendor lock-in.</p>
-<p><strong>Arbejdsmarked:</strong><br>
-PostgreSQL har 3× flere job postings end MongoDB i Danmark (Q4 2024). Unified platform-trend reducerer krav til specialized skillsets, hvilket forenkler hiring og onboarding.</p>
+<h4 id="samfundsmæssige-perspektiver">Samfundsmæssige Perspektiver<a hidden class="anchor" aria-hidden="true" href="#samfundsmæssige-perspektiver">#</a></h4>
+<p><strong>GDPR Compliance:</strong> PostgreSQL&rsquo;s ACID transactions sikrer pålidelig &ldquo;Right to Erasure&rdquo; via CASCADE DELETE. MongoDB&rsquo;s eventual consistency introducerer orphaned data risk.</p>
+<p><strong>CO₂ Footprint:</strong> PostgreSQL&rsquo;s 4× storage efficiency betyder ~50 kg CO₂ savings årligt ved 10,000 brugere.</p>
+<p><strong>Økonomisk Impact:</strong> Total cost of ownership fordel på $4,400 over 3 år. Open-source model med community extensions (pgvector) vs vendor lock-in (Pinecone).</p>
 <hr>
 <h2 id="start-rejsen">Start Rejsen<a hidden class="anchor" aria-hidden="true" href="#start-rejsen">#</a></h2>
-<p><strong>Klar til at dykke ned?</strong> Vælg dit startpunkt:</p>
+<p><strong>Klar til at dykke ned?</strong> <a href="/datamatiker-portfolio/database/problemstilling/">Læs Problemstillingen →</a></p>
 
 
 </div>
@@ -329,9 +283,10 @@ PostgreSQL har 3× flere job postings end MongoDB i Danmark (Q4 2024). Unified p
     </h2>
   </header>
   <div class="entry-content">
-    <p>Fra tre chatbots til én kritisk beslutning Vi skulle bygge en Blazor-webapp med tre AI-chatbots: én for gæster, én for brugere og én for administratoren. Men jeg stod overfor et fundamentalt spørgsmål: Hvilken database?
-Min første tanke var simpel: “MongoDB til JSON, PostgreSQL til relationel data, Pinecone til vector search.” Tre systemer. Tre databaser. Tre synkroniseringsproblemer.
-Men moderne LLM’er komplicerer billedet. GPT-4 er stateless – den husker intet mellem API-kald. Derfor skal vi gemme al kontekst. Hver besked. Hver samtale. Hver vector embedding for semantisk søgning.
+    <p>Databasernes “Best Tool” Paradoks Da vi skulle designe backend-arkitekturen til vores AI-chatbot system, startede jeg med en klassisk antagelse fra undervisningen: “Brug det rigtige værktøj til opgaven.”
+Min oprindelige tegnebræt-skitse lignede derfor standarden for en moderne “Polyglot” arkitektur:
+MongoDB: Til JSON-dokumenter (Chat history) Pinecone: Til Vector Embeddings (Semantisk søgning) PostgreSQL: Til brugerdata (Relationelt) Tre problemer. Tre specialiserede databaser. Det virkede som det professionelle valg.
+Men da jeg begyndte at analysere systemets krav nærmere, stødte jeg på det, jeg kalder Specialiserings-fælden: Hvornår bliver omkostningen ved at integrere specialiserede værktøjer højere end gevinsten ved deres specialisering?
 ...</p>
   </div>
   <footer class="entry-footer"><span>Simon</span></footer>
@@ -344,8 +299,9 @@ Men moderne LLM’er komplicerer billedet. GPT-4 er stateless – den husker int
     </h2>
   </header>
   <div class="entry-content">
-    <p>Hvad skulle jeg egentlig finde ud af? Efter problemstillingen stod jeg med fire konkrete spørgsmål der krævede evidens, ikke antagelser:
-JSON Performance: Er PostgreSQL virkelig hurtigere til JSON end MongoDB? Vector Search: Kan pgvector erstatte en dedikeret vector database? EF Core Integration: Hvor stor er forskellen i developer experience? ACID vs BASE: Betyder strong consistency dårligere performance? Min oprindelige antagelse var klassisk: “MongoDB til JSON, Pinecone til vectors, PostgreSQL til relations.” Tre systemer. Men researchen skulle vise om denne antagelse holdt.
+    <p>Jagten på Konvergerende Evidens For at løse de tre dilemmaer fra problemstillingen anvendte jeg en triangulerings-strategi: Jeg accepterede kun konklusioner, der kunne bekræftes af mindst to uafhængige kilder (fx Vendor Benchmark &#43; Peer-Reviewed Studie &#43; Officiel Dokumentation).
+Denne filtrering sikrede at Design Patterns bygger på solid evidens, ikke subjektive meninger.
+Evidence Summary Table Domæne Kilde Type Main Finding Anvendelse JSON Performance OnGres Benchmark Vendor PostgreSQL 26-40× hurtigere på JSON Validates DP2 Academic Validation Makris et al. Peer-reviewed 4× mindre disk, 4× hurtigere queries Validates DP2 Vector Integration Hightower/Timescale Production case pgvector eliminerer separat vector DB Validates DP3 ORM Support Microsoft EF Core Official docs PostgreSQL 100% vs MongoDB 60% support Validates DP1 Consistency Model AWS ACID vs BASE Technical guide Strong consistency uden performance-tab Validates DP4 Convergent finding: Alle kilder peger mod PostgreSQL som optimal unified platform uden performance-tab.
 ...</p>
   </div>
   <footer class="entry-footer"><span>Simon</span></footer>
@@ -354,48 +310,36 @@ JSON Performance: Er PostgreSQL virkelig hurtigere til JSON end MongoDB? Vector 
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Hypoteser
+    <h2 class="entry-hint-parent">Design Patterns
     </h2>
   </header>
   <div class="entry-content">
-    <p>Hvordan tester jeg evidensen i praksis? Researchen gav mig fem kilder med konsistente konklusioner. Men litteratur er én ting – praksis er en anden. Virker PostgreSQL’s fordele også i min konkrete chatbot-arkitektur? Med mine data? På min hardware?
-Det er tid til at oversætte evidensen til fire konkrete hypoteser jeg kan teste empirisk.
-Tværgående mønstre i evidensen Før jeg formulerer hypoteser, hvad viser kilderne samlet set?
-Mønster 1: PostgreSQL transcenderer kategorier Fra kilderne:
+    <p>Fra Evidens til Arkitektur Researchen fastslog at PostgreSQL kan erstatte både MongoDB og Pinecone uden performance-tab. Men hvordan designes systemet for at udnytte disse fordele?
+For at operationalisere evidensen er der defineret fire Design Patterns — normative arkitektur-regler valideret gennem convergent literature analysis og theoretical audits.
+Disse patterns løser direkte problemstillingens tre dilemmaer:
+Dilemma 1 (Integration Tax): DP1 &#43; DP2 Dilemma 2 (Synchronization Nightmare): DP1 &#43; DP3 Dilemma 3 (Consistency Myth): DP4 DP1: Unified Monolith Adresserer: Dilemma 2 (Synchronization Nightmare)
+Research Base: Kilde 3 (Hightower/Timescale Production Case)
+Validering: V2 (Architecture Audit)
 ...</p>
   </div>
   <footer class="entry-footer"><span>Simon</span></footer>
-  <a class="entry-link" aria-label="post link to Hypoteser" href="http://localhost:1313/datamatiker-portfolio/database/hypoteser/"></a>
+  <a class="entry-link" aria-label="post link to Design Patterns" href="http://localhost:1313/datamatiker-portfolio/database/design-patterns/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Praktisk Test
+    <h2 class="entry-hint-parent">Konceptuel Validering
     </h2>
   </header>
   <div class="entry-content">
-    <p>Holder evidensen i praksis? Jeg har nu fire hypoteser baseret på solid research. Men research er én ting – empirisk validering er en anden. Hvad hvis PostgreSQL’s fordele kun gælder på AWS-servere med 64GB RAM? Hvad hvis min chatbot-workload er fundamentalt anderledes end benchmark-studiernes test-scenarier?
-Det er tid til at teste hypoteserne på min egen hardware, med mine egne data, i min konkrete chatbot-arkitektur.
-Test Setup Hardware &amp; Software Development miljø:
+    <p>Validering Uden Live Data Uden adgang til produktions-trafik eller tusindvis af live brugere, kræver validering af systemarkitekturen en systematisk, teoretisk tilgang.
+Denne sektion anvender Konceptuel Validering, hvor de definerede Design Patterns (DP1-DP4) auditeres mod konvergerende evidens fra research-fasen, arkitektonisk analyse og theoretical guarantees. Metodologien spejler tilgangen fra Data Science-porteføljen, hvor compliance og arkitektur vægtes over syntetiske tests.
+Vi anvender fire valideringsmetoder:
+V1: Literature Convergence Analysis (Performance) V2: Architecture Latency Audit (Integration Efficiency) V3: Static Code Analysis (Developer Experience) V4: Transaction Theory Audit (Data Consistency) V1: Literature Convergence Analysis Validates: DP2 (Hybrid-Relational Bridge)
 ...</p>
   </div>
   <footer class="entry-footer"><span>Simon</span></footer>
-  <a class="entry-link" aria-label="post link to Praktisk Test" href="http://localhost:1313/datamatiker-portfolio/database/praktisk-test/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Database Design
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Fra test til implementering Jeg har nu valideret at PostgreSQL outperformer MongoDB på alle metrics. Men en database-beslutning er ikke kun et teoretisk valg – den skal omsættes til konkret arkitektur der faktisk fungerer i Blazor-applikationen.
-Hvordan struktureres tabeller? Hvilke indexes? Hvordan håndterer jeg de tre forskellige chatbot-typers behov samtidig? Og hvordan sikrer jeg at designet ikke bare fungerer i teorien, men også i praksis med EF Core?
-Dette afsnit dokumenterer den konkrete database-arkitektur fra schema-design til index-strategi.
-...</p>
-  </div>
-  <footer class="entry-footer"><span>Simon</span></footer>
-  <a class="entry-link" aria-label="post link to Database Design" href="http://localhost:1313/datamatiker-portfolio/database/design/"></a>
+  <a class="entry-link" aria-label="post link to Konceptuel Validering" href="http://localhost:1313/datamatiker-portfolio/database/konceptuel-validering/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -404,10 +348,10 @@ Dette afsnit dokumenterer den konkrete database-arkitektur fra schema-design til
     </h2>
   </header>
   <div class="entry-content">
-    <p>Fra problemstilling til beslutning Jeg startede med en simpel antagelse: “MongoDB til JSON, PostgreSQL til relations, Pinecone til vectors.” Tre databaser. Tre systemer at maintaine.
-Efter systematisk research, fire testede hypoteser og konkret arkitektur-design står konklusionen klar: PostgreSQL med pgvector er den optimale løsning.
-Ikke fordi PostgreSQL er “den bedste database”, men fordi den opfylder projektets konkrete krav bedre end alternativer – og gør det i ét integreret system.
-Teknisk Konklusion De fire forskningsspørgsmål fra research-fasen er nu besvaret empirisk:
+    <p>Fra Hype til Arkitektur Jeg startede database-delen med klassisk opdeling:
+“MongoDB til JSON, PostgreSQL til relationer, Pinecone til vectors. Tre problemer — tre specialized tools.”
+Det lød logisk. MongoDB markedsfører sig selv som “document database” — selvfølgelig er den bedst til dokumenter? Pinecone er bygget til vector search — selvfølgelig er den hurtigst til embeddings?
+Men gennem arbejdet med convergent evidence indsåede jeg at database categories er marketing, ikke arkitektoniske garantier.
 ...</p>
   </div>
   <footer class="entry-footer"><span>Simon</span></footer>

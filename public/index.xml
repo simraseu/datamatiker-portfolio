@@ -19,10 +19,7 @@
       <link>http://localhost:1313/datamatiker-portfolio/database/problemstilling/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/database/problemstilling/</guid>
-      <description>&lt;h2 id=&#34;fra-tre-chatbots-til-én-kritisk-beslutning&#34;&gt;Fra tre chatbots til én kritisk beslutning&lt;/h2&gt;
-&lt;p&gt;Vi skulle bygge en Blazor-webapp med tre AI-chatbots: én for gæster, én for brugere og én for administratoren. Men jeg stod overfor et fundamentalt spørgsmål: &lt;strong&gt;Hvilken database?&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Min første tanke var simpel: &amp;ldquo;MongoDB til JSON, PostgreSQL til relationel data, Pinecone til vector search.&amp;rdquo; Tre systemer. Tre databaser. Tre synkroniseringsproblemer.&lt;/p&gt;
-&lt;p&gt;Men moderne LLM&amp;rsquo;er komplicerer billedet. GPT-4 er stateless – den husker intet mellem API-kald. Derfor skal &lt;strong&gt;vi&lt;/strong&gt; gemme al kontekst. Hver besked. Hver samtale. Hver vector embedding for semantisk søgning.&lt;/p&gt;</description>
+      <description>Specialiserings-fælden og de tre arkitektoniske dilemmaer</description>
     </item>
     <item>
       <title>Læringsmål</title>
@@ -133,7 +130,7 @@
       <link>http://localhost:1313/datamatiker-portfolio/database/research/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/database/research/</guid>
-      <description>Systematisk litteratursøgning og evidensindsamling</description>
+      <description>Systematisk litteratursøgning og triangulering af evidens</description>
     </item>
     <item>
       <title>Design Patterns</title>
@@ -143,11 +140,11 @@
       <description>Fire arkitektoniske regler for etisk og effektiv analytics</description>
     </item>
     <item>
-      <title>Hypoteser</title>
-      <link>http://localhost:1313/datamatiker-portfolio/database/hypoteser/</link>
+      <title>Design Patterns</title>
+      <link>http://localhost:1313/datamatiker-portfolio/database/design-patterns/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/datamatiker-portfolio/database/hypoteser/</guid>
-      <description>Fra evidens til testbare påstande</description>
+      <guid>http://localhost:1313/datamatiker-portfolio/database/design-patterns/</guid>
+      <description>Fire normative regler for en Unified Persistence Architecture</description>
     </item>
     <item>
       <title>Implementation &amp; Validation</title>
@@ -157,18 +154,11 @@
       <description>Fra arkitektur til kode: Privacy, Lambda og konceptuel validering</description>
     </item>
     <item>
-      <title>Praktisk Test</title>
-      <link>http://localhost:1313/datamatiker-portfolio/database/praktisk-test/</link>
+      <title>Konceptuel Validering</title>
+      <link>http://localhost:1313/datamatiker-portfolio/database/konceptuel-validering/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/datamatiker-portfolio/database/praktisk-test/</guid>
-      <description>Empirisk validering af hypoteserne</description>
-    </item>
-    <item>
-      <title>Database Design</title>
-      <link>http://localhost:1313/datamatiker-portfolio/database/design/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/datamatiker-portfolio/database/design/</guid>
-      <description>Konkret arkitektur baseret på testresultater</description>
+      <guid>http://localhost:1313/datamatiker-portfolio/database/konceptuel-validering/</guid>
+      <description>Systematisk audit af arkitektur gennem teoretisk analyse</description>
     </item>
     <item>
       <title>Konklusion</title>
@@ -182,7 +172,7 @@
       <link>http://localhost:1313/datamatiker-portfolio/database/konklusion/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/database/konklusion/</guid>
-      <description>Læringer, læringsmål og samfundsperspektiver</description>
+      <description>Refleksion over læring, Green IT og arkitektonisk modenhed</description>
     </item>
   </channel>
 </rss>
