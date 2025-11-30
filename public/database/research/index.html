@@ -168,18 +168,20 @@
                     <a href="#de-fem-kilder-i-dybden" aria-label="De Fem Kilder i Dybden">De Fem Kilder i Dybden</a><ul>
                         
                 <li>
-                    <a href="#kilde-1-ongres-postgresql-vs-mongodb-vendor-benchmark" aria-label="Kilde 1: OnGres PostgreSQL vs MongoDB (Vendor Benchmark)">Kilde 1: OnGres PostgreSQL vs MongoDB (Vendor Benchmark)</a></li>
+                    <a href="#kilde-1-ongres-postgresql-vs-mongodb-vendor-benchmark" aria-label="Kilde 1: OnGres PostgreSQL vs MongoDB (Vendor Benchmark)1">Kilde 1: OnGres PostgreSQL vs MongoDB (Vendor Benchmark)1</a></li>
                 <li>
-                    <a href="#kilde-2-makris-et-al--nosql-vs-relational-peer-reviewed" aria-label="Kilde 2: Makris et al. — NoSQL vs Relational (Peer-Reviewed)">Kilde 2: Makris et al. — NoSQL vs Relational (Peer-Reviewed)</a></li>
+                    <a href="#kilde-2-makris-et-al--nosql-vs-relational-peer-reviewed" aria-label="Kilde 2: Makris et al. — NoSQL vs Relational (Peer-Reviewed)2">Kilde 2: Makris et al. — NoSQL vs Relational (Peer-Reviewed)2</a></li>
                 <li>
-                    <a href="#kilde-3-hightowertimescale--pgvector-production-case" aria-label="Kilde 3: Hightower/Timescale — pgvector Production Case">Kilde 3: Hightower/Timescale — pgvector Production Case</a></li>
+                    <a href="#kilde-3-hightowertimescale--pgvector-production-case" aria-label="Kilde 3: Hightower/Timescale — pgvector Production Case3">Kilde 3: Hightower/Timescale — pgvector Production Case3</a></li>
                 <li>
-                    <a href="#kilde-4-microsoft-ef-core-documentation-official-docs" aria-label="Kilde 4: Microsoft EF Core Documentation (Official Docs)">Kilde 4: Microsoft EF Core Documentation (Official Docs)</a></li>
+                    <a href="#kilde-4-microsoft-ef-core-documentation-official-docs" aria-label="Kilde 4: Microsoft EF Core Documentation (Official Docs)4">Kilde 4: Microsoft EF Core Documentation (Official Docs)4</a></li>
                 <li>
-                    <a href="#kilde-5-aws-acid-vs-base-guide-technical-documentation" aria-label="Kilde 5: AWS ACID vs BASE Guide (Technical Documentation)">Kilde 5: AWS ACID vs BASE Guide (Technical Documentation)</a></li></ul>
+                    <a href="#kilde-5-aws-acid-vs-base-guide-technical-documentation" aria-label="Kilde 5: AWS ACID vs BASE Guide (Technical Documentation)5">Kilde 5: AWS ACID vs BASE Guide (Technical Documentation)5</a></li></ul>
                 </li>
                 <li>
-                    <a href="#samlet-analyse-convergent-evidence" aria-label="Samlet Analyse: Convergent Evidence">Samlet Analyse: Convergent Evidence</a>
+                    <a href="#samlet-analyse-convergent-evidence" aria-label="Samlet Analyse: Convergent Evidence">Samlet Analyse: Convergent Evidence</a></li>
+                <li>
+                    <a href="#referencer" aria-label="Referencer">Referencer</a>
                 </li>
             </ul>
         </div>
@@ -242,8 +244,8 @@
 <p><strong>Convergent finding:</strong> Alle kilder peger mod PostgreSQL som optimal unified platform uden performance-tab.</p>
 <hr>
 <h2 id="de-fem-kilder-i-dybden">De Fem Kilder i Dybden<a hidden class="anchor" aria-hidden="true" href="#de-fem-kilder-i-dybden">#</a></h2>
-<h3 id="kilde-1-ongres-postgresql-vs-mongodb-vendor-benchmark">Kilde 1: OnGres PostgreSQL vs MongoDB (Vendor Benchmark)<a hidden class="anchor" aria-hidden="true" href="#kilde-1-ongres-postgresql-vs-mongodb-vendor-benchmark">#</a></h3>
-<p><strong>Reference:</strong> OnGres Inc. (2023). &ldquo;PostgreSQL vs MongoDB: JSON Performance Analysis&rdquo;<br>
+<h3 id="kilde-1-ongres-postgresql-vs-mongodb-vendor-benchmark">Kilde 1: OnGres PostgreSQL vs MongoDB (Vendor Benchmark)<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup><a hidden class="anchor" aria-hidden="true" href="#kilde-1-ongres-postgresql-vs-mongodb-vendor-benchmark">#</a></h3>
+<p><strong>Reference:</strong> OnGres Inc. (2023). &ldquo;PostgreSQL vs MongoDB: JSON Performance Analysis&rdquo;
 <strong>Type:</strong> Vendor benchmark (bias-aware — OnGres sells PostgreSQL support)</p>
 <p><strong>Main Finding:</strong> PostgreSQL JSONB queries 26-40× hurtigere end MongoDB BSON på identical hardware.</p>
 <p><strong>Test setup:</strong> AWS m5.2xlarge, 1M JSON documents, aggregation pipeline queries.</p>
@@ -267,7 +269,7 @@
 <p><strong>Limitation:</strong> Vendor-funded (potential bias). Men resultat replicated af independent Makris et al. study (Kilde 2).</p>
 </details>
 <hr>
-<h3 id="kilde-2-makris-et-al--nosql-vs-relational-peer-reviewed">Kilde 2: Makris et al. — NoSQL vs Relational (Peer-Reviewed)<a hidden class="anchor" aria-hidden="true" href="#kilde-2-makris-et-al--nosql-vs-relational-peer-reviewed">#</a></h3>
+<h3 id="kilde-2-makris-et-al--nosql-vs-relational-peer-reviewed">Kilde 2: Makris et al. — NoSQL vs Relational (Peer-Reviewed)<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup><a hidden class="anchor" aria-hidden="true" href="#kilde-2-makris-et-al--nosql-vs-relational-peer-reviewed">#</a></h3>
 <p><strong>Reference:</strong> Makris, A., Tserpes, K., Spiliopoulos, G., &amp; Anagnostopoulos, D. (2019). &ldquo;A Comparison of NoSQL Database Systems for Large-Scale Storage&rdquo;. Springer LNCS<br>
 <strong>Type:</strong> Peer-reviewed academic study (&gt;120 citations)</p>
 <p><strong>Main Finding:</strong> PostgreSQL 4× mindre disk space og 4× hurtigere queries sammenlignet med MongoDB.</p>
@@ -294,7 +296,7 @@
 <p><strong>Relevans for chatbot:</strong> Chatbot workload is 90% reads (load conversations) vs 10% writes (save messages). PostgreSQL optimal.</p>
 </details>
 <hr>
-<h3 id="kilde-3-hightowertimescale--pgvector-production-case">Kilde 3: Hightower/Timescale — pgvector Production Case<a hidden class="anchor" aria-hidden="true" href="#kilde-3-hightowertimescale--pgvector-production-case">#</a></h3>
+<h3 id="kilde-3-hightowertimescale--pgvector-production-case">Kilde 3: Hightower/Timescale — pgvector Production Case<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup><a hidden class="anchor" aria-hidden="true" href="#kilde-3-hightowertimescale--pgvector-production-case">#</a></h3>
 <p><strong>Reference:</strong> Hightower, J. (2023). &ldquo;Production RAG Architectures with pgvector&rdquo;. Timescale Engineering Blog<br>
 <strong>Type:</strong> Production case study (real company deployment)</p>
 <p><strong>Main Finding:</strong> pgvector eliminates need for separate vector database (Pinecone/Weaviate) uden performance-tab.</p>
@@ -323,7 +325,7 @@
 </span></span></code></pre></div><p><strong>Key insight:</strong> Native integration enables combined queries impossible in polyglot setup.</p>
 </details>
 <hr>
-<h3 id="kilde-4-microsoft-ef-core-documentation-official-docs">Kilde 4: Microsoft EF Core Documentation (Official Docs)<a hidden class="anchor" aria-hidden="true" href="#kilde-4-microsoft-ef-core-documentation-official-docs">#</a></h3>
+<h3 id="kilde-4-microsoft-ef-core-documentation-official-docs">Kilde 4: Microsoft EF Core Documentation (Official Docs)<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup><a hidden class="anchor" aria-hidden="true" href="#kilde-4-microsoft-ef-core-documentation-official-docs">#</a></h3>
 <p><strong>Reference:</strong> Microsoft. (2024). &ldquo;Entity Framework Core Provider Feature Comparison&rdquo;<br>
 <strong>Type:</strong> Official documentation (authoritative source)</p>
 <p><strong>Main Finding:</strong> PostgreSQL provider supports 100% of EF Core features. MongoDB provider supports ~60%.</p>
@@ -386,7 +388,7 @@
 </span></span></code></pre></div><p><strong>Result:</strong> 47% more code for identical functionality.</p>
 </details>
 <hr>
-<h3 id="kilde-5-aws-acid-vs-base-guide-technical-documentation">Kilde 5: AWS ACID vs BASE Guide (Technical Documentation)<a hidden class="anchor" aria-hidden="true" href="#kilde-5-aws-acid-vs-base-guide-technical-documentation">#</a></h3>
+<h3 id="kilde-5-aws-acid-vs-base-guide-technical-documentation">Kilde 5: AWS ACID vs BASE Guide (Technical Documentation)<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup><a hidden class="anchor" aria-hidden="true" href="#kilde-5-aws-acid-vs-base-guide-technical-documentation">#</a></h3>
 <p><strong>Reference:</strong> Amazon Web Services. (2023). &ldquo;Database Consistency Models: ACID vs BASE&rdquo;<br>
 <strong>Type:</strong> Technical guide (cloud provider best practices)</p>
 <p><strong>Main Finding:</strong> Strong consistency (ACID) does not inherently sacrifice performance. Modern implementations outperform BASE in many scenarios.</p>
@@ -475,6 +477,28 @@
 <p><strong>Kritisk erkendelse:</strong> Når vendor benchmarks, peer-reviewed forskning, production cases og official documentation alle peger samme retning, opstår <strong>convergent validity</strong>.</p>
 <p>Evidensen er klar: PostgreSQL med pgvector kan erstatte MongoDB + Pinecone uden performance-tab og med bedre developer experience.</p>
 <p><strong>Næste:</strong> <a href="/datamatiker-portfolio/database/design-patterns/">Design Patterns →</a></p>
+<hr>
+<h2 id="referencer">Referencer<a hidden class="anchor" aria-hidden="true" href="#referencer">#</a></h2>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>OnGres Inc. (2023). &ldquo;PostgreSQL vs MongoDB: JSON Performance Analysis&rdquo;. Vendor Benchmark.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Makris, A., Tserpes, K., Spiliopoulos, G., &amp; Anagnostopoulos, D. (2019). &ldquo;A Comparison of NoSQL Database Systems for Large-Scale Storage&rdquo;. Springer LNCS.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>Hightower, J. (2023). &ldquo;Production RAG Architectures with pgvector&rdquo;. Timescale Engineering Blog.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>Microsoft. (2024). &ldquo;Entity Framework Core Provider Feature Comparison&rdquo;. Official Documentation.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p>Amazon Web Services. (2023). &ldquo;Database Consistency Models: ACID vs BASE&rdquo;. Technical Guide.&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
 
 
   </div>

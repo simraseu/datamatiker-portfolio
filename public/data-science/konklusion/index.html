@@ -173,7 +173,7 @@
                     <a href="#goodharts-law-er-overalt" aria-label="Goodhart&rsquo;s Law Er Overalt">Goodhart&rsquo;s Law Er Overalt</a></li></ul>
                 </li>
                 <li>
-                    <a href="#opfyldelse-af-l%c3%a6ringsm%c3%a5l-6-10" aria-label="Opfyldelse af Læringsmål 6-10">Opfyldelse af Læringsmål 6-10</a></li>
+                    <a href="#opfyldelse-af-l%c3%a6ringsm%c3%a5l-data-science--analytics" aria-label="Opfyldelse af Læringsmål (Data Science &amp; Analytics)">Opfyldelse af Læringsmål (Data Science &amp; Analytics)</a></li>
                 <li>
                     <a href="#samfundsm%c3%a6ssige-perspektiver" aria-label="Samfundsmæssige Perspektiver">Samfundsmæssige Perspektiver</a><ul>
                         
@@ -248,11 +248,11 @@
 <p><strong>Løsning:</strong> Context-aware KPIs definerer success forskelligt per chatbot type. Guest måles på efficiency, Authenticated på engagement, Owner på reliability. Universelle metrics er inherently gamebare.</p>
 <p><strong>Takeaway:</strong> Success skal defineres relativt til use case.</p>
 <hr>
-<h2 id="opfyldelse-af-læringsmål-6-10">Opfyldelse af Læringsmål 6-10<a hidden class="anchor" aria-hidden="true" href="#opfyldelse-af-læringsmål-6-10">#</a></h2>
+<h2 id="opfyldelse-af-læringsmål-data-science--analytics">Opfyldelse af Læringsmål (Data Science &amp; Analytics)<a hidden class="anchor" aria-hidden="true" href="#opfyldelse-af-læringsmål-data-science--analytics">#</a></h2>
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">Læringsmål</th>
+          <th style="text-align: left">Læringsmål (fra definition)</th>
           <th style="text-align: left">Opfyldelse</th>
           <th style="text-align: left">Evidens</th>
           <th style="text-align: left">Refleksion</th>
@@ -260,34 +260,34 @@
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left"><strong>LM6: Context-Aware KPI Design</strong></td>
-          <td style="text-align: left">Designet differentierede KPIs baseret på HEART/AARRR med Goodhart audit. Resultat: 6/8 validated, 2 vanity metrics eliminated.</td>
-          <td style="text-align: left">Research.md (Frameworks) + Design Patterns (DP4) + Implementation (Validation 4)</td>
-          <td style="text-align: left">&ldquo;Session Duration&rdquo; er god metric for streaming men misleading for task-oriented chatbots. Context matters.</td>
+          <td style="text-align: left"><strong>Viden: GDPR &amp; Metrikker</strong></td>
+          <td style="text-align: left">Opnåede dyb indsigt i GDPR Art. 25 (Privacy by Design) og Goodhart’s Law. Identificerede risikoen ved &ldquo;Vanity Metrics&rdquo; i chatbots.</td>
+          <td style="text-align: left">Research (Kilde 3+5) + Design Patterns (DP2+DP4)</td>
+          <td style="text-align: left">Jeg lærte, at jura og matematik hænger sammen. Hvis man ignorerer Goodhart’s Law, designer man systemer, der optimerer mod fejl (f.eks. lange sessioner i stedet for gode svar).</td>
       </tr>
       <tr>
-          <td style="text-align: left"><strong>LM7: Privacy-First Data Collection</strong></td>
-          <td style="text-align: left">Implementeret GDPR Art. 5, 9, 15, 17, 25 gennem anonymization-at-source. Resultat: 5/5 articles compliant, ingen PII persisteres.</td>
-          <td style="text-align: left">Research.md (GDPR) + Implementation (Privacy-First Logging + GDPR Table)</td>
-          <td style="text-align: left">Privacy-first tvinger reversal: &ldquo;Hvad er minimum data vi SKAL have?&rdquo; – ikke &ldquo;Hvad kan vi bygge?&rdquo;</td>
+          <td style="text-align: left"><strong>Viden: Lambda Arkitektur</strong></td>
+          <td style="text-align: left">Forstod principperne bag at separere real-time og historisk data for at balancere drift og analyse.</td>
+          <td style="text-align: left">Research (Kleppmann) + Design Patterns (DP3)</td>
+          <td style="text-align: left">Enterprise-arkitektur som Lambda kan skaleres ned. Princippet om at adskille &ldquo;Speed Layer&rdquo; og &ldquo;Batch Layer&rdquo; er universelt, uanset datamængde.</td>
       </tr>
       <tr>
-          <td style="text-align: left"><strong>LM8: Dual-Speed Analytics</strong></td>
-          <td style="text-align: left">Designet Lambda Lite med Hot (&lt;100ms) og Cold (&lt;5 sec) paths. Architectural separation verified.</td>
-          <td style="text-align: left">Research.md (Kleppmann) + Design Patterns (DP3) + Implementation (Lambda Lite)</td>
-          <td style="text-align: left">Man kan adaptere enterprise patterns til MVP ved at bevare kerneprincippet. Kafka er overkill, men hot/cold separation er universelt.</td>
+          <td style="text-align: left"><strong>Færdigheder: Privacy-First Pipeline</strong></td>
+          <td style="text-align: left">Udviklede C#-pipeline med SHA-256 hashing og Intent Classification. Sikrede at ingen fritekst persisteres.</td>
+          <td style="text-align: left">Implementation (HashingService + IntentClassifier)</td>
+          <td style="text-align: left">Det krævede disciplin at forkaste rå data. Men ved at transformere &ldquo;Jeg har ondt&rdquo; til kategorien &ldquo;health_query&rdquo; før lagring, fjernede jeg GDPR-risikoen ved kilden.</td>
       </tr>
       <tr>
-          <td style="text-align: left"><strong>LM9: Stakeholder Dashboards</strong></td>
-          <td style="text-align: left">Mappet metrics til tre separate dashboards uden cross-contamination. Engineering/Product/Executive ser kun actionable data.</td>
-          <td style="text-align: left">Design Patterns (DP4) + Implementation (Dashboard Mapping)</td>
-          <td style="text-align: left">&ldquo;Vis alt og lad stakeholders filtrere&rdquo; skaber decision paralysis. Curated views &gt; information overload.</td>
+          <td style="text-align: left"><strong>Færdigheder: Dual-Speed Arkitektur</strong></td>
+          <td style="text-align: left">Implementerede &ldquo;Lambda Lite&rdquo; med in-memory counters (Hot Path) og SQL-batching (Cold Path).</td>
+          <td style="text-align: left">Implementation (HotPathMonitor + SQL Schema)</td>
+          <td style="text-align: left">Teknisk separation er nødvendig for at opfylde modstridende krav: Owner skal have alarmer <em>nu</em> (&lt;1s), mens Product skal have præcise trends <em>senere</em>.</td>
       </tr>
       <tr>
-          <td style="text-align: left"><strong>LM10: Validation Without Live Data</strong></td>
-          <td style="text-align: left">Udviklet multi-method validation. Privacy: 5/5 GDPR, SMART: 6/8 valid, Lambda: verified, Goodhart: resistant.</td>
-          <td style="text-align: left">Implementation (Konceptuel Validation, 4 audits)</td>
-          <td style="text-align: left">Teoretisk analyse kan være stringent når validation method matcher claim type.</td>
+          <td style="text-align: left"><strong>Kompetencer: Etik &amp; Dashboards</strong></td>
+          <td style="text-align: left">Designerede Context-Aware dashboards tilpasset stakeholders (Owner/Product). Reflekterede over etiske trade-offs ved anonymisering (f.eks. manglende krisedetektion).</td>
+          <td style="text-align: left">Design Patterns (DP1+DP4) + Konklusion (Samfund)</td>
+          <td style="text-align: left">Jeg bevægede mig fra &ldquo;Vis alt data&rdquo; til &ldquo;Vis det rigtige data&rdquo;. Demokratisering af data kræver, at man skjuler irrelevante metrikker for at undgå beslutningsforvirring.</td>
       </tr>
   </tbody>
 </table>

@@ -29,9 +29,9 @@ Denne filtrering sikrede at Design Patterns bygger på solid evidens, ikke subje
 
 ## De Fem Kilder i Dybden
 
-### Kilde 1: OnGres PostgreSQL vs MongoDB (Vendor Benchmark)
+### Kilde 1: OnGres PostgreSQL vs MongoDB (Vendor Benchmark)[^1] 
 
-**Reference:** OnGres Inc. (2023). "PostgreSQL vs MongoDB: JSON Performance Analysis"  
+**Reference:** OnGres Inc. (2023). "PostgreSQL vs MongoDB: JSON Performance Analysis"
 **Type:** Vendor benchmark (bias-aware — OnGres sells PostgreSQL support)
 
 **Main Finding:** PostgreSQL JSONB queries 26-40× hurtigere end MongoDB BSON på identical hardware.
@@ -60,7 +60,7 @@ Denne filtrering sikrede at Design Patterns bygger på solid evidens, ikke subje
 
 ---
 
-### Kilde 2: Makris et al. — NoSQL vs Relational (Peer-Reviewed)
+### Kilde 2: Makris et al. — NoSQL vs Relational (Peer-Reviewed)[^2] 
 
 **Reference:** Makris, A., Tserpes, K., Spiliopoulos, G., & Anagnostopoulos, D. (2019). "A Comparison of NoSQL Database Systems for Large-Scale Storage". Springer LNCS  
 **Type:** Peer-reviewed academic study (>120 citations)
@@ -92,7 +92,7 @@ Denne filtrering sikrede at Design Patterns bygger på solid evidens, ikke subje
 
 ---
 
-### Kilde 3: Hightower/Timescale — pgvector Production Case
+### Kilde 3: Hightower/Timescale — pgvector Production Case[^3] 
 
 **Reference:** Hightower, J. (2023). "Production RAG Architectures with pgvector". Timescale Engineering Blog  
 **Type:** Production case study (real company deployment)
@@ -130,7 +130,7 @@ LIMIT 10;
 
 ---
 
-### Kilde 4: Microsoft EF Core Documentation (Official Docs)
+### Kilde 4: Microsoft EF Core Documentation (Official Docs)[^4] 
 
 **Reference:** Microsoft. (2024). "Entity Framework Core Provider Feature Comparison"  
 **Type:** Official documentation (authoritative source)
@@ -182,7 +182,7 @@ foreach (var conv in conversations) {
 
 ---
 
-### Kilde 5: AWS ACID vs BASE Guide (Technical Documentation)
+### Kilde 5: AWS ACID vs BASE Guide (Technical Documentation)[^5] 
 
 **Reference:** Amazon Web Services. (2023). "Database Consistency Models: ACID vs BASE"  
 **Type:** Technical guide (cloud provider best practices)
@@ -233,3 +233,12 @@ De fem kilder peger på én samlet, konsistent løsning:
 Evidensen er klar: PostgreSQL med pgvector kan erstatte MongoDB + Pinecone uden performance-tab og med bedre developer experience.
 
 **Næste:** [Design Patterns →]({{< relref "database/design-patterns.md" >}})
+
+
+---
+## Referencer
+[^1]: OnGres Inc. (2023). "PostgreSQL vs MongoDB: JSON Performance Analysis". Vendor Benchmark.
+[^2]: Makris, A., Tserpes, K., Spiliopoulos, G., & Anagnostopoulos, D. (2019). "A Comparison of NoSQL Database Systems for Large-Scale Storage". Springer LNCS.
+[^3]: Hightower, J. (2023). "Production RAG Architectures with pgvector". Timescale Engineering Blog.
+[^4]: Microsoft. (2024). "Entity Framework Core Provider Feature Comparison". Official Documentation.
+[^5]: Amazon Web Services. (2023). "Database Consistency Models: ACID vs BASE". Technical Guide.

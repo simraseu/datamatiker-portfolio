@@ -1,5 +1,5 @@
 ---
-title: "Implementation & Validation"
+title: "Implementation & Validering"
 draft: false
 weight: 4
 description: "Fra arkitektur til kode: Privacy, Lambda og konceptuel validering"

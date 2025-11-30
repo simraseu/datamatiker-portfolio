@@ -8,8 +8,6 @@
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/data-science/</loc>
   </url><url>
-    <loc>http://localhost:1313/datamatiker-portfolio/database/</loc>
-  </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/om-projektet/</loc>
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/data-science/research/</loc>
@@ -21,6 +19,8 @@
     <loc>http://localhost:1313/datamatiker-portfolio/database/design-patterns/</loc>
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/laeringsmaal/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamatiker-portfolio/database/</loc>
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/data-science/implementation/</loc>
   </url><url>

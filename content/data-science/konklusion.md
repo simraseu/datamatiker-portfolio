@@ -61,15 +61,15 @@ Uden live traffic kræver validation systematisk teoretisk analyse.
 
 ---
 
-## Opfyldelse af Læringsmål 6-10
+## Opfyldelse af Læringsmål (Data Science & Analytics)
 
-| Læringsmål | Opfyldelse | Evidens | Refleksion |
-|:-----------|:-----------|:--------|:-----------|
-| **LM6: Context-Aware KPI Design** | Designet differentierede KPIs baseret på HEART/AARRR med Goodhart audit. Resultat: 6/8 validated, 2 vanity metrics eliminated. | Research.md (Frameworks) + Design Patterns (DP4) + Implementation (Validation 4) | "Session Duration" er god metric for streaming men misleading for task-oriented chatbots. Context matters. |
-| **LM7: Privacy-First Data Collection** | Implementeret GDPR Art. 5, 9, 15, 17, 25 gennem anonymization-at-source. Resultat: 5/5 articles compliant, ingen PII persisteres. | Research.md (GDPR) + Implementation (Privacy-First Logging + GDPR Table) | Privacy-first tvinger reversal: "Hvad er minimum data vi SKAL have?" – ikke "Hvad kan vi bygge?" |
-| **LM8: Dual-Speed Analytics** | Designet Lambda Lite med Hot (<100ms) og Cold (<5 sec) paths. Architectural separation verified. | Research.md (Kleppmann) + Design Patterns (DP3) + Implementation (Lambda Lite) | Man kan adaptere enterprise patterns til MVP ved at bevare kerneprincippet. Kafka er overkill, men hot/cold separation er universelt. |
-| **LM9: Stakeholder Dashboards** | Mappet metrics til tre separate dashboards uden cross-contamination. Engineering/Product/Executive ser kun actionable data. | Design Patterns (DP4) + Implementation (Dashboard Mapping) | "Vis alt og lad stakeholders filtrere" skaber decision paralysis. Curated views > information overload. |
-| **LM10: Validation Without Live Data** | Udviklet multi-method validation. Privacy: 5/5 GDPR, SMART: 6/8 valid, Lambda: verified, Goodhart: resistant. | Implementation (Konceptuel Validation, 4 audits) | Teoretisk analyse kan være stringent når validation method matcher claim type. |
+| Læringsmål (fra definition) | Opfyldelse | Evidens | Refleksion |
+|:---|:---|:---|:---|
+| **Viden: GDPR & Metrikker** | Opnåede dyb indsigt i GDPR Art. 25 (Privacy by Design) og Goodhart’s Law. Identificerede risikoen ved "Vanity Metrics" i chatbots. | Research (Kilde 3+5) + Design Patterns (DP2+DP4) | Jeg lærte, at jura og matematik hænger sammen. Hvis man ignorerer Goodhart’s Law, designer man systemer, der optimerer mod fejl (f.eks. lange sessioner i stedet for gode svar). |
+| **Viden: Lambda Arkitektur** | Forstod principperne bag at separere real-time og historisk data for at balancere drift og analyse. | Research (Kleppmann) + Design Patterns (DP3) | Enterprise-arkitektur som Lambda kan skaleres ned. Princippet om at adskille "Speed Layer" og "Batch Layer" er universelt, uanset datamængde. |
+| **Færdigheder: Privacy-First Pipeline** | Udviklede C#-pipeline med SHA-256 hashing og Intent Classification. Sikrede at ingen fritekst persisteres. | Implementation (HashingService + IntentClassifier) | Det krævede disciplin at forkaste rå data. Men ved at transformere "Jeg har ondt" til kategorien "health_query" før lagring, fjernede jeg GDPR-risikoen ved kilden. |
+| **Færdigheder: Dual-Speed Arkitektur** | Implementerede "Lambda Lite" med in-memory counters (Hot Path) og SQL-batching (Cold Path). | Implementation (HotPathMonitor + SQL Schema) | Teknisk separation er nødvendig for at opfylde modstridende krav: Owner skal have alarmer *nu* (<1s), mens Product skal have præcise trends *senere*. |
+| **Kompetencer: Etik & Dashboards** | Designerede Context-Aware dashboards tilpasset stakeholders (Owner/Product). Reflekterede over etiske trade-offs ved anonymisering (f.eks. manglende krisedetektion). | Design Patterns (DP1+DP4) + Konklusion (Samfund) | Jeg bevægede mig fra "Vis alt data" til "Vis det rigtige data". Demokratisering af data kræver, at man skjuler irrelevante metrikker for at undgå beslutningsforvirring. |
 
 ---
 

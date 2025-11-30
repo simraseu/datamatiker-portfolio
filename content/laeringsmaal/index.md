@@ -54,7 +54,7 @@ Mit mål er at bevise, at man kan skabe værdi gennem dataanalyse uden at gå p�
 
 ---
 
-## 📈 Evaluering
+## Evaluering
 Opfyldelsen af disse mål er dokumenteret gennem mine analyser og implementeringer, hvor teorien er omsat til praksis:
 * [Database & Storage Analyse]({{< relref "database/_index.md" >}})
 * [Data Science & Analytics Analyse]({{< relref "data-science/_index.md" >}})
