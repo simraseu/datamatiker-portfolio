@@ -22,103 +22,6 @@
       <description>Specialiserings-fælden og de tre arkitektoniske dilemmaer</description>
     </item>
     <item>
-      <title>Læringsmål</title>
-      <link>http://localhost:1313/datamatiker-portfolio/laeringsmaal/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/datamatiker-portfolio/laeringsmaal/</guid>
-      <description>&lt;p&gt;Her dokumenterer jeg alle 10 læringsmål fra mine to specialiseringsområder.&lt;/p&gt;
-&lt;h2 id=&#34;database-og-storage-15&#34;&gt;Database og Storage (1–5)&lt;/h2&gt;
-&lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;#&lt;/th&gt;
-          &lt;th&gt;Læringsmål&lt;/th&gt;
-          &lt;th&gt;Hvordan opnået&lt;/th&gt;
-          &lt;th&gt;Kobling til moduler&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;Vector Search&lt;/td&gt;
-          &lt;td&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/td&gt;
-          &lt;td&gt;Modul 6&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;2&lt;/td&gt;
-          &lt;td&gt;ACID vs BASE&lt;/td&gt;
-          &lt;td&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/td&gt;
-          &lt;td&gt;Modul 13-14&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;3&lt;/td&gt;
-          &lt;td&gt;ORM Integration&lt;/td&gt;
-          &lt;td&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/td&gt;
-          &lt;td&gt;Modul 9&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;4&lt;/td&gt;
-          &lt;td&gt;Holistisk evaluering&lt;/td&gt;
-          &lt;td&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/td&gt;
-          &lt;td&gt;Modul 3, 6, 13&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;5&lt;/td&gt;
-          &lt;td&gt;Systematisk research&lt;/td&gt;
-          &lt;td&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/td&gt;
-          &lt;td&gt;Modul 1&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;data-science-og-analytics-610&#34;&gt;Data Science og Analytics (6–10)&lt;/h2&gt;
-&lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;#&lt;/th&gt;
-          &lt;th&gt;Læringsmål&lt;/th&gt;
-          &lt;th&gt;Hvordan opnået&lt;/th&gt;
-          &lt;th&gt;Kobling til moduler&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;6&lt;/td&gt;
-          &lt;td&gt;KPI Framework&lt;/td&gt;
-          &lt;td&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/td&gt;
-          &lt;td&gt;Modul 3&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;7&lt;/td&gt;
-          &lt;td&gt;Brugeradfærd&lt;/td&gt;
-          &lt;td&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/td&gt;
-          &lt;td&gt;Modul 4&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;8&lt;/td&gt;
-          &lt;td&gt;Data pipeline&lt;/td&gt;
-          &lt;td&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/td&gt;
-          &lt;td&gt;Modul 6&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;9&lt;/td&gt;
-          &lt;td&gt;Statistik og visualisering&lt;/td&gt;
-          &lt;td&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/td&gt;
-          &lt;td&gt;Modul 1, 7&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;10&lt;/td&gt;
-          &lt;td&gt;Privacy-preserving analytics&lt;/td&gt;
-          &lt;td&gt;&lt;em&gt;(Placeholder)&lt;/em&gt;&lt;/td&gt;
-          &lt;td&gt;Modul 13, GDPR&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;kolbs-læringscirkel&#34;&gt;Kolbs læringscirkel&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;(Placeholder – skrives senere sammen med Blog)&lt;/em&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>Research</title>
       <link>http://localhost:1313/datamatiker-portfolio/data-science/research/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -145,6 +48,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/database/design-patterns/</guid>
       <description>Fire normative regler for en Unified Persistence Architecture</description>
+    </item>
+    <item>
+      <title>Læringsmål</title>
+      <link>http://localhost:1313/datamatiker-portfolio/laeringsmaal/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/datamatiker-portfolio/laeringsmaal/</guid>
+      <description>Mine faglige mål for Database og Data Science specialiseringerne</description>
     </item>
     <item>
       <title>Implementation &amp; Validation</title>
