@@ -33,7 +33,7 @@ Få hele historien på 3 minutter. Scroll ned for:
 - Evidens fra alle 5 kilder
 - Validation resultater (DP1-DP4)
 - Design beslutningen og rationale
-- Læringsmål 6-10 opfyldt
+- Læringsmål (Data Science) opfyldt
 
 ---
 
@@ -87,13 +87,13 @@ Den endelige løsning bygger på fire patterns – valideret, sammenhængende og
 
 ---
 
-### Læringsmål Opfyldt (LM 6-10)
+### Læringsmål Opfyldt
 
-- **LM6: Context-Aware KPI Design** – Differentierede KPIs baseret på HEART/AARRR. 6/8 validated, 2 vanity metrics elimineret
-- **LM7: Privacy-First Data Collection** – GDPR Art. 25 gennem anonymization-at-source. 5/5 articles compliant
-- **LM8: Dual-Speed Analytics** – Lambda Lite med Hot (<100ms) og Cold (<5 sec) paths. Separation verified
-- **LM9: Stakeholder Dashboards** – Tre dashboards (Engineering/Product/Executive) uden cross-contamination
-- **LM10: Validation Without Live Data** – Multi-method validation: SMART audit, GDPR compliance, architecture review, Goodhart audit
+- **Context-Aware KPI Design:** Differentierede KPIs baseret på HEART/AARRR. 6/8 validated, 2 vanity metrics elimineret
+- **Privacy-First Data Collection:** GDPR Art. 25 gennem anonymization-at-source. 5/5 articles compliant
+- **Dual-Speed Analytics:** Lambda Lite med Hot (<100ms) og Cold (<5 sec) paths. Separation verified
+- **Stakeholder Dashboards:** Tre dashboards (Engineering/Product/Executive) uden cross-contamination
+- **Validation Without Live Data:** Multi-method validation: SMART audit, GDPR compliance, architecture review, Goodhart audit
 
 ---
 

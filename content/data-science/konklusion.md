@@ -138,7 +138,7 @@ Jeg startede med tre dilemmas. Jeg afslutter med fire validated patterns. Analyt
 
 **Portfolio komplet:** Problemstilling → Research → Design Patterns → Implementation → Konklusion dokumenterer systematic approach til Data Science & Analytics uden live user data.
 
-**Læringsmål 6-10:** Alle opfyldt og reflekteret med konkrete resultater (6/8 KPIs, 5/5 GDPR, Lambda verified, multi-method validation).
+**Læringsmål (Data Science):** Alle opfyldt og reflekteret med konkrete resultater (6/8 KPIs, 5/5 GDPR, Lambda verified, multi-method validation).
 
 **Kritisk erkendelse:** Dataguld eller radioaktivt affald? Det bestemmes af disciplinen i designet, ikke dataen selv.
 
