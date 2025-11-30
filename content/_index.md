@@ -2,167 +2,74 @@
 title: "4. Semester Portfolio - Simon"
 ---
 
-# Velkommen til Min 4. Semester Portfolio
+# Fra Antagelse til Evidens: Min 4. Semester Portfolio
 
-Jeg hedder Simon, og dette er dokumentationen af min rejse gennem 4. semester på Datamatiker-uddannelsen. Men det er ikke bare en samling af tekniske analyser – det er historien om hvordan jeg gik fra **antagelser til evidens**, fra **problemstillinger til løsninger**, og fra **teoretisk viden til praktisk anvendelse**.
+Velkommen. Jeg hedder Simon, og dette er dokumentationen af min rejse gennem 4. semester på Datamatiker-uddannelsen.
 
-Dette semester valgte jeg to specialiseringer: **Database & Storage** og **Data Science & Analytics**. Begge blev udviklet gennem et konkret Blazor chatbot-projekt med tre forskellige chatbot-typer.
+Dette er ikke bare en samling af tekniske analyser. Det er historien om, hvordan jeg bevægede mig fra **intuitive antagelser** til **evidensbaserede beslutninger**.
 
-Men det vigtigste jeg lærte var ikke bare *hvilken database* eller *hvilke metrics* – det var **hvordan man tænker systematisk** om tekniske valg.
+Gennem udviklingen af et **Blazor chatbot-system** med to specialiseringer (**Database & Storage** og **Data Science & Analytics**) stod jeg over for klassiske dilemmaer: Skal man vælge "best-of-breed" databaser eller en samlet løsning? Er data "det nye guld" eller en privacy-risiko?
 
----
-
-## Hvad Finder Du Her?
-
-Denne portfolio dokumenterer hele min læreproces gennem 7 sider:
-
-### 📋 [Om Projektet]({{< relref "om-projektet/_index.md" >}})
-
-Hvad byggede jeg? Et Blazor chatbot-system med tre chatbot-typer (Guest, Authenticated, Owner). Forstå project context før du dykker ned i analyserne.
-
-**Læsetid:** 3 minutter
+Svarene fandt jeg ikke ved at gætte, men ved at **tænke systematisk**.
 
 ---
 
-### 🎯 [Læringsmål]({{< relref "laeringsmaal/_index.md" >}})
+## 🗺️ Oversigt: Hvad finder du her?
 
-Hvad skulle jeg lære? 10 konkrete læringsmål (5 per specialisering) sat i starten af semesteret. Dette er målene mine analyser skal opfylde.
+Portfolioen er struktureret som en rejse gennem 7 stationer:
 
-**Læsetid:** 5 minutter
+### 1. 📋 [Om Projektet]({{< relref "om-projektet/_index.md" >}})
+**Konteksten:** Hvad byggede jeg? Et system med tre chatbot-typer (Guest, Authenticated, Owner) til sundhedsplatformen *The Way of Coherence*. Læs dette først for at forstå problemstillingen.
+*(Læsetid: 3 minutter)*
 
----
+### 2. 🎯 [Læringsmål]({{< relref "laeringsmaal/_index.md" >}})
+**Kompasset:** De 10 konkrete mål (5 per specialisering), der har styret min læring fra start til slut.
+*(Læsetid: 5 minutter)*
 
-### 🗄️ [Database & Storage]({{< relref "database/_index.md" >}})
+### 3. 🗄️ [Database & Storage]({{< relref "database/_index.md" >}})
+**Analysen:** Fra "Polyglot Persistence" til "Unified Monolith".
+Jeg troede, jeg skulle bruge tre databaser (MongoDB, PostgreSQL, Pinecone). Gennem systematisk research og performance-tests beviste jeg, at én database (**PostgreSQL**) var hurtigere, billigere og mere robust.
+*(Læsetid: 20 min executive / 3 min summary)*
 
-**Analyse 1:** Hvordan valgte jeg database?
+### 4. 📊 [Data Science & Analytics]({{< relref "data-science/_index.md" >}})
+**Analysen:** Fra "Log Alt" til "Privacy-First".
+Jeg startede med at tro, data var guld. Jeg indså, at sundhedsdata er som **radioaktivt affald**: Værdifuldt, men farligt. Her ser du, hvordan jeg designede et analytics-system, der overholder GDPR by-design uden at miste forretningsværdi.
+*(Læsetid: 18 min executive / 3 min summary)*
 
-Jeg startede med antagelsen: "MongoDB til JSON, PostgreSQL til relations, Pinecone til vectors." Tre systemer.
+### 5. 🧭 [Vidensrejse]({{< relref "vidensrejse/_index.md" >}})
+**Metoden:** Hvordan lærte jeg det?
+En gennemgang af min metode: Fra tilfældig Googling til systematisk **metodisk triangulering** af kilder.
+*(Læsetid: 8 minutter)*
 
-Efter systematisk research, fire testede hypoteser og konkret arkitektur-design endte jeg med: **PostgreSQL med pgvector.** Én database. Bedre performance. Empirisk valideret.
-
-**Rejsen:**
-- Problemstilling → Research (5 kilder) → Hypoteser (4 testbare) → Praktisk Test → Design → Konklusion
-
-**Læsetid:** 20 minutter (eller 3 minutter executive summary)
-
----
-
-### 📊 [Data Science & Analytics]({{< relref "data-science/_index.md" >}})
-
-**Analyse 2:** Hvordan målte jeg chatbot success?
-
-Hvordan designer man KPI frameworks der balancerer comprehensive metrics med GDPR privacy? Hvordan undgår man vanity metrics? Hvordan bygger man actionable dashboards?
-
-**Rejsen:**
-- Problemstilling → Research (4 kilder) → Design Patterns (4 frameworks) → Implementation → Konklusion
-
-**Læsetid:** 18 minutter (eller 3 minutter executive summary)
+### 6. 💭 [Samlet Refleksion]({{< relref "refleksion/_index.md" >}})
+**Konklusionen:** Hvad tager jeg med videre?
+Evaluering af læringsmål, tværgående temaer (Privacy, TCO, DX) og min personlige udvikling som softwareudvikler.
+*(Læsetid: 7 minutter)*
 
 ---
 
-### 🧭 [Vidensrejse]({{< relref "vidensrejse/_index.md" >}})
+## 🚀 Hvordan skal du læse portfolioen?
 
-**Meta-Level:** Hvordan tilegnede jeg mig viden?
+Du kan tilgå indholdet på to måder:
 
-Dette er ikke bare dokumentation af *hvad* jeg lærte, men *hvordan* jeg lærte. Fra ad-hoc Googling til systematisk research methodology. Fra confirmation bias til evidens-triangulering.
+### A. "The Hero's Journey" (Anbefalet)
+Læs siderne kronologisk. Følg tankeprocessen fra problem til løsning.
+`Om Projektet → Læringsmål → Database → Data Science → Vidensrejse → Refleksion`
 
-**Progression:**
-- Starting Point → Database Research → Data Science Research → Integration → Meta-Refleksion
-
-**Læsetid:** 8 minutter
-
----
-
-### 💭 [Samlet Refleksion]({{< relref "refleksion/_index.md" >}})
-
-**Resolution:** Hvad lærte jeg virkelig?
-
-Alle 10 læringsmål opfyldt. Men vigtigere: cross-cutting themes (privacy, cost, developer experience), største overraskelser, og transferable skills jeg tager med videre.
-
-**Læsetid:** 7 minutter
+### B. "The Executive Approach"
+Hop direkte til konklusionerne. Hver specialiserings-side starter med et **Executive Summary**, der giver dig resultaterne på 3 minutter.
 
 ---
 
-## Hvordan Navigerer Du Portfolioen?
+## 💡 Hvad gør denne portfolio anderledes?
 
-Du har to tilgange:
-
-### 📚 Læs Hele Rejsen (Anbefalet)
-
-Følg storytelling-flowet fra start til slut:
-```
-Om Projektet → Læringsmål → Database & Storage → Data Science → Vidensrejse → Refleksion
-```
-
-**Total læsetid:** ~60 minutter
-
-**Perfekt hvis du vil:**
-- Forstå hele min tankeproces
-- Se hvordan research informerede beslutninger
-- Følge progressionen fra problem til løsning
+* **Evidens over mavefornemmelse:** Jeg argumenterer ikke ud fra popularitet ("MongoDB er smart"), men ud fra research (benchmarks, whitepapers, lovgivning).
+* **Fejl som læring:** Jeg dokumenterer åbent de antagelser, der viste sig at være forkerte. Det er her, den største læring skete.
+* **Helhedstænkning:** Jeg ser ikke Database og Data Science som isolerede siloer, men som to sider af samme sag: Hvordan gemmer og bruger vi data ansvarligt?
 
 ---
 
-### ⚡ Spring Rundt (Executive Summaries)
+### Om Mig
+Jeg er Simon, 26 år. Min profil er en blanding af **backend-arkitektur** og **systematisk analyse**. Dette semester har lært mig, at en dygtig udvikler ikke kun skriver kode – han designer løsninger, der kan forsvares teknisk, økonomisk og etisk.
 
-Hver specialisering har en **executive summary** landing page:
-
-- **[Database & Storage Executive Summary]({{< relref "database/_index.md" >}})** – 3 minutters overview (evidens, test resultater, beslutning)
-- **[Data Science Executive Summary]({{< relref "data-science/_index.md" >}})** – 3 minutters overview (patterns, implementation, validation)
-
-**Total læsetid:** ~15 minutter
-
-**Perfekt hvis du vil:**
-- Quick overview af konklusioner
-- Se test resultater med det samme
-- Vælge hvilke deep-dives du vil læse
-
----
-
-## Hvad Gør Denne Portfolio Anderledes?
-
-**1. Evidence-Based Beslutninger**
-
-Ikke "jeg valgte PostgreSQL fordi det er populært" – men "jeg researchede 5 kilder, testede 4 hypoteser, og her er resultaterne."
-
-**2. Transparent Methodology**
-
-Jeg viser både hvad der virkede OG hvad jeg ville gøre anderledes. Limitations er eksplicit dokumenteret.
-
-**3. Storytelling Over Rapport**
-
-Dette er ikke en akademisk PDF. Det er en interaktiv rejse gennem problemløsning, research, testing og refleksion.
-
-**4. Progressive Disclosure**
-
-Kort, scannable content synligt. Deep dives i collapsibles. Du vælger hvor dybt du vil gå.
-
-**5. Cross-Specialization Learnings**
-
-Privacy, performance, developer experience gennemgår BEGGE specialiseringer. Unified thinking > siloed approach.
-
----
-
-## Start Din Rejse
-
-**Ny til projektet?** Start med [Om Projektet]({{< relref "om-projektet/_index.md" >}}) for context.
-
-**Vil se læringsmålene?** Gå til [Læringsmål]({{< relref "laeringsmaal/_index.md" >}}) for alle 10 mål.
-
-**Interesseret i database-valget?** Hop til [Database & Storage]({{< relref "database/_index.md" >}}).
-
-**Vil se KPI frameworks?** Læs [Data Science & Analytics]({{< relref "data-science/_index.md" >}}).
-
-**Nysgerrig på læreprocessen?** Udforsk [Vidensrejse]({{< relref "vidensrejse/_index.md" >}}).
-
-**Vil se den store konklusion?** Start med [Samlet Refleksion]({{< relref "refleksion/_index.md" >}}).
-
----
-
-## Om Mig
-
-Jeg er Simon, 26 år, og studerer Datamatiker med fokus på backend-udvikling, trading systems og systematisk beslutningstagning. Dette semester lærte jeg ikke bare at vælge teknologier – jeg lærte at **tænke systematisk om tekniske valg**.
-
-Denne kompetence tager jeg med til praktik, job og fremtidige projekter.
-
-**Lad os starte rejsen →** [Om Projektet]({{< relref "om-projektet/_index.md" >}})
+**Start rejsen her:** [Om Projektet]({{< relref "om-projektet/_index.md" >}})
