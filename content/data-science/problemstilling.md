@@ -5,7 +5,7 @@ weight: 1
 description: "Fra 'log alt' til privacy-first analytics: Dilemmaet mellem indsigt og etik"
 ---
 
-## Dataguld eller radioaktivt affald?
+## Dataguld eller radioaktivt affald?[^6]
 
 Jeg startede Data Science-delen af projektet med en klassisk antagelse: **"Data er guld – vi logger alt."**
 
@@ -123,3 +123,4 @@ Det teoretiske fundament skal nu lægges.
 [^3]: EU General Data Protection Regulation (GDPR), Article 25: Data protection by design and by default.
 [^4]: Kleppmann, M. (2017). "Designing Data-Intensive Applications". O'Reilly Media. Chapter 11.
 [^5]: Rodden, K., Hutchinson, H., & Fu, X. (2010). "Measuring the User Experience on a Large Scale: HEART". Google Research.
+[^6]: Schneier, B. (2016). "Data Is a Toxic Asset: So Why Not Throw It Out?". Schneier on Security.

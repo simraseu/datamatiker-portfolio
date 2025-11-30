@@ -197,18 +197,18 @@ Som ansvarlig for data-infrastrukturen var min opgave ikke blot at implementere 
 <p><strong>Konkret scenarie:</strong></p>
 <p><strong>Query: &ldquo;Find semantisk lignende samtaler fra sidste måned for bruger X&rdquo;</strong></p>
 <p><strong>Arkitektur A — Polyglot Persistence:</strong></p>
-<pre tabindex="0"><code>1. App → Pinecone: &#34;Find similar vectors&#34; (200ms)
-   Response: [conv_id_1, conv_id_2, conv_id_3]
-2. App → MongoDB: &#34;Get conversations by IDs&#34; (150ms)
-   Response: [conversation objects]
-3. App: Client-side filtering på metadata (user_id, timestamp) (50ms)
-</code></pre><p><strong>Total latency: 400ms + 3 failure points</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. App → Pinecone: &#34;Find similar vectors&#34; (200ms)
+</span></span><span class="line"><span class="cl">   Response: [conv_id_1, conv_id_2, conv_id_3]
+</span></span><span class="line"><span class="cl">2. App → MongoDB: &#34;Get conversations by IDs&#34; (150ms)
+</span></span><span class="line"><span class="cl">   Response: [conversation objects]
+</span></span><span class="line"><span class="cl">3. App: Client-side filtering på metadata (user_id, timestamp) (50ms)
+</span></span></code></pre></div><p><strong>Total latency: 400ms + 3 failure points</strong></p>
 <p><strong>Arkitektur B — Unified Monolith:</strong></p>
-<pre tabindex="0"><code>1. App → PostgreSQL: Combined query (89ms)
-   SELECT * FROM conversations 
-   WHERE user_id = $1 AND timestamp &gt; $2
-   ORDER BY embedding &lt;-&gt; $3
-</code></pre><p><strong>Total latency: 89ms + 1 failure point</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. App → PostgreSQL: Combined query (89ms)
+</span></span><span class="line"><span class="cl">   SELECT * FROM conversations 
+</span></span><span class="line"><span class="cl">   WHERE user_id = $1 AND timestamp &gt; $2
+</span></span><span class="line"><span class="cl">   ORDER BY embedding &lt;-&gt; $3
+</span></span></code></pre></div><p><strong>Total latency: 89ms + 1 failure point</strong></p>
 <p><strong>Spørgsmålet:</strong> Er det værd at ofre netværks-latency og synkroniserings-kompleksitet for at få de marginalt bedre søge-algoritmer, en dedikeret vector-database tilbyder?</p>
 <details>
 <summary><strong>💰 Integration Tax: Hidden Costs</strong></summary>
@@ -253,19 +253,19 @@ Som ansvarlig for data-infrastrukturen var min opgave ikke blot at implementere 
 <p><strong>Konkret scenarie:</strong></p>
 <p><strong>Failure case: System crasher mellem user message og bot response</strong></p>
 <p><strong>Database A — MongoDB (BASE / Eventual Consistency):</strong></p>
-<pre tabindex="0"><code>1. User message saves → SUCCESS
-2. [CRASH]
-3. Bot response never saved
-4. User ser: &#34;Hvorfor får jeg ikke svar?&#34; (Broken UX)
-5. Database state: Partial save (70% failure rate i tests)
-</code></pre><p><strong>Database B — PostgreSQL (ACID / Strong Consistency):</strong></p>
-<pre tabindex="0"><code>1. Transaction START
-2. User message saves → SUCCESS
-3. [CRASH]
-4. Transaction ROLLBACK automatically
-5. User ser: Ingen samtale (forventet opførsel)
-6. Database state: Clean, 0% corruption
-</code></pre><p><strong>Spørgsmålet:</strong> Er &ldquo;NoSQL hastighed&rdquo; en myte i moderne systemer, og er prisen for datatab for høj?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="mf">1.</span> <span class="n">User</span> <span class="n">message</span> <span class="n">saves</span> <span class="err">→</span> <span class="n">SUCCESS</span>
+</span></span><span class="line"><span class="cl"><span class="mf">2.</span> <span class="p">[</span><span class="n">CRASH</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="mf">3.</span> <span class="n">Bot</span> <span class="n">response</span> <span class="n">never</span> <span class="n">saved</span>
+</span></span><span class="line"><span class="cl"><span class="mf">4.</span> <span class="n">User</span> <span class="n">ser</span><span class="p">:</span> <span class="s2">&#34;Hvorfor får jeg ikke svar?&#34;</span> <span class="p">(</span><span class="n">Broken</span> <span class="n">UX</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mf">5.</span> <span class="n">Database</span> <span class="n">state</span><span class="p">:</span> <span class="n">Partial</span> <span class="n">save</span> <span class="p">(</span><span class="mi">70</span><span class="o">%</span> <span class="n">failure</span> <span class="n">rate</span> <span class="n">i</span> <span class="n">tests</span><span class="p">)</span>
+</span></span></code></pre></div><p><strong>Database B — PostgreSQL (ACID / Strong Consistency):</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. Transaction START
+</span></span><span class="line"><span class="cl">2. User message saves → SUCCESS
+</span></span><span class="line"><span class="cl">3. [CRASH]
+</span></span><span class="line"><span class="cl">4. Transaction ROLLBACK automatically
+</span></span><span class="line"><span class="cl">5. User ser: Ingen samtale (forventet opførsel)
+</span></span><span class="line"><span class="cl">6. Database state: Clean, 0% corruption
+</span></span></code></pre></div><p><strong>Spørgsmålet:</strong> Er &ldquo;NoSQL hastighed&rdquo; en myte i moderne systemer, og er prisen for datatab for høj?</p>
 <details>
 <summary><strong>⚠️ GDPR Implications</strong></summary>
 <p><strong>Article 17: Right to Erasure</strong></p>

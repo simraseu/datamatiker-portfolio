@@ -276,19 +276,19 @@ For at eliminere risiko for lagring af særlige kategorier af personoplysninger 
 <p><strong>Trade-off:</strong> Tab af debugging-kontekst vs juridisk compliance. Fejlsøgning baseres på aggregerede mønstre, ikke individuelle sessioner.</p>
 <details>
 <summary><strong>🔧 Implementation: Before vs After</strong></summary>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#75715e">// ❌ Radioaktivt affald (ulovligt)</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">new</span> MessageLog {
-</span></span><span style="display:flex;"><span>    UserId = <span style="color:#e6db74">&#34;user-123&#34;</span>,
-</span></span><span style="display:flex;"><span>    Text = <span style="color:#e6db74">&#34;Jeg har ondt i hovedet&#34;</span>,
-</span></span><span style="display:flex;"><span>    Timestamp = DateTime.UtcNow
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// ✅ GDPR Art. 25 compliant</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">new</span> AnalyticsEvent {
-</span></span><span style="display:flex;"><span>    SessionHash = SHA256(userId + dailySalt),
-</span></span><span style="display:flex;"><span>    IntentCategory = DetectIntent(text), <span style="color:#75715e">// → &#34;health_query&#34;</span>
-</span></span><span style="display:flex;"><span>    HourBucket = DateTime.UtcNow.RoundToHour()
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="c1">// ❌ Radioaktivt affald (ulovligt)</span>
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="n">MessageLog</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UserId</span> <span class="p">=</span> <span class="s">&#34;user-123&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Text</span> <span class="p">=</span> <span class="s">&#34;Jeg har ondt i hovedet&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Timestamp</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">UtcNow</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// ✅ GDPR Art. 25 compliant</span>
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="n">AnalyticsEvent</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SessionHash</span> <span class="p">=</span> <span class="n">SHA256</span><span class="p">(</span><span class="n">userId</span> <span class="p">+</span> <span class="n">dailySalt</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IntentCategory</span> <span class="p">=</span> <span class="n">DetectIntent</span><span class="p">(</span><span class="n">text</span><span class="p">),</span> <span class="c1">// → &#34;health_query&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">HourBucket</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">UtcNow</span><span class="p">.</span><span class="n">RoundToHour</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p><strong>Resultat:</strong> Vi kan svare &ldquo;10 health queries kl. 14-15&rdquo; – men ikke &ldquo;hvem spurgte hvad.&rdquo;</p>
 </details>
 <details>
@@ -342,9 +342,9 @@ For at balancere latency-krav med tung analytisk processering splittes data-flow
 <li><strong>Cold Path (Batch Layer):</strong> Asynkron database-skrivning. Tunge beregninger (retention, cohorts) køres som scheduled batch-jobs.</li>
 </ol>
 <p><strong>Application:</strong></p>
-<pre tabindex="0"><code>Events → Hot Path: SignalR → Owner dashboard (&lt;10 sec, no persistence)
-      → Cold Path: Batch job → PostgreSQL aggregations (daily, full precision)
-</code></pre><table>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Events → Hot Path: SignalR → Owner dashboard (&lt;10 sec, no persistence)
+</span></span><span class="line"><span class="cl">      → Cold Path: Batch job → PostgreSQL aggregations (daily, full precision)
+</span></span></code></pre></div><table>
   <thead>
       <tr>
           <th>Metric Type</th>

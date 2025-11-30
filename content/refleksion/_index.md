@@ -8,7 +8,7 @@ description: "Semesteret i perspektiv: Kolbs læringscirkel og min fremtid som a
 
 Ved start samt undervejs i projektet, satte jeg mig et mål om at agere "Specialiseret Konsulent" i projektet *The Way of Coherence*. Nu, ved vejs ende, er det tid til at evaluere denne strategi.
 
-For at strukturere min evaluering anvender jeg **Kolbs Læringscirkel**. Modellen hjælper mig med at omsætte semesterets konkrete oplevelser til varig professionel læring.
+For at strukturere min evaluering anvender jeg **Kolbs Læringscirkel**[^1]. Modellen hjælper mig med at omsætte semesterets konkrete oplevelser til varig professionel læring.
 
 ---
 
@@ -57,3 +57,8 @@ Jeg tager denne læring med mig videre til næste semester og mit kommende arbej
 Jeg har opfyldt uddannelsens læringsmål om at **"selvstændigt sætte sig ind i nye emner"** og **"vurdere problemstillinger"**. Ved at anvende min "Triangulerings-metode" (fra *Vidensrejsen*) har jeg bevist, at jeg kan navigere i komplekse teknologier uden at miste overblikket.
 
 Jeg forlader semesteret med en klar profil: En backend-specialist med arkitekt-drømme, der ved, at data er "radioaktivt affald", indtil det designes til at være guld.
+
+---
+## Referencer
+
+[^1]: Kolb, D. A. (1984). "Experiential Learning: Experience as the Source of Learning and Development". Prentice-Hall.

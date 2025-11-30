@@ -201,3 +201,12 @@ Gennemgangen bekræfter, at den valgte arkitektur (PostgreSQL Unified Monolith) 
 Vi har bevæget os fra en antagelse om, at "specialiserede værktøjer er bedst", til en evidensbaseret konklusion om, at en integreret arkitektur leverer overlegen værdi for denne use case.
 
 **Næste:** [Konklusion →]({{< relref "database/konklusion.md" >}})
+
+---
+## Referencer
+
+[^1]: OnGres Inc. (2023). "PostgreSQL vs MongoDB: JSON Performance Analysis". Vendor Benchmark.
+[^2]: Makris, A., Tserpes, K., Spiliopoulos, G., & Anagnostopoulos, D. (2019). "A Comparison of NoSQL Database Systems for Large-Scale Storage". Springer LNCS.
+[^3]: Hightower, J. (2023). "Production RAG Architectures with pgvector". Timescale Engineering Blog.
+[^4]: Microsoft. (2024). "Entity Framework Core Provider Feature Comparison". Official Documentation.
+[^5]: Amazon Web Services. (2023). "Database Consistency Models: ACID vs BASE". Technical Guide.

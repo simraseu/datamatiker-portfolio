@@ -118,7 +118,7 @@
 <hr>
 <h2 id="den-fælles-systemarkitektur">Den Fælles Systemarkitektur<a hidden class="anchor" aria-hidden="true" href="#den-fælles-systemarkitektur">#</a></h2>
 <p>Systemet er en sundhedsplatform bygget i Blazor Server, hvor brugerne får adgang til rollebaserede funktioner og interaktioner.</p>
-<p>Vi har opbygget systemet efter en kombination af Clean Architecture og CQRS, hvilket giver en tydelig struktur og adskillelse mellem kernefunktionalitet, logik og brugergrænsefladen.</p>
+<p>Vi har opbygget systemet efter en kombination af Clean Architecture<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> og CQRS, hvilket giver en tydelig struktur og adskillelse mellem kernefunktionalitet, logik og brugergrænsefladen.</p>
 <h3 id="projektets-4-hovedlag">Projektets 4 Hovedlag<a hidden class="anchor" aria-hidden="true" href="#projektets-4-hovedlag">#</a></h3>
 <p>Projektet er organiseret i fire distinkte lag, der sikrer &ldquo;Separation of Concerns&rdquo;:</p>
 <ol>
@@ -130,7 +130,7 @@
 <h3 id="designvalg">Designvalg<a hidden class="anchor" aria-hidden="true" href="#designvalg">#</a></h3>
 <ul>
 <li><strong>CQRS:</strong> Sikrer en klar opdeling mellem læsning og skrivning.</li>
-<li><strong>Vertical Slices:</strong> Gør at hver feature (fx posts, medlemskaber eller profiler) er samlet ét sted med sin egen logik.</li>
+<li><strong>Vertical Slices:</strong><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> Gør at hver feature (fx posts, medlemskaber eller profiler) er samlet ét sted med sin egen logik.</li>
 <li><strong>Sikkerhed:</strong> Platformen bruger ASP.NET Identity til login og rollebaseret adgangskontrol.</li>
 <li><strong>Persistering:</strong> Entity Framework Core håndterer lagring af brugere og interne data.</li>
 </ul>
@@ -151,6 +151,19 @@ Formålet var at bevise, at vi kan håndtere de komplekse vektordata fra AI-serv
 <p>Ved at definere mig selv som specialist inden for teamet, har jeg kunnet arbejde dybdegående med teknologier (PostgreSQL, Vector Search, Hashing-algoritmer), der ligger &ldquo;under motorhjelmen&rdquo; på den fælles arkitektur.</p>
 <p>Min leverance til teamet er derfor ikke bare kode, men validerede arkitektur-beslutninger (Proof of Concepts), der er klar til at blive rullet ud i Infrastructure-laget.</p>
 <p><strong>Næste skridt:</strong> Se de specifikke mål, jeg satte for min specialist-rolle 👉 <a href="/datamatiker-portfolio/laeringsmaal/">Læringsmål</a></p>
+<hr>
+<h2 id="referencer">Referencer<a hidden class="anchor" aria-hidden="true" href="#referencer">#</a></h2>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Martin, R. C. (2017). &ldquo;Clean Architecture: A Craftsman&rsquo;s Guide to Software Structure&rdquo;. Prentice Hall.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Bogard, J. (2018). &ldquo;Vertical Slice Architecture&rdquo;. JimmyBogard.com.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
 
 
 </div>

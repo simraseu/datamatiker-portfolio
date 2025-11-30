@@ -183,40 +183,40 @@
 <h3 id="tre-transformationer">Tre Transformationer<a hidden class="anchor" aria-hidden="true" href="#tre-transformationer">#</a></h3>
 <p><strong>1. Intent Classification</strong></p>
 <p>Raw text analyseres og kategoriseres in-memory:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">IntentClassifier</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> DetectIntent(<span style="color:#66d9ef">string</span> message)
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> text = message.ToLower();
-</span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (text.Contains(<span style="color:#e6db74">&#34;ondt&#34;</span>) || text.Contains(<span style="color:#e6db74">&#34;smerter&#34;</span>))
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;health_query&#34;</span>;
-</span></span><span style="display:flex;"><span>            
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (text.Contains(<span style="color:#e6db74">&#34;tid&#34;</span>) || text.Contains(<span style="color:#e6db74">&#34;aftale&#34;</span>))
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;booking&#34;</span>;
-</span></span><span style="display:flex;"><span>            
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;general_info&#34;</span>;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">IntentClassifier</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">string</span> <span class="n">DetectIntent</span><span class="p">(</span><span class="kt">string</span> <span class="n">message</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">text</span> <span class="p">=</span> <span class="n">message</span><span class="p">.</span><span class="n">ToLower</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">text</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;ondt&#34;</span><span class="p">)</span> <span class="p">||</span> <span class="n">text</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;smerter&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="s">&#34;health_query&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">text</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;tid&#34;</span><span class="p">)</span> <span class="p">||</span> <span class="n">text</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;aftale&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="s">&#34;booking&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;general_info&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p><strong>Hvorfor det virker:</strong> Keyword-matching er tilstrækkeligt for proof-of-concept. Raw text persisteres aldrig – kun kategorien gemmes. Beskedindholdet &ldquo;Jeg har ondt i hovedet&rdquo; bliver til kategorien &ldquo;health_query&rdquo;. Den originale sætning kasseres efter kategorisering.</p>
 <p><strong>GDPR Art. 9 compliance:</strong> Sundhedsdata (special category) transformeres til generisk kategori før persistering. Ingen følsomme data når databasen.</p>
 <p><strong>2. Anonymisering af User ID</strong></p>
 <p>User IDs transformeres irreversibelt før persistering. Systemet bruger en deterministisk SHA-256 hash med daglig salt, så samme userID giver samme hash den pågældende dag, men ikke kan spores på tværs af dage uden salten.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HashingService</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// I produktion roteres salten via KeyVault (fx én salt per døgn)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">string</span> _dailySalt = <span style="color:#e6db74">&#34;salt-2024-11-23&#34;</span>; 
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> HashUserId(<span style="color:#66d9ef">string</span> userId)
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">using</span> var sha256 = SHA256.Create();
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> combined = userId + _dailySalt; <span style="color:#75715e">// deterministisk samme dag</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(combined));
-</span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Returner deterministisk hash (samme input = samme output)</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Convert.ToBase64String(bytes);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">HashingService</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// I produktion roteres salten via KeyVault (fx én salt per døgn)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">string</span> <span class="n">_dailySalt</span> <span class="p">=</span> <span class="s">&#34;salt-2024-11-23&#34;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">string</span> <span class="n">HashUserId</span><span class="p">(</span><span class="kt">string</span> <span class="n">userId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">using</span> <span class="nn">var</span> <span class="n">sha256</span> <span class="p">=</span> <span class="n">SHA256</span><span class="p">.</span><span class="n">Create</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">combined</span> <span class="p">=</span> <span class="n">userId</span> <span class="p">+</span> <span class="n">_dailySalt</span><span class="p">;</span> <span class="c1">// deterministisk samme dag</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">bytes</span> <span class="p">=</span> <span class="n">sha256</span><span class="p">.</span><span class="n">ComputeHash</span><span class="p">(</span><span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="n">combined</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1">// Returner deterministisk hash (samme input = samme output)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Convert</span><span class="p">.</span><span class="n">ToBase64String</span><span class="p">(</span><span class="n">bytes</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p><strong>Hvorfor det virker:</strong></p>
 <ul>
 <li><strong>Same day tracking:</strong> Samme user får samme hash inden for én dag. Dette tillader daglige metrics som &ldquo;Daily Active Users&rdquo; og retention calculations.</li>
@@ -229,45 +229,45 @@
 <p><strong>GDPR Art. 15 compliance:</strong> User kan request egen data ved at hashe deres eget ID for den aktuelle dag og query <code>WHERE session_hash = [calculated_hash]</code>. Dog kun for current day – historical data er ikke associerbar.</p>
 <p><strong>3. Temporal Aggregation</strong></p>
 <p>Præcise timestamps aggregeres til hour buckets:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TimeService</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> DateTime RoundToHour(DateTime timestamp)
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> DateTime(
-</span></span><span style="display:flex;"><span>            timestamp.Year,
-</span></span><span style="display:flex;"><span>            timestamp.Month,
-</span></span><span style="display:flex;"><span>            timestamp.Day,
-</span></span><span style="display:flex;"><span>            timestamp.Hour,
-</span></span><span style="display:flex;"><span>            <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span>        );
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">TimeService</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">DateTime</span> <span class="n">RoundToHour</span><span class="p">(</span><span class="n">DateTime</span> <span class="n">timestamp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">DateTime</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">timestamp</span><span class="p">.</span><span class="n">Year</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">timestamp</span><span class="p">.</span><span class="n">Month</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">timestamp</span><span class="p">.</span><span class="n">Day</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">timestamp</span><span class="p">.</span><span class="n">Hour</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="m">0</span><span class="p">,</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">        <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p><strong>Rationale:</strong> Hour-level præcision er tilstrækkeligt for analytics. Timestamp <code>&quot;14:37:42&quot;</code> bliver til <code>&quot;14:00:00&quot;</code>. Minutpræcision kasseres for at reducere granularitet og beskytte privatlivets fred.</p>
 <h3 id="analytics-service">Analytics Service<a hidden class="anchor" aria-hidden="true" href="#analytics-service">#</a></h3>
 <p>Hele logging-flowet kombinerer de tre transformationer:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AnalyticsService</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> IntentClassifier _classifier;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> HashingService _hasher;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> TimeService _timeService;
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> LogEvent(<span style="color:#66d9ef">string</span> userId, <span style="color:#66d9ef">string</span> message)
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> intent = _classifier.DetectIntent(message);
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> hash = _hasher.HashUserId(userId);
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> hour = _timeService.RoundToHour(DateTime.UtcNow);
-</span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> eventData = <span style="color:#66d9ef">new</span> AnalyticsEvent
-</span></span><span style="display:flex;"><span>        {
-</span></span><span style="display:flex;"><span>            SessionHash = hash,
-</span></span><span style="display:flex;"><span>            IntentCategory = intent,
-</span></span><span style="display:flex;"><span>            HourBucket = hour,
-</span></span><span style="display:flex;"><span>            ChatbotType = <span style="color:#e6db74">&#34;guest&#34;</span>
-</span></span><span style="display:flex;"><span>        };
-</span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>        SaveToDatabase(eventData);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">AnalyticsService</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">IntentClassifier</span> <span class="n">_classifier</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">HashingService</span> <span class="n">_hasher</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">TimeService</span> <span class="n">_timeService</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">void</span> <span class="n">LogEvent</span><span class="p">(</span><span class="kt">string</span> <span class="n">userId</span><span class="p">,</span> <span class="kt">string</span> <span class="n">message</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">intent</span> <span class="p">=</span> <span class="n">_classifier</span><span class="p">.</span><span class="n">DetectIntent</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">hash</span> <span class="p">=</span> <span class="n">_hasher</span><span class="p">.</span><span class="n">HashUserId</span><span class="p">(</span><span class="n">userId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">hour</span> <span class="p">=</span> <span class="n">_timeService</span><span class="p">.</span><span class="n">RoundToHour</span><span class="p">(</span><span class="n">DateTime</span><span class="p">.</span><span class="n">UtcNow</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">eventData</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AnalyticsEvent</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">SessionHash</span> <span class="p">=</span> <span class="n">hash</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">IntentCategory</span> <span class="p">=</span> <span class="n">intent</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">HourBucket</span> <span class="p">=</span> <span class="n">hour</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ChatbotType</span> <span class="p">=</span> <span class="s">&#34;guest&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">};</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="n">SaveToDatabase</span><span class="p">(</span><span class="n">eventData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p><strong>Kritisk pointe:</strong> <code>message</code> variablen går ude af scope efter <code>DetectIntent()</code>. Raw text garbage collects og når aldrig disk. Kun anonymiserede metadata persisteres.</p>
 <h3 id="gdpr-compliance-check">GDPR Compliance Check<a hidden class="anchor" aria-hidden="true" href="#gdpr-compliance-check">#</a></h3>
 <table>
@@ -313,23 +313,23 @@
 <p><strong>Designprincip:</strong> Simpel struktur med clear separation mellem operational data (hot) og analytical data (cold).</p>
 <h3 id="database-schema">Database Schema<a hidden class="anchor" aria-hidden="true" href="#database-schema">#</a></h3>
 <p><strong>To primære tabeller:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> analytics_events (
-</span></span><span style="display:flex;"><span>    id UUID <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>,
-</span></span><span style="display:flex;"><span>    session_hash TEXT <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
-</span></span><span style="display:flex;"><span>    intent_category TEXT <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
-</span></span><span style="display:flex;"><span>    hour_bucket <span style="color:#66d9ef">TIMESTAMP</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
-</span></span><span style="display:flex;"><span>    chatbot_type TEXT <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
-</span></span><span style="display:flex;"><span>    created_at <span style="color:#66d9ef">TIMESTAMP</span> <span style="color:#66d9ef">DEFAULT</span> NOW()
-</span></span><span style="display:flex;"><span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> user_metrics (
-</span></span><span style="display:flex;"><span>    id UUID <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>,
-</span></span><span style="display:flex;"><span>    metric_name TEXT <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
-</span></span><span style="display:flex;"><span>    metric_value NUMERIC <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
-</span></span><span style="display:flex;"><span>    chatbot_type TEXT <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">day</span> DATE <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>
-</span></span><span style="display:flex;"><span>);
-</span></span></code></pre></div><p><strong>Hvorfor denne struktur?</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">analytics_events</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">session_hash</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">intent_category</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">hour_bucket</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">chatbot_type</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">NOW</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">user_metrics</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">metric_name</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">metric_value</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">chatbot_type</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">day</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></div><p><strong>Hvorfor denne struktur?</strong></p>
 <ul>
 <li><strong>analytics_events:</strong> Raw anonymized events. Intet PII, kun hashes og categories. Denne tabel vokser løbende.</li>
 <li><strong>user_metrics:</strong> Pre-aggregated daily metrics. Læses af dashboards. Denne tabel indeholder færre rækker (én per metric per dag).</li>
@@ -344,20 +344,20 @@
 <h3 id="lambda-lite-hot-vs-cold-path">Lambda Lite: Hot vs Cold Path<a hidden class="anchor" aria-hidden="true" href="#lambda-lite-hot-vs-cold-path">#</a></h3>
 <p><strong>Hot Path (Real-time):</strong></p>
 <p>Real-time metrics holdes in-memory:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HotPathMonitor</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> _activeSessionsCount = <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> IncrementActiveSessions()
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        _activeSessionsCount++;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> GetActiveSessions()
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> _activeSessionsCount;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">HotPathMonitor</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">int</span> <span class="n">_activeSessionsCount</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">void</span> <span class="n">IncrementActiveSessions</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">_activeSessionsCount</span><span class="p">++;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="n">GetActiveSessions</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">_activeSessionsCount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p><strong>Karakteristika:</strong></p>
 <ul>
 <li>Latency: &lt;1 sekund</li>
@@ -367,16 +367,16 @@
 </ul>
 <p><strong>Cold Path (Batch):</strong></p>
 <p>Historiske metrics aggregeres dagligt via SQL:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> user_metrics (metric_name, metric_value, chatbot_type, <span style="color:#66d9ef">day</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> 
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;daily_active_users&#39;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">COUNT</span>(<span style="color:#66d9ef">DISTINCT</span> session_hash),
-</span></span><span style="display:flex;"><span>    chatbot_type,
-</span></span><span style="display:flex;"><span>    DATE(hour_bucket)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> analytics_events
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> DATE(hour_bucket) <span style="color:#f92672">=</span> <span style="color:#66d9ef">CURRENT_DATE</span> <span style="color:#f92672">-</span> INTERVAL <span style="color:#e6db74">&#39;1 day&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> chatbot_type, DATE(hour_bucket);
-</span></span></code></pre></div><p><strong>Karakteristika:</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">user_metrics</span><span class="w"> </span><span class="p">(</span><span class="n">metric_name</span><span class="p">,</span><span class="w"> </span><span class="n">metric_value</span><span class="p">,</span><span class="w"> </span><span class="n">chatbot_type</span><span class="p">,</span><span class="w"> </span><span class="k">day</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s1">&#39;daily_active_users&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">session_hash</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">chatbot_type</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nb">DATE</span><span class="p">(</span><span class="n">hour_bucket</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">analytics_events</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="nb">DATE</span><span class="p">(</span><span class="n">hour_bucket</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">CURRENT_DATE</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="s1">&#39;1 day&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">chatbot_type</span><span class="p">,</span><span class="w"> </span><span class="nb">DATE</span><span class="p">(</span><span class="n">hour_bucket</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></div><p><strong>Karakteristika:</strong></p>
 <ul>
 <li>Latency: Daglig (køres kl. 02:00 via cron job)</li>
 <li>Precision: Exact (baseret på alle events fra foregående dag)</li>
@@ -391,10 +391,10 @@
 </ul>
 <h3 id="query-eksempler">Query Eksempler<a hidden class="anchor" aria-hidden="true" href="#query-eksempler">#</a></h3>
 <p><strong>Hot Path - Real-time Counter:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> activeNow = _monitor.GetActiveSessions(); <span style="color:#75715e">// In-memory read</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">activeNow</span> <span class="p">=</span> <span class="n">_monitor</span><span class="p">.</span><span class="n">GetActiveSessions</span><span class="p">();</span> <span class="c1">// In-memory read</span>
 </span></span></code></pre></div><p><strong>Cold Path - Weekly Average:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> last7days = metrics.Where(m =&gt; m.Day &gt;= DateTime.UtcNow.AddDays(-<span style="color:#ae81ff">7</span>));
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> average = last7days.Average(x =&gt; x.MetricValue);
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">last7days</span> <span class="p">=</span> <span class="n">metrics</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">m</span> <span class="p">=&gt;</span> <span class="n">m</span><span class="p">.</span><span class="n">Day</span> <span class="p">&gt;=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">UtcNow</span><span class="p">.</span><span class="n">AddDays</span><span class="p">(-</span><span class="m">7</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">average</span> <span class="p">=</span> <span class="n">last7days</span><span class="p">.</span><span class="n">Average</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">MetricValue</span><span class="p">);</span>
 </span></span></code></pre></div><p><strong>Forskellen:</strong> Hot Path bruges til operational alerts (&ldquo;System har 50% error rate lige nu!&rdquo;). Cold Path bruges til trend analysis (&ldquo;Retention er faldet 10% over sidste måned&rdquo;).</p>
 <hr>
 <h2 id="konceptuel-validering-dp1-dp4">Konceptuel Validering (DP1-DP4)<a hidden class="anchor" aria-hidden="true" href="#konceptuel-validering-dp1-dp4">#</a></h2>
@@ -637,18 +637,18 @@
   </tbody>
 </table>
 <p><strong>Implementation eksempel:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ProductDashboard</span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">double</span> GetRetentionRate(<span style="color:#66d9ef">string</span> chatbotType)
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> last7days = _db.UserMetrics
-</span></span><span style="display:flex;"><span>            .Where(m =&gt; m.ChatbotType == chatbotType)
-</span></span><span style="display:flex;"><span>            .Where(m =&gt; m.MetricName == <span style="color:#e6db74">&#34;daily_active_users&#34;</span>)
-</span></span><span style="display:flex;"><span>            .Where(m =&gt; m.Day &gt;= DateTime.UtcNow.AddDays(-<span style="color:#ae81ff">7</span>));
-</span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> last7days.Average(x =&gt; x.MetricValue);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">ProductDashboard</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">double</span> <span class="n">GetRetentionRate</span><span class="p">(</span><span class="kt">string</span> <span class="n">chatbotType</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">last7days</span> <span class="p">=</span> <span class="n">_db</span><span class="p">.</span><span class="n">UserMetrics</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">m</span> <span class="p">=&gt;</span> <span class="n">m</span><span class="p">.</span><span class="n">ChatbotType</span> <span class="p">==</span> <span class="n">chatbotType</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">m</span> <span class="p">=&gt;</span> <span class="n">m</span><span class="p">.</span><span class="n">MetricName</span> <span class="p">==</span> <span class="s">&#34;daily_active_users&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">m</span> <span class="p">=&gt;</span> <span class="n">m</span><span class="p">.</span><span class="n">Day</span> <span class="p">&gt;=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">UtcNow</span><span class="p">.</span><span class="n">AddDays</span><span class="p">(-</span><span class="m">7</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">last7days</span><span class="p">.</span><span class="n">Average</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">MetricValue</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p><strong>Context-Aware Success (DP4 applied):</strong></p>
 <ul>
 <li>Guest Dashboard: Shows &ldquo;Avg Time-to-Answer&rdquo; (efficiency metric)</li>

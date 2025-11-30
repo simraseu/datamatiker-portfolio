@@ -16,7 +16,7 @@ For at maksimere læringsudbyttet har jeg i projektet indtaget en rolle som **sp
 
 Systemet er en sundhedsplatform bygget i Blazor Server, hvor brugerne får adgang til rollebaserede funktioner og interaktioner.
 
-Vi har opbygget systemet efter en kombination af Clean Architecture og CQRS, hvilket giver en tydelig struktur og adskillelse mellem kernefunktionalitet, logik og brugergrænsefladen.
+Vi har opbygget systemet efter en kombination af Clean Architecture[^1] og CQRS, hvilket giver en tydelig struktur og adskillelse mellem kernefunktionalitet, logik og brugergrænsefladen.
 
 ### Projektets 4 Hovedlag
 Projektet er organiseret i fire distinkte lag, der sikrer "Separation of Concerns":
@@ -28,7 +28,7 @@ Projektet er organiseret i fire distinkte lag, der sikrer "Separation of Concern
 
 ### Designvalg
 * **CQRS:** Sikrer en klar opdeling mellem læsning og skrivning.
-* **Vertical Slices:** Gør at hver feature (fx posts, medlemskaber eller profiler) er samlet ét sted med sin egen logik.
+* **Vertical Slices:**[^2] Gør at hver feature (fx posts, medlemskaber eller profiler) er samlet ét sted med sin egen logik.
 * **Sikkerhed:** Platformen bruger ASP.NET Identity til login og rollebaseret adgangskontrol.
 * **Persistering:** Entity Framework Core håndterer lagring af brugere og interne data.
 
@@ -60,3 +60,9 @@ Ved at definere mig selv som specialist inden for teamet, har jeg kunnet arbejde
 Min leverance til teamet er derfor ikke bare kode, men validerede arkitektur-beslutninger (Proof of Concepts), der er klar til at blive rullet ud i Infrastructure-laget.
 
 **Næste skridt:** Se de specifikke mål, jeg satte for min specialist-rolle 👉 [Læringsmål]({{< relref "laeringsmaal/_index.md" >}})
+
+---
+## Referencer
+
+[^1]: Martin, R. C. (2017). "Clean Architecture: A Craftsman's Guide to Software Structure". Prentice Hall.
+[^2]: Bogard, J. (2018). "Vertical Slice Architecture". JimmyBogard.com.

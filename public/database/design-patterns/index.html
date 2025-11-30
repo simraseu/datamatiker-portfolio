@@ -136,7 +136,9 @@
                 <li>
                     <a href="#multi-method-validation-summary" aria-label="Multi-Method Validation Summary">Multi-Method Validation Summary</a></li>
                 <li>
-                    <a href="#fra-patterns-til-implementation" aria-label="Fra Patterns til Implementation">Fra Patterns til Implementation</a>
+                    <a href="#fra-patterns-til-implementation" aria-label="Fra Patterns til Implementation">Fra Patterns til Implementation</a></li>
+                <li>
+                    <a href="#referencer" aria-label="Referencer">Referencer</a>
                 </li>
             </ul>
         </div>
@@ -155,44 +157,44 @@
 <hr>
 <h2 id="dp1-unified-monolith">DP1: Unified Monolith<a hidden class="anchor" aria-hidden="true" href="#dp1-unified-monolith">#</a></h2>
 <p><strong>Adresserer:</strong> Dilemma 2 (Synchronization Nightmare)<br>
-<strong>Research Base:</strong> Kilde 3 (Hightower/Timescale Production Case)<br>
+<strong>Research Base:</strong> Kilde 3 (Hightower/Timescale)<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> + Kilde 4 (Microsoft EF Core)<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>
 <strong>Validering:</strong> V2 (Architecture Audit)</p>
 <p><strong>Designbeslutning:</strong> I stedet for at sprede data over tre systemer (SQL, NoSQL, Vector DB), har jeg valgt at samle alt i én fysisk PostgreSQL instans. Jeg udnytter her PostgreSQL som en &ldquo;Multi-Model&rdquo; database.</p>
 <p><strong>Architecture Comparison:</strong></p>
 <p><strong>Traditional Polyglot (3 databases):</strong></p>
-<pre tabindex="0"><code>Brugerdata    → PostgreSQL (relational)
-Chat Logs     → MongoDB (documents)  
-AI Embeddings → Pinecone (vectors)
-
-Integration: App must sync 3 systems
-Failure points: 3 independent databases
-Network hops: 3-4 per complex query
-</code></pre><p><strong>Unified Monolith (Min Løsning):</strong></p>
-<pre tabindex="0"><code>Brugerdata    → PostgreSQL tables
-Chat Logs     → PostgreSQL JSONB columns
-AI Embeddings → PostgreSQL vector columns
-
-Integration: Native SQL joins
-Failure points: 1 database
-Network hops: 1 per query
-</code></pre><p><strong>Gevinst:</strong> Jeg eliminerer &ldquo;The Integration Tax&rdquo;. Ingen datasynkronisering mellem systemer, ingen &ldquo;race conditions&rdquo; hvor vektorer findes før metadata, og driften forenkles til én backup-pipeline.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Brugerdata    → PostgreSQL (relational)
+</span></span><span class="line"><span class="cl">Chat Logs     → MongoDB (documents)  
+</span></span><span class="line"><span class="cl">AI Embeddings → Pinecone (vectors)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Integration: App must sync 3 systems
+</span></span><span class="line"><span class="cl">Failure points: 3 independent databases
+</span></span><span class="line"><span class="cl">Network hops: 3-4 per complex query
+</span></span></code></pre></div><p><strong>Unified Monolith (Min Løsning):</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Brugerdata    → PostgreSQL tables
+</span></span><span class="line"><span class="cl">Chat Logs     → PostgreSQL JSONB columns
+</span></span><span class="line"><span class="cl">AI Embeddings → PostgreSQL vector columns
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Integration: Native SQL joins
+</span></span><span class="line"><span class="cl">Failure points: 1 database
+</span></span><span class="line"><span class="cl">Network hops: 1 per query
+</span></span></code></pre></div><p><strong>Gevinst:</strong> Jeg eliminerer &ldquo;The Integration Tax&rdquo;. Ingen datasynkronisering mellem systemer, ingen &ldquo;race conditions&rdquo; hvor vektorer findes før metadata, og driften forenkles til én backup-pipeline.</p>
 <p><strong>Trade-off:</strong> Mister <em>nogle</em> edge-features fra specialiserede vector-DB&rsquo;er (custom ANN algorithms), men opnår dramatisk reduceret kompleksitet og latency.</p>
 <hr>
 <h2 id="dp2-hybrid-relational-bridge">DP2: Hybrid-Relational Bridge<a hidden class="anchor" aria-hidden="true" href="#dp2-hybrid-relational-bridge">#</a></h2>
 <p><strong>Adresserer:</strong> Dilemma 1 (Integration Tax)<br>
-<strong>Research Base:</strong> Kilde 1 (OnGres Benchmark) + Kilde 2 (Makris et al.)<br>
+<strong>Research Base:</strong> Kilde 1 (OnGres Benchmark)<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> + Kilde 2 (Makris et al.)<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup><br>
 <strong>Validering:</strong> V1 (Literature Convergence)</p>
 <p><strong>Designbeslutning:</strong> Jeg valgte at forkaste &ldquo;Enten/Eller&rdquo; mentaliteten mellem relational og document databases. I stedet anvender jeg en hybrid model, hvor strukturelt faste data (Users) er relationelle, mens volatile data (Conversation Metadata) er dokument-baserede, men indekseret med relationel stringens.</p>
 <p><strong>Schema Strategy:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> conversations (
-</span></span><span style="display:flex;"><span>    id UUID <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>,              <span style="color:#75715e">-- Relational (Fast struktur)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    user_id UUID <span style="color:#66d9ef">REFERENCES</span> users,    <span style="color:#75715e">-- Relational (Foreign Key Integrity)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    metadata JSONB                    <span style="color:#75715e">-- Document (Fleksibel schema)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Kritisk: GIN index gør JSONB søgbart som SQL
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> idx_metadata <span style="color:#66d9ef">ON</span> conversations <span style="color:#66d9ef">USING</span> GIN (metadata);
-</span></span></code></pre></div><p><strong>Application til tre chatbot-typer:</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">conversations</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w">              </span><span class="c1">-- Relational (Fast struktur)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">user_id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">users</span><span class="p">,</span><span class="w">    </span><span class="c1">-- Relational (Foreign Key Integrity)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">metadata</span><span class="w"> </span><span class="n">JSONB</span><span class="w">                    </span><span class="c1">-- Document (Fleksibel schema)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- Kritisk: GIN index gør JSONB søgbart som SQL
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_metadata</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">conversations</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="n">GIN</span><span class="w"> </span><span class="p">(</span><span class="n">metadata</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></div><p><strong>Application til tre chatbot-typer:</strong></p>
 <table>
   <thead>
       <tr>
@@ -235,35 +237,35 @@ Network hops: 1 per query
 <hr>
 <h2 id="dp3-zero-latency-vector-context">DP3: Zero-Latency Vector Context<a hidden class="anchor" aria-hidden="true" href="#dp3-zero-latency-vector-context">#</a></h2>
 <p><strong>Adresserer:</strong> Dilemma 2 (Synchronization Nightmare)<br>
-<strong>Research Base:</strong> Kilde 3 (Hightower Production Case)<br>
+<strong>Research Base:</strong> Kilde 3 (Hightower Production Case)<sup id="fnref1:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>
 <strong>Validering:</strong> V2 (Architecture Audit)</p>
 <p><strong>Designbeslutning:</strong> Embeddings må ikke være &ldquo;second-class citizens&rdquo; i en ekstern database. Ved at placere vectors (<code>vector(1536)</code>) i samme tabel som selve beskeden, har jeg muliggjort atomiske opdateringer og single-query retrieval.</p>
 <p><strong>Architecture Comparison:</strong></p>
 <p><strong>Polyglot (MongoDB + Pinecone):</strong></p>
-<pre tabindex="0"><code>Query: &#34;Find semantically similar conversations from last month for user X&#34;
-
-Step 1: App → Pinecone (vector search) [RTT 1]
-  Response: [conv_id_1, conv_id_2, conv_id_3]
-  
-Step 2: App → MongoDB (fetch documents) [RTT 2]
-  Response: [conversation objects]
-  
-Step 3: App (client-side filtering) [Processing overhead]
-  Filter by: user_id == X AND timestamp &gt; last_month
-
-Total: 3 operations, 400ms latency
-</code></pre><p><strong>Unified Monolith (PostgreSQL + pgvector):</strong></p>
-<pre tabindex="0"><code>Query: Same semantic search requirement
-
-Step 1: App → PostgreSQL (combined query) [RTT 1]
-  SELECT * FROM conversations
-  WHERE user_id = $1                          -- Metadata filter
-    AND timestamp &gt; NOW() - INTERVAL &#39;30 days&#39; -- Time filter
-  ORDER BY embedding &lt;-&gt; $2::vector          -- Vector similarity
-  LIMIT 10
-
-Total: 1 operation, 89ms latency
-</code></pre><p><strong>Latency reduction:</strong> 311ms (78%) eliminated by avoiding cross-service calls.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Query: &#34;Find semantically similar conversations from last month for user X&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Step 1: App → Pinecone (vector search) [RTT 1]
+</span></span><span class="line"><span class="cl">  Response: [conv_id_1, conv_id_2, conv_id_3]
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">Step 2: App → MongoDB (fetch documents) [RTT 2]
+</span></span><span class="line"><span class="cl">  Response: [conversation objects]
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">Step 3: App (client-side filtering) [Processing overhead]
+</span></span><span class="line"><span class="cl">  Filter by: user_id == X AND timestamp &gt; last_month
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Total: 3 operations, 400ms latency
+</span></span></code></pre></div><p><strong>Unified Monolith (PostgreSQL + pgvector):</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Query: Same semantic search requirement
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Step 1: App → PostgreSQL (combined query) [RTT 1]
+</span></span><span class="line"><span class="cl">  SELECT * FROM conversations
+</span></span><span class="line"><span class="cl">  WHERE user_id = $1                          -- Metadata filter
+</span></span><span class="line"><span class="cl">    AND timestamp &gt; NOW() - INTERVAL &#39;30 days&#39; -- Time filter
+</span></span><span class="line"><span class="cl">  ORDER BY embedding &lt;-&gt; $2::vector          -- Vector similarity
+</span></span><span class="line"><span class="cl">  LIMIT 10
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Total: 1 operation, 89ms latency
+</span></span></code></pre></div><p><strong>Latency reduction:</strong> 311ms (78%) eliminated by avoiding cross-service calls.</p>
 <p><strong>Index Strategy:</strong> Jeg anbefaler HNSW (Hierarchical Navigable Small World) index fremfor IVFFlat:</p>
 <ul>
 <li><strong>Recall:</strong> ~96-98% (acceptable trade-off for speed)</li>
@@ -275,7 +277,7 @@ Total: 1 operation, 89ms latency
 <hr>
 <h2 id="dp4-acid-first-consistency">DP4: ACID-First Consistency<a hidden class="anchor" aria-hidden="true" href="#dp4-acid-first-consistency">#</a></h2>
 <p><strong>Adresserer:</strong> Dilemma 3 (Consistency Myth)<br>
-<strong>Research Base:</strong> Kilde 5 (AWS ACID vs BASE Guide)<br>
+<strong>Research Base:</strong> Kilde 5 (AWS ACID vs BASE Guide)<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>
 <strong>Validering:</strong> V4 (Transaction Theory Analysis)</p>
 <p><strong>Designbeslutning:</strong> I en chat-applikation er &ldquo;Eventual Consistency&rdquo; en UX-fejl. Når user sender besked, skal bot response gemmes atomisk. Jeg har designet systemet til at håndhæve Strong Consistency gennem transactions.</p>
 <p><strong>Consistency Model Comparison:</strong></p>
@@ -316,24 +318,24 @@ Total: 1 operation, 89ms latency
   </tbody>
 </table>
 <p><strong>Implementation Pattern:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">using</span> var transaction = <span style="color:#66d9ef">await</span> _context.Database.BeginTransactionAsync();
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 1. Save user message</span>
-</span></span><span style="display:flex;"><span>    _context.Messages.Add(userMessage);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> _context.SaveChangesAsync();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 2. Generate &amp; save bot response</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> botResponse = <span style="color:#66d9ef">await</span> _aiService.GenerateResponse(userMessage);
-</span></span><span style="display:flex;"><span>    _context.Messages.Add(botResponse);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> _context.SaveChangesAsync();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 3. Commit (all-or-nothing)</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> transaction.CommitAsync();
-</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Automatic rollback: Database returns to clean state</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> transaction.RollbackAsync();
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">throw</span>;
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">var</span> <span class="n">transaction</span> <span class="p">=</span> <span class="k">await</span> <span class="n">_context</span><span class="p">.</span><span class="n">Database</span><span class="p">.</span><span class="n">BeginTransactionAsync</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">try</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 1. Save user message</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_context</span><span class="p">.</span><span class="n">Messages</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">userMessage</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">await</span> <span class="n">_context</span><span class="p">.</span><span class="n">SaveChangesAsync</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 2. Generate &amp; save bot response</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">botResponse</span> <span class="p">=</span> <span class="k">await</span> <span class="n">_aiService</span><span class="p">.</span><span class="n">GenerateResponse</span><span class="p">(</span><span class="n">userMessage</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_context</span><span class="p">.</span><span class="n">Messages</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">botResponse</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">await</span> <span class="n">_context</span><span class="p">.</span><span class="n">SaveChangesAsync</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 3. Commit (all-or-nothing)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">await</span> <span class="n">transaction</span><span class="p">.</span><span class="n">CommitAsync</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Automatic rollback: Database returns to clean state</span>
+</span></span><span class="line"><span class="cl">    <span class="k">await</span> <span class="n">transaction</span><span class="p">.</span><span class="n">RollbackAsync</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">throw</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p><strong>Why ACID Works:</strong></p>
 <p>Modern ACID implementation (PostgreSQL&rsquo;s MVCC) means:</p>
 <ul>
@@ -394,6 +396,28 @@ Total: 1 operation, 89ms latency
 <h2 id="fra-patterns-til-implementation">Fra Patterns til Implementation<a hidden class="anchor" aria-hidden="true" href="#fra-patterns-til-implementation">#</a></h2>
 <p>Med arkitektoniske regler defineret gennem DP1-DP4 kan systemets konkrete validering påbegyndes. Næste sektion dokumenterer de fire validation methods anvendt til at verificere patterns uden live traffic.</p>
 <p><strong>Næste:</strong> <a href="/datamatiker-portfolio/database/konceptuel-validering/">Implementation &amp; Validation →</a></p>
+<hr>
+<h2 id="referencer">Referencer<a hidden class="anchor" aria-hidden="true" href="#referencer">#</a></h2>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Hightower, J. (2023). &ldquo;Production RAG Architectures with pgvector&rdquo;. Timescale Engineering Blog.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Microsoft. (2024). &ldquo;Entity Framework Core Provider Feature Comparison&rdquo;. Official Documentation.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>OnGres Inc. (2023). &ldquo;PostgreSQL vs MongoDB: JSON Performance Analysis&rdquo;. Vendor Benchmark.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>Makris, A., Tserpes, K., Spiliopoulos, G., &amp; Anagnostopoulos, D. (2019). &ldquo;A Comparison of NoSQL Database Systems for Large-Scale Storage&rdquo;. Springer LNCS.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p>Amazon Web Services. (2023). &ldquo;Database Consistency Models: ACID vs BASE&rdquo;. Technical Guide.&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
 
 
   </div>

@@ -21,7 +21,7 @@ Disse patterns løser direkte problemstillingens tre dilemmaer:
 ## DP1: Unified Monolith
 
 **Adresserer:** Dilemma 2 (Synchronization Nightmare)  
-**Research Base:** Kilde 3 (Hightower/Timescale Production Case)  
+**Research Base:** Kilde 3 (Hightower/Timescale)[^3] + Kilde 4 (Microsoft EF Core)[^4] 
 **Validering:** V2 (Architecture Audit)
 
 **Designbeslutning:** I stedet for at sprede data over tre systemer (SQL, NoSQL, Vector DB), har jeg valgt at samle alt i én fysisk PostgreSQL instans. Jeg udnytter her PostgreSQL som en "Multi-Model" database.
@@ -59,7 +59,7 @@ Network hops: 1 per query
 ## DP2: Hybrid-Relational Bridge
 
 **Adresserer:** Dilemma 1 (Integration Tax)  
-**Research Base:** Kilde 1 (OnGres Benchmark) + Kilde 2 (Makris et al.)  
+**Research Base:** Kilde 1 (OnGres Benchmark)[^1] + Kilde 2 (Makris et al.)[^2]  
 **Validering:** V1 (Literature Convergence)
 
 **Designbeslutning:** Jeg valgte at forkaste "Enten/Eller" mentaliteten mellem relational og document databases. I stedet anvender jeg en hybrid model, hvor strukturelt faste data (Users) er relationelle, mens volatile data (Conversation Metadata) er dokument-baserede, men indekseret med relationel stringens.
@@ -100,7 +100,7 @@ MongoDB gemmer JSON som text-based BSON. PostgreSQL gemmer JSON som parsed binar
 ## DP3: Zero-Latency Vector Context
 
 **Adresserer:** Dilemma 2 (Synchronization Nightmare)  
-**Research Base:** Kilde 3 (Hightower Production Case)  
+**Research Base:** Kilde 3 (Hightower Production Case)[^3]
 **Validering:** V2 (Architecture Audit)
 
 **Designbeslutning:** Embeddings må ikke være "second-class citizens" i en ekstern database. Ved at placere vectors (`vector(1536)`) i samme tabel som selve beskeden, har jeg muliggjort atomiske opdateringer og single-query retrieval.
@@ -153,7 +153,7 @@ Total: 1 operation, 89ms latency
 ## DP4: ACID-First Consistency
 
 **Adresserer:** Dilemma 3 (Consistency Myth)  
-**Research Base:** Kilde 5 (AWS ACID vs BASE Guide)  
+**Research Base:** Kilde 5 (AWS ACID vs BASE Guide)[^5]
 **Validering:** V4 (Transaction Theory Analysis)
 
 **Designbeslutning:** I en chat-applikation er "Eventual Consistency" en UX-fejl. Når user sender besked, skal bot response gemmes atomisk. Jeg har designet systemet til at håndhæve Strong Consistency gennem transactions.
@@ -230,3 +230,12 @@ Dette matcher Data Science-sektionens validation methodology for "validation ude
 Med arkitektoniske regler defineret gennem DP1-DP4 kan systemets konkrete validering påbegyndes. Næste sektion dokumenterer de fire validation methods anvendt til at verificere patterns uden live traffic.
 
 **Næste:** [Implementation & Validation →]({{< relref "database/konceptuel-validering.md" >}})
+
+---
+## Referencer
+
+[^1]: OnGres Inc. (2023). "PostgreSQL vs MongoDB: JSON Performance Analysis". Vendor Benchmark.
+[^2]: Makris, A., Tserpes, K., Spiliopoulos, G., & Anagnostopoulos, D. (2019). "A Comparison of NoSQL Database Systems for Large-Scale Storage". Springer LNCS.
+[^3]: Hightower, J. (2023). "Production RAG Architectures with pgvector". Timescale Engineering Blog.
+[^4]: Microsoft. (2024). "Entity Framework Core Provider Feature Comparison". Official Documentation.
+[^5]: Amazon Web Services. (2023). "Database Consistency Models: ACID vs BASE". Technical Guide.
