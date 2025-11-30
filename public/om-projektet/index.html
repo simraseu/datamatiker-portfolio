@@ -154,8 +154,8 @@
 <p>For at maksimere læringsudbyttet har jeg i projektet indtaget en rolle som <strong>specialiseret konsulent</strong>, med fokus på at optimere data-infrastrukturen og analytics-laget inden for den fælles ramme.</p>
 <hr>
 <h2 id="den-fælles-systemarkitektur">Den Fælles Systemarkitektur<a hidden class="anchor" aria-hidden="true" href="#den-fælles-systemarkitektur">#</a></h2>
-<p>Systemet er en sundhedsplatform bygget i <strong>Blazor Server</strong>, hvor brugerne får adgang til rollebaserede funktioner og interaktioner.</p>
-<p>Vi har opbygget systemet efter en kombination af <strong>Clean Architecture</strong> og <strong>CQRS</strong>, hvilket giver en tydelig struktur og adskillelse mellem kernefunktionalitet, logik og brugergrænsefladen.</p>
+<p>Systemet er en sundhedsplatform bygget i Blazor Server, hvor brugerne får adgang til rollebaserede funktioner og interaktioner.</p>
+<p>Vi har opbygget systemet efter en kombination af Clean Architecture og CQRS, hvilket giver en tydelig struktur og adskillelse mellem kernefunktionalitet, logik og brugergrænsefladen.</p>
 <h3 id="projektets-4-hovedlag">Projektets 4 Hovedlag<a hidden class="anchor" aria-hidden="true" href="#projektets-4-hovedlag">#</a></h3>
 <p>Projektet er organiseret i fire distinkte lag, der sikrer &ldquo;Separation of Concerns&rdquo;:</p>
 <ol>
@@ -169,11 +169,11 @@
 <li><strong>CQRS:</strong> Sikrer en klar opdeling mellem læsning og skrivning.</li>
 <li><strong>Vertical Slices:</strong> Gør at hver feature (fx posts, medlemskaber eller profiler) er samlet ét sted med sin egen logik.</li>
 <li><strong>Sikkerhed:</strong> Platformen bruger ASP.NET Identity til login og rollebaseret adgangskontrol.</li>
-<li><strong>Persistering:</strong> <strong>Entity Framework Core</strong> håndterer lagring af brugere og interne data.</li>
+<li><strong>Persistering:</strong> Entity Framework Core håndterer lagring af brugere og interne data.</li>
 </ul>
 <hr>
 <h2 id="min-rolle-infrastruktur--integration">Min Rolle: Infrastruktur &amp; Integration<a hidden class="anchor" aria-hidden="true" href="#min-rolle-infrastruktur--integration">#</a></h2>
-<p>Som beskrevet ovenfor integreres systemet med en <strong>Python-baseret AI-service</strong> via HTTP-gateways, hvilket gør det muligt at udvide funktionaliteten med intelligent assistence.</p>
+<p>Som beskrevet ovenfor integreres systemet med en Python-baseret AI-service via HTTP-gateways, hvilket gør det muligt at udvide funktionaliteten med intelligent assistence.</p>
 <p>Det er netop i krydsfeltet mellem <strong>Infrastructure-laget</strong> og denne <strong>eksterne AI-service</strong>, at jeg har lagt mit fokus.</p>
 <p>Hvor resten af teamet har fokuseret på at etablere systemarkitekturen, sikkerheden og selve AI-servicen, har min opgave været at validere og optimere de kritiske data-komponenter, der skal bære systemet i fremtiden:</p>
 <h3 id="1-database--storage-specialisering">1. Database &amp; Storage (Specialisering)<a hidden class="anchor" aria-hidden="true" href="#1-database--storage-specialisering">#</a></h3>

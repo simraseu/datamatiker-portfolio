@@ -14,9 +14,9 @@ For at maksimere læringsudbyttet har jeg i projektet indtaget en rolle som **sp
 
 ## Den Fælles Systemarkitektur
 
-Systemet er en sundhedsplatform bygget i **Blazor Server**, hvor brugerne får adgang til rollebaserede funktioner og interaktioner.
+Systemet er en sundhedsplatform bygget i Blazor Server, hvor brugerne får adgang til rollebaserede funktioner og interaktioner.
 
-Vi har opbygget systemet efter en kombination af **Clean Architecture** og **CQRS**, hvilket giver en tydelig struktur og adskillelse mellem kernefunktionalitet, logik og brugergrænsefladen.
+Vi har opbygget systemet efter en kombination af Clean Architecture og CQRS, hvilket giver en tydelig struktur og adskillelse mellem kernefunktionalitet, logik og brugergrænsefladen.
 
 ### Projektets 4 Hovedlag
 Projektet er organiseret i fire distinkte lag, der sikrer "Separation of Concerns":
@@ -30,13 +30,13 @@ Projektet er organiseret i fire distinkte lag, der sikrer "Separation of Concern
 * **CQRS:** Sikrer en klar opdeling mellem læsning og skrivning.
 * **Vertical Slices:** Gør at hver feature (fx posts, medlemskaber eller profiler) er samlet ét sted med sin egen logik.
 * **Sikkerhed:** Platformen bruger ASP.NET Identity til login og rollebaseret adgangskontrol.
-* **Persistering:** **Entity Framework Core** håndterer lagring af brugere og interne data.
+* **Persistering:** Entity Framework Core håndterer lagring af brugere og interne data.
 
 ---
 
 ## Min Rolle: Infrastruktur & Integration
 
-Som beskrevet ovenfor integreres systemet med en **Python-baseret AI-service** via HTTP-gateways, hvilket gør det muligt at udvide funktionaliteten med intelligent assistence.
+Som beskrevet ovenfor integreres systemet med en Python-baseret AI-service via HTTP-gateways, hvilket gør det muligt at udvide funktionaliteten med intelligent assistence.
 
 Det er netop i krydsfeltet mellem **Infrastructure-laget** og denne **eksterne AI-service**, at jeg har lagt mit fokus.
 
