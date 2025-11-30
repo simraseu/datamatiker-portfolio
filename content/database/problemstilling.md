@@ -88,12 +88,14 @@ PostgreSQL gemmer JSON som parsed binary structure med:
 **Total latency: 400ms + 3 failure points**
 
 **Arkitektur B — Unified Monolith:**
+
 ```
 1. App → PostgreSQL: Combined query (89ms)
    SELECT * FROM conversations 
    WHERE user_id = $1 AND timestamp > $2
    ORDER BY embedding <-> $3
 ```
+
 **Total latency: 89ms + 1 failure point**
 
 **Spørgsmålet:** Er det værd at ofre netværks-latency og synkroniserings-kompleksitet for at få de marginalt bedre søge-algoritmer, en dedikeret vector-database tilbyder?
