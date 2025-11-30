@@ -149,17 +149,17 @@
     Kontekst: The Way of Coherence og min specialist-rolle i arkitekturen
   </div>
 </header>
-<div class="post-content"><h1 id="om-projektet-the-way-of-coherence">Om Projektet: The Way of Coherence<a hidden class="anchor" aria-hidden="true" href="#om-projektet-the-way-of-coherence">#</a></h1>
+<div class="post-content"><h1 id="the-way-of-coherence">The Way of Coherence<a hidden class="anchor" aria-hidden="true" href="#the-way-of-coherence">#</a></h1>
 <p>Dette projekt tager udgangspunkt i sundhedsplatformen <strong>The Way of Coherence</strong>. Platformen har fungeret som den fælles ramme for vores team, hvor vi har arbejdet ud fra en klar fordeling mellem fælles arkitektur og individuel specialisering.</p>
 <p>For at maksimere læringsudbyttet har jeg i projektet indtaget en rolle som <strong>specialiseret konsulent</strong>, med fokus på at optimere data-infrastrukturen og analytics-laget inden for den fælles ramme.</p>
 <hr>
-<h2 id="-den-fælles-systemarkitektur">🏗️ Den Fælles Systemarkitektur<a hidden class="anchor" aria-hidden="true" href="#-den-fælles-systemarkitektur">#</a></h2>
+<h2 id="den-fælles-systemarkitektur">Den Fælles Systemarkitektur<a hidden class="anchor" aria-hidden="true" href="#den-fælles-systemarkitektur">#</a></h2>
 <p>Systemet er en sundhedsplatform bygget i <strong>Blazor Server</strong>, hvor brugerne får adgang til rollebaserede funktioner og interaktioner.</p>
 <p>Vi har opbygget systemet efter en kombination af <strong>Clean Architecture</strong> og <strong>CQRS</strong>, hvilket giver en tydelig struktur og adskillelse mellem kernefunktionalitet, logik og brugergrænsefladen.</p>
 <h3 id="projektets-4-hovedlag">Projektets 4 Hovedlag<a hidden class="anchor" aria-hidden="true" href="#projektets-4-hovedlag">#</a></h3>
 <p>Projektet er organiseret i fire distinkte lag, der sikrer &ldquo;Separation of Concerns&rdquo;:</p>
 <ol>
-<li><strong>Application:</strong> Indeholder applikationslogik, use cases, <strong>MediatR</strong>-handlers samt Commands og Queries, der styrer flowet gennem systemet.</li>
+<li><strong>Application:</strong> Indeholder applikationslogik, use cases, MediatR-handlers samt Commands og Queries, der styrer flowet gennem systemet.</li>
 <li><strong>Domain:</strong> Rummer domænemodeller, forretningsregler og domænehændelser, som udgør platformens kerne.</li>
 <li><strong>Infrastructure:</strong> Står for dataadgang, repositories, integrationer og kommunikation til eksterne services. <em>(Det er primært her, min specialisering finder sted).</em></li>
 <li><strong>Blazor Web App:</strong> Leverer UI’et og håndterer interaktioner mellem brugeren og systemet.</li>
@@ -168,14 +168,14 @@
 <ul>
 <li><strong>CQRS:</strong> Sikrer en klar opdeling mellem læsning og skrivning.</li>
 <li><strong>Vertical Slices:</strong> Gør at hver feature (fx posts, medlemskaber eller profiler) er samlet ét sted med sin egen logik.</li>
-<li><strong>Sikkerhed:</strong> Platformen bruger <strong>ASP.NET Identity</strong> til login og rollebaseret adgangskontrol.</li>
+<li><strong>Sikkerhed:</strong> Platformen bruger ASP.NET Identity til login og rollebaseret adgangskontrol.</li>
 <li><strong>Persistering:</strong> <strong>Entity Framework Core</strong> håndterer lagring af brugere og interne data.</li>
 </ul>
 <hr>
-<h2 id="-min-rolle-infrastruktur--integration">🤖 Min Rolle: Infrastruktur &amp; Integration<a hidden class="anchor" aria-hidden="true" href="#-min-rolle-infrastruktur--integration">#</a></h2>
+<h2 id="min-rolle-infrastruktur--integration">Min Rolle: Infrastruktur &amp; Integration<a hidden class="anchor" aria-hidden="true" href="#min-rolle-infrastruktur--integration">#</a></h2>
 <p>Som beskrevet ovenfor integreres systemet med en <strong>Python-baseret AI-service</strong> via HTTP-gateways, hvilket gør det muligt at udvide funktionaliteten med intelligent assistence.</p>
 <p>Det er netop i krydsfeltet mellem <strong>Infrastructure-laget</strong> og denne <strong>eksterne AI-service</strong>, at jeg har lagt mit fokus.</p>
-<p>Hvor resten af teamet har fokuseret på at opbygge Blazor-frontend og Application-logik, har min opgave været at validere og optimere de kritiske data-komponenter, der skal bære systemet i fremtiden:</p>
+<p>Hvor resten af teamet har fokuseret på at etablere systemarkitekturen, sikkerheden og selve AI-servicen, har min opgave været at validere og optimere de kritiske data-komponenter, der skal bære systemet i fremtiden:</p>
 <h3 id="1-database--storage-specialisering">1. Database &amp; Storage (Specialisering)<a hidden class="anchor" aria-hidden="true" href="#1-database--storage-specialisering">#</a></h3>
 <p>Selvom standard-implementationen benytter Entity Framework Core, har jeg undersøgt og implementeret en <strong>Unified Monolith</strong> strategi med <strong>PostgreSQL</strong>.
 Formålet var at bevise, at vi kan håndtere de komplekse vektordata fra AI-servicen mere effektivt direkte i databasen, frem for gennem eksterne afhængigheder.
@@ -184,7 +184,7 @@ Formålet var at bevise, at vi kan håndtere de komplekse vektordata fra AI-serv
 <p>I forbindelse med integrationen til Python-servicen har jeg designet en <strong>Privacy-First pipeline</strong>. Min rolle var at sikre, at dataen der flyder gennem HTTP-gatewayen, bliver anonymiseret og målt korrekt, så vi kan vurdere AI-kvaliteten uden at bryde GDPR.
 👉 <em><a href="/datamatiker-portfolio/data-science/">Læs analysen her</a></em></p>
 <hr>
-<h2 id="-metode-konsulent-tilgangen">🔄 Metode: Konsulent-tilgangen<a hidden class="anchor" aria-hidden="true" href="#-metode-konsulent-tilgangen">#</a></h2>
+<h2 id="metode-konsulent-tilgangen">Metode: Konsulent-tilgangen<a hidden class="anchor" aria-hidden="true" href="#metode-konsulent-tilgangen">#</a></h2>
 <p>Ved at definere mig selv som specialist inden for teamet, har jeg kunnet arbejde dybdegående med teknologier (PostgreSQL, Vector Search, Hashing-algoritmer), der ligger &ldquo;under motorhjelmen&rdquo; på den fælles arkitektur.</p>
 <p>Min leverance til teamet er derfor ikke bare kode, men validerede arkitektur-beslutninger (Proof of Concepts), der er klar til at blive rullet ud i Infrastructure-laget.</p>
 <p><strong>Næste skridt:</strong> Se de specifikke mål, jeg satte for min specialist-rolle 👉 <a href="/datamatiker-portfolio/laeringsmaal/">Læringsmål</a></p>
