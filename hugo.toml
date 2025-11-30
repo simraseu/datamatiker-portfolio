@@ -8,6 +8,16 @@ theme = 'PaperMod'
     [markup.goldmark.renderer]
       unsafe = true
 
+  # TILFØJ DENNE SEKTION:
+  [markup.highlight]
+    noClasses = false
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = true
+    lineNos = false
+    style = "monokai"  # Eller "dracula", "rrt", etc.
+    tabWidth = 4
+
 [params]
   description = "Database & Storage + Data Science & Analytics"
   author = "Simon"
