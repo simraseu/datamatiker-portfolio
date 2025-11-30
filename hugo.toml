@@ -8,7 +8,6 @@ theme = 'PaperMod'
     [markup.goldmark.renderer]
       unsafe = true
 
-  # TILFØJ DENNE SEKTION:
   [markup.highlight]
     noClasses = false
     anchorLineNos = false
