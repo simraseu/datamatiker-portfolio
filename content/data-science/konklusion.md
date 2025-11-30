@@ -65,8 +65,8 @@ Uden live traffic kræver validation systematisk teoretisk analyse.
 
 | Læringsmål (fra definition) | Opfyldelse | Evidens | Refleksion |
 |:---|:---|:---|:---|
-| **Viden: GDPR & Metrikker** | Opnåede dyb indsigt i GDPR Art. 25 (Privacy by Design) og Goodhart’s Law. Identificerede risikoen ved "Vanity Metrics" i chatbots. | Research (Kilde 3+5) + Design Patterns (DP2+DP4) | Jeg lærte, at jura og matematik hænger sammen. Hvis man ignorerer Goodhart’s Law, designer man systemer, der optimerer mod fejl (f.eks. lange sessioner i stedet for gode svar). |
-| **Viden: Lambda Arkitektur** | Forstod principperne bag at separere real-time og historisk data for at balancere drift og analyse. | Research (Kleppmann) + Design Patterns (DP3) | Enterprise-arkitektur som Lambda kan skaleres ned. Princippet om at adskille "Speed Layer" og "Batch Layer" er universelt, uanset datamængde. |
+| **Viden: GDPR & Metrikker** | Opnåede dyb indsigt i GDPR Art. 25 (Privacy by Design) og Goodhart’s Law. Identificerede risikoen ved "Vanity Metrics" i chatbots. | Research (Kilde 3[^3] + Kilde 5[^5]) + Design Patterns (DP2+DP4) | Jeg lærte, at jura og matematik hænger sammen. Hvis man ignorerer Goodhart’s Law, designer man systemer, der optimerer mod fejl (f.eks. lange sessioner i stedet for gode svar). |
+| **Viden: Lambda Arkitektur** | Forstod principperne bag at separere real-time og historisk data for at balancere drift og analyse. | Research (Kleppmann[^4]) + Design Patterns (DP3) | Enterprise-arkitektur som Lambda kan skaleres ned. Princippet om at adskille "Speed Layer" og "Batch Layer" er universelt, uanset datamængde. |
 | **Færdigheder: Privacy-First Pipeline** | Udviklede C#-pipeline med SHA-256 hashing og Intent Classification. Sikrede at ingen fritekst persisteres. | Implementation (HashingService + IntentClassifier) | Det krævede disciplin at forkaste rå data. Men ved at transformere "Jeg har ondt" til kategorien "health_query" før lagring, fjernede jeg GDPR-risikoen ved kilden. |
 | **Færdigheder: Dual-Speed Arkitektur** | Implementerede "Lambda Lite" med in-memory counters (Hot Path) og SQL-batching (Cold Path). | Implementation (HotPathMonitor + SQL Schema) | Teknisk separation er nødvendig for at opfylde modstridende krav: Owner skal have alarmer *nu* (<1s), mens Product skal have præcise trends *senere*. |
 | **Kompetencer: Etik & Dashboards** | Designerede Context-Aware dashboards tilpasset stakeholders (Owner/Product). Reflekterede over etiske trade-offs ved anonymisering (f.eks. manglende krisedetektion). | Design Patterns (DP1+DP4) + Konklusion (Samfund) | Jeg bevægede mig fra "Vis alt data" til "Vis det rigtige data". Demokratisering af data kræver, at man skjuler irrelevante metrikker for at undgå beslutningsforvirring. |
@@ -141,3 +141,13 @@ Jeg startede med tre dilemmas. Jeg afslutter med fire validated patterns. Analyt
 **Læringsmål 6-10:** Alle opfyldt og reflekteret med konkrete resultater (6/8 KPIs, 5/5 GDPR, Lambda verified, multi-method validation).
 
 **Kritisk erkendelse:** Dataguld eller radioaktivt affald? Det bestemmes af disciplinen i designet, ikke dataen selv.
+
+---
+## Referencer
+
+[^1]: Rodden, K., Hutchinson, H., & Fu, X. (2010). "Measuring the User Experience on a Large Scale". Google Research.
+[^2]: McClure, D. (2007). "Startup Metrics for Pirates: AARRR!". 500 Startups.
+[^3]: EU General Data Protection Regulation (GDPR). Regulation (EU) 2016/679. Articles 9 & 25.
+[^4]: Kleppmann, M. (2017). "Designing Data-Intensive Applications". O'Reilly Media. Chapter 11.
+[^5]: Strathern, M. (1997). "Improving ratings: audit in the British University system". European Review.
+[^6]: Schneier, B. (2016). "Data Is a Toxic Asset: So Why Not Throw It Out?". Schneier on Security.

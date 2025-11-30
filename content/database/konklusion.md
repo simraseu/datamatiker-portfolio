@@ -102,10 +102,10 @@ Dette skift fra "Feature-first" til "Integrity-first" markerer en modning i min 
 
 | Læringsmål (fra definition) | Opfyldelse | Evidens | Refleksion |
 |:---|:---|:---|:---|
-| **Viden: Hybride Datamodeller** | Implementerede en samlet struktur med relationelle data (SQL), dokumenter (JSONB) og vektorer i én tabel. | Design Patterns (DP1+DP2) + Research (Kilde 1+2) | Jeg antog oprindeligt, at "Polyglot Persistence" var nødvendigt. Research viste dog, at PostgreSQLs binære JSONB-format muliggør hybride modeller uden performance-tab, hvilket forenkler arkitekturen markant. |
-| **Viden: ACID vs. BASE** | Dokumenterede konkrete failure-scenarier. **Teoretisk analyse** viste, at eventual consistency resulterer i partial writes ved crashes (AWS dokumentation). | Design Patterns (DP4) + Validering (V4) | Jeg troede "NoSQL = hurtigere" pga. manglende transaktioner. Jeg lærte, at moderne MVCC eliminerer transaction overhead, og at BASE-modellens risiko for datatab er uacceptabel for chat-UX. |
-| **Færdigheder: PostgreSQL & Vector** | Implementerede pgvector HNSW index for semantisk søgning og kombinerede metadata-filtrering med vektorer i én SQL-operation. | Implementation (Kodeeksempler) + Validering (V2) | Trade-off analysen var nøglen: pgvector er ~20% langsommere end Pinecone ved ren vectorsøgning, men 2.8× hurtigere ved kombinerede queries, da netværkskald elimineres. |
-| **Færdigheder: JSONB & Indexering** | Udnyttede GIN-indeksering til at gøre ustrukturerede chat-logs søgbare med performance, der matcher MongoDB. | Research (OnGres Benchmark) + Design Patterns (DP2) | Jeg lærte forskellen på "Text-based JSON" og "Binary JSONB". Implementation quality (hvordan databasen parser data) er vigtigere end database-kategorien ("Document DB"). |
+| **Viden: Hybride Datamodeller** | Implementerede en samlet struktur med relationelle data (SQL), dokumenter (JSONB) og vektorer i én tabel. | Design Patterns (DP1+DP2) + Research (Kilde 1[^1] + Kilde 2[^2]) | Jeg antog oprindeligt, at "Polyglot Persistence" var nødvendigt. Research viste dog, at PostgreSQLs binære JSONB-format muliggør hybride modeller uden performance-tab, hvilket forenkler arkitekturen markant. |
+| **Viden: ACID vs. BASE** | Dokumenterede konkrete failure-scenarier. **Teoretisk analyse** viste, at eventual consistency resulterer i partial writes ved crashes (AWS dokumentation[^5]). | Design Patterns (DP4) + Validering (V4) | Jeg troede "NoSQL = hurtigere" pga. manglende transaktioner. Jeg lærte, at moderne MVCC eliminerer transaction overhead, og at BASE-modellens risiko for datatab er uacceptabel for chat-UX. |
+| **Færdigheder: PostgreSQL & Vector** | Implementerede pgvector HNSW index for semantisk søgning og kombinerede metadata-filtrering med vektorer i én SQL-operation. | Implementation (Kodeeksempler) + Validering (V2) | Trade-off analysen var nøglen: pgvector er ~20% langsommere end Pinecone ved ren vectorsøgning[^3], men 2.8× hurtigere ved kombinerede queries, da netværkskald elimineres. |
+| **Færdigheder: JSONB & Indexering** | Udnyttede GIN-indeksering til at gøre ustrukturerede chat-logs søgbare med performance, der matcher MongoDB. | Research (OnGres Benchmark[^1]) + Design Patterns (DP2) | Jeg lærte forskellen på "Text-based JSON" og "Binary JSONB". Implementation quality (hvordan databasen parser data) er vigtigere end database-kategorien ("Document DB"). |
 | **Kompetencer: Arkitektonisk Validering** | Evaluerede Total Cost of Ownership ($4,400 savings) og GDPR-compliance. Validerede "Unified Monolith" gennem triangulering af kilder. | Research (TCO Analysis) + Konceptuel Validering | Arkitektoniske valg er ikke kun tekniske, men også økonomiske og etiske. Jeg bevægede mig fra at vælge baseret på hype til at vælge baseret på evidens og konvergens mellem uafhængige kilder. |
 
 ---
@@ -202,3 +202,12 @@ Den største læring har været skiftet fra **"Hvilken database er bedst?"** til
 **Portfolio komplet:** Problemstilling → Research → Design Patterns → Konceptuel Validering → Konklusion dokumenterer systematic approach til Database & Storage uden live user data.
 
 **Kritisk erkendelse:** Specialized tools eller unified platform? Det bestemmes af implementation quality og total cost of ownership, ikke marketing categories.
+
+---
+## Referencer
+
+[^1]: OnGres Inc. (2023). "PostgreSQL vs MongoDB: JSON Performance Analysis". Vendor Benchmark.
+[^2]: Makris, A., Tserpes, K., Spiliopoulos, G., & Anagnostopoulos, D. (2019). "A Comparison of NoSQL Database Systems for Large-Scale Storage". Springer LNCS.
+[^3]: Hightower, J. (2023). "Production RAG Architectures with pgvector". Timescale Engineering Blog.
+[^4]: Microsoft. (2024). "Entity Framework Core Provider Feature Comparison". Official Documentation.
+[^5]: Amazon Web Services. (2023). "Database Consistency Models: ACID vs BASE". Technical Guide.

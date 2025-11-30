@@ -152,7 +152,9 @@
                     <a href="#arbejdsmarked-postgresql-skills-demand" aria-label="Arbejdsmarked: PostgreSQL Skills Demand">Arbejdsmarked: PostgreSQL Skills Demand</a></li></ul>
                 </li>
                 <li>
-                    <a href="#afslutning-fra-dilemmaer-til-principper" aria-label="Afslutning: Fra Dilemmaer til Principper">Afslutning: Fra Dilemmaer til Principper</a>
+                    <a href="#afslutning-fra-dilemmaer-til-principper" aria-label="Afslutning: Fra Dilemmaer til Principper">Afslutning: Fra Dilemmaer til Principper</a></li>
+                <li>
+                    <a href="#referencer" aria-label="Referencer">Referencer</a>
                 </li>
             </ul>
         </div>
@@ -230,12 +232,12 @@
       <tr>
           <td style="text-align: left"><strong>Viden: Hybride Datamodeller</strong></td>
           <td style="text-align: left">Implementerede en samlet struktur med relationelle data (SQL), dokumenter (JSONB) og vektorer i én tabel.</td>
-          <td style="text-align: left">Design Patterns (DP1+DP2) + Research (Kilde 1+2)</td>
+          <td style="text-align: left">Design Patterns (DP1+DP2) + Research (Kilde 1<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> + Kilde 2<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>)</td>
           <td style="text-align: left">Jeg antog oprindeligt, at &ldquo;Polyglot Persistence&rdquo; var nødvendigt. Research viste dog, at PostgreSQLs binære JSONB-format muliggør hybride modeller uden performance-tab, hvilket forenkler arkitekturen markant.</td>
       </tr>
       <tr>
           <td style="text-align: left"><strong>Viden: ACID vs. BASE</strong></td>
-          <td style="text-align: left">Dokumenterede konkrete failure-scenarier. <strong>Teoretisk analyse</strong> viste, at eventual consistency resulterer i partial writes ved crashes (AWS dokumentation).</td>
+          <td style="text-align: left">Dokumenterede konkrete failure-scenarier. <strong>Teoretisk analyse</strong> viste, at eventual consistency resulterer i partial writes ved crashes (AWS dokumentation<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>).</td>
           <td style="text-align: left">Design Patterns (DP4) + Validering (V4)</td>
           <td style="text-align: left">Jeg troede &ldquo;NoSQL = hurtigere&rdquo; pga. manglende transaktioner. Jeg lærte, at moderne MVCC eliminerer transaction overhead, og at BASE-modellens risiko for datatab er uacceptabel for chat-UX.</td>
       </tr>
@@ -243,12 +245,12 @@
           <td style="text-align: left"><strong>Færdigheder: PostgreSQL &amp; Vector</strong></td>
           <td style="text-align: left">Implementerede pgvector HNSW index for semantisk søgning og kombinerede metadata-filtrering med vektorer i én SQL-operation.</td>
           <td style="text-align: left">Implementation (Kodeeksempler) + Validering (V2)</td>
-          <td style="text-align: left">Trade-off analysen var nøglen: pgvector er ~20% langsommere end Pinecone ved ren vectorsøgning, men 2.8× hurtigere ved kombinerede queries, da netværkskald elimineres.</td>
+          <td style="text-align: left">Trade-off analysen var nøglen: pgvector er ~20% langsommere end Pinecone ved ren vectorsøgning<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>, men 2.8× hurtigere ved kombinerede queries, da netværkskald elimineres.</td>
       </tr>
       <tr>
           <td style="text-align: left"><strong>Færdigheder: JSONB &amp; Indexering</strong></td>
           <td style="text-align: left">Udnyttede GIN-indeksering til at gøre ustrukturerede chat-logs søgbare med performance, der matcher MongoDB.</td>
-          <td style="text-align: left">Research (OnGres Benchmark) + Design Patterns (DP2)</td>
+          <td style="text-align: left">Research (OnGres Benchmark<sup id="fnref1:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>) + Design Patterns (DP2)</td>
           <td style="text-align: left">Jeg lærte forskellen på &ldquo;Text-based JSON&rdquo; og &ldquo;Binary JSONB&rdquo;. Implementation quality (hvordan databasen parser data) er vigtigere end database-kategorien (&ldquo;Document DB&rdquo;).</td>
       </tr>
       <tr>
@@ -353,6 +355,25 @@
 <hr>
 <p><strong>Portfolio komplet:</strong> Problemstilling → Research → Design Patterns → Konceptuel Validering → Konklusion dokumenterer systematic approach til Database &amp; Storage uden live user data.</p>
 <p><strong>Kritisk erkendelse:</strong> Specialized tools eller unified platform? Det bestemmes af implementation quality og total cost of ownership, ikke marketing categories.</p>
+<hr>
+<h2 id="referencer">Referencer<a hidden class="anchor" aria-hidden="true" href="#referencer">#</a></h2>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>OnGres Inc. (2023). &ldquo;PostgreSQL vs MongoDB: JSON Performance Analysis&rdquo;. Vendor Benchmark.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Makris, A., Tserpes, K., Spiliopoulos, G., &amp; Anagnostopoulos, D. (2019). &ldquo;A Comparison of NoSQL Database Systems for Large-Scale Storage&rdquo;. Springer LNCS.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>Amazon Web Services. (2023). &ldquo;Database Consistency Models: ACID vs BASE&rdquo;. Technical Guide.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>Hightower, J. (2023). &ldquo;Production RAG Architectures with pgvector&rdquo;. Timescale Engineering Blog.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
 
 
   </div>

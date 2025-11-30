@@ -132,9 +132,9 @@ Vi anvender fire valideringsmetoder:
 
 | Kilde | Type | Finding | Confidence |
 |-------|------|---------|------------|
-| **OnGres Benchmark** | Vendor Analysis | PostgreSQL JSONB er 26-40× hurtigere end MongoDB BSON på komplekse aggregeringer | Medium |
-| **Makris et al.** | Peer-Reviewed | Uafhængigt studie bekræfter 4× hurtigere queries og 4× mindre disk footprint | High |
-| **PostgreSQL Docs** | Technical Docs | Dokumenterer mekanismen: JSONB lagres som binært, pre-parsed format med GIN-indexing | Very High |
+| **OnGres Benchmark**[^1] | Vendor Analysis | PostgreSQL JSONB er 26-40× hurtigere end MongoDB BSON på komplekse aggregeringer | Medium |
+| **Makris et al.**[^2] | Peer-Reviewed | Uafhængigt studie bekræfter 4× hurtigere queries og 4× mindre disk footprint | High |
+| **PostgreSQL Docs**[^6] | Technical Docs | Dokumenterer mekanismen: JSONB lagres som binært, pre-parsed format med GIN-indexing | Very High |
 
 **Conclusion:** ✅ **Validated.** Konvergerende evidens bekræfter, at PostgreSQL arkitektonisk er overlegen til den JSON-tunge workload i Authenticated Chatbot.
 
@@ -210,3 +210,4 @@ Vi har bevæget os fra en antagelse om, at "specialiserede værktøjer er bedst"
 [^3]: Hightower, J. (2023). "Production RAG Architectures with pgvector". Timescale Engineering Blog.
 [^4]: Microsoft. (2024). "Entity Framework Core Provider Feature Comparison". Official Documentation.
 [^5]: Amazon Web Services. (2023). "Database Consistency Models: ACID vs BASE". Technical Guide.
+[^6]: The PostgreSQL Global Development Group. "8.14. JSON Types". PostgreSQL Documentation.
