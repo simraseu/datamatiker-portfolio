@@ -29,11 +29,11 @@
       <description>Fire normative regler for en Unified Persistence Architecture</description>
     </item>
     <item>
-      <title>Konceptuel Validering</title>
+      <title>Implementation &amp; Validation</title>
       <link>http://localhost:1313/datamatiker-portfolio/database/konceptuel-validering/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/database/konceptuel-validering/</guid>
-      <description>Systematisk audit af arkitektur gennem teoretisk analyse</description>
+      <description>Fra Design Patterns til kode: Konkret implementation og teoretisk audit</description>
     </item>
     <item>
       <title>Konklusion</title>

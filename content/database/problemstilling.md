@@ -7,18 +7,18 @@ description: "Specialiserings-fælden og de tre arkitektoniske dilemmaer"
 
 ## Databasernes "Best Tool" Paradoks
 
-Da vi skulle designe backend-arkitekturen til vores AI-chatbot system, startede jeg med en klassisk antagelse fra undervisningen: *"Brug det rigtige værktøj til opgaven."*
+Systemets oprindelige arkitektur lagde op til en klassisk **"Polyglot Persistence"** tilgang. For at understøtte de ambitiøse krav til AI og chat, var antagelsen i teamet, at vi skulle bruge specialiserede værktøjer til hver opgave:
 
-Min oprindelige tegnebræt-skitse lignede derfor standarden for en moderne "Polyglot" arkitektur:
 * **MongoDB:** Til JSON-dokumenter (Chat history)
 * **Pinecone:** Til Vector Embeddings (Semantisk søgning)
 * **PostgreSQL:** Til brugerdata (Relationelt)
 
-Tre problemer. Tre specialiserede databaser. Det virkede som det professionelle valg.
+Tre problemer. Tre specialiserede databaser. På papiret lignede det industristandarden.
 
-Men da jeg begyndte at analysere systemets krav nærmere, stødte jeg på det, jeg kalder **Specialiserings-fælden**: *Hvornår bliver omkostningen ved at integrere specialiserede værktøjer højere end gevinsten ved deres specialisering?*
+**Min rolle som specialist:**
+Som ansvarlig for data-infrastrukturen var min opgave ikke blot at implementere denne plan, men at **validere** den. Jeg stødte hurtigt på det, jeg kalder **Specialiserings-fælden**: *Hvornår bliver omkostningen ved at integrere specialiserede værktøjer højere end gevinsten ved deres specialisering?*
 
-Dette projekt handler ikke om at vælge "den bedste database" i et vakuum. Det handler om at navigere i tre fundamentale dilemmaer, der opstår, når moderne AI møder klassisk databasedesign.
+Jeg valgte derfor at udfordre teamets oprindelige antagelse. Dette projekt handler ikke om at vælge "den bedste database" i et vakuum, men om at navigere i tre fundamentale dilemmaer, der opstår, når vi forsøger at splitte data op i tre systemer.
 
 ---
 

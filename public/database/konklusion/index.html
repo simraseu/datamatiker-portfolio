@@ -175,7 +175,7 @@
                     <a href="#4-datakonsistens-er-ikke-sexet-men-kritisk" aria-label="4. Datakonsistens er ikke sexet, men kritisk">4. Datakonsistens er ikke sexet, men kritisk</a></li></ul>
                 </li>
                 <li>
-                    <a href="#opfyldelse-af-l%c3%a6ringsm%c3%a5l-1-5" aria-label="Opfyldelse af Læringsmål 1-5">Opfyldelse af Læringsmål 1-5</a></li>
+                    <a href="#opfyldelse-af-l%c3%a6ringsm%c3%a5l-database--storage" aria-label="Opfyldelse af Læringsmål (Database &amp; Storage)">Opfyldelse af Læringsmål (Database &amp; Storage)</a></li>
                 <li>
                     <a href="#samfundsm%c3%a6ssige-perspektiver" aria-label="Samfundsmæssige Perspektiver">Samfundsmæssige Perspektiver</a><ul>
                         
@@ -253,11 +253,11 @@
 <p>Dette skift fra &ldquo;Feature-first&rdquo; til &ldquo;Integrity-first&rdquo; markerer en modning i min tilgang til systemudvikling.</p>
 <p><strong>Takeaway:</strong> Performance myths persist. ACID isn&rsquo;t slow — BASE is unpredictable. For user-facing applications, consistency &gt; theoretical throughput gains.</p>
 <hr>
-<h2 id="opfyldelse-af-læringsmål-1-5">Opfyldelse af Læringsmål 1-5<a hidden class="anchor" aria-hidden="true" href="#opfyldelse-af-læringsmål-1-5">#</a></h2>
+<h2 id="opfyldelse-af-læringsmål-database--storage">Opfyldelse af Læringsmål (Database &amp; Storage)<a hidden class="anchor" aria-hidden="true" href="#opfyldelse-af-læringsmål-database--storage">#</a></h2>
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">Læringsmål</th>
+          <th style="text-align: left">Læringsmål (fra definition)</th>
           <th style="text-align: left">Opfyldelse</th>
           <th style="text-align: left">Evidens</th>
           <th style="text-align: left">Refleksion</th>
@@ -265,34 +265,34 @@
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left"><strong>LM1: Vector Search Implementation</strong></td>
-          <td style="text-align: left">Implementerede pgvector HNSW index for semantic search. Kombinerede metadata-filtering med vector similarity i én SQL-operation.</td>
-          <td style="text-align: left">Design Patterns (DP3) + Konceptuel Validering (V2)</td>
-          <td style="text-align: left">Jeg antog at dedicated vector database (Pinecone) ville være optimal. Men unified platform eliminerede sync complexity uden performance-tab. Trade-off: pgvector 20% langsommere ved pure vector search, men 2.8× hurtigere ved kombinerede queries. Context matters.</td>
+          <td style="text-align: left"><strong>Viden: Hybride Datamodeller</strong></td>
+          <td style="text-align: left">Implementerede en samlet struktur med relationelle data (SQL), dokumenter (JSONB) og vektorer i én tabel.</td>
+          <td style="text-align: left">Design Patterns (DP1+DP2) + Research (Kilde 1+2)</td>
+          <td style="text-align: left">Jeg antog oprindeligt, at &ldquo;Polyglot Persistence&rdquo; var nødvendigt. Research viste dog, at PostgreSQLs binære JSONB-format muliggør hybride modeller uden performance-tab, hvilket forenkler arkitekturen markant.</td>
       </tr>
       <tr>
-          <td style="text-align: left"><strong>LM2: ACID vs BASE Trade-offs</strong></td>
-          <td style="text-align: left">Dokumenterede konkrete failure-scenarier. Teoretisk analyse viste eventual consistency resulterer i partial writes ved crashes (AWS dokumentation).</td>
-          <td style="text-align: left">Design Patterns (DP4) + Konceptuel Validering (V4)</td>
-          <td style="text-align: left">Jeg troede &ldquo;NoSQL = hurtigere&rdquo; fordi eventual consistency. Men AWS whitepaper viste ACID modern MVCC eliminerer transaction overhead. BASE&rsquo;s 70% partial write risk er uacceptabelt for chat UX. Lærte at performance myths persist i industrien.</td>
+          <td style="text-align: left"><strong>Viden: ACID vs. BASE</strong></td>
+          <td style="text-align: left">Dokumenterede konkrete failure-scenarier. <strong>Teoretisk analyse</strong> viste, at eventual consistency resulterer i partial writes ved crashes (AWS dokumentation).</td>
+          <td style="text-align: left">Design Patterns (DP4) + Validering (V4)</td>
+          <td style="text-align: left">Jeg troede &ldquo;NoSQL = hurtigere&rdquo; pga. manglende transaktioner. Jeg lærte, at moderne MVCC eliminerer transaction overhead, og at BASE-modellens risiko for datatab er uacceptabel for chat-UX.</td>
       </tr>
       <tr>
-          <td style="text-align: left"><strong>LM3: Database-ORM Integration</strong></td>
-          <td style="text-align: left">Kvantificerede developer experience impact: PostgreSQL 100% EF Core support vs MongoDB 60%. Resulterede i 47% mindre kode grundet mature provider.</td>
-          <td style="text-align: left">Design Patterns (DP1) + Konceptuel Validering (V3)</td>
-          <td style="text-align: left">Microsoft&rsquo;s EF Core feature matrix viste konkrete gaps: MongoDB mangler Include(), partial transactions, computed columns. Jeg antog &ldquo;workarounds are fine&rdquo; — men 47% mere kode betyder udviklingsdage tabt. For semester-projekt med deadline er developer velocity kritisk.</td>
+          <td style="text-align: left"><strong>Færdigheder: PostgreSQL &amp; Vector</strong></td>
+          <td style="text-align: left">Implementerede pgvector HNSW index for semantisk søgning og kombinerede metadata-filtrering med vektorer i én SQL-operation.</td>
+          <td style="text-align: left">Implementation (Kodeeksempler) + Validering (V2)</td>
+          <td style="text-align: left">Trade-off analysen var nøglen: pgvector er ~20% langsommere end Pinecone ved ren vectorsøgning, men 2.8× hurtigere ved kombinerede queries, da netværkskald elimineres.</td>
       </tr>
       <tr>
-          <td style="text-align: left"><strong>LM4: Holistisk Database-evaluering</strong></td>
-          <td style="text-align: left">Evaluerede total cost of ownership: $4,400 savings over 3 år ved 10k users. Koblede tekniske valg til økonomiske konsekvenser (hosting, monitoring, GDPR compliance).</td>
-          <td style="text-align: left">Problemstilling + Research (TCO analysis)</td>
-          <td style="text-align: left">Jeg fokuserede oprindeligt kun på performance. Men TCO analysis viste polyglot persistence har hidden costs: 3× hosting, 3× monitoring, manual GDPR deletion sync. Arkitektoniske valg er business decisions, ikke kun tekniske.</td>
+          <td style="text-align: left"><strong>Færdigheder: JSONB &amp; Indexering</strong></td>
+          <td style="text-align: left">Udnyttede GIN-indeksering til at gøre ustrukturerede chat-logs søgbare med performance, der matcher MongoDB.</td>
+          <td style="text-align: left">Research (OnGres Benchmark) + Design Patterns (DP2)</td>
+          <td style="text-align: left">Jeg lærte forskellen på &ldquo;Text-based JSON&rdquo; og &ldquo;Binary JSONB&rdquo;. Implementation quality (hvordan databasen parser data) er vigtigere end database-kategorien (&ldquo;Document DB&rdquo;).</td>
       </tr>
       <tr>
-          <td style="text-align: left"><strong>LM5: Systematisk Research Metodologi</strong></td>
-          <td style="text-align: left">Gennemførte peer-reviewed litteratursøgning med clear inclusion/exclusion criteria. Triangulerede evidens fra vendor benchmarks, akademiske studier og production cases.</td>
-          <td style="text-align: left">Research + Konceptuel Validering</td>
-          <td style="text-align: left">Største læringsmæssige værdi: Metodisk triangulering eliminerer single-source bias. OnGres vendor benchmark valideret af Makris peer-reviewed study. Convergent evidence giver højere confidence end single studies.</td>
+          <td style="text-align: left"><strong>Kompetencer: Arkitektonisk Validering</strong></td>
+          <td style="text-align: left">Evaluerede Total Cost of Ownership ($4,400 savings) og GDPR-compliance. Validerede &ldquo;Unified Monolith&rdquo; gennem triangulering af kilder.</td>
+          <td style="text-align: left">Research (TCO Analysis) + Konceptuel Validering</td>
+          <td style="text-align: left">Arkitektoniske valg er ikke kun tekniske, men også økonomiske og etiske. Jeg bevægede mig fra at vælge baseret på hype til at vælge baseret på evidens og konvergens mellem uafhængige kilder.</td>
       </tr>
   </tbody>
 </table>

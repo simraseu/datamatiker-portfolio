@@ -7,9 +7,9 @@ description: "Fire normative regler for en Unified Persistence Architecture"
 
 ## Fra Evidens til Arkitektur
 
-Researchen fastslog at PostgreSQL kan erstatte både MongoDB og Pinecone uden performance-tab. Men hvordan designes systemet for at udnytte disse fordele?
+Min research fastslog, at PostgreSQL kan erstatte både MongoDB og Pinecone uden performance-tab. Men hvordan skulle systemet designes for at udnytte disse fordele?
 
-For at operationalisere evidensen er der defineret fire **Design Patterns** — normative arkitektur-regler valideret gennem convergent literature analysis og theoretical audits.
+For at operationalisere evidensen har jeg defineret fire **Design Patterns** — normative arkitektur-regler valideret gennem convergent literature analysis og teoretiske audits.
 
 Disse patterns løser direkte problemstillingens tre dilemmaer:
 - **Dilemma 1 (Integration Tax):** DP1 + DP2
@@ -24,8 +24,7 @@ Disse patterns løser direkte problemstillingens tre dilemmaer:
 **Research Base:** Kilde 3 (Hightower/Timescale Production Case)  
 **Validering:** V2 (Architecture Audit)
 
-**Designbeslutning:**  
-I stedet for at sprede data over tre systemer (SQL, NoSQL, Vector DB), samles alt i én fysisk PostgreSQL instans. Vi udnytter PostgreSQL som en "Multi-Model" database.
+**Designbeslutning:** I stedet for at sprede data over tre systemer (SQL, NoSQL, Vector DB), har jeg valgt at samle alt i én fysisk PostgreSQL instans. Jeg udnytter her PostgreSQL som en "Multi-Model" database.
 
 **Architecture Comparison:**
 
@@ -40,7 +39,7 @@ Failure points: 3 independent databases
 Network hops: 3-4 per complex query
 ```
 
-**Unified Monolith (1 database):**
+**Unified Monolith (Min Løsning):**
 ```
 Brugerdata    → PostgreSQL tables
 Chat Logs     → PostgreSQL JSONB columns
@@ -51,10 +50,9 @@ Failure points: 1 database
 Network hops: 1 per query
 ```
 
-**Gevinst:**  
-Vi eliminerer "The Integration Tax". Ingen datasynkronisering mellem systemer, ingen "race conditions" hvor vektorer findes før metadata, og driften forenkles til én backup-pipeline.
+**Gevinst:** Jeg eliminerer "The Integration Tax". Ingen datasynkronisering mellem systemer, ingen "race conditions" hvor vektorer findes før metadata, og driften forenkles til én backup-pipeline.
 
-**Trade-off:** Mister *nogle* edge-features fra specialiserede vector-DB'er (custom ANN algorithms), men får dramatisk reduceret kompleksitet og latency.
+**Trade-off:** Mister *nogle* edge-features fra specialiserede vector-DB'er (custom ANN algorithms), men opnår dramatisk reduceret kompleksitet og latency.
 
 ---
 
@@ -64,8 +62,7 @@ Vi eliminerer "The Integration Tax". Ingen datasynkronisering mellem systemer, i
 **Research Base:** Kilde 1 (OnGres Benchmark) + Kilde 2 (Makris et al.)  
 **Validering:** V1 (Literature Convergence)
 
-**Designbeslutning:**  
-Vi forkaster "Enten/Eller" mentaliteten mellem relational og document databases. Vi anvender en hybrid model, hvor strukturelt faste data (Users) er relationelle, mens volatile data (Conversation Metadata) er dokument-baserede, men indekseret med relationel stringens.
+**Designbeslutning:** Jeg valgte at forkaste "Enten/Eller" mentaliteten mellem relational og document databases. I stedet anvender jeg en hybrid model, hvor strukturelt faste data (Users) er relationelle, mens volatile data (Conversation Metadata) er dokument-baserede, men indekseret med relationel stringens.
 
 **Schema Strategy:**
 ```sql
@@ -106,8 +103,7 @@ MongoDB gemmer JSON som text-based BSON. PostgreSQL gemmer JSON som parsed binar
 **Research Base:** Kilde 3 (Hightower Production Case)  
 **Validering:** V2 (Architecture Audit)
 
-**Designbeslutning:**  
-Embeddings må ikke være "second-class citizens" i en ekstern database. Ved at placere vectors (`vector(1536)`) i samme tabel som selve beskeden, muliggøres atomiske opdateringer og single-query retrieval.
+**Designbeslutning:** Embeddings må ikke være "second-class citizens" i en ekstern database. Ved at placere vectors (`vector(1536)`) i samme tabel som selve beskeden, har jeg muliggjort atomiske opdateringer og single-query retrieval.
 
 **Architecture Comparison:**
 
@@ -143,15 +139,14 @@ Total: 1 operation, 89ms latency
 
 **Latency reduction:** 311ms (78%) eliminated by avoiding cross-service calls.
 
-**Index Strategy:**  
-Anvend HNSW (Hierarchical Navigable Small World) index fremfor IVFFlat:
+**Index Strategy:** Jeg anbefaler HNSW (Hierarchical Navigable Small World) index fremfor IVFFlat:
 - **Recall:** ~96-98% (acceptable trade-off for speed)
 - **Query time:** <100ms for semantic search + metadata filtering
 - **Build time:** Higher (one-time cost), but query performance optimal
 
 **Trade-off:** pgvector ~20% langsommere end dedicated Pinecone ved **pure** vector search (no metadata filtering). Men kombinerede queries 2.8× hurtigere grundet eliminated roundtrips.
 
-**Key insight:** For chatbot use case where metadata+vector are always combined, native integration is optimal.
+**Key insight:** Da chatbot use-cases altid kombinerer metadata og vektorer, er native integration optimal.
 
 ---
 
@@ -161,8 +156,7 @@ Anvend HNSW (Hierarchical Navigable Small World) index fremfor IVFFlat:
 **Research Base:** Kilde 5 (AWS ACID vs BASE Guide)  
 **Validering:** V4 (Transaction Theory Analysis)
 
-**Designbeslutning:**  
-I en chat-applikation er "Eventual Consistency" en UX-fejl. Når user sender besked, skal bot response gemmes atomisk. Vi håndhæver Strong Consistency gennem transactions.
+**Designbeslutning:** I en chat-applikation er "Eventual Consistency" en UX-fejl. Når user sender besked, skal bot response gemmes atomisk. Jeg har designet systemet til at håndhæve Strong Consistency gennem transactions.
 
 **Consistency Model Comparison:**
 
@@ -210,13 +204,13 @@ BASE allows:
 - Replication lag (100-500ms) creates inconsistency windows
 - No guarantee of atomic deletion (GDPR risk)
 
-**Trade-off:** ACID transactions add ~1-2ms overhead per write. Men BASE's inconsistency windows create 70% partial saves ved crashes — unacceptable for chat UX.
+**Trade-off:** ACID transactions add ~1-2ms overhead per write. Men BASE's inconsistency windows create 70% partial saves ved crashes — uacceptabelt for chat UX.
 
 ---
 
 ## Multi-Method Validation Summary
 
-Alle fire patterns valideret gennem minimum to uafhængige metoder:
+Alle fire patterns er valideret gennem minimum to uafhængige metoder:
 
 | Pattern | Validation Method(s) | Evidence Type | Status |
 |---------|---------------------|---------------|--------|
@@ -225,7 +219,7 @@ Alle fire patterns valideret gennem minimum to uafhængige metoder:
 | **DP3: Zero-Latency** | V2 (Architecture Audit) | Production case + Latency analysis | ✅ Validated |
 | **DP4: ACID-First** | V4 (Transaction Theory) | AWS docs + Failure mode analysis | ✅ Validated |
 
-**Kritisk observation:** Alle patterns validated through **convergent evidence** — hvor multiple independent sources peger på samme konklusion.
+**Kritisk observation:** Alle patterns er valideret gennem **convergent evidence** — hvor multiple independent sources peger på samme konklusion.
 
 Dette matcher Data Science-sektionens validation methodology for "validation uden live data."
 
@@ -235,4 +229,4 @@ Dette matcher Data Science-sektionens validation methodology for "validation ude
 
 Med arkitektoniske regler defineret gennem DP1-DP4 kan systemets konkrete validering påbegyndes. Næste sektion dokumenterer de fire validation methods anvendt til at verificere patterns uden live traffic.
 
-**Næste:** [Konceptuel Validering →]({{< relref "database/konceptuel-validering.md" >}})
+**Næste:** [Implementation & Validation →]({{< relref "database/konceptuel-validering.md" >}})

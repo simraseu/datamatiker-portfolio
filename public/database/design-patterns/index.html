@@ -181,8 +181,8 @@
 </div>
 
   <div class="post-content"><h2 id="fra-evidens-til-arkitektur">Fra Evidens til Arkitektur<a hidden class="anchor" aria-hidden="true" href="#fra-evidens-til-arkitektur">#</a></h2>
-<p>Researchen fastslog at PostgreSQL kan erstatte både MongoDB og Pinecone uden performance-tab. Men hvordan designes systemet for at udnytte disse fordele?</p>
-<p>For at operationalisere evidensen er der defineret fire <strong>Design Patterns</strong> — normative arkitektur-regler valideret gennem convergent literature analysis og theoretical audits.</p>
+<p>Min research fastslog, at PostgreSQL kan erstatte både MongoDB og Pinecone uden performance-tab. Men hvordan skulle systemet designes for at udnytte disse fordele?</p>
+<p>For at operationalisere evidensen har jeg defineret fire <strong>Design Patterns</strong> — normative arkitektur-regler valideret gennem convergent literature analysis og teoretiske audits.</p>
 <p>Disse patterns løser direkte problemstillingens tre dilemmaer:</p>
 <ul>
 <li><strong>Dilemma 1 (Integration Tax):</strong> DP1 + DP2</li>
@@ -194,8 +194,7 @@
 <p><strong>Adresserer:</strong> Dilemma 2 (Synchronization Nightmare)<br>
 <strong>Research Base:</strong> Kilde 3 (Hightower/Timescale Production Case)<br>
 <strong>Validering:</strong> V2 (Architecture Audit)</p>
-<p><strong>Designbeslutning:</strong><br>
-I stedet for at sprede data over tre systemer (SQL, NoSQL, Vector DB), samles alt i én fysisk PostgreSQL instans. Vi udnytter PostgreSQL som en &ldquo;Multi-Model&rdquo; database.</p>
+<p><strong>Designbeslutning:</strong> I stedet for at sprede data over tre systemer (SQL, NoSQL, Vector DB), har jeg valgt at samle alt i én fysisk PostgreSQL instans. Jeg udnytter her PostgreSQL som en &ldquo;Multi-Model&rdquo; database.</p>
 <p><strong>Architecture Comparison:</strong></p>
 <p><strong>Traditional Polyglot (3 databases):</strong></p>
 <pre tabindex="0"><code>Brugerdata    → PostgreSQL (relational)
@@ -205,7 +204,7 @@ AI Embeddings → Pinecone (vectors)
 Integration: App must sync 3 systems
 Failure points: 3 independent databases
 Network hops: 3-4 per complex query
-</code></pre><p><strong>Unified Monolith (1 database):</strong></p>
+</code></pre><p><strong>Unified Monolith (Min Løsning):</strong></p>
 <pre tabindex="0"><code>Brugerdata    → PostgreSQL tables
 Chat Logs     → PostgreSQL JSONB columns
 AI Embeddings → PostgreSQL vector columns
@@ -213,16 +212,14 @@ AI Embeddings → PostgreSQL vector columns
 Integration: Native SQL joins
 Failure points: 1 database
 Network hops: 1 per query
-</code></pre><p><strong>Gevinst:</strong><br>
-Vi eliminerer &ldquo;The Integration Tax&rdquo;. Ingen datasynkronisering mellem systemer, ingen &ldquo;race conditions&rdquo; hvor vektorer findes før metadata, og driften forenkles til én backup-pipeline.</p>
-<p><strong>Trade-off:</strong> Mister <em>nogle</em> edge-features fra specialiserede vector-DB&rsquo;er (custom ANN algorithms), men får dramatisk reduceret kompleksitet og latency.</p>
+</code></pre><p><strong>Gevinst:</strong> Jeg eliminerer &ldquo;The Integration Tax&rdquo;. Ingen datasynkronisering mellem systemer, ingen &ldquo;race conditions&rdquo; hvor vektorer findes før metadata, og driften forenkles til én backup-pipeline.</p>
+<p><strong>Trade-off:</strong> Mister <em>nogle</em> edge-features fra specialiserede vector-DB&rsquo;er (custom ANN algorithms), men opnår dramatisk reduceret kompleksitet og latency.</p>
 <hr>
 <h2 id="dp2-hybrid-relational-bridge">DP2: Hybrid-Relational Bridge<a hidden class="anchor" aria-hidden="true" href="#dp2-hybrid-relational-bridge">#</a></h2>
 <p><strong>Adresserer:</strong> Dilemma 1 (Integration Tax)<br>
 <strong>Research Base:</strong> Kilde 1 (OnGres Benchmark) + Kilde 2 (Makris et al.)<br>
 <strong>Validering:</strong> V1 (Literature Convergence)</p>
-<p><strong>Designbeslutning:</strong><br>
-Vi forkaster &ldquo;Enten/Eller&rdquo; mentaliteten mellem relational og document databases. Vi anvender en hybrid model, hvor strukturelt faste data (Users) er relationelle, mens volatile data (Conversation Metadata) er dokument-baserede, men indekseret med relationel stringens.</p>
+<p><strong>Designbeslutning:</strong> Jeg valgte at forkaste &ldquo;Enten/Eller&rdquo; mentaliteten mellem relational og document databases. I stedet anvender jeg en hybrid model, hvor strukturelt faste data (Users) er relationelle, mens volatile data (Conversation Metadata) er dokument-baserede, men indekseret med relationel stringens.</p>
 <p><strong>Schema Strategy:</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> conversations (
 </span></span><span style="display:flex;"><span>    id UUID <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>,              <span style="color:#75715e">-- Relational (Fast struktur)
@@ -277,8 +274,7 @@ Vi forkaster &ldquo;Enten/Eller&rdquo; mentaliteten mellem relational og documen
 <p><strong>Adresserer:</strong> Dilemma 2 (Synchronization Nightmare)<br>
 <strong>Research Base:</strong> Kilde 3 (Hightower Production Case)<br>
 <strong>Validering:</strong> V2 (Architecture Audit)</p>
-<p><strong>Designbeslutning:</strong><br>
-Embeddings må ikke være &ldquo;second-class citizens&rdquo; i en ekstern database. Ved at placere vectors (<code>vector(1536)</code>) i samme tabel som selve beskeden, muliggøres atomiske opdateringer og single-query retrieval.</p>
+<p><strong>Designbeslutning:</strong> Embeddings må ikke være &ldquo;second-class citizens&rdquo; i en ekstern database. Ved at placere vectors (<code>vector(1536)</code>) i samme tabel som selve beskeden, har jeg muliggjort atomiske opdateringer og single-query retrieval.</p>
 <p><strong>Architecture Comparison:</strong></p>
 <p><strong>Polyglot (MongoDB + Pinecone):</strong></p>
 <pre tabindex="0"><code>Query: &#34;Find semantically similar conversations from last month for user X&#34;
@@ -305,22 +301,20 @@ Step 1: App → PostgreSQL (combined query) [RTT 1]
 
 Total: 1 operation, 89ms latency
 </code></pre><p><strong>Latency reduction:</strong> 311ms (78%) eliminated by avoiding cross-service calls.</p>
-<p><strong>Index Strategy:</strong><br>
-Anvend HNSW (Hierarchical Navigable Small World) index fremfor IVFFlat:</p>
+<p><strong>Index Strategy:</strong> Jeg anbefaler HNSW (Hierarchical Navigable Small World) index fremfor IVFFlat:</p>
 <ul>
 <li><strong>Recall:</strong> ~96-98% (acceptable trade-off for speed)</li>
 <li><strong>Query time:</strong> &lt;100ms for semantic search + metadata filtering</li>
 <li><strong>Build time:</strong> Higher (one-time cost), but query performance optimal</li>
 </ul>
 <p><strong>Trade-off:</strong> pgvector ~20% langsommere end dedicated Pinecone ved <strong>pure</strong> vector search (no metadata filtering). Men kombinerede queries 2.8× hurtigere grundet eliminated roundtrips.</p>
-<p><strong>Key insight:</strong> For chatbot use case where metadata+vector are always combined, native integration is optimal.</p>
+<p><strong>Key insight:</strong> Da chatbot use-cases altid kombinerer metadata og vektorer, er native integration optimal.</p>
 <hr>
 <h2 id="dp4-acid-first-consistency">DP4: ACID-First Consistency<a hidden class="anchor" aria-hidden="true" href="#dp4-acid-first-consistency">#</a></h2>
 <p><strong>Adresserer:</strong> Dilemma 3 (Consistency Myth)<br>
 <strong>Research Base:</strong> Kilde 5 (AWS ACID vs BASE Guide)<br>
 <strong>Validering:</strong> V4 (Transaction Theory Analysis)</p>
-<p><strong>Designbeslutning:</strong><br>
-I en chat-applikation er &ldquo;Eventual Consistency&rdquo; en UX-fejl. Når user sender besked, skal bot response gemmes atomisk. Vi håndhæver Strong Consistency gennem transactions.</p>
+<p><strong>Designbeslutning:</strong> I en chat-applikation er &ldquo;Eventual Consistency&rdquo; en UX-fejl. Når user sender besked, skal bot response gemmes atomisk. Jeg har designet systemet til at håndhæve Strong Consistency gennem transactions.</p>
 <p><strong>Consistency Model Comparison:</strong></p>
 <table>
   <thead>
@@ -391,10 +385,10 @@ I en chat-applikation er &ldquo;Eventual Consistency&rdquo; en UX-fejl. Når use
 <li>Replication lag (100-500ms) creates inconsistency windows</li>
 <li>No guarantee of atomic deletion (GDPR risk)</li>
 </ul>
-<p><strong>Trade-off:</strong> ACID transactions add ~1-2ms overhead per write. Men BASE&rsquo;s inconsistency windows create 70% partial saves ved crashes — unacceptable for chat UX.</p>
+<p><strong>Trade-off:</strong> ACID transactions add ~1-2ms overhead per write. Men BASE&rsquo;s inconsistency windows create 70% partial saves ved crashes — uacceptabelt for chat UX.</p>
 <hr>
 <h2 id="multi-method-validation-summary">Multi-Method Validation Summary<a hidden class="anchor" aria-hidden="true" href="#multi-method-validation-summary">#</a></h2>
-<p>Alle fire patterns valideret gennem minimum to uafhængige metoder:</p>
+<p>Alle fire patterns er valideret gennem minimum to uafhængige metoder:</p>
 <table>
   <thead>
       <tr>
@@ -431,12 +425,12 @@ I en chat-applikation er &ldquo;Eventual Consistency&rdquo; en UX-fejl. Når use
       </tr>
   </tbody>
 </table>
-<p><strong>Kritisk observation:</strong> Alle patterns validated through <strong>convergent evidence</strong> — hvor multiple independent sources peger på samme konklusion.</p>
+<p><strong>Kritisk observation:</strong> Alle patterns er valideret gennem <strong>convergent evidence</strong> — hvor multiple independent sources peger på samme konklusion.</p>
 <p>Dette matcher Data Science-sektionens validation methodology for &ldquo;validation uden live data.&rdquo;</p>
 <hr>
 <h2 id="fra-patterns-til-implementation">Fra Patterns til Implementation<a hidden class="anchor" aria-hidden="true" href="#fra-patterns-til-implementation">#</a></h2>
 <p>Med arkitektoniske regler defineret gennem DP1-DP4 kan systemets konkrete validering påbegyndes. Næste sektion dokumenterer de fire validation methods anvendt til at verificere patterns uden live traffic.</p>
-<p><strong>Næste:</strong> <a href="/datamatiker-portfolio/database/konceptuel-validering/">Konceptuel Validering →</a></p>
+<p><strong>Næste:</strong> <a href="/datamatiker-portfolio/database/konceptuel-validering/">Implementation &amp; Validation →</a></p>
 
 
   </div>

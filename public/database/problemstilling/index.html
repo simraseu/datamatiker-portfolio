@@ -181,16 +181,16 @@
 </div>
 
   <div class="post-content"><h2 id="databasernes-best-tool-paradoks">Databasernes &ldquo;Best Tool&rdquo; Paradoks<a hidden class="anchor" aria-hidden="true" href="#databasernes-best-tool-paradoks">#</a></h2>
-<p>Da vi skulle designe backend-arkitekturen til vores AI-chatbot system, startede jeg med en klassisk antagelse fra undervisningen: <em>&ldquo;Brug det rigtige værktøj til opgaven.&rdquo;</em></p>
-<p>Min oprindelige tegnebræt-skitse lignede derfor standarden for en moderne &ldquo;Polyglot&rdquo; arkitektur:</p>
+<p>Systemets oprindelige arkitektur lagde op til en klassisk <strong>&ldquo;Polyglot Persistence&rdquo;</strong> tilgang. For at understøtte de ambitiøse krav til AI og chat, var antagelsen i teamet, at vi skulle bruge specialiserede værktøjer til hver opgave:</p>
 <ul>
 <li><strong>MongoDB:</strong> Til JSON-dokumenter (Chat history)</li>
 <li><strong>Pinecone:</strong> Til Vector Embeddings (Semantisk søgning)</li>
 <li><strong>PostgreSQL:</strong> Til brugerdata (Relationelt)</li>
 </ul>
-<p>Tre problemer. Tre specialiserede databaser. Det virkede som det professionelle valg.</p>
-<p>Men da jeg begyndte at analysere systemets krav nærmere, stødte jeg på det, jeg kalder <strong>Specialiserings-fælden</strong>: <em>Hvornår bliver omkostningen ved at integrere specialiserede værktøjer højere end gevinsten ved deres specialisering?</em></p>
-<p>Dette projekt handler ikke om at vælge &ldquo;den bedste database&rdquo; i et vakuum. Det handler om at navigere i tre fundamentale dilemmaer, der opstår, når moderne AI møder klassisk databasedesign.</p>
+<p>Tre problemer. Tre specialiserede databaser. På papiret lignede det industristandarden.</p>
+<p><strong>Min rolle som specialist:</strong>
+Som ansvarlig for data-infrastrukturen var min opgave ikke blot at implementere denne plan, men at <strong>validere</strong> den. Jeg stødte hurtigt på det, jeg kalder <strong>Specialiserings-fælden</strong>: <em>Hvornår bliver omkostningen ved at integrere specialiserede værktøjer højere end gevinsten ved deres specialisering?</em></p>
+<p>Jeg valgte derfor at udfordre teamets oprindelige antagelse. Dette projekt handler ikke om at vælge &ldquo;den bedste database&rdquo; i et vakuum, men om at navigere i tre fundamentale dilemmaer, der opstår, når vi forsøger at splitte data op i tre systemer.</p>
 <hr>
 <h2 id="de-tre-arkitektoniske-dilemmaer">De Tre Arkitektoniske Dilemmaer<a hidden class="anchor" aria-hidden="true" href="#de-tre-arkitektoniske-dilemmaer">#</a></h2>
 <h3 id="dilemma-1-the-integration-tax">Dilemma 1: The Integration Tax<a hidden class="anchor" aria-hidden="true" href="#dilemma-1-the-integration-tax">#</a></h3>

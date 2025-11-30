@@ -1,15 +1,18 @@
 ---
 title: "Database & Storage"
-weight: 2
+weight: 4
+description: "Fra Polyglot Persistence til Unified Monolith: En performance-analyse"
 ---
 
-## MongoDB, PostgreSQL, Pinecone — eller bare én?
+# Database & Storage Specialisering
 
-**Problemet:** Et Blazor chatbot-system med tre brugertyper krævede en database-arkitektur. Industristandarden sagde: "MongoDB til JSON, PostgreSQL til relationer, Pinecone til vector search." Tre specialiserede værktøjer.
+**Hypotese:** "Er det nødvendigt at bruge tre forskellige databaser (SQL, NoSQL, Vector) for at bygge en moderne AI-platform, eller kan en monolitisk arkitektur levere bedre performance og lavere kompleksitet?"
 
-**Men hvad hvis "specialized" ikke betyder "bedre"?**
+Systemets oprindelige arkitektur lagde op til en klassisk **"Polyglot Persistence"** tilgang. Som dataspecialist var min opgave at validere dette valg.
 
-Dette er historien om, hvordan jeg gik fra en kompleks **"Polyglot Persistence"** arkitektur (tre databaser) til en **"Unified Monolith"** (én database) — og opdagede, at implementation quality slår marketing categories.
+I denne specialisering har jeg udfordret industristandarden for at undersøge, om **PostgreSQL** kan fungere som en **Unified Monolith**.
+
+Gennem systematisk research og konceptuel validering har jeg bevist, at en samlet løsning ikke bare er simplere, men på flere parametre overgår den distribuerede arkitektur.
 
 ---
 
@@ -24,14 +27,14 @@ Følg den komplette proces fra problemidentifikation til konceptuel validering:
 1. **[Problemstilling]({{< relref "database/problemstilling.md" >}})** — Tre dilemmaer: Integration Tax, Synchronization Nightmare, Consistency Myth
 2. **[Research]({{< relref "database/research.md" >}})** — Systematisk triangulering af 5 kilder (vendor + peer-reviewed + production cases)
 3. **[Design Patterns]({{< relref "database/design-patterns.md" >}})** — 4 normative patterns (Unified Monolith, ACID-First)
-4. **[Konceptuel Validering]({{< relref "database/konceptuel-validering.md" >}})** — 4 stringente audits uden live data
+4. **[Implementation & Validering]({{< relref "database/konceptuel-validering.md" >}})** — Implementation af pgvector/JSONB og 4 stringente audits uden live data
 5. **[Konklusion]({{< relref "database/konklusion.md" >}})** — Læring, Green IT og samfundsperspektiver
 
 ---
 
 ### ⚡ Executive Summary (3 minutter)
 
-Få hele historien nedenfor:
+Hvis du vil have konklusionerne med det samme, er her hovedresultaterne:
 
 #### Evidens: Hvad Viste Researchen?
 
@@ -60,13 +63,13 @@ Fire design patterns valideret gennem konceptuel analyse (uden live data):
 | **DP3: Zero-Latency Vector** | Architecture Review | 1 roundtrip vs 3 = 60% latency reduction | ✅ Validated |
 | **DP4: ACID-First** | Transaction Theory | 0% partial writes (guaranteed by atomicity) | ✅ Validated |
 
-**Konkrete resultater:** Convergent evidence fra 3+ independent sources, architectural certainty for integration, official documentation for ORM support, theoretical guarantees for consistency.
+**Konkrete resultater:** Convergent evidence fra 3+ uafhængige kilder bekræfter arkitekturen.
 
 ---
 
 #### Beslutningen: PostgreSQL + pgvector som Unified Monolith
 
-Den endelige løsning bygger på fire patterns — valideret gennem theoretical analysis:
+Den endelige løsning bygger på fire patterns — valideret gennem teoretisk analyse:
 
 ✅ **Unified Monolith (DP1):** Én instans håndterer SQL, JSON og Vectors. Eliminerer sync-lag.  
 ✅ **Hybrid-Relational (DP2):** JSONB + GIN index outperformer MongoDB BSON (26×).  
@@ -77,24 +80,24 @@ Den endelige løsning bygger på fire patterns — valideret gennem theoretical 
 
 ❌ MongoDB konsistent dårligere performance på JSON (26× langsommere)  
 ❌ Pinecone kræver separat database → 3 roundtrips, sync complexity  
-❌ MongoDB 60% EF Core support → N+1 queries, workarounds  
-❌ Eventual consistency → 70% partial saves ved crashes (GDPR risiko)
+❌ MongoDB har kun 60% EF Core support → N+1 queries og workarounds  
+❌ Eventual consistency → Risiko for partial saves ved crashes (GDPR risiko)
 
 **Trade-offs accepteret:**
 
-pgvector ~20% langsommere end dedicated Pinecone ved **pure** vector search (no metadata filtering). Men kombinerede queries 2.8× hurtigere grundet eliminated roundtrips. For chatbot use case (metadata+vector always combined) er unified platform optimal.
+pgvector er ~20% langsommere end dedicated Pinecone ved **pure** vector search (uden filtre). Men da chatbots næsten altid kombinerer vektorer med metadata-filtre (User ID, Dato), er den samlede query-tid 2.8× hurtigere i PostgreSQL grundet eliminerede netværkskald.
 
-**TCO Analysis:** $4,400 savings over 3 år ved 10k users (hosting + developer time).
+**TCO Analysis:** $4,400 besparelse over 3 år ved 10k users (hosting + developer time).
 
 ---
 
 #### Samfundsmæssige Perspektiver
 
-**GDPR Compliance:** PostgreSQL's ACID transactions sikrer pålidelig "Right to Erasure" via CASCADE DELETE. MongoDB's eventual consistency introducerer orphaned data risk.
+**GDPR Compliance:** PostgreSQL's ACID transaktioner sikrer pålidelig "Right to Erasure" via CASCADE DELETE. MongoDB's eventual consistency introducerer risiko for "orphaned data".
 
-**CO₂ Footprint:** PostgreSQL's 4× storage efficiency betyder ~50 kg CO₂ savings årligt ved 10,000 brugere.
+**CO₂ Footprint:** PostgreSQL's 4× storage efficiency betyder ~50 kg CO₂ besparelse årligt ved 10,000 brugere.
 
-**Økonomisk Impact:** Total cost of ownership fordel på $4,400 over 3 år. Open-source model med community extensions (pgvector) vs vendor lock-in (Pinecone).
+**Økonomisk Impact:** Total cost of ownership fordel. Open-source model med community extensions (pgvector) vs vendor lock-in (Pinecone).
 
 ---
 
