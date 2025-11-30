@@ -1,196 +1,96 @@
 ---
 title: "Vidensrejse"
 weight: 5
-description: "Hvordan jeg tilegnede mig viden gennem research, iteration og refleksion"
-ShowToc: true
-TocOpen: true
+description: "Min metodiske udvikling: Fra broad search til systematisk triangulering"
 ---
 
-# Vidensrejse: Hvordan Lærte Jeg Systematisk?
+# Min Vidensrejse: Fra Kaos til Metode
 
-Portfolio documentation handler ikke kun om **hvad jeg byggede**, men om **hvordan jeg lærte**. Denne side dokumenterer min progression fra ad-hoc Googling til systematisk evidens-baseret beslutningstagning.
+Dette semester har ikke kun været en rejse ind i to tekniske specialiseringer. Det har været en rejse i at lære **hvordan man tilegner sig ny, kompleks viden** struktureret og effektivt.
 
-Fra "MongoDB lyder godt" til "her er 5 peer-reviewed kilder der konvergerer mod PostgreSQL."
+Min læringsproces var ikke lineær. Den startede med nysgerrighed, blev formet af forvirring, og endte med en skarp, gentagelig metode.
 
----
-
-## Min Læringsprogression i 5 Faser
-
-### Fase 1: Starting Point (Uge 1-2)
-
-**Hvad vidste jeg IKKE?**
-- Forskellen mellem JSONB og BSON implementation
-- At vector search kunne være native i PostgreSQL
-- Hvordan man evaluerer kilder systematisk
-- At ACID ≠ dårlig performance
-
-**Initial assumptions:**
-- MongoDB = bedst til JSON (document database specialisering)
-- Vector search = kræver Pinecone (specialized tool)
-- Flere databaser = mere fleksibilitet
-
-**Research strategi udviklet:**
-- Formulér konkrete forskningsspørgsmål
-- Definer inclusion/exclusion criteria
-- Søg systematisk (ikke bare Google første side)
-
-*Detaljeret documentation kommer efter Data Science-fasen er færdig.*
+Her er historien om, hvordan jeg udviklede det "Framework for Evidence-Based Architecture", som gennemsyrer denne portfolio.
 
 ---
 
-### Fase 2: Database Research (Uge 3-5)
+## Fase 1: Fundamentet (Database & Storage)
 
-**Systematisk litteratursøgning:**
-- Google Scholar for peer-reviewed artikler
-- IEEE Xplore for tekniske studier
-- GitHub for reproducerbare benchmarks
-- Microsoft Learn for official dokumentation
+Min rejse startede her. Jeg vidste, at projektet krævede en database, men jeg stod over for et hav af buzzwords: *Microservices, Polyglot Persistence, Vector Databases, NoSQL.*
 
-**Kildekritik metodologi:**
-- Hvem finansierede researchen? (vendor bias check)
-- Er metodologi reproducerbar?
-- Peer-reviewed eller self-published?
-- Kan findings trianguleres fra multiple sources?
+### Trin 1: Den brede scanning (Exploration)
+Jeg startede bredt. Jeg læste branche-blogs, så YouTube-talks fra konferencer og kiggede på "Tech Radar" lister.
+* **Målet:** At få et overblik over landskabet.
+* **Erkendelsen:** Der er for mange holdninger og for lidt evidens. Alle vil sælge deres egen database.
+* **Resultatet:** Jeg indså, at jeg ikke kunne vælge ud fra popularitet. Jeg var nødt til at definere mine egne kriterier.
 
-**Triangulering proces:**
-- Kilde 1 (OnGres): PostgreSQL 25-40× hurtigere, men vendor-sponsoreret
-- Kilde 2 (Makris peer-reviewed): Uafhængig bekræftelse
-- Kilde 3-5: Convergerende evidens = høj confidence
+### Trin 2: Strukturering af Læringsmål
+Med det generelle overblik på plads, kunne jeg formulere mine **Læringsmål**. Jeg vidste nu, at jeg skulle undersøge:
+1.  Performance (JSON vs SQL)
+2.  Konsistens (ACID vs BASE)
+3.  Vektor-søgning (AI-integration)
 
-**Key learning:**  
-Peer-reviewed > vendor research > blog posts. Men vendor research med offentlig kildekode + independent validation = credible.
+### Trin 3: Opfindelsen af "Triangulering"
+Her stødte jeg på muren: Jeg havde ingen brugere til at teste performance med. Hvordan kunne jeg validere mine valg?
+Jeg udviklede her min **Triangulerings-metode**:
+* Jeg søgte **Vendor Benchmarks** (OnGres)
+* Jeg krydstjekkede med **Peer-Reviewed Forskning** (Makris et al.)
+* Jeg verificerede med **Technical Documentation** (AWS/Microsoft)
 
-[Se fuld research →]({{< relref "database/research.md" >}})
-
----
-
-### Fase 3: Data Science Research (Uge 6-8)
-
-**Byggede på Database-viden:**
-- Genbrugte source evaluation framework fra DB-fasen
-- Samme triangulering-approach
-- Allerede confident i systematisk proces
-
-**GDPR fokus fra start:**
-- Database-fasen lærte mig CASCADE DELETE for "right to deletion"
-- Anvendte privacy-thinking fra dag 1 i analytics design
-- Data minimization som default (ikke afterthought)
-
-**Industry patterns vs akademisk:**
-- Færre peer-reviewed papers om chatbot KPIs
-- Pivoterede til production cases (Google HEART, Amplitude)
-- Official guidelines (GDPR Article 25, EU data protection)
-
-**Key learning:**  
-Framework-based thinking (Google HEART, Lambda Architecture) > ad-hoc metric design. Patterns er transferable.
-
-[Se Data Science research →] (kommer snart)
+Når tre uafhængige kilder pegede samme vej (mod PostgreSQL), accepterede jeg det som evidens. Dette blev fundamentet for min **Unified Monolith** konklusion.
 
 ---
 
-### Fase 4: Integration & Iteration (Uge 9-10)
+## Fase 2: Ekspansionen (Data Science & Analytics)
 
-**Cross-specialization learnings:**
+Da jeg var færdig med Database-delen, stod jeg med to ting:
+1.  En solid teknisk platform (PostgreSQL med JSONB og Vectors).
+2.  En **afprøvet metode** til at angribe ukendte problemer.
 
-Privacy gennemgår begge:
-- Database: CASCADE DELETE (GDPR Article 17)
-- Analytics: Data minimization, anonymization (GDPR Article 25)
+Jeg gik nu i krig med Data Science, men denne gang startede jeg ikke fra nul.
 
-Performance vs cost trade-offs:
-- Database: 4× storage efficiency = lavere costs
-- Analytics: Lambda Architecture (real-time vs batch balance)
+### Trin 1: Genbrug af Metode (Efficiency)
+I stedet for at starte med tilfældig googling, applicerede jeg straks min triangulerings-model. Jeg vidste, at jeg skulle lede efter **Convergent Validity** mellem:
+* **Jura** (GDPR lovtekster)
+* **Teori** (Goodhart's Law, Kleppmann)
+* **Best Practice** (Google HEART)
 
-Developer experience:
-- Database: Mature EF Core provider = hurtigere development
-- Analytics: Structured logging > custom parsing
+Fordi jeg havde metoden på plads, kunne jeg hurtigere skære igennem støjen og identificere kerneproblemerne: *Privacy og Vanity Metrics.*
 
-**Portfolio documentation som læring:**
-- Feynman Technique: Kan jeg forklare det simpelt?
-- Hvis ikke, forstår jeg det ikke dybt nok
-- Documentation tvang mig til at destillere kompleksitet
+### Trin 2: Fra Teknik til Etik
+Hvor Database-delen var teknisk tung (latency, disk usage), tvang Data Science mig til at udvide min horisont.
+Jeg brugte min database-viden som springbræt:
+* *"Hvis jeg gemmer data i JSONB (Database viden), hvordan sikrer jeg så, at det er lovligt (Data Science viden)?"*
 
-**Hvad ville jeg gøre anderledes?**
-- Start med research framework FØRST (ikke discover det halvvejs)
-- Document assumptions eksplicit (nemmere at challenge)
-- Iterate hurtigere (spike implementations tidligere)
+Dette ledte til **Privacy-First Logging** (DP2). Jeg byggede videre på fundamentet, men tilføjede et lag af etisk refleksion, som jeg ikke havde i starten.
 
 ---
 
-### Fase 5: Meta-Refleksion (Løbende)
+## Fase 3: Syntese (Det Endelige Framework)
 
-**Research methodology som transferable skill:**
+Gennem arbejdet med de to specialiseringer har jeg destilleret min arbejdsmetode ned til en cyklus på 4 trin, som jeg nu kan bruge i ethvert fremtidigt projekt:
 
-Framework jeg nu har:
-```
-1. Formulér konkrete forskningsspørgsmål
-2. Definer evaluation criteria
-3. Søg systematisk (Scholar, IEEE, GitHub)
-4. Evaluer kilder med credibility framework
-5. Triangulér evidens fra multiple sources
-6. Dokumentér limitations transparent
-```
+### 1. Hypotese (Mavefornemmelse)
+*"Data er guld"* eller *"Polyglot er bedst"*. Jeg starter altid med en antagelse.
 
-**Systematic decision-making:**
+### 2. Triangulering (Research)
+Jeg tester hypotesen mod tre kilder: **Akademisk teori, Industristandarder og Officiel dokumentation.**
+*Hvis kilderne divergerer:* Hypotesen forkastes.
+*Hvis kilderne konvergerer:* Hypotesen bliver til teori.
 
-Ikke bare "hvad virker?" men:
-- Hvad er mine evaluation criteria?
-- Hvilken evidens supporterer dette?
-- Hvad er limitations?
-- Kan jeg forsvare valget med data?
+### 3. Design Patterns (Regelsæt)
+Jeg omsætter teorien til normative regler (f.eks. "DP4: ACID-First"). Dette er broen mellem teori og praksis.
 
-**Self-directed learning:**
-
-Fra "følg tutorials" til:
-- Identify credible sources selv
-- Build mental models gennem experimentation
-- Validate forståelse ved at kunne forklare simpelt
-- Document learnings for future reference
+### 4. Konceptuel Validering (Bevis)
+Jeg tester implementeringen gennem audits (GDPR check, TCO analyse, Architecture review).
 
 ---
 
-## Frameworks Udviklet
+## Refleksion over rejsen
 
-Gennem semesteret byggede jeg reusable frameworks:
+Jeg startede semesteret som en udvikler, der ledte efter "det bedste værktøj".
+Jeg afslutter semesteret som en arkitekt, der leder efter "den bedst underbyggede beslutning".
 
-### Source Evaluation Checklist
+Den vigtigste læring er ikke PostgreSQLs JSON-performance eller SHA-256 hashing. Det er visheden om, at jeg kan navigere i ukendt teknisk og juridisk terræn ved at anvende en struktureret, deduktiv proces.
 
-**For hver kilde:**
-- [ ] Hvem publicerede? (vendor, akademisk, community)
-- [ ] Peer-reviewed eller self-published?
-- [ ] Er metodologi reproducerbar?
-- [ ] Hvem finansierede researchen?
-- [ ] Er limitations eksplicit dokumenteret?
-- [ ] Kan findings verificeres elsewhere?
-
-### Hypothesis Testing Template
-```
-Hypotese: [Specifik, målbar påstand]
-Evidens-grundlag: [Kilder der supporterer]
-Success criteria: [Numerisk threshold]
-Test design: [Reproducerbar metodologi]
-Validering: [Passed/Failed med rationale]
-```
-
-### Decision Documentation Pattern
-```
-Problemstilling → Research → Patterns → Implementation → Validation → Reflection
-```
-
-Domain-agnostic og transferable til fremtidige projekter.
-
----
-
-## Næste Skridt
-
-Når Data Science & Analytics er færdig, vil denne side blive udvidet med:
-- Konkrete eksempler fra begge faser
-- Iterations-historier (mistakes made, lessons learned)
-- Tools anvendt (Zotero for citations, Obsidian for notes)
-- Deep dive på source evaluation konkrete cases
-
-*Foreløbig dokumenterer den overordnede progression.*
-
----
-
-**Relaterede sider:**  
-[Database Research]({{< relref "database/research.md" >}}) | [Data Science Research](kommer snart) | [Samlet Refleksion]({{< relref "refleksion/_index.md" >}})
+**Næste:** [Samlet Refleksion →]({{< relref "refleksion/_index.md" >}})

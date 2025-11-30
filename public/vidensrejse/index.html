@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Vidensrejse | 4. Semester Portfolio - Simon</title>
 <meta name="keywords" content="">
-<meta name="description" content="Hvordan jeg tilegnede mig viden gennem research, iteration og refleksion">
+<meta name="description" content="Min metodiske udvikling: Fra broad search til systematisk triangulering">
 <meta name="author" content="Simon">
 <link rel="canonical" href="http://localhost:1313/datamatiker-portfolio/vidensrejse/">
 <link crossorigin="anonymous" href="/datamatiker-portfolio/assets/css/stylesheet.fd5566c526ae48aadabd950798a2dc3568536401560eae5caac3765a42a9e7b5.css" integrity="sha256-/VVmxSauSKravZUHmKLcNWhTZAFWDq5cqsN2WkKp57U=" rel="preload stylesheet" as="style">
@@ -146,174 +146,81 @@
     Vidensrejse
   </h1>
   <div class="post-description">
-    Hvordan jeg tilegnede mig viden gennem research, iteration og refleksion
+    Min metodiske udvikling: Fra broad search til systematisk triangulering
   </div>
 </header>
-<div class="post-content"><h1 id="vidensrejse-hvordan-lærte-jeg-systematisk">Vidensrejse: Hvordan Lærte Jeg Systematisk?<a hidden class="anchor" aria-hidden="true" href="#vidensrejse-hvordan-lærte-jeg-systematisk">#</a></h1>
-<p>Portfolio documentation handler ikke kun om <strong>hvad jeg byggede</strong>, men om <strong>hvordan jeg lærte</strong>. Denne side dokumenterer min progression fra ad-hoc Googling til systematisk evidens-baseret beslutningstagning.</p>
-<p>Fra &ldquo;MongoDB lyder godt&rdquo; til &ldquo;her er 5 peer-reviewed kilder der konvergerer mod PostgreSQL.&rdquo;</p>
+<div class="post-content"><h1 id="min-vidensrejse-fra-kaos-til-metode">Min Vidensrejse: Fra Kaos til Metode<a hidden class="anchor" aria-hidden="true" href="#min-vidensrejse-fra-kaos-til-metode">#</a></h1>
+<p>Dette semester har ikke kun været en rejse ind i to tekniske specialiseringer. Det har været en rejse i at lære <strong>hvordan man tilegner sig ny, kompleks viden</strong> struktureret og effektivt.</p>
+<p>Min læringsproces var ikke lineær. Den startede med nysgerrighed, blev formet af forvirring, og endte med en skarp, gentagelig metode.</p>
+<p>Her er historien om, hvordan jeg udviklede det &ldquo;Framework for Evidence-Based Architecture&rdquo;, som gennemsyrer denne portfolio.</p>
 <hr>
-<h2 id="min-læringsprogression-i-5-faser">Min Læringsprogression i 5 Faser<a hidden class="anchor" aria-hidden="true" href="#min-læringsprogression-i-5-faser">#</a></h2>
-<h3 id="fase-1-starting-point-uge-1-2">Fase 1: Starting Point (Uge 1-2)<a hidden class="anchor" aria-hidden="true" href="#fase-1-starting-point-uge-1-2">#</a></h3>
-<p><strong>Hvad vidste jeg IKKE?</strong></p>
+<h2 id="fase-1-fundamentet-database--storage">Fase 1: Fundamentet (Database &amp; Storage)<a hidden class="anchor" aria-hidden="true" href="#fase-1-fundamentet-database--storage">#</a></h2>
+<p>Min rejse startede her. Jeg vidste, at projektet krævede en database, men jeg stod over for et hav af buzzwords: <em>Microservices, Polyglot Persistence, Vector Databases, NoSQL.</em></p>
+<h3 id="trin-1-den-brede-scanning-exploration">Trin 1: Den brede scanning (Exploration)<a hidden class="anchor" aria-hidden="true" href="#trin-1-den-brede-scanning-exploration">#</a></h3>
+<p>Jeg startede bredt. Jeg læste branche-blogs, så YouTube-talks fra konferencer og kiggede på &ldquo;Tech Radar&rdquo; lister.</p>
 <ul>
-<li>Forskellen mellem JSONB og BSON implementation</li>
-<li>At vector search kunne være native i PostgreSQL</li>
-<li>Hvordan man evaluerer kilder systematisk</li>
-<li>At ACID ≠ dårlig performance</li>
+<li><strong>Målet:</strong> At få et overblik over landskabet.</li>
+<li><strong>Erkendelsen:</strong> Der er for mange holdninger og for lidt evidens. Alle vil sælge deres egen database.</li>
+<li><strong>Resultatet:</strong> Jeg indså, at jeg ikke kunne vælge ud fra popularitet. Jeg var nødt til at definere mine egne kriterier.</li>
 </ul>
-<p><strong>Initial assumptions:</strong></p>
+<h3 id="trin-2-strukturering-af-læringsmål">Trin 2: Strukturering af Læringsmål<a hidden class="anchor" aria-hidden="true" href="#trin-2-strukturering-af-læringsmål">#</a></h3>
+<p>Med det generelle overblik på plads, kunne jeg formulere mine <strong>Læringsmål</strong>. Jeg vidste nu, at jeg skulle undersøge:</p>
+<ol>
+<li>Performance (JSON vs SQL)</li>
+<li>Konsistens (ACID vs BASE)</li>
+<li>Vektor-søgning (AI-integration)</li>
+</ol>
+<h3 id="trin-3-opfindelsen-af-triangulering">Trin 3: Opfindelsen af &ldquo;Triangulering&rdquo;<a hidden class="anchor" aria-hidden="true" href="#trin-3-opfindelsen-af-triangulering">#</a></h3>
+<p>Her stødte jeg på muren: Jeg havde ingen brugere til at teste performance med. Hvordan kunne jeg validere mine valg?
+Jeg udviklede her min <strong>Triangulerings-metode</strong>:</p>
 <ul>
-<li>MongoDB = bedst til JSON (document database specialisering)</li>
-<li>Vector search = kræver Pinecone (specialized tool)</li>
-<li>Flere databaser = mere fleksibilitet</li>
+<li>Jeg søgte <strong>Vendor Benchmarks</strong> (OnGres)</li>
+<li>Jeg krydstjekkede med <strong>Peer-Reviewed Forskning</strong> (Makris et al.)</li>
+<li>Jeg verificerede med <strong>Technical Documentation</strong> (AWS/Microsoft)</li>
 </ul>
-<p><strong>Research strategi udviklet:</strong></p>
-<ul>
-<li>Formulér konkrete forskningsspørgsmål</li>
-<li>Definer inclusion/exclusion criteria</li>
-<li>Søg systematisk (ikke bare Google første side)</li>
-</ul>
-<p><em>Detaljeret documentation kommer efter Data Science-fasen er færdig.</em></p>
+<p>Når tre uafhængige kilder pegede samme vej (mod PostgreSQL), accepterede jeg det som evidens. Dette blev fundamentet for min <strong>Unified Monolith</strong> konklusion.</p>
 <hr>
-<h3 id="fase-2-database-research-uge-3-5">Fase 2: Database Research (Uge 3-5)<a hidden class="anchor" aria-hidden="true" href="#fase-2-database-research-uge-3-5">#</a></h3>
-<p><strong>Systematisk litteratursøgning:</strong></p>
+<h2 id="fase-2-ekspansionen-data-science--analytics">Fase 2: Ekspansionen (Data Science &amp; Analytics)<a hidden class="anchor" aria-hidden="true" href="#fase-2-ekspansionen-data-science--analytics">#</a></h2>
+<p>Da jeg var færdig med Database-delen, stod jeg med to ting:</p>
+<ol>
+<li>En solid teknisk platform (PostgreSQL med JSONB og Vectors).</li>
+<li>En <strong>afprøvet metode</strong> til at angribe ukendte problemer.</li>
+</ol>
+<p>Jeg gik nu i krig med Data Science, men denne gang startede jeg ikke fra nul.</p>
+<h3 id="trin-1-genbrug-af-metode-efficiency">Trin 1: Genbrug af Metode (Efficiency)<a hidden class="anchor" aria-hidden="true" href="#trin-1-genbrug-af-metode-efficiency">#</a></h3>
+<p>I stedet for at starte med tilfældig googling, applicerede jeg straks min triangulerings-model. Jeg vidste, at jeg skulle lede efter <strong>Convergent Validity</strong> mellem:</p>
 <ul>
-<li>Google Scholar for peer-reviewed artikler</li>
-<li>IEEE Xplore for tekniske studier</li>
-<li>GitHub for reproducerbare benchmarks</li>
-<li>Microsoft Learn for official dokumentation</li>
+<li><strong>Jura</strong> (GDPR lovtekster)</li>
+<li><strong>Teori</strong> (Goodhart&rsquo;s Law, Kleppmann)</li>
+<li><strong>Best Practice</strong> (Google HEART)</li>
 </ul>
-<p><strong>Kildekritik metodologi:</strong></p>
+<p>Fordi jeg havde metoden på plads, kunne jeg hurtigere skære igennem støjen og identificere kerneproblemerne: <em>Privacy og Vanity Metrics.</em></p>
+<h3 id="trin-2-fra-teknik-til-etik">Trin 2: Fra Teknik til Etik<a hidden class="anchor" aria-hidden="true" href="#trin-2-fra-teknik-til-etik">#</a></h3>
+<p>Hvor Database-delen var teknisk tung (latency, disk usage), tvang Data Science mig til at udvide min horisont.
+Jeg brugte min database-viden som springbræt:</p>
 <ul>
-<li>Hvem finansierede researchen? (vendor bias check)</li>
-<li>Er metodologi reproducerbar?</li>
-<li>Peer-reviewed eller self-published?</li>
-<li>Kan findings trianguleres fra multiple sources?</li>
+<li><em>&ldquo;Hvis jeg gemmer data i JSONB (Database viden), hvordan sikrer jeg så, at det er lovligt (Data Science viden)?&rdquo;</em></li>
 </ul>
-<p><strong>Triangulering proces:</strong></p>
-<ul>
-<li>Kilde 1 (OnGres): PostgreSQL 25-40× hurtigere, men vendor-sponsoreret</li>
-<li>Kilde 2 (Makris peer-reviewed): Uafhængig bekræftelse</li>
-<li>Kilde 3-5: Convergerende evidens = høj confidence</li>
-</ul>
-<p><strong>Key learning:</strong><br>
-Peer-reviewed &gt; vendor research &gt; blog posts. Men vendor research med offentlig kildekode + independent validation = credible.</p>
-<p><a href="/datamatiker-portfolio/database/research/">Se fuld research →</a></p>
+<p>Dette ledte til <strong>Privacy-First Logging</strong> (DP2). Jeg byggede videre på fundamentet, men tilføjede et lag af etisk refleksion, som jeg ikke havde i starten.</p>
 <hr>
-<h3 id="fase-3-data-science-research-uge-6-8">Fase 3: Data Science Research (Uge 6-8)<a hidden class="anchor" aria-hidden="true" href="#fase-3-data-science-research-uge-6-8">#</a></h3>
-<p><strong>Byggede på Database-viden:</strong></p>
-<ul>
-<li>Genbrugte source evaluation framework fra DB-fasen</li>
-<li>Samme triangulering-approach</li>
-<li>Allerede confident i systematisk proces</li>
-</ul>
-<p><strong>GDPR fokus fra start:</strong></p>
-<ul>
-<li>Database-fasen lærte mig CASCADE DELETE for &ldquo;right to deletion&rdquo;</li>
-<li>Anvendte privacy-thinking fra dag 1 i analytics design</li>
-<li>Data minimization som default (ikke afterthought)</li>
-</ul>
-<p><strong>Industry patterns vs akademisk:</strong></p>
-<ul>
-<li>Færre peer-reviewed papers om chatbot KPIs</li>
-<li>Pivoterede til production cases (Google HEART, Amplitude)</li>
-<li>Official guidelines (GDPR Article 25, EU data protection)</li>
-</ul>
-<p><strong>Key learning:</strong><br>
-Framework-based thinking (Google HEART, Lambda Architecture) &gt; ad-hoc metric design. Patterns er transferable.</p>
-<p>[Se Data Science research →] (kommer snart)</p>
+<h2 id="fase-3-syntese-det-endelige-framework">Fase 3: Syntese (Det Endelige Framework)<a hidden class="anchor" aria-hidden="true" href="#fase-3-syntese-det-endelige-framework">#</a></h2>
+<p>Gennem arbejdet med de to specialiseringer har jeg destilleret min arbejdsmetode ned til en cyklus på 4 trin, som jeg nu kan bruge i ethvert fremtidigt projekt:</p>
+<h3 id="1-hypotese-mavefornemmelse">1. Hypotese (Mavefornemmelse)<a hidden class="anchor" aria-hidden="true" href="#1-hypotese-mavefornemmelse">#</a></h3>
+<p><em>&ldquo;Data er guld&rdquo;</em> eller <em>&ldquo;Polyglot er bedst&rdquo;</em>. Jeg starter altid med en antagelse.</p>
+<h3 id="2-triangulering-research">2. Triangulering (Research)<a hidden class="anchor" aria-hidden="true" href="#2-triangulering-research">#</a></h3>
+<p>Jeg tester hypotesen mod tre kilder: <strong>Akademisk teori, Industristandarder og Officiel dokumentation.</strong>
+<em>Hvis kilderne divergerer:</em> Hypotesen forkastes.
+<em>Hvis kilderne konvergerer:</em> Hypotesen bliver til teori.</p>
+<h3 id="3-design-patterns-regelsæt">3. Design Patterns (Regelsæt)<a hidden class="anchor" aria-hidden="true" href="#3-design-patterns-regelsæt">#</a></h3>
+<p>Jeg omsætter teorien til normative regler (f.eks. &ldquo;DP4: ACID-First&rdquo;). Dette er broen mellem teori og praksis.</p>
+<h3 id="4-konceptuel-validering-bevis">4. Konceptuel Validering (Bevis)<a hidden class="anchor" aria-hidden="true" href="#4-konceptuel-validering-bevis">#</a></h3>
+<p>Jeg tester implementeringen gennem audits (GDPR check, TCO analyse, Architecture review).</p>
 <hr>
-<h3 id="fase-4-integration--iteration-uge-9-10">Fase 4: Integration &amp; Iteration (Uge 9-10)<a hidden class="anchor" aria-hidden="true" href="#fase-4-integration--iteration-uge-9-10">#</a></h3>
-<p><strong>Cross-specialization learnings:</strong></p>
-<p>Privacy gennemgår begge:</p>
-<ul>
-<li>Database: CASCADE DELETE (GDPR Article 17)</li>
-<li>Analytics: Data minimization, anonymization (GDPR Article 25)</li>
-</ul>
-<p>Performance vs cost trade-offs:</p>
-<ul>
-<li>Database: 4× storage efficiency = lavere costs</li>
-<li>Analytics: Lambda Architecture (real-time vs batch balance)</li>
-</ul>
-<p>Developer experience:</p>
-<ul>
-<li>Database: Mature EF Core provider = hurtigere development</li>
-<li>Analytics: Structured logging &gt; custom parsing</li>
-</ul>
-<p><strong>Portfolio documentation som læring:</strong></p>
-<ul>
-<li>Feynman Technique: Kan jeg forklare det simpelt?</li>
-<li>Hvis ikke, forstår jeg det ikke dybt nok</li>
-<li>Documentation tvang mig til at destillere kompleksitet</li>
-</ul>
-<p><strong>Hvad ville jeg gøre anderledes?</strong></p>
-<ul>
-<li>Start med research framework FØRST (ikke discover det halvvejs)</li>
-<li>Document assumptions eksplicit (nemmere at challenge)</li>
-<li>Iterate hurtigere (spike implementations tidligere)</li>
-</ul>
-<hr>
-<h3 id="fase-5-meta-refleksion-løbende">Fase 5: Meta-Refleksion (Løbende)<a hidden class="anchor" aria-hidden="true" href="#fase-5-meta-refleksion-løbende">#</a></h3>
-<p><strong>Research methodology som transferable skill:</strong></p>
-<p>Framework jeg nu har:</p>
-<pre tabindex="0"><code>1. Formulér konkrete forskningsspørgsmål
-2. Definer evaluation criteria
-3. Søg systematisk (Scholar, IEEE, GitHub)
-4. Evaluer kilder med credibility framework
-5. Triangulér evidens fra multiple sources
-6. Dokumentér limitations transparent
-</code></pre><p><strong>Systematic decision-making:</strong></p>
-<p>Ikke bare &ldquo;hvad virker?&rdquo; men:</p>
-<ul>
-<li>Hvad er mine evaluation criteria?</li>
-<li>Hvilken evidens supporterer dette?</li>
-<li>Hvad er limitations?</li>
-<li>Kan jeg forsvare valget med data?</li>
-</ul>
-<p><strong>Self-directed learning:</strong></p>
-<p>Fra &ldquo;følg tutorials&rdquo; til:</p>
-<ul>
-<li>Identify credible sources selv</li>
-<li>Build mental models gennem experimentation</li>
-<li>Validate forståelse ved at kunne forklare simpelt</li>
-<li>Document learnings for future reference</li>
-</ul>
-<hr>
-<h2 id="frameworks-udviklet">Frameworks Udviklet<a hidden class="anchor" aria-hidden="true" href="#frameworks-udviklet">#</a></h2>
-<p>Gennem semesteret byggede jeg reusable frameworks:</p>
-<h3 id="source-evaluation-checklist">Source Evaluation Checklist<a hidden class="anchor" aria-hidden="true" href="#source-evaluation-checklist">#</a></h3>
-<p><strong>For hver kilde:</strong></p>
-<ul>
-<li><input disabled="" type="checkbox"> Hvem publicerede? (vendor, akademisk, community)</li>
-<li><input disabled="" type="checkbox"> Peer-reviewed eller self-published?</li>
-<li><input disabled="" type="checkbox"> Er metodologi reproducerbar?</li>
-<li><input disabled="" type="checkbox"> Hvem finansierede researchen?</li>
-<li><input disabled="" type="checkbox"> Er limitations eksplicit dokumenteret?</li>
-<li><input disabled="" type="checkbox"> Kan findings verificeres elsewhere?</li>
-</ul>
-<h3 id="hypothesis-testing-template">Hypothesis Testing Template<a hidden class="anchor" aria-hidden="true" href="#hypothesis-testing-template">#</a></h3>
-<pre tabindex="0"><code>Hypotese: [Specifik, målbar påstand]
-Evidens-grundlag: [Kilder der supporterer]
-Success criteria: [Numerisk threshold]
-Test design: [Reproducerbar metodologi]
-Validering: [Passed/Failed med rationale]
-</code></pre><h3 id="decision-documentation-pattern">Decision Documentation Pattern<a hidden class="anchor" aria-hidden="true" href="#decision-documentation-pattern">#</a></h3>
-<pre tabindex="0"><code>Problemstilling → Research → Patterns → Implementation → Validation → Reflection
-</code></pre><p>Domain-agnostic og transferable til fremtidige projekter.</p>
-<hr>
-<h2 id="næste-skridt">Næste Skridt<a hidden class="anchor" aria-hidden="true" href="#næste-skridt">#</a></h2>
-<p>Når Data Science &amp; Analytics er færdig, vil denne side blive udvidet med:</p>
-<ul>
-<li>Konkrete eksempler fra begge faser</li>
-<li>Iterations-historier (mistakes made, lessons learned)</li>
-<li>Tools anvendt (Zotero for citations, Obsidian for notes)</li>
-<li>Deep dive på source evaluation konkrete cases</li>
-</ul>
-<p><em>Foreløbig dokumenterer den overordnede progression.</em></p>
-<hr>
-<p><strong>Relaterede sider:</strong><br>
-<a href="/datamatiker-portfolio/database/research/">Database Research</a> | [Data Science Research](kommer snart) | <a href="/datamatiker-portfolio/refleksion/">Samlet Refleksion</a></p>
+<h2 id="refleksion-over-rejsen">Refleksion over rejsen<a hidden class="anchor" aria-hidden="true" href="#refleksion-over-rejsen">#</a></h2>
+<p>Jeg startede semesteret som en udvikler, der ledte efter &ldquo;det bedste værktøj&rdquo;.
+Jeg afslutter semesteret som en arkitekt, der leder efter &ldquo;den bedst underbyggede beslutning&rdquo;.</p>
+<p>Den vigtigste læring er ikke PostgreSQLs JSON-performance eller SHA-256 hashing. Det er visheden om, at jeg kan navigere i ukendt teknisk og juridisk terræn ved at anvende en struktureret, deduktiv proces.</p>
+<p><strong>Næste:</strong> <a href="/datamatiker-portfolio/refleksion/">Samlet Refleksion →</a></p>
 
 
 </div>
