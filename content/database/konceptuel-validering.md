@@ -1,5 +1,5 @@
 ---
-title: "Implementation & Validation"
+title: "Implementering & Validering"
 draft: false
 weight: 4
 description: "Fra Design Patterns til kode: Konkret implementation og teoretisk audit"
