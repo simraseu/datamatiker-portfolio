@@ -19,16 +19,16 @@ Svarene fandt jeg ikke ved at gætte, men ved at tænke systematisk.
 Portfolioen er struktureret som en rejse gennem 7 stationer:
 
 ### 1. 📋 [Om Projektet]({{< relref "om-projektet/_index.md" >}})
-**Konteksten:** Hvad byggede jeg? Et system med tre chatbot-typer (Guest, Authenticated, Owner) til sundhedsplatformen *The Way of Coherence*. Læs dette først for at forstå problemstillingen.
+**Konteksten:** Hurtigt overblik over projektet i helhed, samt min specalisering i relation til projektet.
 
 
 ### 2. 🎯 [Læringsmål]({{< relref "laeringsmaal/_index.md" >}})
-**Kompasset:** De 10 konkrete mål (5 per specialisering), der har styret min læring fra start til slut.
+**Kompasset:** De læringsmål, der har styret min læring fra start til slut.
 
 
 ### 3. 🗄️ [Database & Storage]({{< relref "database/_index.md" >}})
 **Analysen:** Fra "Polyglot Persistence" til "Unified Monolith".
-Jeg troede, jeg skulle bruge tre databaser (MongoDB, PostgreSQL, Pinecone). Gennem systematisk research og performance-tests beviste jeg, at én database (**PostgreSQL**) var hurtigere, billigere og mere robust.
+Jeg troede, at jeg skulle bruge tre databaser (MongoDB, PostgreSQL, Pinecone). Gennem systematisk research og performance-tests beviste jeg, at én database (**PostgreSQL**) var hurtigere, billigere og mere robust.
 
 
 ### 4. 📊 [Data Science & Analytics]({{< relref "data-science/_index.md" >}})
@@ -43,7 +43,7 @@ En gennemgang af min metode: Fra tilfældig Googling til systematisk metodisk tr
 
 ### 6. 💭 [Samlet Refleksion]({{< relref "refleksion/_index.md" >}})
 **Konklusionen:** Hvad tager jeg med videre?
-Evaluering af læringsmål, tværgående temaer (Privacy, TCO, DX) og min personlige udvikling som softwareudvikler.
+Evaluering af læringsmål, tværgående temaer (Privacy, TCO, DX) og min personlige udvikling under projektet. 
 
 
 ---
@@ -54,7 +54,6 @@ Du kan tilgå indholdet på to måder:
 
 ### A. "The Hero's Journey" (Anbefalet)
 Læs siderne kronologisk. Følg tankeprocessen fra problem til løsning.
-
 `Om Projektet → Læringsmål → Database → Data Science → Vidensrejse → Refleksion`
 
 ### B. "The Executive Approach"
@@ -62,11 +61,11 @@ Hop direkte til konklusionerne. Hver specialiserings-side starter med et **Execu
 
 ---
 
-## 💡 Hvad gør denne portfolio anderledes?
+## 💡 Hvad har fokus været undervejs? 
 
 * **Evidens over mavefornemmelse:** Jeg argumenterer ikke ud fra popularitet ("MongoDB er smart"), men ud fra research (benchmarks, whitepapers, lovgivning).
 * **Fejl som læring:** Jeg dokumenterer åbent de antagelser, der viste sig at være forkerte. Det er her, den største læring skete.
-* **Helhedstænkning:** Jeg ser ikke Database og Data Science som isolerede siloer, men som to sider af samme sag: Hvordan gemmer og bruger vi data ansvarligt?
+* **Helhedstænkning:** Jeg ser ikke Database og Data Science som isolerede siloer, men som to sider af samme sag: Hvordan gemmer og dernæst bruger vi data ansvarligt?
 
 ---
 

@@ -104,3 +104,7 @@ pgvector er ~20% langsommere end dedicated Pinecone ved **pure** vector search (
 ## Start Rejsen
 
 **Klar til at dykke ned?** [Læs Problemstillingen →]({{< relref "database/problemstilling.md" >}})
+
+## Referencer
+
+[^1]: Information (2019). "A Review of Polyglot Persistence in the BigData World". Academic research.
