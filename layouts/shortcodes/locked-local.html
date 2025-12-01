@@ -1,0 +1,65 @@
+{{ $videoID := .Get 0 | anchorize }}
+
+<div class="local-video-wrapper">
+    <video id="vid-{{ $videoID }}" class="locked-video" playsinline>
+        <source src="/videos/{{ .Get 0 }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="video-shield" onclick="toggleLocalPlay('{{ $videoID }}')"></div>
+</div>
+
+<div class="video-controls">
+    <button id="btn-{{ $videoID }}" onclick="toggleLocalPlay('{{ $videoID }}')" class="play-btn">Play</button>
+</div>
+
+<script>
+    function toggleLocalPlay(id) {
+        var video = document.getElementById("vid-" + id);
+        var btn = document.getElementById("btn-" + id);
+
+        if (video.paused) {
+            video.play();
+            btn.innerHTML = "Pause";
+        } else {
+            video.pause();
+            btn.innerHTML = "Play";
+        }
+    }
+</script>
+
+<style>
+    .local-video-wrapper {
+        position: relative;
+        max-width: 100%; /* Responsive width */
+        width: 640px;    /* Max width */
+        margin-bottom: 10px;
+    }
+
+    .locked-video {
+        width: 100%;
+        display: block;
+        /* No cursor interaction allowed on the video itself */
+        pointer-events: none; 
+    }
+
+    .video-shield {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        /* When they click the video area, it triggers the click event defined in HTML */
+        cursor: pointer; 
+    }
+
+    .play-btn {
+        padding: 10px 20px;
+        background-color: #333;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+    }
+</style>

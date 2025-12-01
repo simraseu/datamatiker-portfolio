@@ -38,6 +38,8 @@
   </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/categories/</loc>
   </url><url>
+    <loc>http://localhost:1313/datamatiker-portfolio/video/</loc>
+  </url><url>
     <loc>http://localhost:1313/datamatiker-portfolio/tags/</loc>
   </url>
 </urlset>
