@@ -149,7 +149,7 @@
 
   <div class="post-content"><h2 id="dataguld-eller-radioaktivt-affald">Dataguld eller radioaktivt affald?<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup><a hidden class="anchor" aria-hidden="true" href="#dataguld-eller-radioaktivt-affald">#</a></h2>
 <p>Jeg startede Data Science-delen af projektet med en klassisk antagelse: <strong>&ldquo;Data er guld – vi logger alt.&rdquo;</strong></p>
-<p>Min plan var simpel: Gem alle beskeder, byg dashboards med fancy grafer, kald det analytics. Færdig.</p>
+<p>Udgangspunktet var en traditionel &lsquo;Collect-All&rsquo; strategi, hvor al data centraliseres. Dette udfordrede jeg gennem Risk Management tænkning (jf. NIST-frameworket), hvor data klassificeres som et Asset, der uden styring bliver til en Liability</p>
 <p>Men i et system, der håndterer sundhedsrelaterede spørgsmål, indså jeg hurtigt, at rå data er mindre som guld og mere som <strong>radioaktivt affald: værdifuldt, men farligt.</strong></p>
 <p>Raw message text fra <em>&ldquo;Jeg har ondt i hovedet&rdquo;</em> er &ldquo;særlige kategorier af personoplysninger&rdquo; (helbredsoplysninger) under GDPR Artikel 9<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>. Det kræver eksplicit samtykke. Uden samtykke er det ulovligt. Med en samtykke-prompt risikerer jeg op mod 70% user drop-off.</p>
 <p>Jeg stod med et fundamentalt spørgsmål:

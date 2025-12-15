@@ -41,7 +41,7 @@ Få hele historien på 3 minutter. Scroll ned for:
 
 ### Evidens: Hvad Viste Researchen?
 
-Fem uafhængige kilder fra UX, business, GDPR, systemdesign og etik konvergerede på ét krav: **Analytics skal designes normativt før implementation.**
+Fem uafhængige kilder fra UX, business, GDPR, systemdesign og etik konvergerede på en fælles retning: at analytics bør designes normativt før implementation.
 
 | Kilde | Type | Main Finding |
 |-------|------|--------------|

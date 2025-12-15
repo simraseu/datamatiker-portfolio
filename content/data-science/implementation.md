@@ -33,6 +33,9 @@ Raw text analyseres og kategoriseres in-memory:
 ```csharp
 public class IntentClassifier
 {
+    // Note: Dette er en deterministisk, regel-baseret classifier (MVP).
+    // I en produktions-kontekst ville denne logik erstattes af et kald til en NLP-model 
+    // (f.eks. BERT), men arkitekturen og interfacet ville forblive uændret.
     public string DetectIntent(string message)
     {
         var text = message.ToLower();
@@ -264,7 +267,7 @@ var average = last7days.Average(x => x.MetricValue);
 
 ## Konceptuel Validering (DP1-DP4)
 
-**Validerings strategi:** Teoretisk analyse af hvordan patterns ville opføre sig med realistiske data.
+**Metodisk note:** Da systemet ikke har live-trafik, er valideringen her konceptuel. Resultaterne er baseret på arkitektur-audits og simulerede data-flow (Mock Data), som indikerer systemets forventede adfærd i produktion.
 
 Uden live traffic anvendes systematisk konceptuel validering gennem fire metoder:
 

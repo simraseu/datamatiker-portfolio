@@ -243,7 +243,7 @@ For at tilgodese divergerende stakeholder-behov implementeres hierarkisk metrik-
 For at eliminere risiko for lagring af særlige kategorier af personoplysninger (GDPR Art. 9) implementeres <strong>Anonymization-at-Source</strong>:</p>
 <ol>
 <li><strong>Intent Classification:</strong> Rå tekst transformeres til kategorier (<code>health_query</code>), hvorefter teksten kasseres</li>
-<li><strong>Hashing:</strong> User IDs hashes med roterende salt (<code>SHA-256</code>) før database-write</li>
+<li><strong>Hashing:</strong> Vi anvender SHA-256 med daglig salt. Jf. pensum i IT-Sikkerhed er saltning kritisk for at forhindre Rainbow Table angreb. Hashing fungerer her som en pseudonymiseringsteknik, der balancerer analysebehov med retten til privatliv.</li>
 <li><strong>Temporal Aggregation:</strong> Timestamps aggregeres til hour-buckets</li>
 </ol>
 <p><strong>Application:</strong></p>

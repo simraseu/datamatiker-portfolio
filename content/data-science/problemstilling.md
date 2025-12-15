@@ -9,7 +9,7 @@ description: "Fra 'log alt' til privacy-first analytics: Dilemmaet mellem indsig
 
 Jeg startede Data Science-delen af projektet med en klassisk antagelse: **"Data er guld – vi logger alt."**
 
-Min plan var simpel: Gem alle beskeder, byg dashboards med fancy grafer, kald det analytics. Færdig.
+Udgangspunktet var en traditionel 'Collect-All' strategi, hvor al data centraliseres. Dette udfordrede jeg gennem Risk Management tænkning (jf. NIST-frameworket), hvor data klassificeres som et Asset, der uden styring bliver til en Liability
 
 Men i et system, der håndterer sundhedsrelaterede spørgsmål, indså jeg hurtigt, at rå data er mindre som guld og mere som **radioaktivt affald: værdifuldt, men farligt.**
 

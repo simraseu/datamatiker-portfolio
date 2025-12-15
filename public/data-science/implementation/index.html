@@ -185,6 +185,9 @@
 <p>Raw text analyseres og kategoriseres in-memory:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">IntentClassifier</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Note: Dette er en deterministisk, regel-baseret classifier (MVP).</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// I en produktions-kontekst ville denne logik erstattes af et kald til en NLP-model </span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// (f.eks. BERT), men arkitekturen og interfacet ville forblive uændret.</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">string</span> <span class="n">DetectIntent</span><span class="p">(</span><span class="kt">string</span> <span class="n">message</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">text</span> <span class="p">=</span> <span class="n">message</span><span class="p">.</span><span class="n">ToLower</span><span class="p">();</span>
@@ -398,7 +401,7 @@
 </span></span></code></pre></div><p><strong>Forskellen:</strong> Hot Path bruges til operational alerts (&ldquo;System har 50% error rate lige nu!&rdquo;). Cold Path bruges til trend analysis (&ldquo;Retention er faldet 10% over sidste måned&rdquo;).</p>
 <hr>
 <h2 id="konceptuel-validering-dp1-dp4">Konceptuel Validering (DP1-DP4)<a hidden class="anchor" aria-hidden="true" href="#konceptuel-validering-dp1-dp4">#</a></h2>
-<p><strong>Validerings strategi:</strong> Teoretisk analyse af hvordan patterns ville opføre sig med realistiske data.</p>
+<p><strong>Metodisk note:</strong> Da systemet ikke har live-trafik, er valideringen her konceptuel. Resultaterne er baseret på arkitektur-audits og simulerede data-flow (Mock Data), som indikerer systemets forventede adfærd i produktion.</p>
 <p>Uden live traffic anvendes systematisk konceptuel validering gennem fire metoder:</p>
 <ol>
 <li><strong>Privacy Audit:</strong> Verificer ingen PII kan persisteres</li>
