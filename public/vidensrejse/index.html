@@ -113,9 +113,9 @@
   </div>
 </header>
 <div class="post-content"><h1 id="min-vidensrejse-fra-kaos-til-metode">Min Vidensrejse: Fra Kaos til Metode<a hidden class="anchor" aria-hidden="true" href="#min-vidensrejse-fra-kaos-til-metode">#</a></h1>
-<p>Dette semester har ikke kun været en rejse ind i to tekniske specialiseringer. Det har været en rejse i at lære <strong>hvordan man tilegner sig ny, kompleks viden</strong> struktureret og effektivt.</p>
-<p>Min læringsproces var ikke lineær. Den startede med nysgerrighed, blev formet af forvirring, og endte med en skarp, gentagelig metode.</p>
-<p>Her er historien om, hvordan jeg udviklede det &ldquo;Framework for Evidence-Based Architecture&rdquo;, som gennemsyrer denne portfolio.</p>
+<p>Dette semester har ikke kun været en rejse ind i to tekniske specialiseringer. Det har været en øvelse i <strong>Studentercentreret Læring</strong>, hvor jeg har skullet lære at tilegne mig ny, kompleks viden struktureret og effektivt.</p>
+<p>Min læringsproces var ikke lineær. Den startede med nysgerrighed, blev formet af forvirring (kaos), og endte med en skarp, gentagelig metode.</p>
+<p>Her er historien om, hvordan jeg udviklede det framework, som danner den røde tråd i denne portfolio.</p>
 <hr>
 <h2 id="fase-1-fundamentet-database--storage">Fase 1: Fundamentet (Database &amp; Storage)<a hidden class="anchor" aria-hidden="true" href="#fase-1-fundamentet-database--storage">#</a></h2>
 <p>Min rejse startede her. Jeg vidste, at projektet krævede en database, men jeg stod over for et hav af buzzwords: <em>Microservices, Polyglot Persistence, Vector Databases, NoSQL.</em></p>
@@ -133,15 +133,15 @@
 <li>Konsistens (ACID vs BASE)</li>
 <li>Vektor-søgning (AI-integration)</li>
 </ol>
-<h3 id="trin-3-opfindelsen-af-triangulering">Trin 3: Opfindelsen af &ldquo;Triangulering&rdquo;<a hidden class="anchor" aria-hidden="true" href="#trin-3-opfindelsen-af-triangulering">#</a></h3>
+<h3 id="trin-3-systematisk-triangulering">Trin 3: Systematisk Triangulering<a hidden class="anchor" aria-hidden="true" href="#trin-3-systematisk-triangulering">#</a></h3>
 <p>Her stødte jeg på muren: Jeg havde ingen brugere til at teste performance med. Hvordan kunne jeg validere mine valg?
-Jeg udviklede her min <strong>Triangulerings-metode</strong>:</p>
+Jeg valgte at anvende en <strong>Triangulerings-metode</strong> for at sikre kildekritik:</p>
 <ul>
 <li>Jeg søgte <strong>Vendor Benchmarks</strong> (OnGres)</li>
 <li>Jeg krydstjekkede med <strong>Peer-Reviewed Forskning</strong> (Makris et al.)</li>
 <li>Jeg verificerede med <strong>Technical Documentation</strong> (AWS/Microsoft)</li>
 </ul>
-<p>Når tre uafhængige kilder pegede samme vej (mod PostgreSQL), accepterede jeg det som evidens. Dette blev fundamentet for min <strong>Unified Monolith</strong> konklusion.</p>
+<p>Når tre uafhængige kilder pegede samme vej (mod PostgreSQL), accepterede jeg det som tilstrækkelig arkitektonisk evidens. Dette blev fundamentet for min <strong>Unified Monolith</strong> konklusion.</p>
 <hr>
 <h2 id="fase-2-ekspansionen-data-science--analytics">Fase 2: Ekspansionen (Data Science &amp; Analytics)<a hidden class="anchor" aria-hidden="true" href="#fase-2-ekspansionen-data-science--analytics">#</a></h2>
 <p>Da jeg var færdig med Database-delen, stod jeg med to ting:</p>
@@ -149,7 +149,7 @@ Jeg udviklede her min <strong>Triangulerings-metode</strong>:</p>
 <li>En solid teknisk platform (PostgreSQL med JSONB og Vectors).</li>
 <li>En <strong>afprøvet metode</strong> til at angribe ukendte problemer.</li>
 </ol>
-<p>Jeg gik nu i krig med Data Science, men denne gang startede jeg ikke fra nul.</p>
+<p>Jeg gik nu videre til Data Science, men denne gang startede jeg ikke fra nul.</p>
 <h3 id="trin-1-genbrug-af-metode-efficiency">Trin 1: Genbrug af Metode (Efficiency)<a hidden class="anchor" aria-hidden="true" href="#trin-1-genbrug-af-metode-efficiency">#</a></h3>
 <p>I stedet for at starte med tilfældig googling, applicerede jeg straks min triangulerings-model. Jeg vidste, at jeg skulle lede efter <strong>Convergent Validity</strong> mellem:</p>
 <ul>
@@ -164,20 +164,18 @@ Jeg brugte min database-viden som springbræt:</p>
 <ul>
 <li><em>&ldquo;Hvis jeg gemmer data i JSONB (Database viden), hvordan sikrer jeg så, at det er lovligt (Data Science viden)?&rdquo;</em></li>
 </ul>
-<p>Dette ledte til <strong>Privacy-First Logging</strong> (DP2). Jeg byggede videre på fundamentet, men tilføjede et lag af etisk refleksion, som jeg ikke havde i starten.</p>
+<p>Dette ledte til <strong>Privacy-First Logging</strong> (DP2). Jeg byggede videre på fundamentet, men tilføjede et lag af etisk refleksion.</p>
 <hr>
-<h2 id="fase-3-syntese-det-endelige-framework">Fase 3: Syntese (Det Endelige Framework)<a hidden class="anchor" aria-hidden="true" href="#fase-3-syntese-det-endelige-framework">#</a></h2>
-<p>Gennem arbejdet med de to specialiseringer har jeg destilleret min arbejdsmetode ned til en cyklus på 4 trin, som jeg nu kan bruge i ethvert fremtidigt projekt:</p>
-<h3 id="1-hypotese-mavefornemmelse">1. Hypotese (Mavefornemmelse)<a hidden class="anchor" aria-hidden="true" href="#1-hypotese-mavefornemmelse">#</a></h3>
-<p><em>&ldquo;Data er guld&rdquo;</em> eller <em>&ldquo;Polyglot er bedst&rdquo;</em>. Jeg starter altid med en antagelse.</p>
-<h3 id="2-triangulering-research">2. Triangulering (Research)<a hidden class="anchor" aria-hidden="true" href="#2-triangulering-research">#</a></h3>
-<p>Jeg tester hypotesen mod tre kilder: <strong>Akademisk teori, Industristandarder og Officiel dokumentation.</strong>
-<em>Hvis kilderne divergerer:</em> Hypotesen forkastes.
-<em>Hvis kilderne konvergerer:</em> Hypotesen bliver til teori.</p>
-<h3 id="3-design-patterns-regelsæt">3. Design Patterns (Regelsæt)<a hidden class="anchor" aria-hidden="true" href="#3-design-patterns-regelsæt">#</a></h3>
-<p>Jeg omsætter teorien til normative regler (f.eks. &ldquo;DP4: ACID-First&rdquo;). Dette er broen mellem teori og praksis.</p>
-<h3 id="4-konceptuel-validering-bevis">4. Konceptuel Validering (Bevis)<a hidden class="anchor" aria-hidden="true" href="#4-konceptuel-validering-bevis">#</a></h3>
-<p>Jeg tester implementeringen gennem audits (GDPR check, TCO analyse, Architecture review).</p>
+<h2 id="fase-3-syntese-kolbs-læringscirkel">Fase 3: Syntese (Kolbs Læringscirkel)<a hidden class="anchor" aria-hidden="true" href="#fase-3-syntese-kolbs-læringscirkel">#</a></h2>
+<p>Gennem processen har jeg destilleret min arbejdsmetode ned til en cyklus på 4 trin, der i praksis afspejler <strong>Kolbs Læringscirkel</strong> (Experiential Learning):</p>
+<h3 id="1-hypotese-konkret-erfaring">1. Hypotese (Konkret Erfaring)<a hidden class="anchor" aria-hidden="true" href="#1-hypotese-konkret-erfaring">#</a></h3>
+<p><em>&ldquo;Data er guld&rdquo;</em> eller <em>&ldquo;Polyglot er bedst&rdquo;</em>. Jeg starter altid med en antagelse eller et konkret problem, jeg møder.</p>
+<h3 id="2-triangulering-reflekterende-observation">2. Triangulering (Reflekterende Observation)<a hidden class="anchor" aria-hidden="true" href="#2-triangulering-reflekterende-observation">#</a></h3>
+<p>Jeg tester hypotesen mod tre kilder: <strong>Akademisk teori, Industristandarder og Officiel dokumentation.</strong> Jeg observerer, hvor kilderne er enige eller uenige.</p>
+<h3 id="3-design-patterns-abstrakt-begrebsliggørelse">3. Design Patterns (Abstrakt Begrebsliggørelse)<a hidden class="anchor" aria-hidden="true" href="#3-design-patterns-abstrakt-begrebsliggørelse">#</a></h3>
+<p>Jeg omsætter min viden til normative regler/modeller (f.eks. &ldquo;DP4: ACID-First&rdquo;). Her danner jeg de abstrakte begreber, der skal løse problemet.</p>
+<h3 id="4-konceptuel-validering-aktivt-eksperiment">4. Konceptuel Validering (Aktivt Eksperiment)<a hidden class="anchor" aria-hidden="true" href="#4-konceptuel-validering-aktivt-eksperiment">#</a></h3>
+<p>Jeg tester implementeringen gennem audits (GDPR check, TCO analyse, Architecture review) for at verificere, om teorien holder i praksis.</p>
 <hr>
 <h2 id="refleksion-over-rejsen">Refleksion over rejsen<a hidden class="anchor" aria-hidden="true" href="#refleksion-over-rejsen">#</a></h2>
 <p>Jeg startede semesteret som en udvikler, der ledte efter &ldquo;det bedste værktøj&rdquo;.
