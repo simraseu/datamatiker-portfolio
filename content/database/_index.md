@@ -10,7 +10,7 @@ description: "Fra Polyglot Persistence til Unified Monolith: En performance-anal
 
 Systemets oprindelige arkitektur lagde op til en klassisk **"Polyglot Persistence"** tilgang. Som dataspecialist var min opgave at validere dette valg.
 
-I denne specialisering har jeg udfordret industristandarden for at undersøge, om **PostgreSQL** kan fungere som en **Unified Monolith**.[^1]
+I denne specialisering har jeg udfordret industristandarden for at undersøge, om **PostgreSQL** kan fungere som en **Unified Monolith**. [^1]
 
 Gennem systematisk research og konceptuel validering har jeg bevist, at en samlet løsning ikke bare er simplere, men på flere parametre overgår den distribuerede arkitektur.
 

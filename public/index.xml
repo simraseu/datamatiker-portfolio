@@ -57,18 +57,18 @@
       <description>Mine faglige mål for Database og Data Science specialiseringerne</description>
     </item>
     <item>
-      <title>Implementation &amp; Validation</title>
-      <link>http://localhost:1313/datamatiker-portfolio/database/konceptuel-validering/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/datamatiker-portfolio/database/konceptuel-validering/</guid>
-      <description>Fra Design Patterns til kode: Konkret implementation og teoretisk audit</description>
-    </item>
-    <item>
       <title>Implementation &amp; Validering</title>
       <link>http://localhost:1313/datamatiker-portfolio/data-science/implementation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/datamatiker-portfolio/data-science/implementation/</guid>
       <description>Fra arkitektur til kode: Privacy, Lambda og konceptuel validering</description>
+    </item>
+    <item>
+      <title>Implementering &amp; Validering</title>
+      <link>http://localhost:1313/datamatiker-portfolio/database/konceptuel-validering/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/datamatiker-portfolio/database/konceptuel-validering/</guid>
+      <description>Fra Design Patterns til kode: Konkret implementation og teoretisk audit</description>
     </item>
     <item>
       <title>Konklusion</title>
