@@ -22,7 +22,7 @@ Med afsæt i pensums **Systemarkitektur og 4+1 Views**, er systemet struktureret
 1.  **Application:** Indeholder use cases og forretningslogik. Her anvender vi **Dependency Injection** til at koble logikken løst til infrastrukturen.
 2.  **Domain:** Rummer domænemodeller og forretningsregler (Kernen).
 3.  **Infrastructure:** Håndterer dataadgang og integrationer. *(Det er primært i dette lag, min specialisering finder sted).*
-4.  **Blazor Web App (Presentation):** Håndterer UI via Razor components, struktureret efter **MVC-principper**, hvor view-logik er adskilt fra data.
+4.  **Blazor Web App (Presentation):** Håndterer UI via Razor components, struktureret efter **MVC-inspirerede principper**, hvor view-logik er adskilt fra data.
 
 ### Designvalg & Mønstre
 * **Feature-baseret organisering (Vertical Slices):** Selvom vi har logiske lag, er koden organiseret i vertikale slices per feature for at samle relateret logik og sikre modularitet.

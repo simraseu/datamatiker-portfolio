@@ -23,7 +23,7 @@ Portfolioen er struktureret gennem 7 faglige stationer:
 
 ### 3. 🗄️ [Database & Storage]({{< relref "database/_index.md" >}})
 **Analysen:** Fra "Polyglot Persistence" til "Unified Monolith".
-Min hypotese var, at systemet krævede tre specialiserede databaser. [cite_start]Gennem **konceptuel validering** og **komparativ analyse** påviste jeg, at en samlet løsning (**PostgreSQL**) reducerer *Accidental Complexity* og *Integration Tax* uden at gå på kompromis med performance[cite: 155].
+Min hypotese var, at systemet krævede tre specialiserede databaser. [cite_start]Gennem **konceptuel validering** og **komparativ analyse** argumenterede jeg for, at en samlet løsning (**PostgreSQL**) reducerer *Accidental Complexity* og *Integration Tax* uden at gå på kompromis med performance[cite: 155].
 
 ### 4. 📊 [Data Science & Analytics]({{< relref "data-science/_index.md" >}})
 **Analysen:** Fra "Data er Guld" til "Data er Liability".
