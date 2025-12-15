@@ -50,7 +50,7 @@ Failure points: 1 database
 Network hops: 1 per query
 ```
 
-**Gevinst:** Jeg eliminerer "The Integration Tax". Ingen datasynkronisering mellem systemer, ingen "race conditions" hvor vektorer findes før metadata, og driften forenkles til én backup-pipeline.
+**Gevinst:** Jeg minimerer systemets kompleksitet markant. Ingen datasynkronisering over netværk, ingen "race conditions" hvor vektorer findes før metadata, og driften forenkles til én backup-pipeline.
 
 **Trade-off:** Mister *nogle* edge-features fra specialiserede vector-DB'er (custom ANN algorithms), men opnår dramatisk reduceret kompleksitet og latency.
 
@@ -97,7 +97,7 @@ MongoDB gemmer JSON som text-based BSON. PostgreSQL gemmer JSON som parsed binar
 
 ---
 
-## DP3: Zero-Latency Vector Context
+## DP3: Native Vector Context (Zero-Network-Latency)
 
 **Adresserer:** Dilemma 2 (Synchronization Nightmare)  
 **Research Base:** Kilde 3 (Hightower Production Case)[^3]
@@ -137,7 +137,7 @@ Step 1: App → PostgreSQL (combined query) [RTT 1]
 Total: 1 operation, 89ms latency
 ```
 
-**Latency reduction:** 311ms (78%) eliminated by avoiding cross-service calls.
+**Estimeret Latency reduction:** ~300ms (78%) elimineret ved at fjerne cross-service netværkskald.
 
 **Index Strategy:** Jeg anbefaler HNSW (Hierarchical Navigable Small World) index fremfor IVFFlat:
 - **Recall:** ~96-98% (acceptable trade-off for speed)

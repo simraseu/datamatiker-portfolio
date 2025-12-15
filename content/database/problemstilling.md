@@ -24,12 +24,12 @@ Jeg valgte derfor at udfordre teamets oprindelige antagelse. Dette projekt handl
 
 ## De Tre Arkitektoniske Dilemmaer
 
-### Dilemma 1: The Integration Tax
+### Dilemma 1: The Integration Tax [^1]
 **Dokument-fleksibilitet vs. System-kompleksitet**
 
 **Antagelsen:** "MongoDB er bedst til dokumenter, så vi skal bruge MongoDB til chat-logs."
 
-**Konflikten:** Chatbots kræver, at vi linker brugerprofiler (SQL) med samtaler (NoSQL). Ved at splitte data op i to systemer, introducerer vi "The Integration Tax": Vi mister muligheden for at lave simple `JOINs`.
+**Konflikten:** Chatbots kræver, at vi linker brugerprofiler (SQL) med samtaler (NoSQL). Dette polyglot persistence-valg introducerer integration overhead: Vi mister simple JOINs og må håndtere omkostninger ved data marshalling og application-level sammenlægning - emner, jeg allerede har stiftet bekendtskab med, under kommunikation og arkitektur i distribuerede systemer.[^2]
 
 **Konkret scenarie:**
 
@@ -45,7 +45,7 @@ Jeg valgte derfor at udfordre teamets oprindelige antagelse. Dette projekt handl
 * Query tid: ~89ms (samme benchmarks)
 * User oplever: Instant loading
 
-To databaser. Identisk funktionalitet. **26× performance forskel.**
+To databaser. Identisk funktionalitet. **Estimeret 26x performance forskel jf. benchmarks (se Research).**
 
 **Spørgsmålet:** Kan en moderne relationel database håndtere JSON effektivt nok til at overflødiggøre en dedikeret dokument-database?
 
@@ -177,3 +177,8 @@ Målet var ikke at finde "den bedste database", men at forstå **trade-offs** og
 Jeg behøvede ikke live-brugere for at besvare dette. Jeg havde brug for arkitektonisk sikkerhed.
 
 **Næste:** [Research & Evidens →]({{< relref "database/research.md" >}})
+
+---
+## Referencer
+[^1]: Introduktion til Distributed Systems - Hvad er et Distributed System? (Teknologi)
+[^2]: Distributed_Systems_4 (DS 4.03) - Chapter: Communication (Teknologi)

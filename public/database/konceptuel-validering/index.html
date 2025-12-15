@@ -159,7 +159,7 @@
 
   <div class="post-content"><h2 id="fra-teori-til-kode">Fra Teori til Kode<a hidden class="anchor" aria-hidden="true" href="#fra-teori-til-kode">#</a></h2>
 <p>Design Patterns (DP1-DP4) definerede <em>reglerne</em> for arkitekturen. Denne sektion dokumenterer, hvordan disse regler er operationaliseret i konkret kode.</p>
-<p>Implementationen beviser, at en <strong>Unified Monolith</strong> ikke bare er en teoretisk idé, men en teknisk realitet bygget på PostgreSQLs avancerede features.</p>
+<p>Implementationen demonstrerer, at en <strong>Unified Monolith</strong> er teknisk gennemførlig og bygger på PostgreSQLs avancerede features.</p>
 <hr>
 <h2 id="del-1-database-implementation-sql">Del 1: Database Implementation (SQL)<a hidden class="anchor" aria-hidden="true" href="#del-1-database-implementation-sql">#</a></h2>
 <p><strong>Implementerer:</strong> DP1 (Unified Monolith) + DP2 (Hybrid-Relational) + DP3 (Zero-Latency Vector)</p>
@@ -288,6 +288,7 @@
 <h3 id="v2-architecture-latency-audit">V2: Architecture Latency Audit<a hidden class="anchor" aria-hidden="true" href="#v2-architecture-latency-audit">#</a></h3>
 <p><strong>Validates:</strong> DP1 (Unified Monolith) + DP3 (Zero-Latency Vector Context)</p>
 <p><strong>Hypotese:</strong> Integreret arkitektur reducerer total request latency ved at eliminere netværks-kald.</p>
+<p><em><strong>Note</strong>: Alle latency-tal nedenfor er estimater baseret på standard cloud RTT (Round Trip Time) og netværksteori.</em></p>
 <p><strong>Latency Budget Analysis (RTT):</strong></p>
 <p><strong>A. Polyglot Arkitektur (MongoDB + Pinecone):</strong></p>
 <ol>

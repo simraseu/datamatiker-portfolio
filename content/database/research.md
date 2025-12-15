@@ -11,6 +11,8 @@ For at løse de tre dilemmaer fra problemstillingen anvendte jeg en **trianguler
 
 Denne filtrering sikrede at Design Patterns bygger på solid evidens, ikke subjektive meninger.
 
+***Note**: Da projektet mangler lokal empiri (live brugere), anvendes triangulering af eksterne kilder som erstatning for egne performance-målinger jf. principperne for validitet.*
+
 ---
 
 ## Evidence Summary Table

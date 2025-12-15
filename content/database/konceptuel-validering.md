@@ -9,7 +9,7 @@ description: "Fra Design Patterns til kode: Konkret implementation og teoretisk 
 
 Design Patterns (DP1-DP4) definerede *reglerne* for arkitekturen. Denne sektion dokumenterer, hvordan disse regler er operationaliseret i konkret kode.
 
-Implementationen beviser, at en **Unified Monolith** ikke bare er en teoretisk idé, men en teknisk realitet bygget på PostgreSQLs avancerede features.
+Implementationen demonstrerer, at en **Unified Monolith** er teknisk gennemførlig og bygger på PostgreSQLs avancerede features.
 
 ---
 
@@ -145,6 +145,8 @@ Vi anvender fire valideringsmetoder:
 **Validates:** DP1 (Unified Monolith) + DP3 (Zero-Latency Vector Context)
 
 **Hypotese:** Integreret arkitektur reducerer total request latency ved at eliminere netværks-kald.
+
+***Note**: Alle latency-tal nedenfor er estimater baseret på standard cloud RTT (Round Trip Time) og netværksteori.*
 
 **Latency Budget Analysis (RTT):**
 

@@ -130,7 +130,7 @@
                 <li>
                     <a href="#dp2-hybrid-relational-bridge" aria-label="DP2: Hybrid-Relational Bridge">DP2: Hybrid-Relational Bridge</a></li>
                 <li>
-                    <a href="#dp3-zero-latency-vector-context" aria-label="DP3: Zero-Latency Vector Context">DP3: Zero-Latency Vector Context</a></li>
+                    <a href="#dp3-native-vector-context-zero-network-latency" aria-label="DP3: Native Vector Context (Zero-Network-Latency)">DP3: Native Vector Context (Zero-Network-Latency)</a></li>
                 <li>
                     <a href="#dp4-acid-first-consistency" aria-label="DP4: ACID-First Consistency">DP4: ACID-First Consistency</a></li>
                 <li>
@@ -177,7 +177,7 @@
 </span></span><span class="line"><span class="cl">Integration: Native SQL joins
 </span></span><span class="line"><span class="cl">Failure points: 1 database
 </span></span><span class="line"><span class="cl">Network hops: 1 per query
-</span></span></code></pre></div><p><strong>Gevinst:</strong> Jeg eliminerer &ldquo;The Integration Tax&rdquo;. Ingen datasynkronisering mellem systemer, ingen &ldquo;race conditions&rdquo; hvor vektorer findes før metadata, og driften forenkles til én backup-pipeline.</p>
+</span></span></code></pre></div><p><strong>Gevinst:</strong> Jeg minimerer systemets kompleksitet markant. Ingen datasynkronisering over netværk, ingen &ldquo;race conditions&rdquo; hvor vektorer findes før metadata, og driften forenkles til én backup-pipeline.</p>
 <p><strong>Trade-off:</strong> Mister <em>nogle</em> edge-features fra specialiserede vector-DB&rsquo;er (custom ANN algorithms), men opnår dramatisk reduceret kompleksitet og latency.</p>
 <hr>
 <h2 id="dp2-hybrid-relational-bridge">DP2: Hybrid-Relational Bridge<a hidden class="anchor" aria-hidden="true" href="#dp2-hybrid-relational-bridge">#</a></h2>
@@ -235,7 +235,7 @@
 <p><strong>Resultat:</strong> Implementation quality &gt; database category.</p>
 <p><strong>Trade-off:</strong> JSONB bruger ~20% mere disk end pure text, men Makris et al. dokumenterer at PostgreSQL stadig bruger 4× mindre space end MongoDB grundet binary compression.</p>
 <hr>
-<h2 id="dp3-zero-latency-vector-context">DP3: Zero-Latency Vector Context<a hidden class="anchor" aria-hidden="true" href="#dp3-zero-latency-vector-context">#</a></h2>
+<h2 id="dp3-native-vector-context-zero-network-latency">DP3: Native Vector Context (Zero-Network-Latency)<a hidden class="anchor" aria-hidden="true" href="#dp3-native-vector-context-zero-network-latency">#</a></h2>
 <p><strong>Adresserer:</strong> Dilemma 2 (Synchronization Nightmare)<br>
 <strong>Research Base:</strong> Kilde 3 (Hightower Production Case)<sup id="fnref1:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>
 <strong>Validering:</strong> V2 (Architecture Audit)</p>
@@ -265,7 +265,7 @@
 </span></span><span class="line"><span class="cl">  LIMIT 10
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">Total: 1 operation, 89ms latency
-</span></span></code></pre></div><p><strong>Latency reduction:</strong> 311ms (78%) eliminated by avoiding cross-service calls.</p>
+</span></span></code></pre></div><p><strong>Estimeret Latency reduction:</strong> ~300ms (78%) elimineret ved at fjerne cross-service netværkskald.</p>
 <p><strong>Index Strategy:</strong> Jeg anbefaler HNSW (Hierarchical Navigable Small World) index fremfor IVFFlat:</p>
 <ul>
 <li><strong>Recall:</strong> ~96-98% (acceptable trade-off for speed)</li>

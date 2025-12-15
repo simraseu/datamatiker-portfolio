@@ -116,7 +116,7 @@
 <p><strong>Hypotese:</strong> &ldquo;Er det nødvendigt at bruge tre forskellige databaser (SQL, NoSQL, Vector) for at bygge en moderne AI-platform, eller kan en monolitisk arkitektur levere bedre performance og lavere kompleksitet?&rdquo;</p>
 <p>Systemets oprindelige arkitektur lagde op til en klassisk <strong>&ldquo;Polyglot Persistence&rdquo;</strong> tilgang. Som dataspecialist var min opgave at validere dette valg.</p>
 <p>I denne specialisering har jeg udfordret industristandarden for at undersøge, om <strong>PostgreSQL</strong> kan fungere som en <strong>Unified Monolith</strong>. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
-<p>Gennem systematisk research og konceptuel validering har jeg bevist, at en samlet løsning ikke bare er simplere, men på flere parametre overgår den distribuerede arkitektur.</p>
+<p>Gennem systematisk research og konceptuel validering har jeg argumenteret for, at en samlet løsning ikke bare er simplere, men på centrale parametre (latens, konsistens) potentielt overgår den distribuerede arkitektur for denne specifikke use case.</p>
 <hr>
 <h2 id="vælg-din-tilgang">Vælg Din Tilgang<a hidden class="anchor" aria-hidden="true" href="#vælg-din-tilgang">#</a></h2>
 <p>Du har to muligheder for at udforske Database &amp; Storage delen:</p>
@@ -133,7 +133,7 @@
 <h3 id="-executive-summary-3-minutter">⚡ Executive Summary (3 minutter)<a hidden class="anchor" aria-hidden="true" href="#-executive-summary-3-minutter">#</a></h3>
 <p>Hvis du vil have konklusionerne med det samme, er her hovedresultaterne:</p>
 <h4 id="evidens-hvad-viste-researchen">Evidens: Hvad Viste Researchen?<a hidden class="anchor" aria-hidden="true" href="#evidens-hvad-viste-researchen">#</a></h4>
-<p>Fem uafhængige kilder konvergerede på ét krav: <strong>Unified platform outperformer polyglot persistence.</strong></p>
+<p>Fem uafhængige kilder konvergerede på én tendens: <strong>Unified platform viser teoretiske performance-fordele over polyglot persistence.</strong></p>
 <table>
   <thead>
       <tr>
@@ -270,7 +270,7 @@ Min rolle som specialist: Som ansvarlig for data-infrastrukturen var min opgave 
   <div class="entry-content">
     <p>Jagten på Konvergerende Evidens For at løse de tre dilemmaer fra problemstillingen anvendte jeg en triangulerings-strategi: Jeg accepterede kun konklusioner, der kunne bekræftes af mindst to uafhængige kilder (fx Vendor Benchmark &#43; Peer-Reviewed Studie &#43; Officiel Dokumentation).
 Denne filtrering sikrede at Design Patterns bygger på solid evidens, ikke subjektive meninger.
-Evidence Summary Table Domæne Kilde Type Main Finding Anvendelse JSON Performance OnGres Benchmark Vendor PostgreSQL 26-40× hurtigere på JSON Validates DP2 Academic Validation Makris et al. Peer-reviewed 4× mindre disk, 4× hurtigere queries Validates DP2 Vector Integration Hightower/Timescale Production case pgvector eliminerer separat vector DB Validates DP3 ORM Support Microsoft EF Core Official docs PostgreSQL 100% vs MongoDB 60% support Validates DP1 Consistency Model AWS ACID vs BASE Technical guide Strong consistency uden performance-tab Validates DP4 Convergent finding: Alle kilder peger mod PostgreSQL som optimal unified platform uden performance-tab.
+Note: Da projektet mangler lokal empiri (live brugere), anvendes triangulering af eksterne kilder som erstatning for egne performance-målinger jf. principperne for validitet.
 ...</p>
   </div>
   <footer class="entry-footer"><span>Simon</span></footer>
@@ -301,7 +301,7 @@ Research Base: Kilde 3 (Hightower/Timescale)1 &#43; Kilde 4 (Microsoft EF Core)2
   </header>
   <div class="entry-content">
     <p>Fra Teori til Kode Design Patterns (DP1-DP4) definerede reglerne for arkitekturen. Denne sektion dokumenterer, hvordan disse regler er operationaliseret i konkret kode.
-Implementationen beviser, at en Unified Monolith ikke bare er en teoretisk idé, men en teknisk realitet bygget på PostgreSQLs avancerede features.
+Implementationen demonstrerer, at en Unified Monolith er teknisk gennemførlig og bygger på PostgreSQLs avancerede features.
 Del 1: Database Implementation (SQL) Implementerer: DP1 (Unified Monolith) &#43; DP2 (Hybrid-Relational) &#43; DP3 (Zero-Latency Vector)
 Fundamentet er databasestrukturen. Her aktiverer vi pgvector udvidelsen og opretter vores hybride tabel, der håndterer både relationer, dokumenter og vektorer i én status.
 ...</p>

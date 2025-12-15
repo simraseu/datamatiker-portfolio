@@ -129,14 +129,16 @@
                     <a href="#de-tre-arkitektoniske-dilemmaer" aria-label="De Tre Arkitektoniske Dilemmaer">De Tre Arkitektoniske Dilemmaer</a><ul>
                         
                 <li>
-                    <a href="#dilemma-1-the-integration-tax" aria-label="Dilemma 1: The Integration Tax">Dilemma 1: The Integration Tax</a></li>
+                    <a href="#dilemma-1-the-integration-tax" aria-label="Dilemma 1: The Integration Tax 1">Dilemma 1: The Integration Tax 1</a></li>
                 <li>
                     <a href="#dilemma-2-the-synchronization-nightmare" aria-label="Dilemma 2: The Synchronization Nightmare">Dilemma 2: The Synchronization Nightmare</a></li>
                 <li>
                     <a href="#dilemma-3-the-consistency-myth" aria-label="Dilemma 3: The Consistency Myth">Dilemma 3: The Consistency Myth</a></li></ul>
                 </li>
                 <li>
-                    <a href="#strategi-fra-holdning-til-evidens" aria-label="Strategi: Fra Holdning til Evidens">Strategi: Fra Holdning til Evidens</a>
+                    <a href="#strategi-fra-holdning-til-evidens" aria-label="Strategi: Fra Holdning til Evidens">Strategi: Fra Holdning til Evidens</a></li>
+                <li>
+                    <a href="#referencer" aria-label="Referencer">Referencer</a>
                 </li>
             </ul>
         </div>
@@ -156,10 +158,10 @@ Som ansvarlig for data-infrastrukturen var min opgave ikke blot at implementere 
 <p>Jeg valgte derfor at udfordre teamets oprindelige antagelse. Dette projekt handler ikke om at vælge &ldquo;den bedste database&rdquo; i et vakuum, men om at navigere i tre fundamentale dilemmaer, der opstår, når vi forsøger at splitte data op i tre systemer.</p>
 <hr>
 <h2 id="de-tre-arkitektoniske-dilemmaer">De Tre Arkitektoniske Dilemmaer<a hidden class="anchor" aria-hidden="true" href="#de-tre-arkitektoniske-dilemmaer">#</a></h2>
-<h3 id="dilemma-1-the-integration-tax">Dilemma 1: The Integration Tax<a hidden class="anchor" aria-hidden="true" href="#dilemma-1-the-integration-tax">#</a></h3>
+<h3 id="dilemma-1-the-integration-tax">Dilemma 1: The Integration Tax <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup><a hidden class="anchor" aria-hidden="true" href="#dilemma-1-the-integration-tax">#</a></h3>
 <p><strong>Dokument-fleksibilitet vs. System-kompleksitet</strong></p>
 <p><strong>Antagelsen:</strong> &ldquo;MongoDB er bedst til dokumenter, så vi skal bruge MongoDB til chat-logs.&rdquo;</p>
-<p><strong>Konflikten:</strong> Chatbots kræver, at vi linker brugerprofiler (SQL) med samtaler (NoSQL). Ved at splitte data op i to systemer, introducerer vi &ldquo;The Integration Tax&rdquo;: Vi mister muligheden for at lave simple <code>JOINs</code>.</p>
+<p><strong>Konflikten:</strong> Chatbots kræver, at vi linker brugerprofiler (SQL) med samtaler (NoSQL). Dette polyglot persistence-valg introducerer integration overhead: Vi mister simple JOINs og må håndtere omkostninger ved data marshalling og application-level sammenlægning - emner, jeg allerede har stiftet bekendtskab med, under kommunikation og arkitektur i distribuerede systemer.<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
 <p><strong>Konkret scenarie:</strong></p>
 <p><strong>Scenarie A — MongoDB (Specialized Document DB):</strong></p>
 <ul>
@@ -175,7 +177,7 @@ Som ansvarlig for data-infrastrukturen var min opgave ikke blot at implementere 
 <li>Query tid: ~89ms (samme benchmarks)</li>
 <li>User oplever: Instant loading</li>
 </ul>
-<p>To databaser. Identisk funktionalitet. <strong>26× performance forskel.</strong></p>
+<p>To databaser. Identisk funktionalitet. <strong>Estimeret 26x performance forskel jf. benchmarks (se Research).</strong></p>
 <p><strong>Spørgsmålet:</strong> Kan en moderne relationel database håndtere JSON effektivt nok til at overflødiggøre en dedikeret dokument-database?</p>
 <details>
 <summary><strong>🔍 Hvorfor performance paradoxet opstår</strong></summary>
@@ -289,6 +291,19 @@ Som ansvarlig for data-infrastrukturen var min opgave ikke blot at implementere 
 <p>Målet var ikke at finde &ldquo;den bedste database&rdquo;, men at forstå <strong>trade-offs</strong> og kunne forsvare valget med evidens.</p>
 <p>Jeg behøvede ikke live-brugere for at besvare dette. Jeg havde brug for arkitektonisk sikkerhed.</p>
 <p><strong>Næste:</strong> <a href="/datamatiker-portfolio/database/research/">Research &amp; Evidens →</a></p>
+<hr>
+<h2 id="referencer">Referencer<a hidden class="anchor" aria-hidden="true" href="#referencer">#</a></h2>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Introduktion til Distributed Systems - Hvad er et Distributed System? (Teknologi)&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Distributed_Systems_4 (DS 4.03) - Chapter: Communication (Teknologi)&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
 
 
   </div>

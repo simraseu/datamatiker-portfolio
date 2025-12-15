@@ -15,7 +15,7 @@ Det lød logisk. MongoDB markedsfører sig selv som "document database" — selv
 
 Men gennem arbejdet med convergent evidence indsåede jeg at **database categories er marketing, ikke arkitektoniske garantier.**
 
-Konklusionen blev den stik modsatte: **Simplification is the ultimate sophistication.**
+Konklusionen blev den stik modsatte: **Arkitektonisk simplicitet øger systemets robusthed og verificerbarhed.**
 
 Ved at vælge en **Unified Monolith (PostgreSQL)** har jeg ikke bare simplificeret koden (47% færre linjer), jeg har også opnået bedre performance, højere dataintegritet og stærkere GDPR-compliance.
 
@@ -142,7 +142,7 @@ Et overraskende fund i researchen (Makris et al.) var, at MongoDB bruger op til 
 
 Bedre query performance (26× faster) reducerer også CPU-forbrug per request. Aggregeret effekt: **~50 kg CO₂ savings årligt ved 10k users.**
 
-Ved at vælge en storage-effektiv løsning reducerer jeg ikke bare hosting-regningen, men også løsningens miljøaftryk. **Arkitektonisk efficiency har miljøimpact. Effektiv kode er grøn kode.**
+Ved at vælge en storage-effektiv løsning reducerer jeg ikke bare hosting-regningen, men også løsningens miljøaftryk. **Dette understøtter virksomhedens ansvar for bæredygtig IT-drift.**
 
 ---
 

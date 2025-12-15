@@ -1,68 +1,61 @@
 ---
 title: "Om Projektet"
 weight: 2
-description: "Kontekst: The Way of Coherence og min specialist-rolle i arkitekturen"
+description: "Kontekst: The Way of Coherence og min rolle i systemarkitekturen"
 ---
 
 # The Way of Coherence
 
-Dette projekt tager udgangspunkt i sundhedsplatformen **The Way of Coherence**. Platformen har fungeret som den fælles ramme for vores team, hvor vi har arbejdet ud fra en klar fordeling mellem fælles arkitektur og individuel specialisering.
+Dette projekt tager udgangspunkt i sundhedsplatformen **The Way of Coherence**. Platformen fungerer som den fælles ramme for vores team, hvor vi har arbejdet med en klar arbejdsdeling mellem fælles applikationslogik og specialiseret infrastruktur.
 
-For at maksimere læringsudbyttet har jeg i projektet indtaget en rolle som **specialiseret konsulent**, med fokus på at optimere data-infrastrukturen og analytics-laget inden for den fælles ramme.
+For at maksimere læringsudbyttet har jeg indtaget rollen som **Backend Specialist** med ansvar for optimering af data-infrastrukturen, persistens og implementation af analytics-laget.
 
 ---
 
 ## Den Fælles Systemarkitektur
 
-Systemet er en sundhedsplatform bygget i Blazor Server, hvor brugerne får adgang til rollebaserede funktioner og interaktioner.
+Systemet er en sundhedsplatform bygget som en **Blazor Server** applikation. Arkitekturen er designet med fokus på høj modularitet og testbarhed gennem **Separation of Concerns**.
 
-Vi har opbygget systemet efter en kombination af Clean Architecture[^1] og CQRS, hvilket giver en tydelig struktur og adskillelse mellem kernefunktionalitet, logik og brugergrænsefladen.
+### Det Logiske View (4+1 Arkitekturmodellen)
+Med afsæt i pensums **Systemarkitektur og 4+1 Views**, er systemet struktureret i distinkte lag:
 
-### Projektets 4 Hovedlag
-Projektet er organiseret i fire distinkte lag, der sikrer "Separation of Concerns":
+1.  **Application:** Indeholder use cases og forretningslogik. Her anvender vi **Dependency Injection** til at koble logikken løst til infrastrukturen.
+2.  **Domain:** Rummer domænemodeller og forretningsregler (Kernen).
+3.  **Infrastructure:** Håndterer dataadgang og integrationer. *(Det er primært i dette lag, min specialisering finder sted).*
+4.  **Blazor Web App (Presentation):** Håndterer UI via Razor components, struktureret efter **MVC-principper**, hvor view-logik er adskilt fra data.
 
-1.  **Application:** Indeholder applikationslogik, use cases, MediatR-handlers samt Commands og Queries, der styrer flowet gennem systemet.
-2.  **Domain:** Rummer domænemodeller, forretningsregler og domænehændelser, som udgør platformens kerne.
-3.  **Infrastructure:** Står for dataadgang, repositories, integrationer og kommunikation til eksterne services. *(Det er primært her, min specialisering finder sted).*
-4.  **Blazor Web App:** Leverer UI’et og håndterer interaktioner mellem brugeren og systemet.
-
-### Designvalg
-* **CQRS:** Sikrer en klar opdeling mellem læsning og skrivning.
-* **Vertical Slices:**[^2] Gør at hver feature (fx posts, medlemskaber eller profiler) er samlet ét sted med sin egen logik.
-* **Sikkerhed:** Platformen bruger ASP.NET Identity til login og rollebaseret adgangskontrol.
-* **Persistering:** Entity Framework Core håndterer lagring af brugere og interne data.
+### Designvalg & Mønstre
+* **Feature-baseret organisering (Vertical Slices):** Selvom vi har logiske lag, er koden organiseret i vertikale slices per feature for at samle relateret logik og sikre modularitet.
+* **Sikkerhed:** Platformen benytter **ASP.NET Identity** til autentificering og rollebaseret adgangskontrol.
+* **Integration:** Systemet agerer som **API Consumer** mod en ekstern Python AI-service.
 
 ---
 
 ## Min Rolle: Infrastruktur & Integration
 
-Som beskrevet ovenfor integreres systemet med en Python-baseret AI-service via HTTP-gateways, hvilket gør det muligt at udvide funktionaliteten med intelligent assistence.
+Mit primære fokus har været at sikre systemets **Non-Functional Requirements** (Performance, Scalability, Privacy) i krydsfeltet mellem infrastrukturen og den eksterne AI-service.
 
-Det er netop i krydsfeltet mellem **Infrastructure-laget** og denne **eksterne AI-service**, at jeg har lagt mit fokus.
+Hvor resten af teamet har fokuseret på feature-udvikling, har min opgave været at designe og validere de kritiske data-komponenter:
 
-Hvor resten af teamet har fokuseret på at etablere systemarkitekturen, sikkerheden og selve AI-servicen, har min opgave været at validere og optimere de kritiske data-komponenter, der skal bære systemet i fremtiden:
-
-### 1. Database & Storage (Specialisering)
-Selvom standard-implementationen benytter Entity Framework Core, har jeg undersøgt og implementeret en **Unified Monolith** strategi med **PostgreSQL**.
-Formålet var at bevise, at vi kan håndtere de komplekse vektordata fra AI-servicen mere effektivt direkte i databasen, frem for gennem eksterne afhængigheder.
+### 1. Database & Storage (Infrastruktur)
+Jeg har udfordret standard-løsningen ved at implementere en **Unified Monolith** strategi med **PostgreSQL**. Målet var at minimere kompleksiteten ved distribuerede systemer og håndtere vektordata lokalt for at reducere latency.
 👉 *[Læs analysen her]({{< relref "database/_index.md" >}})*
 
-### 2. Data Science & Analytics (Specialisering)
-I forbindelse med integrationen til Python-servicen har jeg designet en **Privacy-First pipeline**. Min rolle var at sikre, at dataen der flyder gennem HTTP-gatewayen, bliver anonymiseret og målt korrekt, så vi kan vurdere AI-kvaliteten uden at bryde GDPR.
+### 2. Data Science & Analytics (Metode)
+Jeg har designet en **Privacy-First pipeline** for integrationen til Python-servicen. Her har fokus været på datasikkerhed og anonymisering i overensstemmelse med **NIST-frameworket**.
 👉 *[Læs analysen her]({{< relref "data-science/_index.md" >}})*
 
 ---
 
-## Metode: Konsulent-tilgangen
+## Metode: Fra HLD til LLD
 
-Ved at definere mig selv som specialist inden for teamet, har jeg kunnet arbejde dybdegående med teknologier (PostgreSQL, Vector Search, Hashing-algoritmer), der ligger "under motorhjelmen" på den fælles arkitektur.
+Min arbejdsproces har fulgt en struktureret systemudviklingsmetode.
 
-Min leverance til teamet er derfor ikke bare kode, men validerede arkitektur-beslutninger (Proof of Concepts), der er klar til at blive rullet ud i Infrastructure-laget.
+> **Metodisk definition:** Jeg anvender **arkitekturevaluering** som *teknik* (aktiviteten), litteraturbaseret research som *input*, og Proof of Concept som *værktøj* til at validere mine valg.
 
-**Næste skridt:** Se de specifikke mål, jeg satte for min specialist-rolle 👉 [Læringsmål]({{< relref "laeringsmaal/_index.md" >}})
+Processen er forløbet således:
+1.  **High Level Design (HLD):** Fastlæggelse af arkitekturstrategi og teknologivalg (Postgres vs. Mongo).
+2.  **Low Level Design (LLD):** Detaljeret design af databaseschema og API-kontrakter.
+3.  **Implementation:** Udvikling af komponenter via C# og SQL.
 
----
-## Referencer
-
-[^1]: Martin, R. C. (2017). "Clean Architecture: A Craftsman's Guide to Software Structure". Prentice Hall.
-[^2]: Bogard, J. (2018). "Vertical Slice Architecture". JimmyBogard.com.
+**Næste skridt:** Se de specifikke kompetencemål for min rolle 👉 [Læringsmål]({{< relref "laeringsmaal/_index.md" >}})

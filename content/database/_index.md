@@ -12,7 +12,7 @@ Systemets oprindelige arkitektur lagde op til en klassisk **"Polyglot Persistenc
 
 I denne specialisering har jeg udfordret industristandarden for at undersøge, om **PostgreSQL** kan fungere som en **Unified Monolith**. [^1]
 
-Gennem systematisk research og konceptuel validering har jeg bevist, at en samlet løsning ikke bare er simplere, men på flere parametre overgår den distribuerede arkitektur.
+Gennem systematisk research og konceptuel validering har jeg argumenteret for, at en samlet løsning ikke bare er simplere, men på centrale parametre (latens, konsistens) potentielt overgår den distribuerede arkitektur for denne specifikke use case.
 
 ---
 
@@ -38,7 +38,7 @@ Hvis du vil have konklusionerne med det samme, er her hovedresultaterne:
 
 #### Evidens: Hvad Viste Researchen?
 
-Fem uafhængige kilder konvergerede på ét krav: **Unified platform outperformer polyglot persistence.**
+Fem uafhængige kilder konvergerede på én tendens: **Unified platform viser teoretiske performance-fordele over polyglot persistence.**
 
 | Kilde | Type | Main Finding |
 |-------|------|--------------|
