@@ -14,6 +14,7 @@ For at strukturere min evaluering anvender jeg **Kolbs Læringscirkel**[^1]. Mod
 
 ## 1. Konkret Oplevelse (Hvad skete der?)
 **Autonom arbejdsform gennem løs kobling**
+
 Jeg valgte bevidst at afgrænse mig fra Frontend/UI-arbejdet for at dykke ned i mine to specialiseringer: *Database* og *Data Science*. Dette betød, at jeg arbejdede med en høj grad af **løs kobling** (Loose Coupling) til resten af teamet. Samarbejdet foregik primært gennem definition af grænseflader (API-kontrakter) frem for daglig par-programmering.
 
 Undervejs i projektet oplevede vi et **frafald af et teammedlem**. I et traditionelt, tæt koblet samarbejde kunne dette have været fatalt for fremdriften. Men på grund af min specialist-tilgang, hvor jeg leverede afgrænsede moduler (PoC’s) via API-kontrakter, kunne jeg fortsætte mit arbejde upåvirket. Min leverance var ikke afhængig af de andres daglige commits, og omvendt.
