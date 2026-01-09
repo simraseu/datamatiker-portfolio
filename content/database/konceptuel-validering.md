@@ -13,12 +13,33 @@ Implementationen demonstrerer, at en **Unified Monolith** er teknisk gennemførl
 
 ---
 
-## Del 1: Database Implementation (SQL)
+## Del 1: Infrastuktur & Database (Docker + SQL)
 
-**Implementerer:** DP1 (Unified Monolith) + DP2 (Hybrid-Relational) + DP3 (Zero-Latency Vector)
+**Implementerer:** DP1 (Unified Monolith) + DP2 (Hybrid-Relational) + DP3 (Zero-Latency Vector) + Container Technology
 
-Fundamentet er databasestrukturen. Her aktiverer vi `pgvector` udvidelsen og opretter vores hybride tabel, der håndterer både relationer, dokumenter og vektorer i én status.
+Før databaseskemaet kunne implementeres, var det nødvendigt at etablere et isoleret miljø, der understøtter vektorer. Da standard PostgreSQL ikke har `pgvector` indbygget, anvendte jeg container-teknologi til at konfigurere en custom instans.
 
+### 1. Infrastruktur (Docker Konfiguration)
+For at validere arkitekturen i et kontrolleret miljø (Sandbox), definerede jeg følgende `docker-compose` konfiguration. Bemærk valget af `ankane/pgvector` imaget, der eliminerer behovet for manuel kompilering af extensions.
+```YAML
+version: '3.8'
+services:
+  postgres:
+    image: ankane/pgvector:latest  # Custom image med vector extension præ-installeret
+    container_name: coherence_db_poc
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: coherence_db
+    ports:
+      - "5432:5432"
+    volumes:
+      # IaC: Mapper init-script ind for automatisk schema creation ved opstart
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+```
+### 2. Database Schema (SQL)
+
+Med infrastrukturen på plads via Docker, kunne tabellerne oprettes. Scriptet herunder køres automatisk ved container-start (via volumen mappet ovenfor) og etablerer den hybride struktur.
 ```sql
 -- 1. Enable Vector Extension (DP3)
 CREATE EXTENSION IF NOT EXISTS vector;
